@@ -12,12 +12,15 @@ using EvenMoreOverpoweredJourney.Bestiary.UI;
 namespace EvenMoreOverpoweredJourney.Bestiary.UI.Components
 {
     /// <summary>
-    /// 72px 容器 + 原版 UIBestiaryEntryButton（不拆层、不重画 SpriteBatch）。
-    /// 定制：全部显示脸替换 Icon；背景 10% 在 EntryButton 子树建立后处理。
+    /// 72px 网格卡：原版 UIBestiaryEntryButton，<b>isAPrettyPortrait 必须为 false</b>（卡片图标模式，悬停才动）。
+    /// 详情大图为 true，仅用于详情页（非本类）。
     /// </summary>
     public sealed class UIBestiaryNpcCard : UIElement
     {
         public const float VanillaSlotPx = BestiaryCardLayout.RefOuterPx;
+
+        /// <summary>原版图鉴左侧网格 = 图标模式，非肖像大图模式。</summary>
+        public const bool GridIsPortraitMode = false;
 
         private static readonly FieldInfo EntryButtonIconField = typeof(UIBestiaryEntryButton).GetField(
             "_icon",
@@ -46,7 +49,7 @@ namespace EvenMoreOverpoweredJourney.Bestiary.UI.Components
             if (meta?.Entry == null)
                 return;
 
-            _entryButton = new UIBestiaryEntryButton(meta.Entry, isAPrettyPortrait: true)
+            _entryButton = new UIBestiaryEntryButton(meta.Entry, isAPrettyPortrait: GridIsPortraitMode)
             {
                 Width = { Pixels = VanillaSlotPx },
                 Height = { Pixels = VanillaSlotPx }
@@ -75,7 +78,7 @@ namespace EvenMoreOverpoweredJourney.Bestiary.UI.Components
             if (EntryButtonIconField.GetValue(button) is not UIBestiaryEntryIcon oldIcon)
                 return;
 
-            var custom = new EMOJBestiaryAllVisibleEntryIcon(button.Entry, isPortrait: true);
+            var custom = new EMOJBestiaryAllVisibleEntryIcon(button.Entry, isPortrait: GridIsPortraitMode);
 
             UIElement portraitHost = oldIcon.Parent;
             if (portraitHost != null)
