@@ -1,0 +1,103 @@
+EmojBuffModScanner — 完整工作流（v0.4.64）
+
+══════════════════════════════════════
+一、原版 Buff（你要做的很少）
+══════════════════════════════════════
+【游戏内已自动】
+- 进世界后自动生成 Data/BuffModSupport/vanilla_catalog.json（全部原版 Buff，含减益）
+- 约 20 种常用属性药水：属性直写（配置：原版常见属性增益直写）
+- 其余原版 Buff：走「标准真实栏位」或「机制必须挂栏」（饱食、浸染等）
+- 减益：列入目录并支持勾选，走引擎真实逻辑（不会用属性直写替代）
+
+【你可选用】
+- 聊天 DEBUG_EXPORTVANILLACATALOG → 复制完整原版目录到剪贴板
+- 查看 vanilla_catalog.json 里每条 Buff 的 mode 字段
+
+【你不需要】
+- 不必为原版逐个跑扫描器
+- 不必手写原版 overrides（除非要改某条分类）
+
+══════════════════════════════════════
+二、灾厄等模组（标准流程）
+══════════════════════════════════════
+1. 双击模组目录或 ModSources\EmojBuffModScanner\启动Buff扫描器.bat
+2. GitHub 标签：粘贴灾厄公开仓库链接（或本地「提取」文件夹）
+3. 可选：在「与上次扫描对比」里选上次的 *_buff_scan.json → 得到 *_diff.tsv
+4. 扫描完成后打开 scans 文件夹，阅读：
+   - *_support_report.txt（版本号、数量统计）
+   - *_registration_compare.tsv（ModBuff 类 vs BuffType 注册名）
+   - *_buff_catalog.tsv
+5. 打开 support_summary.tsv（根目录）看已支持模组总览
+6. 把报告里的版本号写入 mod_profiles.json，例如：
+   "CalamityMod": {
+     "strictVersionMatch": true,
+     "acceptedVersions": [ "2.0.4.3" ]
+   }
+7. 审阅 TSV 后合并 overrides.json（或勾选自动合并 High+Stat）
+8. 重编译/重载 EMOJ
+
+【版本防御】
+- 若游戏里灾厄版本与 mod_profiles 不一致 → 自动跳过该模组全部 overrides（防错乱）
+- 更新灾厄后：重新扫描 → 更新 acceptedVersions → 看 diff.tsv 增删了哪些 Buff
+
+══════════════════════════════════════
+三、扫描器新增输出文件
+══════════════════════════════════════
+*_buff_scan.json          完整结果（GitHub 导入时含 gitHubUrl 字段存档）
+*_buff_catalog.tsv        表格
+*_cursor_prompt.txt       单模组 Cursor 任务说明
+GLOBAL_CURSOR_BUFF_PROMPT.md   全模组总表 + 更新检查任务（每次扫描后刷新）
+*_support_report.txt      版本 + 统计 + 下一步提示
+*_registration_compare.tsv ModBuff 类 vs ModContent.BuffType<>
+*_bufftype_registrations.tsv 源码里所有 BuffType 注册引用
+*_diff.tsv                与上次扫描对比（Added/Removed/Changed）
+support_summary.tsv       所有已扫描模组一览（含 githubUrl 列）
+
+registry.json             扫描登记册（保存 sourceKind、GitHub 仓库链接、版本、上次扫描时间）
+mod_profiles.json         你维护的「允许生效的模组版本」
+overrides.json            游戏内读取的 Stat/Visual 分类
+
+【界面：已登记模组表格】
+- 列出 registry 中所有模组：版本、来源、GitHub 链接、Buff 类数
+- 「检测远程更新(API)」：调用 GitHub REST，对比**当前远程分支尖端 commit** 与 **releases/latest 标签** vs 登记里「上次扫描记录的基线」；结果写入「远程提示」列（含 ▲ 时请点「一键更新」）
+- 「将所选行填入上方表单」：带链接的会切到 GitHub 标签并填好 URL
+- 「GitHub 一键更新所选」：用保存的链接重新下载并扫描；若存在旧 JSON 会自动 diff
+- 「打开全局 Cursor 提示」：GLOBAL_CURSOR_BUFF_PROMPT.md
+
+【基线说明】
+- 首次用「GitHub」成功扫描且 API 可用时，会把当时的尖端 SHA 与（若有）Latest Release 写入 registry；之后「检测远程」才发现变化。
+- 匿名 API 约 60 次/小时；频繁检测可能暂时 403，请稍后重试。
+
+【命令行】
+  dotnet run --project EmojBuffModScanner.Cli -- --refresh-github CalamityMod --merge-high-stat
+  dotnet run --project EmojBuffModScanner.Cli -- --print-moddev-paths
+  dotnet run --project EmojBuffModScanner.Cli -- --install-ilspy
+  （或在 ModSources\\EmojBuffModScanner 下双击「安装ilspy到ModDev.bat」，需本机已装 .NET 8 SDK）
+
+注意：仅用「本地文件夹」扫描时不会写入 GitHub 链接；若历史记录里没有链接，需用 GitHub 标签再扫一次以保存 URL，之后才能一键更新。
+
+══════════════════════════════════════
+三（补充）、批量：当前存档「已启用模组」→ 反编译缓存（均在 ModSources 外）
+══════════════════════════════════════
+1. 扫描器第三个标签「已启用模组批量」，读取存档下的 Mods\\enabled.json（与游戏「已启用模组」列表一致）。
+2. 自动在 Mods 文件夹与 Steam 工坊缓存（steamapps\\workshop\\content\\1281930）等处检索 .tmod（可多库 Steam 根目录）。
+3. 反编译工具 ilspycmd：推荐装到 Steam「tModLoader 游戏目录」或「文档下存档根」旁的
+   EvenMoreOverpoweredJourney_ModDev\\tools\\（与 tModLoader-Logs 同级），例如 PowerShell：
+   dotnet tool install ilspycmd --version 9.1.0.7988 --tool-path "D:\\SteamLibrary\\steamapps\\common\\tModLoader\\EvenMoreOverpoweredJourney_ModDev\\tools"
+   （请把路径改成你本机 tModLoader.exe 所在目录下的 EvenMoreOverpoweredJourney_ModDev\\tools；找不到 Steam 时用「文档\\My Games\\Terraria\\tModLoader\\EvenMoreOverpoweredJourney_ModDev\\tools」。）
+   仍可使用全局安装 dotnet tool install -g ilspycmd --version 9.1.0.7988（工具在用户目录）。
+4. 「仅探测」生成清单不写反编译；「批量反编译到缓存」默认输出到上述 ModDev 下的：
+   …\\EvenMoreOverpoweredJourney_ModDev\\decompiled_cache\\模组名\\decompiled_cs\\
+   单模组扫描遇到 DLL 时的临时反编译目录在 …\\ModDev\\scan_temp\\（扫描结束会删除）。
+   清单：enabled_mods_batch_manifest.json / .tsv。
+   旧版曾写在 ModSources\\…\\Data\\BuffModSupport\\decompiled_cache\\ 或 tModLoader 根下 EvenMoreOverpoweredJourney_DecompiledCache\\，请勿再往源码树写反编译结果。
+   EMOJ 的 build.txt 已 buildIgnore 排除源码树内旧 decompiled_cache，避免游戏内「生成模组」误编第三方 .cs。
+5. 若 ModSources\\模组名 已有源码，默认跳过（可用勾选关闭）。
+6. Steam 库不在默认路径时，可在「附加搜索目录」填入工坊目录 …\\content\\1281930。
+7. 「反编译并 Buff 扫描」会对每个模组执行与普通本地扫描相同的登记流程（耗时很长）。
+
+══════════════════════════════════════
+四、闭源模组
+══════════════════════════════════════
+推荐：按上一节把 ilspycmd 安装到 EvenMoreOverpoweredJourney_ModDev\\tools（扫描器会优先使用该路径）。
+tMod 提取 → 本地文件夹扫描 → 同上流程

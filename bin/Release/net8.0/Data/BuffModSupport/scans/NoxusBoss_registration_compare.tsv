@@ -1,0 +1,8 @@
+﻿﻿Name	HasModBuffClass	HasBuffTypeRef	SuggestedPhase	Confidence	File
+AntimatterAnnihilation	Y	Y	Stat	Medium	NoxusBoss.Content.Buffs/AntimatterAnnihilation.cs
+Enraged	N	Y			NoxusBoss.Core.Balancing/DemonshadeNerfSystem.cs
+Glaciated	Y	Y	Unknown	Low	NoxusBoss.Content.Buffs/Glaciated.cs
+InvincibilityBuff	Y	Y	CombatVisual	Medium	NoxusBoss.Content.Buffs/InvincibilityBuff.cs
+NilkDebuff	Y	Y	Unknown	Low	NoxusBoss.Content.Buffs/NilkDebuff.cs
+PetBuff	Y	N	Unknown	Low	NoxusBoss.Core.Autoloaders/PetBuffAutoloader.cs
+StarstrikinglySatiated	Y	Y	Stat	High	NoxusBoss.Content.Buffs/StarstrikinglySatiated.cs

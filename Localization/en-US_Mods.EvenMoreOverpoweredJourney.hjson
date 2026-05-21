@@ -1,0 +1,556 @@
+DisplayName: EMOJ - Even More OP Journey
+
+Keybinds: {
+	OpenResearchPanel.DisplayName: Open super crafting & research panel
+	OpenBuffPanel.DisplayName: Open super buff panel
+	OpenItemHubPanel.DisplayName: Open super item research panel
+	OpenBestiaryPanel.DisplayName: Open super creature bestiary
+	QuickItemQuery.DisplayName: Quick query hovered item
+}
+
+Configs: {
+	OPJourneyConfig: {
+		DisplayName: Game settings
+
+		PurpleLosslessGiveAmount: {
+			Label: Super crafting research - lossless craft output count
+			Tooltip: Number of items granted per lossless craft in non-Journey mode (purple face).
+			Five.Label: "5"
+			Ten.Label: "10"
+			Fifty.Label: "50"
+			MaxStack.Label: Max stack
+		}
+
+		ItemHubUnlockRequirement: {
+			Label: Super item research - unlock requirement
+			Tooltip:
+				'''
+				How many acquisitions / research progress unlock claiming in Journey.
+				Non-stackable gear counts as one pickup.
+				The '5' option will use stack counting via hooks later.
+				'''
+		}
+
+		ModLogMode: {
+			Label: EMOJ log mode
+			Tooltip:
+				'''
+				Off by default. Logs go to Documents/.../tModLoader/Logs/EMOJ/<timestamp>/
+				Simplified: single simple.log event stream, low overhead, safe to leave on
+				Full: simple.log + split channel logs + manifest-full.txt for deep debugging
+				'''
+			Off.Label: Off
+			Simplified.Label: Simplified (always-on friendly)
+			Full.Label: Full (troubleshooting)
+		}
+
+		VirtualBuffApplyMode: {
+			Label: Virtual buff apply mode
+			Tooltip:
+				'''
+				Balanced (recommended): stat buffs every frame, particle/combat buffs on an interval  smoother with near-full stats
+				Unified every frame: legacy behavior, all virtual buffs every frame  heaviest
+				Re-enter world or toggle buffs after changing
+				'''
+			BuffsPlusRealBar.Label: Real buff bar (smooth, recommended)
+			BalancedVirtualScratch.Label: Virtual scratch  balanced (full stats, heavy)
+			UnifiedVirtualEveryFrame.Label: Virtual scratch  every frame (heaviest)
+		}
+
+		CombatVisualUpdateInterval: {
+			Label: Visual effect interval (frames) (balanced mode only)
+			Tooltip: Affects the combat/visual queue only. Most lag is the stat queue  use stat spread below
+		}
+
+		StatUpdateSpreadFrames: {
+			Label: Stat queue spread (frames) (balanced mode only)
+			Tooltip:
+				'''
+				How many frames to rotate through all stat buffs (1 = every frame, 3 ? ~2/3 less stat work)
+				This is the main FPS win in balanced mode; raising visual interval alone barely helps
+				'''
+		}
+
+		BuffInfrastructureHeader: Buff slots & persistence (cross-mod)
+
+		ExtraPlayerBuffSlots: {
+			Label: Extra buff slots
+			Tooltip:
+				'''
+				0 = no extra slots (vanilla ~22)
+				If ImproveGame is loaded and its "Extra BUFF slots" > 0, this setting is ignored (often 99; reload world after change)
+				Otherwise EMOJ provides extra slots here
+				'''
+		}
+
+		PreserveBuffsOnDeath: {
+			Label: Preserve buffs on death / respawn
+			Tooltip:
+				'''
+				On: keep non-debuff bar buffs through death when possible; re-apply managed list after respawn
+				If ImproveGame "Preserve buffs on death" is on, death clearing is handled there; EMOJ still re-applies its managed list on respawn
+				'''
+		}
+
+		PreserveBuffsOnWorldEnter: {
+			Label: Re-apply managed buffs on world enter
+			Tooltip:
+				'''
+				On: re-apply checked buffs from the super buff panel each time you enter a world
+				Off: no auto re-apply on enter (checks are saved; toggle manually)
+				Not controlled by ImproveGame
+				'''
+		}
+
+		UseVanillaSyntheticStats: {
+			Label: Vanilla stat potions (direct apply)
+			Tooltip:
+				'''
+				For common vanilla buffs listed in VanillaBuffStatRegistry (Ironskin, Regen, Swiftness, etc.):
+				apply stats directly without running Buff.Update  saves CPU
+				See Data/BuffModSupport/vanilla_stats_manifest.json
+				'''
+		}
+
+		BestiaryHeader: Super creature bestiary
+
+		BestiaryUseVanillaKillCountForProgressiveDisclosure: {
+			Label: Progressive unlock uses vanilla kill counts
+			Tooltip:
+				'''
+				Affects detail disclosure on bestiary face modes 24.
+				On: matches vanilla bestiary kill requirements.
+				Off: only "seen vs not seen", no per-kill tiers.
+				If ImproveGame is loaded with Bestiary Quick Unlock, one kill counts as fully unlocked (overrides this).
+				'''
+		}
+
+		ForceBulkEnableUnsafeVirtual: {
+			Label: Bulk enable includes unsafe virtual buffs
+			Tooltip:
+				'''
+				Off (default): "Enable all" skips Inferno, poison, and similar buffs marked unsafe for virtual scratch apply; toggle them manually.
+				On: those buffs can be bulk-enabled too (still subject to locked/manual-entity rules; single-click rules unchanged).
+				'''
+		}
+	}
+
+	LosslessGiveAmountKind: {
+		Tooltip: ""
+
+		Five: {
+			Label: "5"
+			Tooltip: ""
+		}
+
+		Ten: {
+			Label: "10"
+			Tooltip: ""
+		}
+
+		Fifty: {
+			Label: "50"
+			Tooltip: ""
+		}
+
+		MaxStack: {
+			Label: Max stack
+			Tooltip: ""
+		}
+	}
+
+	ItemHubUnlockRequirementKind: {
+		Once: {
+			Label: Picked up once
+			Tooltip: ""
+		}
+
+		Five: {
+			Label: Five pickups (stackables)
+			Tooltip: ""
+		}
+
+		JourneyHalf: {
+			Label: Half Journey research
+			Tooltip: ""
+		}
+
+		JourneyFull: {
+			Label: Full Journey research
+			Tooltip: ""
+		}
+
+		Tooltip: ""
+	}
+
+	ModLogModeKind: {
+		Off: {
+			Label: Off
+			Tooltip: ""
+		}
+
+		Simplified: {
+			Label: Brief
+			Tooltip: ""
+		}
+
+		Full: {
+			Label: Detailed
+			Tooltip: ""
+		}
+
+		Tooltip: ""
+	}
+
+	VirtualBuffApplyModeKind: {
+		BuffsPlusRealBar: {
+			Label: Smooth (recommended)
+			Tooltip: ""
+		}
+
+		BalancedVirtualScratch: {
+			Label: Experimental - batched (laggy)
+			Tooltip: ""
+		}
+
+		UnifiedVirtualEveryFrame: {
+			Label: Experimental - every frame (worst)
+			Tooltip: ""
+		}
+
+		Tooltip: ""
+	}
+}
+
+UI: {
+	ListJoiner: ", "
+	EnvRequiredLabel: "Required environment: "
+	TabResearch: Research
+	TabBuff: Buffs
+	TabStorage: Super item hub
+	BestiaryTitle: Super creature bestiary
+	TabBestiary: Super creature bestiary
+	TabHoverResearch: Super crafting & research
+	TabHoverBuff: Super buffs
+	TabHoverStorage: Super item hub
+	TabHoverBestiary: Super creature bestiary
+	BestiaryFilterJoiner: " | "
+	BestiaryNoActiveFilters: All creatures
+	BestiaryFilterBtn: Filters
+	BestiaryViewCard: Cards
+	BestiaryViewGroup: Group
+	BestiaryCatalogLoading: Loading bestiary catalog
+	BestiarySearchHint: Search creature name / internal id / pinyin...
+	BestiarySec_Mod: Mods
+	BestiarySec_Vanilla: Biomes
+	BestiarySec_ModPick: Filter by mod
+	BestiaryFilterReset: Reset filters
+	BestiaryFilterEmpty: (No vanilla filters loaded  enter a world and retry)
+	BestiaryDetailBack: Back
+	BestiaryDetailModFmt: Mod: {0}
+	BestiaryDetailNetIdFmt: NPC ID: {0}
+	BestiaryDetailUnlockFmt: Unlock state: {0}
+	BestiaryDetailPlaceholder: Full bestiary fields will be added in a later pass (detail shell).
+	BestiaryDetailEmpty: Not discovered yet  no details.
+	BestiaryDetailUnregistered: Not in vanilla bestiary database.
+	BestiaryGroupPhotoWip: Group photo layout (Phase 2)
+	BestiaryPendingDiscoveryFmt: "{0} more creatures waiting to be discovered"
+	BestiaryStatsLine: Vanilla bestiary {0} | Catalog {1} | Visible {2} | Not listed {3} | View {4}
+	BestiaryFaceTip_AllVisible: All visible
+	BestiaryFaceTip_ProgressivePlus: Progressive unlock +
+	BestiaryFaceTip_ProgressiveMinus: Discovered only
+	BestiaryFaceTip_UnlockedOnly: Not unlocked only
+	BestiaryCollectionStats: Found {0} | Missing {1} ({2:0.#}%)
+	BestiaryCollectionSummary: Found {0} ({1:0.#}%) | Missing {2} | Total {3}
+	BestiaryFaceSummary_DiscoveredOnly: Found {0} | Total {1}
+	BestiaryFaceSummary_UnlockedOnly: Undiscovered {0} | Total {1}
+	BestiaryCardSourceModFmt: Source: {0}
+	BestiaryCardSourceVanilla: Source: Vanilla creatures
+	BestiaryModTipVanilla: Vanilla creatures
+	SectionQuery: Query item
+	SectionProducts: Products
+	SectionRecipes: Crafting paths
+	DragItemHint: Drag an item here to query
+	ResearchSearchHint: Search by name / internal id / pinyin initials...
+	NoRecipePath: No crafting path for this item
+	ViewCard: Cards
+	ViewList: List
+	ResearchAll: Research all
+	LosslessCraft: Lossless craft
+	GiveAll: Give all
+	GetThisItem: Get this item
+	WarehouseWip: Storage tab is not ready yet.
+	ResearchDoneLine: Researched this session: {0}
+	FaceTipPurpleNonJourney: Products crafted from this material
+	FaceTipPurpleNeedJourney: Enable this mode in Journey mode
+	FaceTipYellow: Researched products crafted from this material
+	FaceTipGreen: Researchable products crafted from this material
+	FaceTipBlue: Unresearched products crafted from this material
+	FaceTipPurpleJourney: Enable this mode in other game modes
+	BuffUnlockedTitle: Unlocked buffs
+	BuffControlsHint: LMB toggle - RMB disable - MMB pin to buff bar
+	BuffWarning: Stacking many buffs may cause instability; some mod buffs may not work.
+	BuffSearchHint: Search buff name / internal id / pinyin initials...
+	BuffStats: Unlocked: {0} / {1} | Active: {2} | Disabled: {3}
+	BuffCat_Positive: Buffs
+	BuffCat_PositivePotionFood: Potions & food
+	BuffCat_PositiveEquipment: Gear (accessories / pieces)
+	BuffCat_PositiveSetBonus: Set bonuses
+	BuffCat_PositiveEnvironment: Environment
+	BuffBulkEnableSummary: Enabled {0}; skipped {1} (locked {3} / manual entity {4} / manual only {5} / unsafe virtual {6}); {2} set bonuses belong in the Set bonuses section
+	BuffBulkEnableSummaryUnsafeAllowed: Enabled {0} (unsafe virtual allowed in config); skipped {1} (locked {3} / manual entity {4} / manual only {5}); {2} set bonuses belong in the Set bonuses section
+	BuffBulkSetBonusNoBulk: Set bonuses cannot be bulk-enabled; toggle each icon manually
+	BuffBulkMiscExclusiveNoBulk: Pets, light pets, mounts, and minecarts share one slot each; enable only one per section
+	SetBonusCircuitBroken: Too many set effects; auto apply paused. Disable some set bonuses and re-enter the world
+	BuffCat_Negative: Debuffs
+	BuffFilterTitle: Buff mod filter
+	BuffFilterModPick: Filter by mod
+	BuffFilterModHoverFmt: Buffs from {0}
+	BuffFilterReset: Reset filters
+	BuffCat_Other: Other
+	BuffCat_Mount: Mounts
+	BuffCat_Minecart: Minecarts
+	BuffCat_Pet: Pets
+	BuffCat_LightPet: Light pets
+	BuffCat_Minion: Minions
+	BuffCat_Sentry: Sentries
+	BuffCat_CombatSummon: Summon & Minions
+	BuffHoverMinionSlots: This minion uses {0} minion slot(s). Max slots: {1}.
+	BuffCat_Disabled: Disabled
+	BuffBtnEnableAll: Enable all
+	BuffBtnClearAll: Clear all
+	BuffBtnDisableAllDebuffs: Disable all
+	BuffBtnRestoreAll: Restore all
+	BuffHoverLeft: "[c/00FF00:LMB: toggle permanent]"
+	BuffHoverRight: "[c/FF5555:RMB: disable this buff]"
+	BuffHoverMiddle: "[c/FFAA00:MMB: pin / unpin on buff bar]"
+	BuffHoverDisabled: "[c/FF0000:Disabled]"
+	BuffHoverPinned: "[c/FFAA00:Pinned to buff bar]"
+	BuffHoverSource: Source: {0}
+	BuffHoverMiscEquip: "[c/FFAA00:Maintained via misc equip slot swap; one per section, restores original when off]"
+	BuffHoverVirtual: "[c/88CCFF:Virtual effect; 20 aggregate as Alpha icon]"
+	BuffHoverPinAdvice: If an effect does not work, try [MMB] to pin it to the buff bar
+	ItemHubTitle: Item research hub
+	ItemHubTitleHint: One claim, lifetime perks, free refresh [fog]
+	ItemHubProgressFmt: "{0}/{1} | {2}%"
+	ItemHubProgressTitle: Research progress
+	ItemHubMajor_Mod: Nature
+	ItemHubMajor_Categories: Categories
+	ItemHubIc_Melee: Melee weapons
+	ItemHubIc_Yoyo: Yoyos
+	ItemHubIc_Magic: Magic weapons
+	ItemHubIc_Ranged: Ranged weapons
+	ItemHubIc_Throwing: Throwing weapons
+	ItemHubIc_Summon: Summon weapons
+	ItemHubIc_Sentry: Sentries
+	ItemHubIc_Pickaxe: Pickaxes
+	ItemHubIc_Axe: Axes
+	ItemHubIc_Hammer: Hammers
+	ItemHubIc_Head: Head armor
+	ItemHubIc_Body: Body armor
+	ItemHubIc_Legs: Leg armor
+	ItemHubIc_VanityArmor: Vanity armor
+	ItemHubIc_NonVanityArmor: Non-vanity armor
+	ItemHubIc_Tiles: Placeable tiles
+	ItemHubIc_Containers: Containers
+	ItemHubIc_Wiring: Wiring
+	ItemHubIc_Statues: Statues
+	ItemHubIc_Doors: Doors
+	ItemHubIc_Chairs: Chairs
+	ItemHubIc_Tables: Tables
+	ItemHubIc_LightSources: Light sources
+	ItemHubIc_Torches: Torches
+	ItemHubIc_Walls: Walls
+	ItemHubIc_Accessories: Accessories
+	ItemHubIc_Wings: Wings
+	ItemHubIc_Ammo: Ammo
+	ItemHubIc_Potions: Potions (Item3 use sound)
+	ItemHubIc_Health: Health potions
+	ItemHubIc_Mana: Mana potions
+	ItemHubIc_BuffPotion: Buff potions
+	ItemHubIc_Expert: Expert items
+	ItemHubIc_Pets: Pets
+	ItemHubIc_LightPets: Light pets
+	ItemHubIc_Mounts: Mounts
+	ItemHubIc_Carts: Minecarts
+	ItemHubIc_Hooks: Hooks
+	ItemHubIc_Dyes: Dyes
+	ItemHubIc_HairDyes: Hair dyes
+	ItemHubIc_BossSummon: Boss summons
+	ItemHubIc_Consumables: Consumables
+	ItemHubIc_CapturedNpc: Captured NPCs
+	ItemHubIc_FishingPole: Fishing poles
+	ItemHubIc_Bait: Bait
+	ItemHubIc_QuestFish: Quest fish
+	ItemHubIc_Extractinator: Extractinator
+	ItemHubIc_Materials: Materials (IsAMaterial)
+	ItemHubIc_Other: Other
+	ItemHubSec_ModPick: Filter by mod
+	ItemHubSec_Tile: By block type
+	ItemHubSec_Weapon: By weapon
+	ItemHubSec_Equip: By gear slot
+	ItemHubSec_Vanity: Vanity / mounts / pets
+	ItemHubSec_ConBuff: Potions & food
+	ItemHubSec_ConBio: Critters & boss items
+	ItemHubSec_Misc: Misc filters
+	ItemHubSec_Rare: By rarity
+	ItemHubSec_Chain: Crafting dependency chain
+	ItemHubModVanillaShort: V
+	ItemHubModTipVanilla: Vanilla items
+	ItemHubModTipModFmt: Items from mod "{0}"
+	ItemHubTip_Block: Solid blocks: placeable solid tiles (not frame-important)
+	ItemHubTip_Light: Lighting: torch-style tiles, glowing tiles, campfires; glowing walls; held or consumable glow sources
+	ItemHubTip_Wall: Walls: wall placement items
+	ItemHubTip_Furniture: Furniture: frame-important tiles not in the station-tile index; painting-sort items without a place tile
+	ItemHubTip_Station: Crafting stations: tile types that appear as requiredTile in loaded recipes
+	ItemHubTip_Chest: Containers: chests, dressers, and other container tiles
+	ItemHubTip_StatWire: Wiring and statues: wiring sort group, statue-list pairs, mechanical items, banners
+	ItemHubTip_Melee: Melee weapons (excludes pickaxe / axe / hammer tools)
+	ItemHubTip_Magic: Magic weapons
+	ItemHubTip_Ranged: Ranged weapons
+	ItemHubTip_Ammo: Ammo (or items usable as ammo)
+	ItemHubTip_Summon: Minion summon weapons (no whips or sentries)
+	ItemHubTip_Whip: Whips
+	ItemHubTip_Thrown: Thrown weapons (includes throwing-class and ranged consumable weapons)
+	ItemHubTip_Sentry: Sentries
+	ItemHubTip_Yoyo: Yoyos
+	ItemHubTip_Pick: Pickaxe power
+	ItemHubTip_Axe: Axe power
+	ItemHubTip_Hammer: Hammer power
+	ItemHubTip_Armor: Armor slot gear
+	ItemHubTip_Acc: Accessories (no wings)
+	ItemHubTip_Wing: Wings
+	ItemHubTip_Grapple: Grappling hooks
+	ItemHubTip_Fashion: Vanity
+	ItemHubTip_Mount: Mounts
+	ItemHubTip_Pet: Pets
+	ItemHubTip_LightPet: Light pets
+	ItemHubTip_Heal: Healing potions / food heals
+	ItemHubTip_ManaPot: Mana potions
+	ItemHubTip_BuffPot: Utility buff potions
+	ItemHubTip_Food: Food items
+	ItemHubTip_Spawn: Critters / jars
+	ItemHubTip_BossSummon: Boss summon items
+	ItemHubTip_GoodieBag: Goodie bags / similar
+	ItemHubTip_OtherCons: Other consumables (heuristic remainder)
+	ItemHubTip_Expert: Expert-only
+	ItemHubTip_Master: Master-only
+	ItemHubTip_Dye: Dyes / hair dyes
+	ItemHubTip_Extract: Extractinator-related
+	ItemHubTip_Fish: Fishing (rods, bait, quest fish, Seafood Dinner mats heuristic)
+	ItemHubTip_Material: Materials ? items flagged material
+	ItemHubTip_OtherMisc: Other misc
+	ItemHubTip_Debug: Debug / deprecated (only visible with this filter; cannot be claimed)
+	ItemHubTip_RareFmt: Rarity tier {0}
+	ItemHubChainActivate: Activate
+	ItemHubChainActivateDesc: When active, show upstream materials and downstream products for this item.
+	ItemHubChainSlotHint: Drag an item here, or while active click an item with [{0}] to query.
+	ItemHubChainKeyUnbound: Unbound
+	ItemHubChainToggle: Filter this item's recipe network
+	ItemHubChainKeyHint: Tab 3 + this panel + chain on: press {0} on an item to set seed (does not open research).
+	ItemHubActiveStripRemove: Click to remove this filter
+	ItemHubActiveRareHoverFmt: Rarity {0}~{1}
+	ItemHubRareSliderFmt: "{0} >> {1}"
+	ItemHubChainHint: Chained filters ? every rule in the list must pass. Pick a type on the left, edit in the middle, press Add to chain.
+	ItemHubChainListTitle: Active chain
+	ItemHubChainAddRule: Add to chain
+	ItemHubChainOneClickHint: Press Add to chain below (melee / ranged / etc.).
+	ItemHubChainRarityHint: Rarity range (inclusive).
+	ItemHubChainRarityMin: Min
+	ItemHubChainRarityMax: Max
+	ItemHubChainValueHint: Top = min value, bottom = max value (integers).
+	ItemHubChainNameHint: Matches display or internal name (substring, lowercased).
+	ItemHubChainActiveFmt: chain?{0}
+	ItemHubChainKind_Mod: Mod
+	ItemHubChainKind_Rarity: Rarity
+	ItemHubChainKind_Tile: Tile
+	ItemHubChainKind_Tools: Tools
+	ItemHubChainKind_Value: Value
+	ItemHubChainKind_Name: Name
+	ItemHubChainKind_DmgMelee: Melee
+	ItemHubChainKind_DmgRanged: Ranged
+	ItemHubChainKind_DmgMagic: Magic
+	ItemHubChainKind_DmgSummon: Summon
+	ItemHubChainKind_Acc: Accessory
+	ItemHubChainKind_Cons: Consumable
+	ItemHubChainKind_Place: Placeable
+	ItemHubRuleEmpty: ?
+	ItemHubRuleModsFmt: Mods ({0})
+	ItemHubRuleRarityFmt: Rarity {0}?{1}
+	ItemHubRuleValueFmt: Value {0}?{1}
+	ItemHubRuleTileFmt: Tile {0}
+	ItemHubRuleToolsFmt: Tools {0}
+	ItemHubRuleNameFmt: Name contains "{0}"
+	ItemHubRuleDmgMelee: Melee weapon
+	ItemHubRuleDmgRanged: Ranged weapon
+	ItemHubRuleDmgMagic: Magic weapon
+	ItemHubRuleDmgSummon: Summon weapon
+	ItemHubRuleAcc: Accessory
+	ItemHubRuleCons: Consumable
+	ItemHubRulePlace: Placeable
+	ItemHubSearchHint: Search item name / internal id / pinyin initials...
+	ItemHubCategory: Category
+	ItemHubMod: Mod
+	ItemHubSort: Sort
+	ItemHubCatAll: All
+	ItemHubCatMelee: Melee
+	ItemHubCatRanged: Ranged
+	ItemHubCatMagic: Magic
+	ItemHubCatSummon: Summon
+	ItemHubCatAccessory: Accessory
+	ItemHubCatConsumable: Consumable
+	ItemHubCatPlaceable: Placeable
+	ItemHubCatOther: Other
+	ItemHubModAll: All mods
+	ItemHubModVanilla: Vanilla
+	ItemHubSortName: Name
+	ItemHubSortId: ID
+	ItemHubSortValue: Value
+	ItemHubSortRare: Rarity
+	ItemHubSortDamage: Damage
+	ItemHubSortDefense: Defense
+	ItemHubSortDirHint: Click to toggle ascending / descending
+	ItemHubResetFilters: Reset
+	ItemHubFilterLabel: Filter
+	ItemHubFilterOpen: Filters
+	ItemHubFilterTitle: Item filters
+	ItemHubFilterClose: Close
+	ItemHubFilterModHint: Mods (multi-select; empty = all)
+	ItemHubFilterTileHint: Placeable keyword (match item name, use its createTile)
+	ItemHubFilterApplyTile: Apply tile filter
+	ItemHubFilterClearTile: Clear tile filter
+	ItemHubFilterToolsHint: Tools (OR if any checked: item must match one)
+	ItemHubFilterPick: Pickaxe
+	ItemHubFilterAxe: Axe
+	ItemHubFilterHammer: Hammer
+	ItemHubFilterFish: Fishing pole
+	ItemHubFilterClearAll: Clear all
+	ItemHubFilterApply: Apply & close
+	ItemHubLockedTip: Obtain this item once before claiming here
+	ItemHubLockedShort: (locked)
+	ItemHubNotOwnedSuffix: Never obtained
+}
+
+Buffs: {
+	EMOJAlphaBuff: {
+		DisplayName: Aggregated buffs
+		Description: Combines all enabled positive effects
+	}
+
+	EMOJOmegaBuff: {
+		DisplayName: Aggregated debuffs
+		Description: Combines all enabled debuff effects
+	}
+}
+
+RecipeEnv: {
+	NearWater: Near water
+	NearLava: Near lava
+	NearHoney: Near honey
+	SnowBiome: Snow biome
+	Graveyard: Graveyard
+	ZenithWorld: Everything seed
+	CorruptionWorld: Corruption world
+	CrimsonWorld: Crimson world
+	UnknownStation: Unknown station
+}

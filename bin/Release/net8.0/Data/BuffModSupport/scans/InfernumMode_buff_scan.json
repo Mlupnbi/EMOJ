@@ -1,0 +1,243 @@
+﻿{
+  "schemaVersion": 1,
+  "mod": "InfernumMode",
+  "scannedAtUtc": "2026-05-20T08:28:22.5883095Z",
+  "sourcePath": "C:\\Users\\14451\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\EvenMoreOverpoweredJourney\\Data\\BuffModSupport\\decompiled_cache\\InfernumMode\\decompiled_cs\\InfernumMode.Content.Buffs",
+  "sourceKind": "extracted_source",
+  "buffClassCount": 17,
+  "buffs": [
+    {
+      "mod": "InfernumMode",
+      "internalName": "AccentuationHex",
+      "className": "AccentuationHex",
+      "relativeFile": "AccentuationHex.cs",
+      "stableKey": "InfernumMode/AccentuationHex",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "InfernumMode",
+      "internalName": "AsterPetBuff",
+      "className": "AsterPetBuff",
+      "relativeFile": "AsterPetBuff.cs",
+      "stableKey": "InfernumMode/AsterPetBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "InfernumMode",
+      "internalName": "BlahajBuff",
+      "className": "BlahajBuff",
+      "relativeFile": "BlahajBuff.cs",
+      "stableKey": "InfernumMode/BlahajBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "InfernumMode",
+      "internalName": "BrimstoneBarrier",
+      "className": "BrimstoneBarrier",
+      "relativeFile": "BrimstoneBarrier.cs",
+      "stableKey": "InfernumMode/BrimstoneBarrier",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "InfernumMode",
+      "internalName": "BrimstoneExhaustion",
+      "className": "BrimstoneExhaustion",
+      "relativeFile": "BrimstoneExhaustion.cs",
+      "stableKey": "InfernumMode/BrimstoneExhaustion",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "InfernumMode",
+      "internalName": "BronzePetBuff",
+      "className": "BronzePetBuff",
+      "relativeFile": "BronzePetBuff.cs",
+      "stableKey": "InfernumMode/BronzePetBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "InfernumMode",
+      "internalName": "CatharsisHex",
+      "className": "CatharsisHex",
+      "relativeFile": "CatharsisHex.cs",
+      "stableKey": "InfernumMode/CatharsisHex",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "InfernumMode",
+      "internalName": "DarkFlames",
+      "className": "DarkFlames",
+      "relativeFile": "DarkFlames.cs",
+      "stableKey": "InfernumMode/DarkFlames",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Dust\\.NewDust"
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "InfernumMode",
+      "internalName": "HatGirlBuff",
+      "className": "HatGirlBuff",
+      "relativeFile": "HatGirlBuff.cs",
+      "stableKey": "InfernumMode/HatGirlBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "InfernumMode",
+      "internalName": "IndignationHex",
+      "className": "IndignationHex",
+      "relativeFile": "IndignationHex.cs",
+      "stableKey": "InfernumMode/IndignationHex",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "InfernumMode",
+      "internalName": "Madness",
+      "className": "Madness",
+      "relativeFile": "Madness.cs",
+      "stableKey": "InfernumMode/Madness",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "InfernumMode",
+      "internalName": "PerditusTagBuff",
+      "className": "PerditusTagBuff",
+      "relativeFile": "PerditusTagBuff.cs",
+      "stableKey": "InfernumMode/PerditusTagBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "InfernumMode",
+      "internalName": "ShadowflameInferno",
+      "className": "ShadowflameInferno",
+      "relativeFile": "ShadowflameInferno.cs",
+      "stableKey": "InfernumMode/ShadowflameInferno",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Dust\\.NewDust"
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "InfernumMode",
+      "internalName": "SheepGodBuff",
+      "className": "SheepGodBuff",
+      "relativeFile": "SheepGodBuff.cs",
+      "stableKey": "InfernumMode/SheepGodBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "InfernumMode",
+      "internalName": "Sleepy",
+      "className": "Sleepy",
+      "relativeFile": "Sleepy.cs",
+      "stableKey": "InfernumMode/Sleepy",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "InfernumMode",
+      "internalName": "WeaknessHex",
+      "className": "WeaknessHex",
+      "relativeFile": "WeaknessHex.cs",
+      "stableKey": "InfernumMode/WeaknessHex",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "InfernumMode",
+      "internalName": "ZealHex",
+      "className": "ZealHex",
+      "relativeFile": "ZealHex.cs",
+      "stableKey": "InfernumMode/ZealHex",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    }
+  ]
+}

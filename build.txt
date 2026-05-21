@@ -1,0 +1,5 @@
+displayName = 更超模的旅途
+author = Mlup
+version = 0.4.70
+includeSource = true
+buildIgnore = *.csproj, *.user, obj\*, bin\*, .vs\*, CodeBackup\**, Data\BuffModSupport\decompiled_cache\**

@@ -1,0 +1,130 @@
+以下清单仅针对「与 Recipe Browser（RB）/ Item Checklist（IC）在规则与呈现上逐条、逐像素对齐」仍存在的差距，按系统归类，便于你后续逐项对照源码收口。
+
+一、物块与放置类（角色 · 按物块）
+方块（tile.block）
+当前：Main.tileSolid + 非 frameImportant。
+差距：RB 对「实心块」的排除/包含（平台、半砖、斜坡、可虚化格、特殊实心规则等）未逐条对照。
+
+照明（tile.light）
+当前：RoomNeeds.CountsAsTorch、Torch[]、tileLighted、篝火图块；手持发光消耗品单独分支。
+差距：RB 照明分类的完整条件集（含边缘图块、改版后新增光源等）未逐函数搬运。
+
+背景墙（tile.wall）
+当前：createWall > 0。
+差距：RB 是否排除某些「墙类但不算背景墙」的特例未验证。
+
+家具（tile.furniture）
+当前：frameImportant、排除配方站索引、篝火、雕像 plaque、TileID.Banners、BannerStrength.Enabled 战斗旗。
+差距：与 RB「家具」集合的差分（画、雕像非 plaque、可悬挂物、各类 frame 重要物块等）未逐项对齐；未引用 Improve Games 旗帜盒的判定，仅用 Banners + BannerStrength.Enabled 近似。
+
+合成站（tile.station）
+当前：仅 Recipe.requiredTile 汇总。
+差距：RB 是否含邻接物块、多格站、模组自定义 AdjTiles 等未对齐。
+
+箱子（tile.chest）
+当前：Main.tileContainer。
+差距：RB 对「梳妆台等是否算箱子类」的边界未对照。
+
+雕像 & 旗帜 & 电线（tile.wire）
+当前：布线排序集、mech、雕像表缓存、Banners 图块、战斗旗 Enabled。
+差距：与 RB 的「电线类」「雕像类」及 IC 旗帜逻辑的完整并集/互斥未证明一致；装饰性旗帜（Enabled == false 等）与团队旗等可能仍与 RB 分类有偏差。
+
+二、武器与装备（角色 · 武器 / 装备 / 附体）
+近战 / 魔法 / 远程 / 弹药 / 召唤 / 投掷 / 哨兵 / 悠悠球
+当前：DamageClass + damage>0、工具排除、鞭/仆从/哨兵拆分等。
+差距：RB 对无伤害武器、类转换、模组 DamageClass、特殊 shoot 等边界未逐条对照。
+
+镐 / 斧 / 锤 / 盔甲 / 饰品 / 翅膀 / 抓钩
+当前：pick/axe/hammer、accessory、wingSlot、projHook 等。
+差距：与 RB「盔甲 vs 时装盔甲」「饰品除翅膀」等集合是否完全一致未验证。
+
+时装 / 坐骑 / 宠物 / 照明宠物
+当前：vanity、mountType、vanityPet/lightPet。
+差距：RB/IC 对坐骑物品、宠物召唤物、照明宠物边界（含模组）未逐项对照。
+
+三、消耗品（补品 + 生物交互）
+恢复 / 回能 / 增益药水 / 食物
+当前：healLife、healMana、UseSound==Item3+buffType 排除饱食、WellFed/IsFood。
+差距：与 RB「药水与食物」各分区规则（含边界药水、食物叠层）未一一对应。
+
+生物生成（con.spawn）
+当前：makeNPC != 0。
+差距：RB「捕获的生物」是否含其它生成类消耗品未对照。
+
+BOSS 召唤物（con.boss）
+当前：SortingPriorityBossSpawns + 手写排除列表。
+差距：与 RB 的排除/包含集合是否完全一致未验证。
+
+摸彩袋（con.bag）
+当前：硬币、BossBag、钓鱼箱系列。
+差距：RB 摸彩袋/礼包的完整判定（含事件袋、礼物袋等）未逐条对齐。
+
+其它消耗品（con.othercons）
+当前：在「消耗品」前提下扣掉若干已定义子类。
+差距：与 RB「消耗品」母集减去各子区的精确差集未证明与 RB 一致。
+
+四、杂项与其它（其它 · 按杂项）
+专家 / 大师
+当前：expert / master 字段。
+差距：RB 是否另有「旅行模式可见性」等条件未查。
+
+染料
+当前：dye != 0。
+差距：RB 染发剂等子类是否完全覆盖未对照。
+
+可提炼
+当前：ItemID.Sets.ExtractinatorMode。
+差距：与 RB 提炼分类是否含额外条目未验证。
+
+渔获（misc.fish）
+当前：钓竿、鱼饵、任务鱼、海鲜大餐材料、浮漂、Name 含 Fish/鱼 的启发式。
+差距：与 RB 钓鱼分类源码 未逐行一致；「海鲜大餐材料」为单独补丁，非 RB 原逻辑。
+
+材料（misc.material）
+当前：基本为 probe.material。
+差距：你要求对照 原版旅途「材料」页 的筛选；当前未实现该页等价规则（RB/旅途 UI 逻辑未搬）。
+
+其它（misc.other）
+当前：ComputeHubOtherLoose 多条件排除。
+差距：与 RB「其它」分类的显式定义（以及你文档要求的：去掉渔获扩展规则项、去掉调试等）未做形式化等价证明。
+
+调试物品（misc.debug）
+当前：type<=0、IsAir、Deprecated、以及 TryGetSacrificeCountCapToUnlockInfiniteItems 失败即调试。
+差距：与 IC/RB 的「调试/隐藏」集合定义不同（尤其旅途目录未登记的模组物品会被大量划入调试）；未与 IC 的 deprecated/隐藏列表逐项对齐。
+
+五、稀有度、模组、物品链（性质页 + 全局）
+稀有度双滑块
+当前：自定义 -11~11 滑条。
+差距：RB/IC 无此控件的「像素级一致」不适用；若指「稀有度含义与物品 rare 一致」，仅数值区间一致，UI/刻度与 RB 无关。
+
+按模组 / 性质页模组网格
+当前：模组键列表 + icon 资源 + 缩写 fallback。
+差距：与 Recipe Browser 模组列表 的排序、折叠、搜索、图标来源（Steam Workshop 等）不一致；与 IC 模组维度 若存在差异未对照。
+
+物品链筛选
+当前：ItemHubRecipeClosure 等自建闭包。
+差距：与 RB/IC 的「上下游」图构建、配方过滤、模组配方钩子是否一致未验证。
+
+六、性能与数据层（与「规则一致」相关但易漏）
+全表 ItemHubExtDataBuilder.Build
+虽已优化雕像扫描，但 每个物品仍 SetDefaults + 大量布尔，与 IC 可能采用的缓存/分层策略未必一致；这不影响「规则是否等于 RB」，但影响「与 IC 工程实现习惯」的一致性。
+
+HubFishingGroupItem 的 Name.Contains
+启发式；RB 通常用 ID/集合，不等价。
+
+七、UI / 交互（「像素级」字面含义）
+二级窗体、底栏、间距、字体
+已按需求调过，但 未对照 RB 源码量像素、色值、圆角、动画、音效细节。
+
+主窗进度两行、筛选贴图按钮、Strip 居中
+你在 4.0「后续」里写明本轮不动；与 RB 未做像素对齐。
+
+八、你历史文档里提过、代码侧仍未「等于 RB/IC」的专项
+篝火
+已进照明、从家具排除；是否与 RB「照明 vs 家具」划分完全一致未逐条证明。
+
+旗帜
+未集成 Improve Games 旗帜盒 判定；仅用 TileID.Banners + BannerStrength.Enabled。
+
+Item Checklist 整体分类树
+未按 IC 的完整分类树做一一映射与回归测试。

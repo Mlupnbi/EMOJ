@@ -1,0 +1,360 @@
+﻿StableKey	Mod	SuggestedPhase	Confidence	RelativeFile	ScanFile	Note
+CalamityMod/AbsorberRegen	CalamityMod	Unknown	Low	Buffs/StatBuffs/AbsorberRegen.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/AbyssalMadness	CalamityMod	Unknown	Low	Buffs/StatBuffs/AbyssalMadness.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/AeolianEarthBuff	CalamityMod	Unknown	Low	Buffs/StatBuffs/AeolianEarthBuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/Afflicted	CalamityMod	Unknown	Low	Buffs/StatBuffs/Afflicted.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/AlcoholPoisoning	CalamityMod	Unknown	Low	Buffs/Alcohol/AlcoholPoisoning.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/AmidiasBlessing	CalamityMod	Unknown	Low	Buffs/StatBuffs/AmidiasBlessing.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/AmphibiansGuitarBuff	CalamityMod	Unknown	Low	Buffs/Summon/AmphibiansGuitarBuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/AndromedaBuff	CalamityMod	Unknown	Low	Buffs/Mounts/AndromedaBuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/AndromedaCripple	CalamityMod	Unknown	Low	Buffs/StatDebuffs/AndromedaCripple.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/AndromedaSmallBuff	CalamityMod	Unknown	Low	Buffs/Mounts/AndromedaSmallBuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/AnechoicCoatingBuff	CalamityMod	Unknown	Low	Buffs/Potions/AnechoicCoatingBuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/AquaticHeartBuff	CalamityMod	Unknown	Low	Buffs/StatBuffs/AquaticHeartBuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/AquaticHeartWaterSpeed	CalamityMod	Unknown	Low	Buffs/StatBuffs/AquaticHeartWaterSpeed.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/ArmorCrunch	CalamityMod	Unknown	Low	Buffs/StatDebuffs/ArmorCrunch.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/AstralInjectionBuff	CalamityMod	Unknown	Low	Buffs/Potions/AstralInjectionBuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/AvertorBonus	CalamityMod	Unknown	Low	Buffs/StatBuffs/AvertorBonus.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/BaguetteBuff	CalamityMod	Unknown	Low	Buffs/Potions/BaguetteBuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/BanishingFire	CalamityMod	Unknown	Low	Buffs/DamageOverTime/BanishingFire.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/BaseSummonBuff	CalamityMod	Unknown	Low	Buffs/Summon/BaseSummonBuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/BloodfinBoost	CalamityMod	Unknown	Low	Buffs/Potions/BloodfinBoost.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/BloodflareBloodFrenzy	CalamityMod	Unknown	Low	Buffs/StatBuffs/BloodflareBloodFrenzy.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/BloodyMaryBuff	CalamityMod	Unknown	Low	Buffs/Alcohol/BloodyMaryBuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/BossEffects	CalamityMod	Unknown	Low	Buffs/StatBuffs/BossEffects.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/BoundingBuff	CalamityMod	Unknown	Low	Buffs/Potions/BoundingBuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/BrimflameFrenzyBuff	CalamityMod	Unknown	Low	Buffs/StatBuffs/BrimflameFrenzyBuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/BrimroseMount	CalamityMod	Unknown	Low	Buffs/Mounts/BrimroseMount.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/BumbledogeMount	CalamityMod	Unknown	Low	Buffs/Mounts/BumbledogeMount.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/CalciumBuff	CalamityMod	Unknown	Low	Buffs/Potions/CalciumBuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/CaribbeanRumBuff	CalamityMod	Unknown	Low	Buffs/Alcohol/CaribbeanRumBuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/CeaselessHunger	CalamityMod	Unknown	Low	Buffs/Potions/CeaselessHunger.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/ChaosCandleBuff	CalamityMod	Unknown	Low	Buffs/Placeables/ChaosCandleBuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/ChiBuff	CalamityMod	Unknown	Low	Buffs/StatBuffs/ChiBuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/ChiRegenBuff	CalamityMod	Unknown	Low	Buffs/StatBuffs/ChiRegenBuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/CinnamonRollBuff	CalamityMod	Unknown	Low	Buffs/Alcohol/CinnamonRollBuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/Clamity	CalamityMod	Unknown	Low	Buffs/StatDebuffs/Clamity.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/CnidarianSummonTagBuff	CalamityMod	Unknown	Low	Buffs/Summon/Whips/CnidarianSummonTagBuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/CoralSymbiosis	CalamityMod	Unknown	Low	Buffs/StatBuffs/CoralSymbiosis.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/CorruptionEffigyBuff	CalamityMod	Unknown	Low	Buffs/Placeables/CorruptionEffigyBuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/CosmicFreeze	CalamityMod	Unknown	Low	Buffs/StatBuffs/CosmicFreeze.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/CrimsonEffigyBuff	CalamityMod	Unknown	Low	Buffs/Placeables/CrimsonEffigyBuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/Crumbling	CalamityMod	Unknown	Low	Buffs/StatDebuffs/Crumbling.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/DivineBless	CalamityMod	Unknown	Low	Buffs/StatBuffs/DivineBless.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/DraedonGamerChairBuff	CalamityMod	Unknown	Low	Buffs/Mounts/DraedonGamerChairBuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/EffigyOfDecayBuff	CalamityMod	Unknown	Low	Buffs/Placeables/EffigyOfDecayBuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/EmpyreanWrath	CalamityMod	Unknown	Low	Buffs/StatBuffs/EmpyreanWrath.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/Encased	CalamityMod	Unknown	Low	Buffs/StatBuffs/Encased.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/Enraged	CalamityMod	Unknown	Low	Buffs/StatDebuffs/Enraged.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/EverclearBuff	CalamityMod	Unknown	Low	Buffs/Alcohol/EverclearBuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/EvergreenGinBuff	CalamityMod	Unknown	Low	Buffs/Alcohol/EvergreenGinBuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/ExoskeletonCannons	CalamityMod	Unknown	Low	Buffs/Summon/ExoskeletonCannons.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/ExoTankBuff	CalamityMod	Unknown	Low	Buffs/Mounts/ExoTankBuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/FireballBuff	CalamityMod	Unknown	Low	Buffs/Alcohol/FireballBuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/FishAlert	CalamityMod	Unknown	Low	Buffs/StatDebuffs/FishAlert.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/ForbiddenStealthSummonTagBuff	CalamityMod	Unknown	Low	Buffs/Summon/Whips/ForbiddenStealthSummonTagBuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/FrozenLungs	CalamityMod	Unknown	Low	Buffs/StatDebuffs/FrozenLungs.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/GalvanicCorrosion	CalamityMod	Unknown	Low	Buffs/StatDebuffs/GalvanicCorrosion.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/GazeOfCrysthamyrBuff	CalamityMod	Unknown	Low	Buffs/Mounts/GazeOfCrysthamyrBuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/GlacialEmbraceBuff	CalamityMod	Unknown	Low	Buffs/Summon/GlacialEmbraceBuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/GlacialState	CalamityMod	Unknown	Low	Buffs/StatDebuffs/GlacialState.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/GrapeBeerBuff	CalamityMod	Unknown	Low	Buffs/Alcohol/GrapeBeerBuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/GravityNormalizerBuff	CalamityMod	Unknown	Low	Buffs/Potions/GravityNormalizerBuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/GraxBoost	CalamityMod	Unknown	Low	Buffs/StatBuffs/GraxBoost.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/GreenJellyRegen	CalamityMod	Unknown	Low	Buffs/StatBuffs/GreenJellyRegen.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/HallowedRunePower	CalamityMod	Unknown	Low	Buffs/StatBuffs/HallowedRunePower.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/HallowedRuneRegeneration	CalamityMod	Unknown	Low	Buffs/StatBuffs/HallowedRuneRegeneration.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/Haste	CalamityMod	Unknown	Low	Buffs/StatBuffs/Haste.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/HolyInferno	CalamityMod	Unknown	Low	Buffs/DamageOverTime/HolyInferno.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/HotE	CalamityMod	Unknown	Low	Buffs/Summon/HotE.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/IceShieldBuff	CalamityMod	Unknown	Low	Buffs/StatBuffs/IceShieldBuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/Irradiated	CalamityMod	Unknown	Low	Buffs/StatDebuffs/Irradiated.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/ManaBurn	CalamityMod	Unknown	Low	Buffs/DamageOverTime/ManaBurn.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/ManhattanBuff	CalamityMod	Unknown	Low	Buffs/Alcohol/ManhattanBuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/MargaritaBuff	CalamityMod	Unknown	Low	Buffs/Alcohol/MargaritaBuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/MarkedforDeath	CalamityMod	Unknown	Low	Buffs/StatDebuffs/MarkedforDeath.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/MarniteLiftBuff	CalamityMod	Unknown	Low	Buffs/Mounts/MarniteLiftBuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/MoonshineBuff	CalamityMod	Unknown	Low	Buffs/Alcohol/MoonshineBuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/MoscowMuleBuff	CalamityMod	Unknown	Low	Buffs/Alcohol/MoscowMuleBuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/NOU	CalamityMod	Unknown	Low	Buffs/StatDebuffs/NOU.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/OldFashionedBuff	CalamityMod	Unknown	Low	Buffs/Alcohol/OldFashionedBuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/Omniscience	CalamityMod	Unknown	Low	Buffs/Potions/Omniscience.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/OnyxExcavatorBuff	CalamityMod	Unknown	Low	Buffs/Mounts/OnyxExcavatorBuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/PhantomicEmpowerment	CalamityMod	Unknown	Low	Buffs/StatBuffs/PhantomicEmpowerment.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/PhotosynthesisBuff	CalamityMod	Unknown	Low	Buffs/Potions/PhotosynthesisBuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/PinkCandleBuff	CalamityMod	Unknown	Low	Buffs/Placeables/PinkCandleBuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/PinkJellyRegen	CalamityMod	Unknown	Low	Buffs/StatBuffs/PinkJellyRegen.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/PopoBuff	CalamityMod	Unknown	Low	Buffs/PopoBuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/PopoNoselessBuff	CalamityMod	Unknown	Low	Buffs/PopoNoselessBuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/ProfanedCrystalBuff	CalamityMod	Unknown	Low	Buffs/StatBuffs/ProfanedCrystalBuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/ProfanedCrystalWhipBuff	CalamityMod	Unknown	Low	Buffs/Summon/Whips/ProfanedCrystalWhipBuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/ProfanedCrystalWhipDebuff	CalamityMod	Unknown	Low	Buffs/Summon/Whips/ProfanedCrystalWhipDebuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/ProfanedSoulGuardians	CalamityMod	Unknown	Low	Buffs/Summon/ProfanedSoulGuardians.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/PurpleCandleBuff	CalamityMod	Unknown	Low	Buffs/Placeables/PurpleCandleBuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/PurpleHazeBuff	CalamityMod	Unknown	Low	Buffs/Alcohol/PurpleHazeBuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/ReaverRage	CalamityMod	Unknown	Low	Buffs/StatBuffs/ReaverRage.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/RedWineBuff	CalamityMod	Unknown	Low	Buffs/Alcohol/RedWineBuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/RimehoundBuff	CalamityMod	Unknown	Low	Buffs/Mounts/RimehoundBuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/RumBuff	CalamityMod	Unknown	Low	Buffs/Alcohol/RumBuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/SagePoison	CalamityMod	Unknown	Low	Buffs/DamageOverTime/SagePoison.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/SandsWindBuff	CalamityMod	Unknown	Low	Buffs/StatBuffs/SandsWindBuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/SearingLava	CalamityMod	Unknown	Low	Buffs/DamageOverTime/SearingLava.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/SeaSnailBuff	CalamityMod	Unknown	Low	Buffs/Summon/SeaSnailBuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/ShadowBuff	CalamityMod	Unknown	Low	Buffs/Potions/ShadowBuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/ShellfishClaps	CalamityMod	Unknown	Low	Buffs/DamageOverTime/ShellfishClaps.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/Shred	CalamityMod	Mixed	Low	Buffs/DamageOverTime/Shred.cs	CalamityMod_buff_scan.json	同时含属性与特效/实体信号，需人工确认
+CalamityMod/SilvaRevival	CalamityMod	Unknown	Low	Buffs/StatBuffs/SilvaRevival.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/SnapClamDebuff	CalamityMod	Unknown	Low	Buffs/DamageOverTime/SnapClamDebuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/Soaring	CalamityMod	Unknown	Low	Buffs/Potions/Soaring.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/SpiritPower	CalamityMod	Unknown	Low	Buffs/StatBuffs/SpiritPower.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/SpiritRegen	CalamityMod	Unknown	Low	Buffs/StatBuffs/SpiritRegen.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/SquishyBeanBuff	CalamityMod	Unknown	Low	Buffs/Mounts/SquishyBeanBuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/StarBeamRyeBuff	CalamityMod	Unknown	Low	Buffs/Alcohol/StarBeamRyeBuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/SulphurskinBuff	CalamityMod	Unknown	Low	Buffs/Potions/SulphurskinBuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/TarragonCloak	CalamityMod	Unknown	Low	Buffs/StatBuffs/TarragonCloak.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/TarragonImmunity	CalamityMod	Unknown	Low	Buffs/StatBuffs/TarragonImmunity.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/TemporalSadness	CalamityMod	Unknown	Low	Buffs/StatDebuffs/TemporalSadness.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/TequilaBuff	CalamityMod	Unknown	Low	Buffs/Alcohol/TequilaBuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/TequilaSunriseBuff	CalamityMod	Unknown	Low	Buffs/Alcohol/TequilaSunriseBuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/TheCartofGodsBuff	CalamityMod	Unknown	Low	Buffs/Mounts/TheCartofGodsBuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/TimeDistortion	CalamityMod	Unknown	Low	Buffs/StatDebuffs/TimeDistortion.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/TranquilityCandleBuff	CalamityMod	Unknown	Low	Buffs/Placeables/TranquilityCandleBuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/Trippy	CalamityMod	Unknown	Low	Buffs/Alcohol/Trippy.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/VodkaBuff	CalamityMod	Unknown	Low	Buffs/Alcohol/VodkaBuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/VoidConcentrationBuff	CalamityMod	Unknown	Low	Buffs/Summon/VoidConcentrationBuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/WeakBrimstoneFlames	CalamityMod	Unknown	Low	Buffs/DamageOverTime/WeakBrimstoneFlames.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/WeakPetrification	CalamityMod	Unknown	Low	Buffs/StatDebuffs/WeakPetrification.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/WeaponImbueBrimstone	CalamityMod	Unknown	Low	Buffs/Potions/WeaponImbueBrimstone.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/WeaponImbueCrumbling	CalamityMod	Unknown	Low	Buffs/Potions/WeaponImbueCrumbling.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/WeaponImbueHolyFlames	CalamityMod	Unknown	Low	Buffs/Potions/WeaponImbueHolyFlames.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/WhiskeyBuff	CalamityMod	Unknown	Low	Buffs/Alcohol/WhiskeyBuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/WhisperingDeath	CalamityMod	Unknown	Low	Buffs/StatDebuffs/WhisperingDeath.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/WhiteWineBuff	CalamityMod	Unknown	Low	Buffs/Alcohol/WhiteWineBuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/WitherDebuff	CalamityMod	Unknown	Low	Buffs/StatDebuffs/WitherDebuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/Withered	CalamityMod	Unknown	Low	Buffs/Cooldowns/Withered.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/YellowCandleBuff	CalamityMod	Unknown	Low	Buffs/Placeables/YellowCandleBuff.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/Zen	CalamityMod	Unknown	Low	Buffs/Potions/Zen.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalamityMod/Zerg	CalamityMod	Unknown	Low	Buffs/Potions/Zerg.cs	CalamityMod_buff_scan.json	未检测到常见 stat/visual 模式
+CalValEX/AnthozoanBuff	CalValEX	Unknown	Low	Buffs/Mounts/AnthozoanBuff.cs	CalValEX_buff_scan.json	未检测到常见 stat/visual 模式
+CalValEX/AuricTeslaBuff	CalValEX	Unknown	Low	Buffs/Mounts/AuricTeslaBuff.cs	CalValEX_buff_scan.json	未检测到常见 stat/visual 模式
+CalValEX/BikeBuff	CalValEX	Unknown	Low	Buffs/Mounts/BikeBuff.cs	CalValEX_buff_scan.json	未检测到常见 stat/visual 模式
+CalValEX/BloodstoneCarriageBuff	CalValEX	Unknown	Low	Buffs/Mounts/BloodstoneCarriageBuff.cs	CalValEX_buff_scan.json	未检测到常见 stat/visual 模式
+CalValEX/ClassicBrimmyBuff	CalValEX	Unknown	Low	Buffs/Transformations/ClassicBrimmyBuff.cs	CalValEX_buff_scan.json	未检测到常见 stat/visual 模式
+CalValEX/CloudTransformationBuff	CalValEX	Unknown	Low	Buffs/Transformations/CloudTransformationBuff.cs	CalValEX_buff_scan.json	未检测到常见 stat/visual 模式
+CalValEX/DarksunSpiritBuff	CalValEX	Unknown	Low	Buffs/LightPets/DarksunSpiritBuff.cs	CalValEX_buff_scan.json	未检测到常见 stat/visual 模式
+CalValEX/DebrisMount	CalValEX	Unknown	Low	Buffs/Mounts/DebrisMount.cs	CalValEX_buff_scan.json	未检测到常见 stat/visual 模式
+CalValEX/DraedonCartBuff	CalValEX	Unknown	Low	Buffs/Mounts/DraedonCartBuff.cs	CalValEX_buff_scan.json	未检测到常见 stat/visual 模式
+CalValEX/FloatyBuff	CalValEX	Unknown	Low	Buffs/Mounts/FloatyBuff.cs	CalValEX_buff_scan.json	未检测到常见 stat/visual 模式
+CalValEX/GodRiderBuff	CalValEX	Unknown	Low	Buffs/Mounts/GodRiderBuff.cs	CalValEX_buff_scan.json	未检测到常见 stat/visual 模式
+CalValEX/HadarianBuff	CalValEX	Unknown	Low	Buffs/Mounts/HadarianBuff.cs	CalValEX_buff_scan.json	未检测到常见 stat/visual 模式
+CalValEX/HivelingBuff	CalValEX	Unknown	Low	Buffs/Pets/HivelingBuff.cs	CalValEX_buff_scan.json	未检测到常见 stat/visual 模式
+CalValEX/HiveVuff	CalValEX	Unknown	Low	Buffs/Mounts/HiveVuff.cs	CalValEX_buff_scan.json	未检测到常见 stat/visual 模式
+CalValEX/LeviathanMountBuff	CalValEX	Unknown	Low	Buffs/Mounts/LeviathanMountBuff.cs	CalValEX_buff_scan.json	未检测到常见 stat/visual 模式
+CalValEX/MorshuBuff	CalValEX	Unknown	Low	Items/Mounts/Morshu/MorshuBuff.cs	CalValEX_buff_scan.json	DisplayName: Morshu Buff
+CalValEX/MushroomWardenBuff	CalValEX	Unknown	Low	Buffs/Transformations/MushroomWardenBuff.cs	CalValEX_buff_scan.json	未检测到常见 stat/visual 模式
+CalValEX/NautilusJrBuff	CalValEX	Unknown	Low	Buffs/Pets/NautilusJrBuff.cs	CalValEX_buff_scan.json	未检测到常见 stat/visual 模式
+CalValEX/NuclearHorrorBuff	CalValEX	Unknown	Low	Buffs/Mounts/NuclearHorrorBuff.cs	CalValEX_buff_scan.json	未检测到常见 stat/visual 模式
+CalValEX/PBGMountBuff	CalValEX	Unknown	Low	Buffs/Mounts/PBGMountBuff.cs	CalValEX_buff_scan.json	未检测到常见 stat/visual 模式
+CalValEX/ProtoRingBuff	CalValEX	Unknown	Low	Buffs/Transformations/ProtoRingBuff.cs	CalValEX_buff_scan.json	未检测到常见 stat/visual 模式
+CalValEX/SandTransformationBuff	CalValEX	Unknown	Low	Buffs/Transformations/SandTransformationBuff.cs	CalValEX_buff_scan.json	未检测到常见 stat/visual 模式
+CalValEX/SignutTransformationBuff	CalValEX	Unknown	Low	Buffs/Transformations/SignutTransformationBuff.cs	CalValEX_buff_scan.json	未检测到常见 stat/visual 模式
+CalValEX/SilvaJeepBuff	CalValEX	Unknown	Low	Buffs/Mounts/SilvaJeepBuff.cs	CalValEX_buff_scan.json	未检测到常见 stat/visual 模式
+CalValEX/TractorMount	CalValEX	Unknown	Low	Buffs/Mounts/TractorMount.cs	CalValEX_buff_scan.json	未检测到常见 stat/visual 模式
+CalValEX/YharonMountBuff	CalValEX	Unknown	Low	Buffs/Mounts/YharonMountBuff.cs	CalValEX_buff_scan.json	未检测到常见 stat/visual 模式
+CalValEX/YhogoStickBuff	CalValEX	Unknown	Low	Buffs/Mounts/YhogoStickBuff.cs	CalValEX_buff_scan.json	未检测到常见 stat/visual 模式
+EvenMoreOverpoweredJourney/EMOJAlphaBuff	EvenMoreOverpoweredJourney	Unknown	Low	Buffs/EMOJAlphaBuff.cs	EvenMoreOverpoweredJourney_buff_scan.json	未检测到常见 stat/visual 模式
+EvenMoreOverpoweredJourney/EMOJOmegaBuff	EvenMoreOverpoweredJourney	Unknown	Low	Buffs/EMOJOmegaBuff.cs	EvenMoreOverpoweredJourney_buff_scan.json	未检测到常见 stat/visual 模式
+FargosMutantMod/BigSuckBuff	FargosMutantMod	Unknown	Low	Buffs/BigSuckBuff.cs	FargosMutantMod_buff_scan.json	未检测到常见 stat/visual 模式
+FargosMutantMod/WoodDrop	FargosMutantMod	Unknown	Low	Buffs/WoodDrop.cs	FargosMutantMod_buff_scan.json	未检测到常见 stat/visual 模式
+FargosSoulsDLC/CalamitousPresenceBuff	FargosSoulsDLC	Unknown	Low	Buffs/CalamitousPresenceBuff.cs	FargosSoulsDLC_buff_scan.json	DisplayName: Mutant Presence
+FargosSoulsMod/AbomCooldownBuff	FargosSoulsMod	Unknown	Low	Buffs/Masomode/AbomCooldownBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Abominable Cooldown
+FargosSoulsMod/AbomFangBuff	FargosSoulsMod	Unknown	Low	Buffs/Boss/AbomFangBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Abominable Fang
+FargosSoulsMod/AbomRebirthBuff	FargosSoulsMod	Unknown	Low	Buffs/Masomode/AbomRebirthBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Abominable Rebirth
+FargosSoulsMod/AnticoagulationBuff	FargosSoulsMod	Unknown	Low	Buffs/Masomode/AnticoagulationBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Anticoagulation
+FargosSoulsMod/BerserkerInstallCDBuff	FargosSoulsMod	Unknown	Low	Buffs/BerserkerInstallCDBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Berserker Cooldown
+FargosSoulsMod/BetsyDashBuff	FargosSoulsMod	Unknown	Low	Buffs/BetsyDashBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Dash
+FargosSoulsMod/BigBrainMinionBuff	FargosSoulsMod	Unknown	Low	Buffs/Minions/BigBrainMinionBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Big Brain of Cthulhu
+FargosSoulsMod/BloodthirstyBuff	FargosSoulsMod	Unknown	Low	Buffs/Masomode/BloodthirstyBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Bloodthirsty
+FargosSoulsMod/BrainMinionBuff	FargosSoulsMod	Unknown	Low	Buffs/Minions/BrainMinionBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Brain of Cthulhu
+FargosSoulsMod/BrainOfConfusionBuff	FargosSoulsMod	Unknown	Low	Buffs/Masomode/BrainOfConfusionBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Cerebral Mindbreak
+FargosSoulsMod/BrokenShellBuff	FargosSoulsMod	Unknown	Low	Buffs/Souls/BrokenShellBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Broken Shell
+FargosSoulsMod/ClippedWingsBuff	FargosSoulsMod	Unknown	Low	Buffs/Masomode/ClippedWingsBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Clipped Wings
+FargosSoulsMod/CoffinTossBuff	FargosSoulsMod	Unknown	Low	Buffs/Boss/CoffinTossBuff.cs	FargosSoulsMod_buff_scan.json	未检测到常见 stat/visual 模式
+FargosSoulsMod/CorruptingBuff	FargosSoulsMod	Unknown	Low	Buffs/Souls/CorruptingBuff.cs	FargosSoulsMod_buff_scan.json	未检测到常见 stat/visual 模式
+FargosSoulsMod/CrimetroidBuff	FargosSoulsMod	Unknown	Low	Patreon/Shucks/CrimetroidBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Baby Crimetroid
+FargosSoulsMod/CrimsonRegenBuff	FargosSoulsMod	Mixed	Low	Buffs/Souls/CrimsonRegenBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Crimson Regen
+FargosSoulsMod/CrippledBuff	FargosSoulsMod	Unknown	Low	Buffs/Masomode/CrippledBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Crippled
+FargosSoulsMod/CrystalSkullBuff	FargosSoulsMod	Unknown	Low	Buffs/Minions/CrystalSkullBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Crystal Skull
+FargosSoulsMod/DefenselessBuff	FargosSoulsMod	Unknown	Low	Buffs/Masomode/DefenselessBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Defenseless
+FargosSoulsMod/DukeFishronBuff	FargosSoulsMod	Unknown	Low	Patreon/DemonKing/DukeFishronBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Duke Fishron
+FargosSoulsMod/EarthPoison	FargosSoulsMod	Unknown	Low	Buffs/Souls/EarthPoison.cs	FargosSoulsMod_buff_scan.json	未检测到常见 stat/visual 模式
+FargosSoulsMod/EaterMinionBuff	FargosSoulsMod	Unknown	Low	Buffs/Minions/EaterMinionBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Eater of Worlds
+FargosSoulsMod/FishMinionBuff	FargosSoulsMod	Unknown	Low	Patreon/Sasha/FishMinionBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Fish
+FargosSoulsMod/FlamesoftheUniverseBuff	FargosSoulsMod	Unknown	Low	Buffs/Masomode/FlamesoftheUniverseBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Flames of the Universe
+FargosSoulsMod/FlippedBuff	FargosSoulsMod	Unknown	Low	Buffs/Masomode/FlippedBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Flipped
+FargosSoulsMod/FossilReviveCDBuff	FargosSoulsMod	Unknown	Low	Buffs/Souls/FossilReviveCDBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Revived
+FargosSoulsMod/FrozenBuff	FargosSoulsMod	Unknown	Low	Buffs/Souls/FrozenBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Frozen
+FargosSoulsMod/GladiatorBuff	FargosSoulsMod	Unknown	Low	Buffs/GladiatorBuff.cs	FargosSoulsMod_buff_scan.json	未检测到常见 stat/visual 模式
+FargosSoulsMod/GodEaterBuff	FargosSoulsMod	Unknown	Low	Buffs/Masomode/GodEaterBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: God Eater
+FargosSoulsMod/GoldenStasisBuff	FargosSoulsMod	Unknown	Low	Buffs/Souls/GoldenStasisBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Golden Stasis
+FargosSoulsMod/GoldenStasisCDBuff	FargosSoulsMod	Unknown	Low	Buffs/Souls/GoldenStasisCDBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Golden Stasis Cooldown
+FargosSoulsMod/GrabbedBuff	FargosSoulsMod	Unknown	Low	Buffs/Boss/GrabbedBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Grabbed
+FargosSoulsMod/GrabbedHarmlessBuff	FargosSoulsMod	Unknown	Low	Buffs/Boss/GrabbedHarmlessBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Grabbed
+FargosSoulsMod/HallowCooldownBuff	FargosSoulsMod	Unknown	Low	Buffs/Souls/HallowCooldownBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Hallowed Shield Cooldown
+FargosSoulsMod/HellFireBuff	FargosSoulsMod	Unknown	Low	Buffs/HellFireBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Hell Fire
+FargosSoulsMod/HellFireMarkedBuff	FargosSoulsMod	Unknown	Low	Buffs/HellFireMarkedBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Hell Fire
+FargosSoulsMod/HexedBuff	FargosSoulsMod	Unknown	Low	Buffs/Masomode/HexedBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Hexed
+FargosSoulsMod/HolyPriceBuff	FargosSoulsMod	Unknown	Low	Buffs/Masomode/HolyPriceBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Holy Price
+FargosSoulsMod/HuntressBleedBuff	FargosSoulsMod	Unknown	Low	Buffs/Souls/HuntressBleedBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Huntress Bleed
+FargosSoulsMod/HuntressCDBuff	FargosSoulsMod	Unknown	Low	Buffs/Souls/HuntressCDBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Arrow Rain Cooldown
+FargosSoulsMod/HypothermiaBuff	FargosSoulsMod	Unknown	Low	Buffs/Masomode/HypothermiaBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Hypothermia
+FargosSoulsMod/InfestedBuff	FargosSoulsMod	Unknown	Low	Buffs/Masomode/InfestedBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Infested
+FargosSoulsMod/IvyVenomBuff	FargosSoulsMod	Unknown	Low	Buffs/Masomode/IvyVenomBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Ivy Venom
+FargosSoulsMod/JungleMimicSummonBuff	FargosSoulsMod	Unknown	Low	Buffs/Minions/JungleMimicSummonBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Jungle Mimic
+FargosSoulsMod/KingSlimeMinionBuff	FargosSoulsMod	Unknown	Low	Patreon/Catsounds/KingSlimeMinionBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Mini King Slime
+FargosSoulsMod/LeadPoisonBuff	FargosSoulsMod	Unknown	Low	Buffs/Souls/LeadPoisonBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Lead Poison
+FargosSoulsMod/LethargicBuff	FargosSoulsMod	Unknown	Low	Buffs/Masomode/LethargicBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Lethargic
+FargosSoulsMod/LihzahrdBlessingBuff	FargosSoulsMod	Unknown	Low	Buffs/Masomode/LihzahrdBlessingBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Lihzahrd Blessing
+FargosSoulsMod/LihzahrdCurseBuff	FargosSoulsMod	Unknown	Low	Buffs/Masomode/LihzahrdCurseBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Lihzahrd Curse
+FargosSoulsMod/LivingWastelandBuff	FargosSoulsMod	Mixed	Low	Buffs/Masomode/LivingWastelandBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Living Wasteland
+FargosSoulsMod/LoosePocketsBuff	FargosSoulsMod	Unknown	Low	Buffs/Masomode/LoosePocketsBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Loose Pockets
+FargosSoulsMod/LovestruckBuff	FargosSoulsMod	Unknown	Low	Buffs/Masomode/LovestruckBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Lovestruck
+FargosSoulsMod/LowGroundBuff	FargosSoulsMod	Unknown	Low	Buffs/Masomode/LowGroundBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Low Ground
+FargosSoulsMod/LowGroundEridanusBuff	FargosSoulsMod	Unknown	Low	Buffs/Masomode/LowGroundEridanusBuff.cs	FargosSoulsMod_buff_scan.json	未检测到常见 stat/visual 模式
+FargosSoulsMod/LunarCultistBuff	FargosSoulsMod	Unknown	Low	Buffs/Minions/LunarCultistBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Lunar Cultist
+FargosSoulsMod/MagicalCleanseCDBuff	FargosSoulsMod	Unknown	Low	Buffs/MagicalCleanseCDBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Magical Cleanse Cooldown
+FargosSoulsMod/MagicalCurseBuff	FargosSoulsMod	Unknown	Low	Buffs/Masomode/MagicalCurseBuff.cs	FargosSoulsMod_buff_scan.json	未检测到常见 stat/visual 模式
+FargosSoulsMod/MidasBuff	FargosSoulsMod	Unknown	Low	Buffs/Masomode/MidasBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Midas
+FargosSoulsMod/MoltenAmplifyBuff	FargosSoulsMod	Unknown	Low	Buffs/Souls/MoltenAmplifyBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Molten Amplify
+FargosSoulsMod/MonkBuff	FargosSoulsMod	Unknown	Low	Buffs/Souls/MonkBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Meditation
+FargosSoulsMod/MoonBowBuff	FargosSoulsMod	Unknown	Low	Buffs/MoonBowBuff.cs	FargosSoulsMod_buff_scan.json	未检测到常见 stat/visual 模式
+FargosSoulsMod/MoonFangBuff	FargosSoulsMod	Unknown	Low	Buffs/Boss/MoonFangBuff.cs	FargosSoulsMod_buff_scan.json	未检测到常见 stat/visual 模式
+FargosSoulsMod/MutantDesperationBuff	FargosSoulsMod	Unknown	Low	Buffs/Boss/MutantDesperationBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Mutant Presence
+FargosSoulsMod/MutantFangBuff	FargosSoulsMod	Unknown	Low	Buffs/Boss/MutantFangBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Mutant Fang
+FargosSoulsMod/MutantPowerBuff	FargosSoulsMod	Unknown	Low	Buffs/Minions/MutantPowerBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Mutant Power
+FargosSoulsMod/MutantPresenceBuff	FargosSoulsMod	Unknown	Low	Buffs/Boss/MutantPresenceBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Mutant Presence
+FargosSoulsMod/MutantRebirthBuff	FargosSoulsMod	Unknown	Low	Buffs/MutantRebirthBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Mutant Rebirth
+FargosSoulsMod/NebulaBuff	FargosSoulsMod	Unknown	Low	Buffs/Souls/SolarBuff.cs	FargosSoulsMod_buff_scan.json	未检测到常见 stat/visual 模式
+FargosSoulsMod/NeurotoxinBuff	FargosSoulsMod	Unknown	Low	Buffs/Masomode/NeurotoxinBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Neurotoxin
+FargosSoulsMod/NullificationCurseBuff	FargosSoulsMod	Unknown	Low	Buffs/Masomode/NullificationCurseBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Nullification Curse
+FargosSoulsMod/ObsidianLavaWetBuff	FargosSoulsMod	Unknown	Low	Buffs/Souls/ObsidianLavaWetBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Lava Wet
+FargosSoulsMod/OiledBuff	FargosSoulsMod	Unknown	Low	Buffs/Masomode/OiledBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Oiled
+FargosSoulsMod/OriPoisonBuff	FargosSoulsMod	Unknown	Low	Buffs/Souls/OriPoisonBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Orichalcum Poison
+FargosSoulsMod/PlanterasChildBuff	FargosSoulsMod	Unknown	Low	Buffs/Minions/PlanterasChildBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Plantera's Child
+FargosSoulsMod/PrimeMinionBuff	FargosSoulsMod	Unknown	Low	Patreon/Purified/PrimeMinionBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Mini Prime
+FargosSoulsMod/ProbesBuff	FargosSoulsMod	Unknown	Low	Buffs/Minions/ProbesBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Probes
+FargosSoulsMod/PungentEyeballBuff	FargosSoulsMod	Unknown	Low	Buffs/Minions/PungentEyeballBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Pungent Eyeball
+FargosSoulsMod/PungentGazeBuff	FargosSoulsMod	Unknown	Low	Buffs/Masomode/PungentGazeBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Pungent Gaze
+FargosSoulsMod/PurgedBuff	FargosSoulsMod	Unknown	Low	Buffs/Masomode/PurgedBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Purged
+FargosSoulsMod/PurifiedBuff	FargosSoulsMod	Unknown	Low	Buffs/Masomode/PurifiedBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Purified
+FargosSoulsMod/RainbowSlimeBuff	FargosSoulsMod	Unknown	Low	Buffs/Minions/RainbowSlimeBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Rainbow Slime
+FargosSoulsMod/RainCDBuff	FargosSoulsMod	Unknown	Low	Buffs/Souls/RainCDBuff.cs	FargosSoulsMod_buff_scan.json	未检测到常见 stat/visual 模式
+FargosSoulsMod/RefreshedBuff	FargosSoulsMod	Unknown	Low	Buffs/Masomode/RefreshedBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Refreshed
+FargosSoulsMod/RushJobBuff	FargosSoulsMod	Unknown	Low	Buffs/Masomode/RushJobBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Rush Job
+FargosSoulsMod/SadismBuff	FargosSoulsMod	Unknown	Low	Buffs/Masomode/SadismBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Eternity
+FargosSoulsMod/SaucerMinionBuff	FargosSoulsMod	Unknown	Low	Buffs/Minions/SaucerMinionBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Mini Saucer
+FargosSoulsMod/ShadowflameBuff	FargosSoulsMod	Unknown	Low	Buffs/Masomode/ShadowflameBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Shadowflame
+FargosSoulsMod/SkeletronArmsBuff	FargosSoulsMod	Unknown	Low	Buffs/Minions/SkeletronArmsBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Skeletron Arms
+FargosSoulsMod/SmiteBuff	FargosSoulsMod	Unknown	Low	Buffs/Masomode/SmiteBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Smite
+FargosSoulsMod/SnowstormCDBuff	FargosSoulsMod	Unknown	Low	Buffs/Souls/SnowstormCDBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Snowstorm Cooldown
+FargosSoulsMod/SolarBuff	FargosSoulsMod	Unknown	Low	Buffs/Souls/NebulaBuff.cs	FargosSoulsMod_buff_scan.json	未检测到常见 stat/visual 模式
+FargosSoulsMod/SouloftheMasochistBuff	FargosSoulsMod	Unknown	Low	Buffs/Minions/SouloftheMasochistBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Soul of the Master
+FargosSoulsMod/SqueakyToyBuff	FargosSoulsMod	Unknown	Low	Buffs/Masomode/SqueakyToyBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Squeaky Toy
+FargosSoulsMod/StardustBuff	FargosSoulsMod	Unknown	Low	Buffs/Souls/StardustBuff.cs	FargosSoulsMod_buff_scan.json	未检测到常见 stat/visual 模式
+FargosSoulsMod/StunnedBuff	FargosSoulsMod	Unknown	Low	Buffs/Masomode/StunnedBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Stunned
+FargosSoulsMod/SublimationBuff	FargosSoulsMod	Unknown	Low	Buffs/SublimationBuff.cs	FargosSoulsMod_buff_scan.json	未检测到常见 stat/visual 模式
+FargosSoulsMod/SuperBleedBuff	FargosSoulsMod	Unknown	Low	Buffs/Souls/SuperBleedBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Blood Geyser
+FargosSoulsMod/SwarmingBuff	FargosSoulsMod	Unknown	Low	Buffs/Masomode/SwarmingBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Swarming
+FargosSoulsMod/ThiefCDBuff	FargosSoulsMod	Unknown	Low	Buffs/Masomode/ThiefCDBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Thief Cooldown
+FargosSoulsMod/TimberBleedBuff	FargosSoulsMod	Unknown	Low	Buffs/Souls/TimberBleedBuff.cs	FargosSoulsMod_buff_scan.json	未检测到常见 stat/visual 模式
+FargosSoulsMod/TimeFrozenBuff	FargosSoulsMod	Unknown	Low	Buffs/Souls/TimeFrozenBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Time Frozen
+FargosSoulsMod/TitaniumCDBuff	FargosSoulsMod	Unknown	Low	Buffs/Souls/TitaniumCDBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Titanium Shield Cooldown
+FargosSoulsMod/TitaniumDRBuff	FargosSoulsMod	Unknown	Low	Buffs/Souls/TitaniumDRBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Titanium Shield
+FargosSoulsMod/TouhouHoardBuff	FargosSoulsMod	Unknown	Low	Patreon/Tiger/TouhouHoardBuff.cs	FargosSoulsMod_buff_scan.json	未检测到常见 stat/visual 模式
+FargosSoulsMod/TribalCharmClickBuff	FargosSoulsMod	Unknown	Low	Buffs/TribalCharmClickBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Tribal Charm
+FargosSoulsMod/TrojanSquirrelMountBuff	FargosSoulsMod	Unknown	Low	Buffs/Mounts/TrojanSquirrelMountBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Trojan Squirrel
+FargosSoulsMod/TrueEyesBuff	FargosSoulsMod	Unknown	Low	Buffs/Minions/TrueEyesBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: True Eyes of Cthulhu
+FargosSoulsMod/TwinsEXBuff	FargosSoulsMod	Unknown	Low	Buffs/Minions/TwinsEXBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Twins EX
+FargosSoulsMod/UnluckyBuff	FargosSoulsMod	Unknown	Low	Buffs/Masomode/UnluckyBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Unlucky
+FargosSoulsMod/UnstableBuff	FargosSoulsMod	Unknown	Low	Buffs/Masomode/UnstableBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Unstable
+FargosSoulsMod/VortexBuff	FargosSoulsMod	Unknown	Low	Buffs/Souls/VortexBuff.cs	FargosSoulsMod_buff_scan.json	未检测到常见 stat/visual 模式
+FargosSoulsMod/VortexCDBuff	FargosSoulsMod	Unknown	Low	Buffs/Souls/VortexCDBuff.cs	FargosSoulsMod_buff_scan.json	DisplayName: Vortex Cooldown
+FargosSoulsMod/WitheredBuff	FargosSoulsMod	Unknown	Low	Buffs/Souls/WitheredBuff.cs	FargosSoulsMod_buff_scan.json	未检测到常见 stat/visual 模式
+FargosSoulsMod/WitheredForceBuff	FargosSoulsMod	Unknown	Low	Buffs/Souls/WitheredForceBuff.cs	FargosSoulsMod_buff_scan.json	未检测到常见 stat/visual 模式
+FargosSoulsMod/WitheredWizardBuff	FargosSoulsMod	Unknown	Low	Buffs/Souls/WitheredWizardBuff.cs	FargosSoulsMod_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/AlternateCooldown	Spooky	Unknown	Low	Buffs/Debuff/AlternateCooldown.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/BackroomsDecay	Spooky	Unknown	Low	Buffs/Debuff/BackroomsDecay.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/BeePollinationProcessBuff	Spooky	Unknown	Low	Buffs/Debuff/BeePollinationProcessBuff.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/BillyBuff	Spooky	Unknown	Low	Buffs/Minion/BillyBuff.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/BouncerDeathmark	Spooky	Unknown	Low	Buffs/Debuff/BouncerDeathmark.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/BrainyBuff	Spooky	Unknown	Low	Buffs/Minion/BrainyBuff.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/BustlingGlowshroomHeal	Spooky	Mixed	Low	Buffs/BustlingGlowshroomHeal.cs	Spooky_buff_scan.json	同时含属性与特效/实体信号，需人工确认
+Spooky/CatacombDebuff	Spooky	Unknown	Low	Buffs/Debuff/CatacombDebuff.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/CrossCooldown	Spooky	Unknown	Low	Buffs/Debuff/CrossCooldown.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/CucumberStomachDebuff	Spooky	Unknown	Low	Buffs/Debuff/CucumberStomachDebuff.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/DaffodilHandBuff	Spooky	Unknown	Low	Buffs/Minion/DaffodilHandBuff.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/DutchmanPipeDebuff	Spooky	Unknown	Low	Buffs/Debuff/DutchmanPipeDebuff.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/EelTagDebuff	Spooky	Unknown	Low	Buffs/WhipDebuff/EelTagDebuff.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/EggplantWhipDebuff	Spooky	Unknown	Low	Buffs/WhipDebuff/EggplantWhipDebuff.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/EmbryoCooldown	Spooky	Unknown	Low	Buffs/Debuff/EmbryoCooldown.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/EnsnaredCooldown	Spooky	Unknown	Low	Buffs/Debuff/EnsnaredCooldown.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/EntityMinionBuff	Spooky	Unknown	Low	Buffs/Minion/EntityMinionBuff.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/FleshWhipCooldown	Spooky	Unknown	Low	Buffs/WhipDebuff/FleshWhipCooldown.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/FleshWhipDefense	Spooky	Unknown	Low	Buffs/WhipDebuff/FleshWhipDefense.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/FleshWhipDefense2	Spooky	Unknown	Low	Buffs/WhipDebuff/FleshWhipDefense2.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/FlowerArmorCooldown	Spooky	Unknown	Low	Buffs/Debuff/FlowerArmorCooldown.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/FlyBuff	Spooky	Unknown	Low	Buffs/FlyBuff.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/FlyCooldown	Spooky	Unknown	Low	Buffs/Debuff/FlyCooldown.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/GhostPepperMinionBuff	Spooky	Unknown	Low	Buffs/Minion/GhostPepperMinionBuff.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/GlassEyeDebuff	Spooky	Unknown	Low	Buffs/Debuff/GlassEyeDebuff.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/GrugBuff	Spooky	Unknown	Low	Buffs/Minion/GrugBuff.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/HallucinationDebuff1	Spooky	Unknown	Low	Buffs/Debuff/HallucinationDebuff.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/HerobrineAltarCooldown	Spooky	Unknown	Low	Buffs/Debuff/HerobrineAltarCooldown.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/HunterScarfMark	Spooky	Unknown	Low	Buffs/Debuff/HunterScarfMark.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/KrampusBricksCooldown	Spooky	Unknown	Low	Buffs/Debuff/KrampusBricksCooldown.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/LeechBuff	Spooky	Unknown	Low	Buffs/Minion/LeechBuff.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/LeechWhipDebuff	Spooky	Unknown	Low	Buffs/WhipDebuff/LeechWhipDebuff.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/MonumentMythosCooldown	Spooky	Unknown	Low	Buffs/Debuff/MonumentMythosCooldown.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/MonumentMythosShatter	Spooky	Unknown	Low	Buffs/Debuff/MonumentMythosShatter.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/NerveWhipDebuff	Spooky	Unknown	Low	Buffs/WhipDebuff/NerveWhipDebuff.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/NineTailsDebuff	Spooky	Unknown	Low	Buffs/WhipDebuff/NineTailsDebuff.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/NoseBlessingBuff	Spooky	Unknown	Low	Buffs/NoseBlessingBuff.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/NoseBlessingDebuff	Spooky	Unknown	Low	Buffs/Debuff/NoseBlessingDebuff.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/NoseBlessingDebuffCooldown	Spooky	Unknown	Low	Buffs/Debuff/NoseBlessingDebuffCooldown.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/NoseMinionBuff	Spooky	Unknown	Low	Buffs/Minion/NoseMinionBuff.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/OldHunterBuff	Spooky	Unknown	Low	Buffs/Minion/OldHunterBuff.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/PandoraCrossCooldown	Spooky	Unknown	Low	Buffs/Debuff/PandoraCrossCooldown.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/PandoraHandCooldown	Spooky	Unknown	Low	Buffs/Debuff/PandoraHandCooldown.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/PepperMinionBuff	Spooky	Unknown	Low	Buffs/Minion/PepperMinionBuff.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/PeptoDebuff	Spooky	Unknown	Low	Buffs/Debuff/PeptoDebuff.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/PheromoneWhipDebuff	Spooky	Unknown	Low	Buffs/WhipDebuff/PheromoneWhipDebuff.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/PiercedDebuff	Spooky	Unknown	Low	Buffs/Debuff/PiercedDebuff.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/Possessed	Spooky	Unknown	Low	Buffs/Debuff/Possessed.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/PumpkinHeadBuff	Spooky	Unknown	Low	Buffs/Minion/PumpkinHeadBuff.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/RotGourdMinionBuff	Spooky	Unknown	Low	Buffs/Minion/RotGourdMinionBuff.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/SamsonCuffDebuff	Spooky	Unknown	Low	Buffs/Debuff/SamsonCuffDebuff.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/SeaSpongeBuff	Spooky	Unknown	Low	Buffs/SeaSpongeBuff.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/SentientKeybrandDebuff	Spooky	Unknown	Low	Buffs/Debuff/SentientKeybrandDebuff.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/SentientLeatherWhipDebuff	Spooky	Unknown	Low	Buffs/WhipDebuff/SentientLeatherWhipDebuff.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/SentientOpticStaffBuff	Spooky	Unknown	Low	Buffs/Minion/SentientOpticStaffBuff.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/ShroomWhipDebuff	Spooky	Unknown	Low	Buffs/WhipDebuff/ShroomWhipDebuff.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/SkullWispBuff	Spooky	Unknown	Low	Buffs/Minion/SkullWispBuff.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/SlendermanPageBuff	Spooky	Unknown	Low	Buffs/SlendermanPageBuff.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/SmokerLungCooldown	Spooky	Unknown	Low	Buffs/Debuff/SmokerLungCooldown.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/SoulSkullBuff	Spooky	Unknown	Low	Buffs/Minion/SoulSkullBuff.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/SpiderBabyBuff	Spooky	Unknown	Low	Buffs/Minion/SpiderBabyBuff.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/SpiderStealthCooldown	Spooky	Unknown	Low	Buffs/Debuff/SpiderStealthCooldown.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/SpiderWarRemoteFlyBuff	Spooky	Unknown	Low	Buffs/Minion/SpiderWarRemoteFlyBuff.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/SpiderWarRemoteNukeBuff	Spooky	Unknown	Low	Buffs/Minion/SpiderWarRemoteNukeBuff.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/SpookFishronMinionBuff	Spooky	Unknown	Low	Buffs/Minion/SpookFishronMinionBuff.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/SteroidBuff	Spooky	Unknown	Low	Buffs/SteroidBuff.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/SteroidWeakness	Spooky	Unknown	Low	Buffs/Debuff/SteroidWeakness.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/StitchedCloakCooldown	Spooky	Unknown	Low	Buffs/Debuff/StitchedCloakCooldown.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/StockingMinionBuff	Spooky	Unknown	Low	Buffs/Minion/StockingMinionBuff.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/Tarred	Spooky	Unknown	Low	Buffs/Debuff/Tarred.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/TitanoboaWhipDebuff	Spooky	Unknown	Low	Buffs/WhipDebuff/TitanoboaWhipDebuff.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/TortumorMinionBuff	Spooky	Unknown	Low	Buffs/Minion/TortumorMinionBuff.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/TrapdoorSpiderMountBuff	Spooky	Unknown	Low	Buffs/Mounts/TrapdoorSpiderMountBuff.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/TurkeyMountBuff	Spooky	Unknown	Low	Buffs/Mounts/TurkeyMountBuff.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/WingedBiomassBuff	Spooky	Unknown	Low	Buffs/Minion/WingedBiomassBuff.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式
+Spooky/YuletideArmorCooldown	Spooky	Unknown	Low	Buffs/Debuff/YuletideArmorCooldown.cs	Spooky_buff_scan.json	未检测到常见 stat/visual 模式

@@ -1,0 +1,25 @@
+﻿﻿Name	HasModBuffClass	HasBuffTypeRef	SuggestedPhase	Confidence	File
+ArmorCrunch	N	Y			CatalystMod.Items.Armor.Intergelactic/IntergelacticBreastplate.cs|CatalystMod.NPCs.Boss.Astrageldon/Astrageldon.cs
+AstrageldonPetBuff	Y	Y	CombatVisual	Medium	CatalystMod.Buffs.Pets/AstrageldonPetBuff.cs
+AstrageldonRocksSetbonus	Y	Y	Unknown	Low	CatalystMod.Buffs/AstrageldonRocksSetbonus.cs
+AstralBlight	Y	Y	Unknown	Low	CatalystMod.Buffs.DamageOverTime/AstralBlight.cs
+AstralInfectionDebuff	N	Y			CatalystMod.Items.Armor.Intergelactic/IntergelacticBreastplate.cs
+AstralJellyBuff	Y	Y	Unknown	Low	CatalystMod.Buffs.StatBuffs/AstralJellyBuff.cs
+AstralpodBuff	N	Y			CatalystMod/CatalystMod.cs|CatalystMod.Items.Weapons.Summon/AstralpodStaff.cs|CatalystMod.Projectiles.Summon/AstralpodMinion.cs
+AstrogelJumpBoost	Y	Y	Unknown	Low	CatalystMod.Buffs/AstrogelJumpBoost.cs
+BlessedBlossoms	Y	Y	Stat	Medium	CatalystMod.Buffs.StatBuffs/BlessedBlossoms.cs
+BossEffects	N	Y			CatalystMod/CatalystPlayer.cs
+BrimstoneFlames	N	Y			CatalystMod.Projectiles.Ranged.Flamethrowers/RepentanceCircle.cs|CatalystMod.Projectiles.Ranged.Flamethrowers/RepentanceFlamethrower.cs|CatalystMod.Projectiles.Ranged.Flamethrowers/RepentanceForwardFireball.cs|CatalystMod.Projectiles.Summon.Whips.Catharsis/CatharsisProjectile.cs|CatalystMod.Projectiles.Summon.Whips.Catharsis/HighCatharsisDown.cs|CatalystMod.Projectiles.Summon.Whips.Catharsis/HighCatharsisUp.cs
+CatharsisBuff	Y	Y	Stat	Medium	CatalystMod.Buffs.StatBuffs/CatharsisBuff.cs
+CatharsisBuff2	Y	Y	Stat	Medium	CatalystMod.Buffs.StatBuffs/CatharsisBuff2.cs
+DefaultTag	Y	Y	Unknown	Low	CatalystMod.Buffs.WhipTags/DefaultTag.cs
+DoGExtremeGravity	N	Y			CatalystMod/CatalystPlayer.cs
+Eutrophication	N	Y			CatalystMod.NPCs/CatalystTag.cs
+GlacialState	N	Y			CatalystMod.Items.Armor.Intergelactic/IntergelacticHeadMelee.cs|CatalystMod.NPCs.Boss.Astrageldon/Astrageldon.cs
+InterstellarCorruption	Y	Y	CombatVisual	Medium	CatalystMod.Buffs.DamageOverTime/InterstellarCorruption.cs
+MinionBuffBase	Y	N	Unknown	Low	CatalystMod.Buffs.Summon/MinionBuffBase.cs
+MiracleBlight	N	Y			CatalystMod.NPCs.Boss.Astrageldon/Astrageldon.cs|CatalystMod.Projectiles.Ranged.Flamethrowers/PlasmilegionFireball.cs|CatalystMod.Projectiles.Ranged.Flamethrowers/PlasmilegionFlamethrower.cs
+ReverberatingParalysis	Y	Y	Unknown	Low	CatalystMod.Buffs.WhipTags/ReverberatingParalysis.cs
+TemporalSadness	N	Y			CatalystMod.NPCs.Boss.Astrageldon/Astrageldon.cs
+VulnerabilityHex	N	Y			CatalystMod.Projectiles.Summon.Whips.Catharsis/HighCatharsisDown.cs|CatalystMod.Projectiles.Summon.Whips.Catharsis/HighCatharsisUp.cs
+ZeroGravity	Y	Y	Unknown	Low	CatalystMod.Buffs/ZeroGravity.cs

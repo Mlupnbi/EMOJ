@@ -1,0 +1,10 @@
+﻿root = true
+
+[build.txt]
+charset = utf-8-bom
+
+[description.txt]
+charset = utf-8-bom
+
+[*.hjson]
+charset = utf-8-bom

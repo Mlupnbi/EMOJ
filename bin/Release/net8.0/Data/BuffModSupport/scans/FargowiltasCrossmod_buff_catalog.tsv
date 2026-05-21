@@ -1,0 +1,6 @@
+﻿﻿# EmojBuffModScanner catalog
+# Mod: FargowiltasCrossmod
+# Scanned: 2026-05-20T08:27:26.8920994Z
+# Source: C:\Users\14451\Documents\My Games\Terraria\tModLoader\ModSources\EvenMoreOverpoweredJourney\Data\BuffModSupport\decompiled_cache\FargowiltasCrossmod\decompiled_cs
+StableKey	ClassName	File	SuggestedPhase	Confidence	StatSignals	VisualSignals	EntitySignals	Note
+FargowiltasCrossmod/CalamitousPresenceBuff	CalamitousPresenceBuff	FargowiltasCrossmod.Content.Calamity.Buffs/CalamitousPresenceBuff.cs	Unknown	Low				未检测到常见 stat/visual 模式

@@ -1,0 +1,134 @@
+﻿﻿# EmojBuffModScanner catalog
+# Mod: Spooky
+# Scanned: 2026-05-20T08:28:15.5015528Z
+# Source: C:\Users\14451\Documents\My Games\Terraria\tModLoader\ModSources\EvenMoreOverpoweredJourney\Data\BuffModSupport\decompiled_cache\Spooky\decompiled_cs
+StableKey	ClassName	File	SuggestedPhase	Confidence	StatSignals	VisualSignals	EntitySignals	Note
+Spooky/AlternateCooldown	AlternateCooldown	Spooky.Content.Buffs.Debuff/AlternateCooldown.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/BackroomsDecay	BackroomsDecay	Spooky.Content.Buffs.Debuff/BackroomsDecay.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/BeeDamageBuff	BeeDamageBuff	Spooky.Content.Buffs/BeeDamageBuff.cs	CombatVisual	Medium		Dust\.NewDust		
+Spooky/BeeHealingBuff	BeeHealingBuff	Spooky.Content.Buffs/BeeHealingBuff.cs	CombatVisual	Medium		Dust\.NewDust		
+Spooky/BeePetBuff	BeePetBuff	Spooky.Content.Buffs.Pets/BeePetBuff.cs	CombatVisual	Medium		Projectile\.NewProjectile|NewProjectile\s*\(		
+Spooky/BeePollinationProcessBuff	BeePollinationProcessBuff	Spooky.Content.Buffs.Debuff/BeePollinationProcessBuff.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/BigBonePetBuff	BigBonePetBuff	Spooky.Content.Buffs.Pets/BigBonePetBuff.cs	CombatVisual	Medium		Projectile\.NewProjectile|NewProjectile\s*\(		
+Spooky/BillyBuff	BillyBuff	Spooky.Content.Buffs.Minion/BillyBuff.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/BlueberryFrost	BlueberryFrost	Spooky.Content.Buffs.Debuff/BlueberryFrost.cs	CombatVisual	Medium		Dust\.NewDust		
+Spooky/BouncerDeathmark	BouncerDeathmark	Spooky.Content.Buffs.Debuff/BouncerDeathmark.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/BrainyBuff	BrainyBuff	Spooky.Content.Buffs.Minion/BrainyBuff.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/BustlingGlowshroomHeal	BustlingGlowshroomHeal	Spooky.Content.Buffs/BustlingGlowshroomHeal.cs	Mixed	Low	player\.lifeRegen\s*[\+\-\*\/]?=	Dust\.NewDust		同时含属性与特效/实体信号，需人工确认
+Spooky/CatBuff	CatBuff	Spooky.Content.Buffs.Pets/CatBuff.cs	CombatVisual	Medium		Projectile\.NewProjectile|NewProjectile\s*\(		
+Spooky/CatacombDebuff	CatacombDebuff	Spooky.Content.Buffs.Debuff/CatacombDebuff.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/CavefishStunned	CavefishStunned	Spooky.Content.Buffs.Debuff/CavefishStunned.cs	CombatVisual	Medium		Dust\.NewDust		
+Spooky/CemeteryLilyBuff	CemeteryLilyBuff	Spooky.Content.Buffs/CemeteryLilyBuff.cs	Stat	High	player\.GetDamage\s*\(|player\.GetCritChance\s*\(|DamageClass\.			
+Spooky/ChalupoBuff	ChalupoBuff	Spooky.Content.Buffs.Pets/ChalupoBuff.cs	CombatVisual	Medium		Projectile\.NewProjectile|NewProjectile\s*\(		
+Spooky/ColumboBuff	ColumboBuff	Spooky.Content.Buffs.Pets/ColumboBuff.cs	CombatVisual	Medium		Projectile\.NewProjectile|NewProjectile\s*\(		
+Spooky/ColumboPetCombinedBuff	ColumboPetCombinedBuff	Spooky.Content.Buffs.Pets/ColumboPetCombinedBuff.cs	CombatVisual	Medium		Projectile\.NewProjectile|NewProjectile\s*\(		
+Spooky/ColumboneBuff	ColumboneBuff	Spooky.Content.Buffs.Pets/ColumboneBuff.cs	CombatVisual	Medium		Projectile\.NewProjectile|NewProjectile\s*\(		
+Spooky/ColumbooBuff	ColumbooBuff	Spooky.Content.Buffs.Pets/ColumbooBuff.cs	CombatVisual	Medium		Projectile\.NewProjectile|NewProjectile\s*\(		
+Spooky/ColumborangeBuff	ColumborangeBuff	Spooky.Content.Buffs.Pets/ColumborangeBuff.cs	CombatVisual	Medium		Projectile\.NewProjectile|NewProjectile\s*\(		
+Spooky/CrossCooldown	CrossCooldown	Spooky.Content.Buffs.Debuff/CrossCooldown.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/CucumberStomachDebuff	CucumberStomachDebuff	Spooky.Content.Buffs.Debuff/CucumberStomachDebuff.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/CursedDollDebuff	CursedDollDebuff	Spooky.Content.Buffs.Debuff/CursedDollDebuff.cs	CombatVisual	Medium		Dust\.NewDust		
+Spooky/DaffodilHandBuff	DaffodilHandBuff	Spooky.Content.Buffs.Minion/DaffodilHandBuff.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/DutchmanPipeDebuff	DutchmanPipeDebuff	Spooky.Content.Buffs.Debuff/DutchmanPipeDebuff.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/EelTagDebuff	EelTagDebuff	Spooky.Content.Buffs.WhipDebuff/EelTagDebuff.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/EggplantWhipDebuff	EggplantWhipDebuff	Spooky.Content.Buffs.WhipDebuff/EggplantWhipDebuff.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/EmbryoCooldown	EmbryoCooldown	Spooky.Content.Buffs.Debuff/EmbryoCooldown.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/EmbryoRevival	EmbryoRevival	Spooky.Content.Buffs/EmbryoRevival.cs	Stat	High	player\.stat\w+\s*[\+\-\*\/]?=|player\.lifeRegen\s*[\+\-\*\/]?=			
+Spooky/EnsnaredCooldown	EnsnaredCooldown	Spooky.Content.Buffs.Debuff/EnsnaredCooldown.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/EnsnaredDebuff	EnsnaredDebuff	Spooky.Content.Buffs.Debuff/EnsnaredDebuff.cs	CombatVisual	Medium		Dust\.NewDust		
+Spooky/EntityMinionBuff	EntityMinionBuff	Spooky.Content.Buffs.Minion/EntityMinionBuff.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/FleshWhipCooldown	FleshWhipCooldown	Spooky.Content.Buffs.WhipDebuff/FleshWhipCooldown.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/FleshWhipDefense	FleshWhipDefense	Spooky.Content.Buffs.WhipDebuff/FleshWhipDefense.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/FleshWhipDefense2	FleshWhipDefense2	Spooky.Content.Buffs.WhipDebuff/FleshWhipDefense2.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/FlowerArmorCooldown	FlowerArmorCooldown	Spooky.Content.Buffs.Debuff/FlowerArmorCooldown.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/FlyBuff	FlyBuff	Spooky.Content.Buffs/FlyBuff.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/FlyCooldown	FlyCooldown	Spooky.Content.Buffs.Debuff/FlyCooldown.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/FlyPetBuff	FlyPetBuff	Spooky.Content.Buffs.Pets/FlyPetBuff.cs	CombatVisual	Medium		Projectile\.NewProjectile|NewProjectile\s*\(		
+Spooky/FuzzBatPetBuff	FuzzBatPetBuff	Spooky.Content.Buffs.Pets/FuzzBatPetBuff.cs	CombatVisual	Medium		Projectile\.NewProjectile|NewProjectile\s*\(		
+Spooky/GhostBanditDefense	GhostBanditDefense	Spooky.Content.Buffs/GhostBanditDefense.cs	Stat	Medium	player\.stat\w+\s*[\+\-\*\/]?=			
+Spooky/GhostPepperMinionBuff	GhostPepperMinionBuff	Spooky.Content.Buffs.Minion/GhostPepperMinionBuff.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/GhostPetBuff	GhostPetBuff	Spooky.Content.Buffs.Pets/GhostPetBuff.cs	CombatVisual	Medium		Projectile\.NewProjectile|NewProjectile\s*\(		
+Spooky/GlassEyeDebuff	GlassEyeDebuff	Spooky.Content.Buffs.Debuff/GlassEyeDebuff.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/GooseberryBoostBuff	GooseberryBoostBuff	Spooky.Content.Buffs/GooseberryBoostBuff.cs	Stat	Medium	player\.lifeRegen\s*[\+\-\*\/]?=			
+Spooky/GourdDecay	GourdDecay	Spooky.Content.Buffs.Debuff/GourdDecay.cs	CombatVisual	Medium		Projectile\.NewProjectile|NewProjectile\s*\(		
+Spooky/GrugBuff	GrugBuff	Spooky.Content.Buffs.Minion/GrugBuff.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/HallucinationDebuff1	HallucinationDebuff1	Spooky.Content.Buffs.Debuff/HallucinationDebuff1.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/HazmatMinionToxic	HazmatMinionToxic	Spooky.Content.Buffs.Debuff/HazmatMinionToxic.cs	CombatVisual	Medium		Dust\.NewDust		
+Spooky/HerobrineAltarCooldown	HerobrineAltarCooldown	Spooky.Content.Buffs.Debuff/HerobrineAltarCooldown.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/HunterScarfMark	HunterScarfMark	Spooky.Content.Buffs.Debuff/HunterScarfMark.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/InchwormBuff	InchwormBuff	Spooky.Content.Buffs.Pets/InchwormBuff.cs	CombatVisual	Medium		Projectile\.NewProjectile|NewProjectile\s*\(		
+Spooky/KrampusBricksCooldown	KrampusBricksCooldown	Spooky.Content.Buffs.Debuff/KrampusBricksCooldown.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/KrampusShapeBuff	KrampusShapeBuff	Spooky.Content.Buffs/KrampusShapeBuff.cs	Stat	High	player\.stat\w+\s*[\+\-\*\/]?=|player\.GetDamage\s*\(|player\.GetAttackSpeed\s*\(|DamageClass\.			
+Spooky/LeechBuff	LeechBuff	Spooky.Content.Buffs.Minion/LeechBuff.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/LeechWhipDebuff	LeechWhipDebuff	Spooky.Content.Buffs.WhipDebuff/LeechWhipDebuff.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/LongisquamaPetBuff	LongisquamaPetBuff	Spooky.Content.Buffs.Pets/LongisquamaPetBuff.cs	CombatVisual	Medium		Projectile\.NewProjectile|NewProjectile\s*\(		
+Spooky/MocoPetBuff	MocoPetBuff	Spooky.Content.Buffs.Pets/MocoPetBuff.cs	CombatVisual	Medium		Projectile\.NewProjectile|NewProjectile\s*\(		
+Spooky/MonumentMythosCooldown	MonumentMythosCooldown	Spooky.Content.Buffs.Debuff/MonumentMythosCooldown.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/MonumentMythosShatter	MonumentMythosShatter	Spooky.Content.Buffs.Debuff/MonumentMythosShatter.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/NerveWhipDebuff	NerveWhipDebuff	Spooky.Content.Buffs.WhipDebuff/NerveWhipDebuff.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/NineTailsDebuff	NineTailsDebuff	Spooky.Content.Buffs.WhipDebuff/NineTailsDebuff.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/NoseBlessingBuff	NoseBlessingBuff	Spooky.Content.Buffs/NoseBlessingBuff.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/NoseBlessingDebuff	NoseBlessingDebuff	Spooky.Content.Buffs.Debuff/NoseBlessingDebuff.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/NoseBlessingDebuffCooldown	NoseBlessingDebuffCooldown	Spooky.Content.Buffs.Debuff/NoseBlessingDebuffCooldown.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/NoseMinionBuff	NoseMinionBuff	Spooky.Content.Buffs.Minion/NoseMinionBuff.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/OldHunterBuff	OldHunterBuff	Spooky.Content.Buffs.Minion/OldHunterBuff.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/OrroboroPetBuff	OrroboroPetBuff	Spooky.Content.Buffs.Pets/OrroboroPetBuff.cs	CombatVisual	Medium		Projectile\.NewProjectile|NewProjectile\s*\(		
+Spooky/PandoraBeanBuff	PandoraBeanBuff	Spooky.Content.Buffs.Pets/PandoraBeanBuff.cs	CombatVisual	Medium		Projectile\.NewProjectile|NewProjectile\s*\(		
+Spooky/PandoraCrossCooldown	PandoraCrossCooldown	Spooky.Content.Buffs.Debuff/PandoraCrossCooldown.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/PandoraHandCooldown	PandoraHandCooldown	Spooky.Content.Buffs.Debuff/PandoraHandCooldown.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/PepperMinionBuff	PepperMinionBuff	Spooky.Content.Buffs.Minion/PepperMinionBuff.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/PepperSpice	PepperSpice	Spooky.Content.Buffs.Debuff/PepperSpice.cs	CombatVisual	Medium		Projectile\.NewProjectile|NewProjectile\s*\(|Dust\.NewDust		
+Spooky/PeptoDebuff	PeptoDebuff	Spooky.Content.Buffs.Debuff/PeptoDebuff.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/PetscopBuff	PetscopBuff	Spooky.Content.Buffs.Pets/PetscopBuff.cs	CombatVisual	Medium		Projectile\.NewProjectile|NewProjectile\s*\(		
+Spooky/PetscopMarvinBuff	PetscopMarvinBuff	Spooky.Content.Buffs.Pets/PetscopMarvinBuff.cs	CombatVisual	Medium		Projectile\.NewProjectile|NewProjectile\s*\(		
+Spooky/PetscopTiaraBuff	PetscopTiaraBuff	Spooky.Content.Buffs.Pets/PetscopTiaraBuff.cs	CombatVisual	Medium		Projectile\.NewProjectile|NewProjectile\s*\(		
+Spooky/PheromoneWhipDebuff	PheromoneWhipDebuff	Spooky.Content.Buffs.WhipDebuff/PheromoneWhipDebuff.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/PiercedBleedDebuff	PiercedBleedDebuff	Spooky.Content.Buffs.Debuff/PiercedBleedDebuff.cs	CombatVisual	Medium		Dust\.NewDust		
+Spooky/PiercedDebuff	PiercedDebuff	Spooky.Content.Buffs.Debuff/PiercedDebuff.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/Possessed	Possessed	Spooky.Content.Buffs.Debuff/Possessed.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/PumpkinHeadBuff	PumpkinHeadBuff	Spooky.Content.Buffs.Minion/PumpkinHeadBuff.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/PuttyPetBuff	PuttyPetBuff	Spooky.Content.Buffs.Pets/PuttyPetBuff.cs	CombatVisual	Medium		Projectile\.NewProjectile|NewProjectile\s*\(		
+Spooky/RatPetBuff	RatPetBuff	Spooky.Content.Buffs.Pets/RatPetBuff.cs	CombatVisual	Medium		Projectile\.NewProjectile|NewProjectile\s*\(		
+Spooky/RotGourdMinionBuff	RotGourdMinionBuff	Spooky.Content.Buffs.Minion/RotGourdMinionBuff.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/RotGourdPetBuff	RotGourdPetBuff	Spooky.Content.Buffs.Pets/RotGourdPetBuff.cs	CombatVisual	Medium		Projectile\.NewProjectile|NewProjectile\s*\(		
+Spooky/SadDebuff	SadDebuff	Spooky.Content.Buffs.Debuff/SadDebuff.cs	Stat	High	player\.GetDamage\s*\(|DamageClass\.			
+Spooky/SeaSpongeBuff	SeaSpongeBuff	Spooky.Content.Buffs/SeaSpongeBuff.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/SentientKeybrandDebuff	SentientKeybrandDebuff	Spooky.Content.Buffs.Debuff/SentientKeybrandDebuff.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/SentientLeatherWhipDebuff	SentientLeatherWhipDebuff	Spooky.Content.Buffs.WhipDebuff/SentientLeatherWhipDebuff.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/ShroomHopperBuff	ShroomHopperBuff	Spooky.Content.Buffs.Pets/ShroomHopperBuff.cs	CombatVisual	Medium		Projectile\.NewProjectile|NewProjectile\s*\(		
+Spooky/ShroomWhipDebuff	ShroomWhipDebuff	Spooky.Content.Buffs.WhipDebuff/ShroomWhipDebuff.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/SinisterSnailBuff	SinisterSnailBuff	Spooky.Content.Buffs.Pets/SinisterSnailBuff.cs	CombatVisual	Medium		Projectile\.NewProjectile|NewProjectile\s*\(		
+Spooky/SkullEmojiBuff	SkullEmojiBuff	Spooky.Content.Buffs.Pets/SkullEmojiBuff.cs	CombatVisual	Medium		Projectile\.NewProjectile|NewProjectile\s*\(		
+Spooky/SkullFrenzyBuff	SkullFrenzyBuff	Spooky.Content.Buffs/SkullFrenzyBuff.cs	Stat	High	player\.GetDamage\s*\(|player\.GetAttackSpeed\s*\(|DamageClass\.			
+Spooky/SkullGoopBuff	SkullGoopBuff	Spooky.Content.Buffs.Pets/SkullGoopBuff.cs	CombatVisual	Medium		Projectile\.NewProjectile|NewProjectile\s*\(		
+Spooky/SkullTotemBuff	SkullTotemBuff	Spooky.Content.Buffs.Minion/SkullTotemBuff.cs	Stat	High	player\.GetDamage\s*\(|DamageClass\.			
+Spooky/SkullWispBuff	SkullWispBuff	Spooky.Content.Buffs.Minion/SkullWispBuff.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/SlendermanPageBuff	SlendermanPageBuff	Spooky.Content.Buffs/SlendermanPageBuff.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/SmokerCoughDebuff	SmokerCoughDebuff	Spooky.Content.Buffs.Debuff/SmokerCoughDebuff.cs	CombatVisual	Medium		Projectile\.NewProjectile|NewProjectile\s*\(		
+Spooky/SmokerLungCooldown	SmokerLungCooldown	Spooky.Content.Buffs.Debuff/SmokerLungCooldown.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/SoulSkullBuff	SoulSkullBuff	Spooky.Content.Buffs.Minion/SoulSkullBuff.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/SpearfishBleed	SpearfishBleed	Spooky.Content.Buffs.Debuff/SpearfishBleed.cs	CombatVisual	Medium		Dust\.NewDust		
+Spooky/SpiderArmorStealth	SpiderArmorStealth	Spooky.Content.Buffs/SpiderArmorStealth.cs	Stat	Medium	player\.aggro\s*[\+\-\*\/]?=			
+Spooky/SpiderBabyBuff	SpiderBabyBuff	Spooky.Content.Buffs.Minion/SpiderBabyBuff.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/SpiderSlingshotSlow	SpiderSlingshotSlow	Spooky.Content.Buffs.Debuff/SpiderSlingshotSlow.cs	CombatVisual	Medium		Dust\.NewDust		
+Spooky/SpiderStealthCooldown	SpiderStealthCooldown	Spooky.Content.Buffs.Debuff/SpiderStealthCooldown.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/SpookFishronMinionBuff	SpookFishronMinionBuff	Spooky.Content.Buffs.Minion/SpookFishronMinionBuff.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/SpookySpiritPetBuff	SpookySpiritPetBuff	Spooky.Content.Buffs.Pets/SpookySpiritPetBuff.cs	CombatVisual	Medium		Projectile\.NewProjectile|NewProjectile\s*\(		
+Spooky/SteroidBuff	SteroidBuff	Spooky.Content.Buffs/SteroidBuff.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/SteroidWeakness	SteroidWeakness	Spooky.Content.Buffs.Debuff/SteroidWeakness.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/StickyEyeBuff	StickyEyeBuff	Spooky.Content.Buffs.Pets/StickyEyeBuff.cs	CombatVisual	Medium		Projectile\.NewProjectile|NewProjectile\s*\(		
+Spooky/StitchedCloakCooldown	StitchedCloakCooldown	Spooky.Content.Buffs.Debuff/StitchedCloakCooldown.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/StockingMinionBuff	StockingMinionBuff	Spooky.Content.Buffs.Minion/StockingMinionBuff.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/StrawberryBoostBuff	StrawberryBoostBuff	Spooky.Content.Buffs/StrawberryBoostBuff.cs	Stat	High	player\.GetDamage\s*\(|player\.GetCritChance\s*\(|DamageClass\.			
+Spooky/Tarred	Tarred	Spooky.Content.Buffs.Debuff/Tarred.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/ThornMark	ThornMark	Spooky.Content.Buffs.Debuff/ThornMark.cs	CombatVisual	Medium		Dust\.NewDust		
+Spooky/ThornRoseBleed	ThornRoseBleed	Spooky.Content.Buffs.Debuff/ThornRoseBleed.cs	CombatVisual	Medium		Dust\.NewDust		
+Spooky/TitanoboaWhipDebuff	TitanoboaWhipDebuff	Spooky.Content.Buffs.WhipDebuff/TitanoboaWhipDebuff.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/TortumorMinionBuff	TortumorMinionBuff	Spooky.Content.Buffs.Minion/TortumorMinionBuff.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/TrapdoorSpiderMountBuff	TrapdoorSpiderMountBuff	Spooky.Content.Buffs.Mounts/TrapdoorSpiderMountBuff.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/TurkeyMountBuff	TurkeyMountBuff	Spooky.Content.Buffs.Mounts/TurkeyMountBuff.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/ValleyNautilusBuff	ValleyNautilusBuff	Spooky.Content.Buffs.Pets/ValleyNautilusBuff.cs	CombatVisual	Medium		Projectile\.NewProjectile|NewProjectile\s*\(		
+Spooky/WhipSpiderAggression	WhipSpiderAggression	Spooky.Content.Buffs.Debuff/WhipSpiderAggression.cs	Stat	Medium	player\.aggro\s*[\+\-\*\/]?=			
+Spooky/WingedBiomassBuff	WingedBiomassBuff	Spooky.Content.Buffs.Minion/WingedBiomassBuff.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/YuletideArmorCooldown	YuletideArmorCooldown	Spooky.Content.Buffs.Debuff/YuletideArmorCooldown.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Spooky/ZombieCultistPetBuff	ZombieCultistPetBuff	Spooky.Content.Buffs.Pets/ZombieCultistPetBuff.cs	CombatVisual	Medium		Projectile\.NewProjectile|NewProjectile\s*\(		

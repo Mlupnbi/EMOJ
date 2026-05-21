@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "EvenMoreOverpoweredJourney/0.4.69": {
+        "runtime": {
+          "EvenMoreOverpoweredJourney.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "EvenMoreOverpoweredJourney/0.4.69": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

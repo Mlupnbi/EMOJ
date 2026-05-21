@@ -1,0 +1,15 @@
+﻿# Cursor 提示词 — BIntros Buff 扫描
+
+请阅读附件并更新 EMOJ 的 Buff 支持数据：
+- 扫描 JSON: `BIntros_buff_scan.json`
+- 模组: BIntros，共 0 个 ModBuff 类
+- 建议 Stat: 0，CombatVisual: 0，Mixed: 0，Unknown: 0
+- 高置信 Stat-only: 0（可优先写入 overrides.json）
+
+任务：
+1. 对比 `Data/BuffModSupport/overrides.json` 中已有项，标出新增/删除的 StableKey
+2. 对 Confidence=High 且 SuggestedPhase=Stat 的项，合并进 overrides（phase=Stat）
+3. Mixed/Unknown 列出清单供人工决定，不要自动写入
+4. 若有游戏内 BuffId 变化，保留 StableKey 格式 `ModName/BuffClassName`
+
+5. **全量维度**：请一并阅读同目录 `GLOBAL_CURSOR_BUFF_PROMPT.md`，对照 registry 中登记的所有模组与 `overrides.json` / `mod_profiles.json`，检查各开源模组是否有上游更新需重新扫描。

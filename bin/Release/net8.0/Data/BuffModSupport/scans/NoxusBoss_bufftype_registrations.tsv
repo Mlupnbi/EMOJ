@@ -1,0 +1,7 @@
+﻿﻿RegisteredTypeName	ReferenceCount	SampleFiles
+AntimatterAnnihilation	1	NoxusBoss.Content.NPCs.Bosses.Avatar.Projectiles/AnnihilationSphere.cs
+Enraged	1	NoxusBoss.Core.Balancing/DemonshadeNerfSystem.cs
+Glaciated	2	NoxusBoss.Content.NPCs.Bosses.Avatar.Projectiles/FreezingWave.cs|NoxusBoss.Content.NPCs.Bosses.Avatar.SecondPhaseForm/AvatarOfEmptiness.cs
+InvincibilityBuff	1	NoxusBoss.Content.Tiles/LotusOfCreationTile.cs
+NilkDebuff	2	NoxusBoss.Content.Items/NilkCarton.cs|NoxusBoss.Core.Graphics.Nilk/NilkEffectManager.cs
+StarstrikinglySatiated	1	NoxusBoss.Content.Items.Food/CinnamonRollyn.cs

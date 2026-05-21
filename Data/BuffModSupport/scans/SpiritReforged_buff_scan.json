@@ -1,0 +1,280 @@
+﻿{
+  "schemaVersion": 1,
+  "mod": "SpiritReforged",
+  "scannedAtUtc": "2026-05-20T08:28:03.4504176Z",
+  "sourcePath": "C:\\Users\\14451\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\EvenMoreOverpoweredJourney\\Data\\BuffModSupport\\decompiled_cache\\SpiritReforged\\decompiled_cs",
+  "sourceKind": "extracted_source",
+  "buffClassCount": 20,
+  "buffs": [
+    {
+      "mod": "SpiritReforged",
+      "internalName": "AutoloadedBuff",
+      "className": "AutoloadedBuff",
+      "relativeFile": "SpiritReforged.Common.BuffCommon/AutoloadedBuff.cs",
+      "stableKey": "SpiritReforged/AutoloadedBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "SpiritReforged",
+      "internalName": "BottleMountBuff",
+      "className": "BottleMountBuff",
+      "relativeFile": "SpiritReforged.Content.Ocean.Items.MessageBottle/BottleMountBuff.cs",
+      "stableKey": "SpiritReforged/BottleMountBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "SpiritReforged",
+      "internalName": "DoubleJumpPotionBuff",
+      "className": "DoubleJumpPotionBuff",
+      "relativeFile": "SpiritReforged.Content.Forest.Cloud.Items/DoubleJumpPotionBuff.cs",
+      "stableKey": "SpiritReforged/DoubleJumpPotionBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "SpiritReforged",
+      "internalName": "EmpoweredSwim",
+      "className": "EmpoweredSwim",
+      "relativeFile": "SpiritReforged.Content.Ocean.Items.Reefhunter.Buffs/EmpoweredSwim.cs",
+      "stableKey": "SpiritReforged/EmpoweredSwim",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "SpiritReforged",
+      "internalName": "EnlilBuff",
+      "className": "EnlilBuff",
+      "relativeFile": "SpiritReforged.Content.Ziggurat.Tiles/EnlilStatue.cs",
+      "stableKey": "SpiritReforged/EnlilBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "SpiritReforged",
+      "internalName": "ExplorerMine",
+      "className": "ExplorerMine",
+      "relativeFile": "SpiritReforged.Content.Underground.WayfarerSet/ExplorerMine.cs",
+      "stableKey": "SpiritReforged/ExplorerMine",
+      "suggestedPhase": "Stat",
+      "confidence": "Medium",
+      "statSignals": [
+        "player\\.pickSpeed\\s*[\\\u002B\\-\\*\\/]?="
+      ],
+      "visualSignals": [],
+      "entitySignals": []
+    },
+    {
+      "mod": "SpiritReforged",
+      "internalName": "ExplorerPot",
+      "className": "ExplorerPot",
+      "relativeFile": "SpiritReforged.Content.Underground.WayfarerSet/ExplorerPot.cs",
+      "stableKey": "SpiritReforged/ExplorerPot",
+      "suggestedPhase": "Stat",
+      "confidence": "Medium",
+      "statSignals": [
+        "player\\.moveSpeed\\s*[\\\u002B\\-\\*\\/]?="
+      ],
+      "visualSignals": [],
+      "entitySignals": []
+    },
+    {
+      "mod": "SpiritReforged",
+      "internalName": "ExplorerSpeed",
+      "className": "ExplorerSpeed",
+      "relativeFile": "SpiritReforged.Content.Underground.Items.ExplorerTreads/ExplorerSpeed.cs",
+      "stableKey": "SpiritReforged/ExplorerSpeed",
+      "suggestedPhase": "Stat",
+      "confidence": "Medium",
+      "statSignals": [
+        "player\\.maxRunSpeed\\s*[\\\u002B\\-\\*\\/]?="
+      ],
+      "visualSignals": [],
+      "entitySignals": []
+    },
+    {
+      "mod": "SpiritReforged",
+      "internalName": "FlightPotionBuff",
+      "className": "FlightPotionBuff",
+      "relativeFile": "SpiritReforged.Content.Forest.Cloud.Items/FlightPotionBuff.cs",
+      "stableKey": "SpiritReforged/FlightPotionBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "SpiritReforged",
+      "internalName": "Frozen",
+      "className": "Frozen",
+      "relativeFile": "SpiritReforged.Content.Snow.Frostbite/Frozen.cs",
+      "stableKey": "SpiritReforged/Frozen",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "SpiritReforged",
+      "internalName": "GildedScarabBuff",
+      "className": "GildedScarabBuff",
+      "relativeFile": "SpiritReforged.Content.Ziggurat.Scarab/GildedScarabBuff.cs",
+      "stableKey": "SpiritReforged/GildedScarabBuff",
+      "suggestedPhase": "Stat",
+      "confidence": "Medium",
+      "statSignals": [
+        "player\\.stat\\w\u002B\\s*[\\\u002B\\-\\*\\/]?="
+      ],
+      "visualSignals": [],
+      "entitySignals": []
+    },
+    {
+      "mod": "SpiritReforged",
+      "internalName": "Impaled",
+      "className": "Impaled",
+      "relativeFile": "SpiritReforged.Content.Jungle.Bamboo.Buffs/Impaled.cs",
+      "stableKey": "SpiritReforged/Impaled",
+      "suggestedPhase": "Mixed",
+      "confidence": "Low",
+      "statSignals": [
+        "player\\.lifeRegen\\s*[\\\u002B\\-\\*\\/]?="
+      ],
+      "visualSignals": [
+        "Dust\\.NewDust"
+      ],
+      "entitySignals": [],
+      "note": "\u540C\u65F6\u542B\u5C5E\u6027\u4E0E\u7279\u6548/\u5B9E\u4F53\u4FE1\u53F7\uFF0C\u9700\u4EBA\u5DE5\u786E\u8BA4"
+    },
+    {
+      "mod": "SpiritReforged",
+      "internalName": "JinxMark",
+      "className": "JinxMark",
+      "relativeFile": "SpiritReforged.Content.Forest.JinxBow/JinxMark.cs",
+      "stableKey": "SpiritReforged/JinxMark",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "SpiritReforged",
+      "internalName": "KoiTotemBuff",
+      "className": "KoiTotemBuff",
+      "relativeFile": "SpiritReforged.Content.Ocean.Items.KoiTotem/KoiTotemBuff.cs",
+      "stableKey": "SpiritReforged/KoiTotemBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "SpiritReforged",
+      "internalName": "MantarayBuff",
+      "className": "MantarayBuff",
+      "relativeFile": "SpiritReforged.Content.Ocean.Items.Lifesaver/MantarayBuff.cs",
+      "stableKey": "SpiritReforged/MantarayBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "SpiritReforged",
+      "internalName": "OpenWounds",
+      "className": "OpenWounds",
+      "relativeFile": "SpiritReforged.Content.Forest.RoguesCrest/OpenWounds.cs",
+      "stableKey": "SpiritReforged/OpenWounds",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "SpiritReforged",
+      "internalName": "PoolNoodleBubbleBuff",
+      "className": "PoolNoodleBubbleBuff",
+      "relativeFile": "SpiritReforged.Content.Ocean.Items.PoolNoodle/PoolNoodleBubbleBuff.cs",
+      "stableKey": "SpiritReforged/PoolNoodleBubbleBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "SpiritReforged",
+      "internalName": "RemedyPotionBuff",
+      "className": "RemedyPotionBuff",
+      "relativeFile": "SpiritReforged.Content.Forest.Misc/RemedyPotionBuff.cs",
+      "stableKey": "SpiritReforged/RemedyPotionBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "SpiritReforged",
+      "internalName": "ScarabMountBuff",
+      "className": "ScarabMountBuff",
+      "relativeFile": "SpiritReforged.Content.Desert.ScarabBoss.Items/ScarabMountItem.cs",
+      "stableKey": "SpiritReforged/ScarabMountBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "SpiritReforged",
+      "internalName": "Slowed",
+      "className": "Slowed",
+      "relativeFile": "SpiritReforged.Content.Desert/Slowed.cs",
+      "stableKey": "SpiritReforged/Slowed",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    }
+  ]
+}
