@@ -4,6 +4,7 @@ using Terraria;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
+using EvenMoreOverpoweredJourney.Bestiary.UI;
 using EvenMoreOverpoweredJourney.Core.Logging;
 
 namespace EvenMoreOverpoweredJourney.Bestiary.Catalog
@@ -23,6 +24,24 @@ namespace EvenMoreOverpoweredJourney.Bestiary.Catalog
 
         public static IReadOnlyList<BestiaryNpcMeta> All => _all;
         public static IReadOnlyDictionary<int, BestiaryNpcMeta> ByNetId => _byNetId;
+
+        public static bool TryFindMetaByEntry(BestiaryEntry entry, out BestiaryNpcMeta meta)
+        {
+            meta = null;
+            if (entry == null)
+                return false;
+
+            for (int i = 0; i < _all.Count; i++)
+            {
+                if (_all[i].Entry == entry)
+                {
+                    meta = _all[i];
+                    return true;
+                }
+            }
+
+            return false;
+        }
 
         private static readonly List<BestiaryNpcMeta> _all = new List<BestiaryNpcMeta>();
         private static readonly Dictionary<int, BestiaryNpcMeta> _byNetId = new Dictionary<int, BestiaryNpcMeta>();
@@ -47,6 +66,12 @@ namespace EvenMoreOverpoweredJourney.Bestiary.Catalog
         }
 
         public static void Rebuild()
+        {
+            long ms = BestiaryPerfLog.Measure(RebuildCore);
+            BestiaryPerfLog.LogElapsed("catalog-rebuild", ms, EntryCount);
+        }
+
+        private static void RebuildCore()
         {
             _all.Clear();
             _byNetId.Clear();

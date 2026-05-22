@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.GameContent;
 using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
 using EvenMoreOverpoweredJourney.Bestiary;
@@ -22,22 +23,22 @@ namespace EvenMoreOverpoweredJourney.Bestiary.UI
         private const float SearchBarH = 28f;
         private const float StatsGapPx = 10f;
         private const float StatsLineH = 18f;
-        private const float ListTop = SearchTop + SearchBarH + StatsGapPx + StatsLineH + StatsGapPx;
+        private const float StatsBlockTop = SearchTop + SearchBarH + StatsGapPx;
+        private static float ListTopBase => StatsBlockTop + StatsLineH + StatsGapPx;
         private const float GridScrollPadRight = OPJourneyShellMetrics.ScrollSafeMarginRight;
 
         private readonly OPJourneyUI _shell;
 
         private UIText _titleText;
         private UIText _summaryText;
+        private UIBestiaryActiveFilterSummaryRow _activeFilterSummary;
         private UIText _pendingText;
         private UIBuffSearchBar _searchBar;
         private UIBestiaryFaceSelector _faceSelector;
-        private UIPanel _filterBtn;
-        private UIPanel _viewToggleBtn;
+        private BestiaryFilterIconButton _filterBtn;
+        private UIElement _toolbarRow;
         private UIList _gridList;
         private UIScrollbar _scrollbar;
-        private UIBestiaryDetailOverlay _detailOverlay;
-        private bool _detailOpen;
 
         private float _lastGridInnerW = -1f;
         private bool _catalogRefreshAttempted;
@@ -51,6 +52,7 @@ namespace EvenMoreOverpoweredJourney.Bestiary.UI
         private UIPanel _gridBackdrop;
         private bool _listDirty = true;
         private bool _appearanceDirty;
+        private int _chromeRecoverCooldown;
         private BestiaryFaceMode _lastBuiltFace = (BestiaryFaceMode)(-1);
 
         public BestiaryPage(OPJourneyUI shell)
@@ -60,11 +62,34 @@ namespace EvenMoreOverpoweredJourney.Bestiary.UI
             Height.Set(0, 1f);
             BestiaryUiAssets.EnsureLoaded();
             BuildChrome();
-            _detailOverlay = new UIBestiaryDetailOverlay(this);
-            SetDetailOpen(false);
-            Append(_detailOverlay);
             RefreshSummary();
+            RebuildActiveFilterSummary();
             _listDirty = true;
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            DrawGridBackdrop(spriteBatch);
+            base.Draw(spriteBatch);
+        }
+
+        private void DrawGridBackdrop(SpriteBatch spriteBatch)
+        {
+            if (_gridBackdrop == null)
+                return;
+
+            CalculatedStyle dims = _gridBackdrop.GetDimensions();
+            if (dims.Width < 8f || dims.Height < 8f)
+            {
+                RestoreGridChromeLayout();
+                dims = _gridBackdrop.GetDimensions();
+            }
+
+            if (dims.Width < 8f || dims.Height < 8f)
+                return;
+
+            Rectangle rect = dims.ToRectangle();
+            spriteBatch.Draw(TextureAssets.MagicPixel.Value, rect, _gridBackdrop.BackgroundColor);
         }
 
         private void BuildChrome()
@@ -75,54 +100,17 @@ namespace EvenMoreOverpoweredJourney.Bestiary.UI
             _titleText.IgnoresMouseInteraction = true;
             Append(_titleText);
 
-            UIElement topRow = new UIElement();
-            topRow.Left.Set(8, 0);
-            topRow.Top.Set(ToolbarTop, 0);
-            topRow.Width.Set(OPJourneyShellMetrics.ChromeWidth, 0);
-            topRow.Height.Set(28, 0);
-            Append(topRow);
-
-            _filterBtn = new UIPanel();
-            _filterBtn.Width.Set(52, 0);
-            _filterBtn.Height.Set(24, 0);
-            _filterBtn.BackgroundColor = new Color(50, 50, 70) * 0.9f;
-            _filterBtn.OnLeftClick += (_, _) =>
-            {
-                _shell.BestiarySecondaryPanel?.SetOpen(!(_shell.BestiarySecondaryPanel?.IsOpen ?? false));
-            };
-            topRow.Append(_filterBtn);
-            var filterLabel = new UIText(EOPJText.UI("BestiaryFilterBtn"), 0.8f);
-            filterLabel.HAlign = 0.5f;
-            filterLabel.VAlign = 0.5f;
-            filterLabel.IgnoresMouseInteraction = true;
-            _filterBtn.Append(filterLabel);
-
-            _viewToggleBtn = new UIPanel();
-            _viewToggleBtn.Left.Set(58, 0);
-            _viewToggleBtn.Width.Set(72, 0);
-            _viewToggleBtn.Height.Set(24, 0);
-            _viewToggleBtn.BackgroundColor = new Color(50, 50, 70) * 0.9f;
-            _viewToggleBtn.OnLeftClick += (_, _) =>
-            {
-                _shell.BestiaryViewMode = _shell.BestiaryViewMode == BestiaryViewMode.Card
-                    ? BestiaryViewMode.GroupPhoto
-                    : BestiaryViewMode.Card;
-                _listDirty = true;
-                RefreshSummary();
-            };
-            topRow.Append(_viewToggleBtn);
-            var viewLabel = new UIText("", 0.75f);
-            viewLabel.HAlign = 0.5f;
-            viewLabel.VAlign = 0.5f;
-            viewLabel.IgnoresMouseInteraction = true;
-            _viewToggleBtn.Append(viewLabel);
-            _viewToggleBtn.OnUpdate += _ => viewLabel.SetText(
-                _shell.BestiaryViewMode == BestiaryViewMode.Card
-                    ? EOPJText.UI("BestiaryViewCard")
-                    : EOPJText.UI("BestiaryViewGroup"));
+            const float toolbarRowH = 28f;
+            _toolbarRow = new UIElement();
+            _toolbarRow.Left.Set(8, 0);
+            _toolbarRow.Top.Set(ToolbarTop, 0);
+            _toolbarRow.Width.Set(OPJourneyShellMetrics.ChromeWidth, 0);
+            _toolbarRow.Height.Set(toolbarRowH, 0);
+            Append(_toolbarRow);
 
             _faceSelector = new UIBestiaryFaceSelector(20f);
-            _faceSelector.Left.Set(262, 0);
+            _faceSelector.Left.Set(0, 0);
+            _faceSelector.Top.Set(0, 0);
             _faceSelector.ActiveFace = _shell.BestiaryFaceMode;
             _faceSelector.OnFaceSelected = face =>
             {
@@ -130,9 +118,9 @@ namespace EvenMoreOverpoweredJourney.Bestiary.UI
                 _appearanceDirty = true;
                 _listDirty = true;
                 RefreshSummary();
-                _shell.BestiarySecondaryPanel?.RebuildActiveFilterStrip();
+                RebuildActiveFilterSummary();
             };
-            topRow.Append(_faceSelector);
+            _toolbarRow.Append(_faceSelector);
 
             _searchBar = new UIBuffSearchBar();
             _searchBar.SearchHint = EOPJText.UI("BestiarySearchHint");
@@ -152,16 +140,22 @@ namespace EvenMoreOverpoweredJourney.Bestiary.UI
 
             _summaryText = new UIText("", 0.68f);
             _summaryText.Left.Set(8, 0);
-            _summaryText.Top.Set(SearchTop + SearchBarH + StatsGapPx, 0);
+            _summaryText.Top.Set(StatsBlockTop, 0);
             _summaryText.Width.Set(0, 1f);
             _summaryText.Height.Set(StatsLineH, 0);
             _summaryText.IsWrapped = false;
-            _summaryText.TextColor = Color.LightGray;
+            _summaryText.TextColor = OPJourneyUiColors.TextMuted;
             _summaryText.IgnoresMouseInteraction = true;
             Append(_summaryText);
 
+            _activeFilterSummary = new UIBestiaryActiveFilterSummaryRow(_shell);
+            _activeFilterSummary.Left.Set(8, 0);
+            _activeFilterSummary.Width.Set(OPJourneyShellMetrics.ChromeWidth, 0);
+            _activeFilterSummary.IgnoresMouseInteraction = false;
+            Append(_activeFilterSummary);
+
             _gridBackdrop = new UIPanel();
-            _gridBackdrop.BackgroundColor = new Color(32, 34, 52) * 0.98f;
+            _gridBackdrop.BackgroundColor = BestiaryUiColors.GridBackdrop;
             _gridBackdrop.BorderColor = Color.Transparent;
             _gridBackdrop.Left.Set(0, 0);
             _gridBackdrop.Width.Set(-GridScrollPadRight, 1f);
@@ -175,91 +169,151 @@ namespace EvenMoreOverpoweredJourney.Bestiary.UI
             _gridList.OnUpdate += _ =>
             {
                 float w = _gridList.GetInnerDimensions().Width;
-                if (w > 1f && (_listDirty || Math.Abs(w - _lastGridInnerW) > 2f))
+                if (w > 1f && (_listDirty || Math.Abs(w - _lastGridInnerW) > 8f))
                     RebuildGrid(w);
             };
             Append(_gridList);
 
             _scrollbar = new UIScrollbar();
-            _scrollbar.Width.Set(18f, 0f);
             _scrollbar.Left.Set(-GridScrollPadRight, 1f);
-            ShellUiScrollLayout.ApplyVerticalRange(_gridBackdrop, null, ListTop);
-            ShellUiScrollLayout.ApplyVerticalRange(_gridList, _scrollbar, ListTop);
+            ApplyListTopLayout();
             _gridList.SetScrollbar(_scrollbar);
             Append(_scrollbar);
 
             _pendingText = new UIText("", 0.72f);
             _pendingText.Left.Set(8, 0);
-            _pendingText.Top.Set(-18, 1f);
+            _pendingText.Top.Set(-OPJourneyShellMetrics.ContentBottomSafeMargin, 1f);
             _pendingText.Width.Set(0, 1f);
-            _pendingText.TextColor = Color.Gray;
+            _pendingText.TextColor = OPJourneyUiColors.TextHint;
             _pendingText.IgnoresMouseInteraction = true;
             Append(_pendingText);
+
+            _filterBtn = new BestiaryFilterIconButton(_shell, () =>
+            {
+                bool open = !(_shell.BestiarySecondaryPanel?.IsOpen ?? false);
+                _shell.BestiarySecondaryPanel?.SetOpen(open);
+                if (open)
+                    _shell.BestiarySecondaryPanel?.RebuildScroll();
+            });
+            Append(_filterBtn);
+            LayoutToolbarRow();
         }
 
-        public void CloseDetail() => SetDetailOpen(false);
+        public void CloseDetail() => _shell.CloseBestiaryDetail();
 
-        public void OpenDetail(BestiaryNpcMeta meta)
+        public void OpenDetail(BestiaryNpcMeta meta) => _shell.OpenBestiaryDetail(meta);
+
+        private void RestoreGridChromeLayout()
         {
-            if (meta == null)
-                return;
-
-            if (_shell.BestiaryFaceMode == BestiaryFaceMode.ProgressiveMinus &&
-                meta.Entry != null &&
-                !BestiaryProgressResolver.WasEverFound(meta.Entry))
-            {
-                return;
-            }
-
-            _detailOverlay.Show(meta, _shell.BestiaryFaceMode);
-            SetDetailOpen(true);
+            _gridBackdrop.Width.Set(-GridScrollPadRight, 1f);
+            _gridList.Width.Set(-GridScrollPadRight, 1f);
+            _gridList.IgnoresMouseInteraction = false;
+            _scrollbar.Width.Set(18f, 0f);
+            _scrollbar.Left.Set(-GridScrollPadRight, 1f);
+            _scrollbar.IgnoresMouseInteraction = false;
+            ApplyListTopLayout();
         }
 
-        private void SetDetailOpen(bool open)
+        private float GetListTop()
         {
-            _detailOpen = open;
-            _detailOverlay.SetVisible(open);
+            float top = ListTopBase;
+            if (_activeFilterSummary != null && _activeFilterSummary.HasChips)
+                top += UIBestiaryActiveFilterSummaryRow.RowHeight + StatsGapPx;
+            return top;
+        }
 
-            if (open)
+        private void RebuildActiveFilterSummary()
+        {
+            if (_activeFilterSummary == null)
+                return;
+
+            float w = _activeFilterSummary.GetInnerDimensions().Width;
+            if (w < 40f)
+                w = OPJourneyShellMetrics.ChromeWidth;
+            _activeFilterSummary.Rebuild(w);
+
+            float summaryTop = StatsBlockTop + StatsLineH + StatsGapPx;
+            if (_activeFilterSummary.HasChips)
             {
-                _detailOverlay.Width.Set(0, 1f);
-                _detailOverlay.Height.Set(0, 1f);
-                _gridBackdrop.Width.Set(0, 0);
-                _gridBackdrop.Height.Set(0, 0);
-                _gridList.Width.Set(0, 0);
-                _gridList.Height.Set(0, 0);
-                _gridList.IgnoresMouseInteraction = true;
-                _scrollbar.Width.Set(0f, 0f);
-                _scrollbar.Height.Set(0f, 0f);
-                _scrollbar.IgnoresMouseInteraction = true;
+                _activeFilterSummary.Top.Set(summaryTop, 0);
+                _activeFilterSummary.Height.Set(UIBestiaryActiveFilterSummaryRow.RowHeight, 0);
+                _activeFilterSummary.Width.Set(OPJourneyShellMetrics.ChromeWidth, 0);
             }
             else
             {
-                _detailOverlay.Width.Set(0, 0);
-                _detailOverlay.Height.Set(0, 0);
-                _gridBackdrop.Width.Set(-GridScrollPadRight, 1f);
-                _gridBackdrop.Height.Set(0, 1f);
-                _gridList.Width.Set(-GridScrollPadRight, 1f);
-                _gridList.IgnoresMouseInteraction = false;
-                _scrollbar.Width.Set(18f, 0f);
-                _scrollbar.Left.Set(-GridScrollPadRight, 1f);
-                ShellUiScrollLayout.ApplyVerticalRange(_gridBackdrop, null, ListTop);
-                ShellUiScrollLayout.ApplyVerticalRange(_gridList, _scrollbar, ListTop);
-                _scrollbar.IgnoresMouseInteraction = false;
-                _listDirty = true;
+                _activeFilterSummary.Top.Set(summaryTop, 0);
+                _activeFilterSummary.Height.Set(0, 0);
             }
+
+            ApplyListTopLayout();
+        }
+
+        private void ApplyListTopLayout()
+        {
+            float listTop = GetListTop();
+            float extraBottom = GetListExtraBottom();
+            ShellUiScrollLayout.ApplyVerticalRange(_gridBackdrop, null, listTop, extraBottom);
+            ShellUiScrollLayout.ApplyVerticalRange(_gridList, _scrollbar, listTop, extraBottom);
+        }
+
+        private float GetListExtraBottom()
+        {
+            if (_pendingText == null || string.IsNullOrEmpty(_pendingText.Text))
+                return 0f;
+
+            return StatsLineH + StatsGapPx;
         }
 
         public void OnFiltersChanged()
         {
             _listDirty = true;
             RefreshSummary();
+            RebuildActiveFilterSummary();
+        }
+
+        private void LayoutToolbarRow()
+        {
+            if (_filterBtn == null)
+                return;
+
+            const float toolbarInsetLeft = 8f;
+            const float faceHeight = 20f;
+            const float rightSafePad = 12f;
+            float filterLeft = toolbarInsetLeft + OPJourneyShellMetrics.ChromeWidth - BestiaryFilterIconButton.OuterSize - rightSafePad;
+            _filterBtn.Left.Set(filterLeft, 0f);
+            _filterBtn.Top.Set(ToolbarTop + faceHeight - BestiaryFilterIconButton.OuterSize, 0f);
         }
 
         public void OnShellResized()
         {
             Recalculate();
+            LayoutToolbarRow();
+            RebuildActiveFilterSummary();
+            RestoreGridChromeLayout();
             _listDirty = true;
+        }
+
+        /// <summary>防止布局被意外置零后蓝色底板消失（如详情关闭、重建列表时）。</summary>
+        private void EnsureGridChromeVisible()
+        {
+            CalculatedStyle bd = _gridBackdrop.GetDimensions();
+            float listH = _gridList.GetDimensions().Height;
+            if (bd.Height >= 8f && bd.Width >= 8f && listH >= 8f)
+            {
+                _chromeRecoverCooldown = 0;
+                return;
+            }
+
+            if (_chromeRecoverCooldown > 0)
+            {
+                _chromeRecoverCooldown--;
+                return;
+            }
+
+            RestoreGridChromeLayout();
+            _chromeRecoverCooldown = 30;
+            if (_gridList.GetDimensions().Height < 8f)
+                _listDirty = true;
         }
 
         public override void Update(GameTime gameTime)
@@ -275,11 +329,7 @@ namespace EvenMoreOverpoweredJourney.Bestiary.UI
                 RefreshSummary();
             }
 
-            if (_detailOpen)
-                return;
-
-            if (_shell.BestiaryViewMode == BestiaryViewMode.GroupPhoto)
-                return;
+            EnsureGridChromeVisible();
 
             float gridW = _gridList.GetInnerDimensions().Width;
             if (gridW > 1f)
@@ -294,8 +344,6 @@ namespace EvenMoreOverpoweredJourney.Bestiary.UI
         private void RefreshCardAppearances(float innerWidth)
         {
             _appearanceDirty = false;
-            if (_shell.BestiaryViewMode != BestiaryViewMode.Card)
-                return;
 
             if (_displayed.Count == 0 || _gridList.Count == 0)
             {
@@ -319,21 +367,18 @@ namespace EvenMoreOverpoweredJourney.Bestiary.UI
 
         private void RebuildGrid(float innerWidth)
         {
+            long ms = BestiaryPerfLog.Measure(() => RebuildGridCore(innerWidth));
+            BestiaryPerfLog.LogElapsed("grid-rebuild", ms, _displayed.Count);
+        }
+
+        private void RebuildGridCore(float innerWidth)
+        {
             _listDirty = false;
             _appearanceDirty = false;
             _lastGridInnerW = innerWidth;
             _lastBuiltFace = _shell.BestiaryFaceMode;
             _gridList.Clear();
             RebuildDisplayedList();
-
-            if (_shell.BestiaryViewMode != BestiaryViewMode.Card)
-            {
-                var wip = new UIText(EOPJText.UI("BestiaryGroupPhotoWip"), 0.8f);
-                wip.HAlign = 0.5f;
-                wip.VAlign = 0.4f;
-                _gridList.Add(wip);
-                return;
-            }
 
             if (_displayed.Count == 0)
             {
@@ -442,6 +487,7 @@ namespace EvenMoreOverpoweredJourney.Bestiary.UI
         public void RefreshSummary()
         {
             _faceSelector.ActiveFace = _shell.BestiaryFaceMode;
+            RebuildActiveFilterSummary();
 
             if (!BestiaryListCatalog.Ready)
             {
@@ -478,6 +524,7 @@ namespace EvenMoreOverpoweredJourney.Bestiary.UI
             _pendingText.SetText(pending > 0 && _shell.BestiaryFaceMode == BestiaryFaceMode.ProgressiveMinus
                 ? EOPJText.UIFormat("BestiaryPendingDiscoveryFmt", pending)
                 : "");
+            ApplyListTopLayout();
         }
 
         private int CountDiscoveredInScope() => CountInScope(requireFound: true);

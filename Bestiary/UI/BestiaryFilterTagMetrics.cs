@@ -12,7 +12,7 @@ namespace EvenMoreOverpoweredJourney.Bestiary.UI
 
         public static void ComputeActiveStripCell(float innerWidth, int count, out float cellW, out float rowH)
         {
-            Texture2D inv = TextureAssets.InventoryBack.Value;
+            Texture2D inv = global::EvenMoreOverpoweredJourney.Shell.UI.Assets.EojUiTextures.Common.InventoryBack;
             float baseCell = inv.Width * ActiveStripScale + 3f;
             rowH = inv.Height * ActiveStripScale + 3f;
             if (count <= 0)
@@ -27,7 +27,7 @@ namespace EvenMoreOverpoweredJourney.Bestiary.UI
 
         public static void ComputeGridLayout(float innerWidth, int count, out float cellW, out float rowH, out int cols, out int rows)
         {
-            Texture2D inv = TextureAssets.InventoryBack.Value;
+            Texture2D inv = global::EvenMoreOverpoweredJourney.Shell.UI.Assets.EojUiTextures.Common.InventoryBack;
             cellW = inv.Width * SlotScale + 4f;
             rowH = inv.Height * SlotScale + 4f;
             cols = System.Math.Max(1, (int)(innerWidth / cellW));

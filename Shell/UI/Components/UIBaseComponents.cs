@@ -1,6 +1,7 @@
 using System;
 using EvenMoreOverpoweredJourney;
 using EvenMoreOverpoweredJourney.Shell.UI;
+using EvenMoreOverpoweredJourney.Shell.UI.Assets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Graphics;
@@ -76,7 +77,7 @@ namespace EvenMoreOverpoweredJourney.Shell.UI.Components
         public Color BgColor;
         public Color TextColor;
         public float TextScale;
-        /// <summary>�? true 时按钮以灰色绘制且不参与高亮提亮�?</summary>
+        /// <summary>?? true ??????????????????????????</summary>
         public bool GrayedOut;
 
         public UIFlatButton(string text, Color bgColor, Color textColor, float textScale = 0.6f)
@@ -90,19 +91,18 @@ namespace EvenMoreOverpoweredJourney.Shell.UI.Components
             CalculatedStyle dims = GetDimensions();
             Rectangle rect = dims.ToRectangle();
 
-            Color baseBg = GrayedOut ? new Color(70, 70, 70) : BgColor;
+            Color baseBg = GrayedOut ? OPJourneyUiColors.ButtonGrayedBackground : BgColor;
             Color drawColor = GrayedOut
                 ? baseBg
-                : (IsMouseHovering
-                    ? new Color(Math.Min(BgColor.R + 40, 255), Math.Min(BgColor.G + 40, 255), Math.Min(BgColor.B + 40, 255))
-                    : BgColor);
+                : (IsMouseHovering ? OPJourneyUiColors.ButtonBackgroundHover : BgColor);
             drawColor.A = 255;
 
             spriteBatch.Draw(TextureAssets.MagicPixel.Value, rect, drawColor);
-            spriteBatch.Draw(TextureAssets.MagicPixel.Value, new Rectangle(rect.X, rect.Y, rect.Width, 1), Color.Black * 0.6f);
-            spriteBatch.Draw(TextureAssets.MagicPixel.Value, new Rectangle(rect.X, rect.Bottom - 1, rect.Width, 1), Color.Black * 0.6f);
-            spriteBatch.Draw(TextureAssets.MagicPixel.Value, new Rectangle(rect.X, rect.Y, 1, rect.Height), Color.Black * 0.6f);
-            spriteBatch.Draw(TextureAssets.MagicPixel.Value, new Rectangle(rect.Right - 1, rect.Y, 1, rect.Height), Color.Black * 0.6f);
+            Color edge = OPJourneyUiPalette.BorderSubtle * 0.7f;
+            spriteBatch.Draw(TextureAssets.MagicPixel.Value, new Rectangle(rect.X, rect.Y, rect.Width, 1), edge);
+            spriteBatch.Draw(TextureAssets.MagicPixel.Value, new Rectangle(rect.X, rect.Bottom - 1, rect.Width, 1), edge);
+            spriteBatch.Draw(TextureAssets.MagicPixel.Value, new Rectangle(rect.X, rect.Y, 1, rect.Height), edge);
+            spriteBatch.Draw(TextureAssets.MagicPixel.Value, new Rectangle(rect.Right - 1, rect.Y, 1, rect.Height), edge);
 
             Vector2 textSize = FontAssets.MouseText.Value.MeasureString(Text) * TextScale;
             Vector2 textPos = new Vector2(dims.X + dims.Width / 2 - textSize.X / 2, dims.Y + dims.Height / 2 - textSize.Y / 2 + (TextScale > 0.7f ? 4f : 2f));
@@ -113,25 +113,52 @@ namespace EvenMoreOverpoweredJourney.Shell.UI.Components
     public class UICloseButton : UIElement
     {
         public event Action OnClose;
-        public UICloseButton() { Width.Set(22, 0); Height.Set(22, 0); }
+        private readonly float _sizeScale;
+        private Texture2D _cancelTex;
+
+        public UICloseButton(float sizeScale = 1f)
+        {
+            _sizeScale = Math.Max(0.25f, sizeScale);
+            ApplySizeFromTexture();
+        }
+
+        private void ApplySizeFromTexture()
+        {
+            Texture2D tex = GetCancelTexture();
+            if (tex != null)
+            {
+                float s = _sizeScale;
+                Width.Set(tex.Width * s, 0f);
+                Height.Set(tex.Height * s, 0f);
+                return;
+            }
+
+            float px = 22f * _sizeScale;
+            Width.Set(px, 0);
+            Height.Set(px, 0);
+        }
+
+        private Texture2D GetCancelTexture()
+        {
+            return _cancelTex ??= global::EvenMoreOverpoweredJourney.Shell.UI.Assets.EojUiTextures.Common.SearchCancel;
+        }
 
         protected override void DrawSelf(SpriteBatch spriteBatch)
         {
             base.DrawSelf(spriteBatch);
-            CalculatedStyle dims = GetDimensions();
-            Vector2 center = dims.Center();
+            Rectangle rect = GetDimensions().ToRectangle();
+            if (rect.Width < 2 || rect.Height < 2)
+                return;
 
-            Texture2D circleTex = TextureAssets.Cd.Value;
-            float scale = 22f / circleTex.Width;
-            Color bgColor = IsMouseHovering ? Color.Red * 0.9f : Color.Red * 0.7f;
+            Texture2D tex = GetCancelTexture();
+            if (tex == null)
+                return;
 
-            spriteBatch.Draw(circleTex, center, null, bgColor, 0f, new Vector2(circleTex.Width, circleTex.Height) / 2f, scale, SpriteEffects.None, 0f);
-            DynamicSpriteFont font = FontAssets.MouseText.Value;
-            const string xMark = "\u00D7";
-            float xScale = 0.9f;
-            Vector2 sz = font.MeasureString(xMark) * xScale;
-            Vector2 textOrigin = sz * 0.5f;
-            spriteBatch.DrawString(font, xMark, center, new Color(120, 10, 10), 0f, textOrigin, xScale, SpriteEffects.None, 0f);
+            float scale = Math.Min(rect.Width / (float)tex.Width, rect.Height / (float)tex.Height);
+            Color tint = Color.White * (IsMouseHovering ? 1f : 0.82f);
+            Vector2 center = new Vector2(rect.Center.X, rect.Center.Y);
+            Vector2 origin = new Vector2(tex.Width, tex.Height) * 0.5f;
+            spriteBatch.Draw(tex, center, null, tint, 0f, origin, scale, SpriteEffects.None, 0f);
         }
 
         public override void LeftMouseDown(UIMouseEvent evt)
@@ -148,32 +175,28 @@ namespace EvenMoreOverpoweredJourney.Shell.UI.Components
         public bool Active;
         private readonly string _textKey;
         private readonly string _hoverKey;
-        private readonly string _iconAssetPath;
-
-        public UITab(int id, string textKey, string iconAssetPath, string hoverKey)
+        public UITab(int id, string textKey, string hoverKey)
         {
             ID = id;
             _textKey = textKey;
             _hoverKey = string.IsNullOrEmpty(hoverKey) ? textKey : hoverKey;
-            _iconAssetPath = iconAssetPath;
             Width.Set(40, 0);
             Height.Set(40, 0);
-            BorderColor = new Color(55, 55, 85);
+            BorderColor = OPJourneyUiColors.TabInactiveBorder;
         }
 
         protected override void DrawSelf(SpriteBatch spriteBatch)
         {
-            BackgroundColor = Active ? new Color(60, 60, 100) : new Color(30, 30, 50);
-            BorderColor = Active ? new Color(255, 210, 90) : new Color(45, 45, 70);
+            BackgroundColor = Active ? OPJourneyUiColors.TabActiveBackground : OPJourneyUiColors.TabInactiveBackground;
+            BorderColor = Active ? OPJourneyUiColors.TabActiveBorder : OPJourneyUiColors.TabInactiveBorder;
             base.DrawSelf(spriteBatch);
             CalculatedStyle dims = GetDimensions();
             Vector2 center = dims.Center();
             string label = EOPJText.UI(_textKey);
 
-            Mod mod = ModContent.GetInstance<global::EvenMoreOverpoweredJourney.EvenMoreOverpoweredJourney>();
-            if (mod != null && !string.IsNullOrEmpty(_iconAssetPath) && mod.HasAsset(_iconAssetPath))
+            Texture2D tex = TryGetTabIcon(ID);
+            if (tex != null)
             {
-                Texture2D tex = mod.Assets.Request<Texture2D>(_iconAssetPath).Value;
                 int iw = tex.Width;
                 int ih = tex.Height;
                 int sx = 0, sy = 0;
@@ -186,7 +209,7 @@ namespace EvenMoreOverpoweredJourney.Shell.UI.Components
                 }
                 Rectangle? src = new Rectangle(sx, sy, iw, ih);
                 float scale = Math.Min(dims.Width / iw, dims.Height / ih) * 0.78f;
-                Color tint = Active ? Color.White : new Color(220, 220, 255) * 0.88f;
+                Color tint = Active ? OPJourneyUiColors.TextPrimary : OPJourneyUiColors.TabIconInactiveTint;
                 Vector2 originTex = new Vector2(sx + iw * 0.5f, sy + ih * 0.5f);
                 spriteBatch.Draw(tex, center, src, tint, 0f, originTex, scale, SpriteEffects.None, 0f);
             }
@@ -200,7 +223,7 @@ namespace EvenMoreOverpoweredJourney.Shell.UI.Components
             {
                 Rectangle r = dims.ToRectangle();
                 r.Inflate(1, 1);
-                BorderDrawUtil.DrawRectOutline(spriteBatch, r, new Color(255, 220, 120), 2);
+                BorderDrawUtil.DrawRectOutline(spriteBatch, r, OPJourneyUiColors.AccentGoldOutline, 2);
             }
 
             if (IsMouseHovering && Main.LocalPlayer != null)
@@ -208,6 +231,19 @@ namespace EvenMoreOverpoweredJourney.Shell.UI.Components
                 Main.LocalPlayer.mouseInterface = true;
                 Main.instance.MouseText(EOPJText.UI(_hoverKey));
             }
+        }
+
+        private static Texture2D TryGetTabIcon(int tabId)
+        {
+            EojUiTextureCache.WarmTab(EojUiTab.Shell);
+            return tabId switch
+            {
+                0 => EojUiTextures.Shell.TabResearch,
+                1 => EojUiTextures.Shell.TabBuff,
+                2 => EojUiTextures.Shell.TabStorage,
+                3 => EojUiTextures.Shell.TabBestiary,
+                _ => null
+            };
         }
     }
 
@@ -332,18 +368,7 @@ namespace EvenMoreOverpoweredJourney.Shell.UI.Components
 
         protected override void DrawSelf(SpriteBatch spriteBatch)
         {
-            ShellUiDrawUtil.EnsureUiSpriteBatch(spriteBatch);
-            Rectangle drawRect = GetGripScreenRect(_targetPanel);
-            if (drawRect.Width <= 0 || drawRect.Height <= 0)
-                return;
-
-            if (_cursorTex == null)
-            {
-                Mod mod = ModContent.GetInstance<global::EvenMoreOverpoweredJourney.EvenMoreOverpoweredJourney>();
-                _cursorTex = ShellUiTextureHelper.TryLoadHandle(mod);
-            }
-
-            DrawGripAt(spriteBatch, drawRect, _cursorTex, IsGripHighlighted);
+            // ? OPJourneyUI.Draw ???????????????????????????
         }
 
         internal static void DrawGripAt(SpriteBatch spriteBatch, Rectangle handleRect, Texture2D cursorTex, bool highlighted)
@@ -354,7 +379,19 @@ namespace EvenMoreOverpoweredJourney.Shell.UI.Components
             if (cursorTex != null)
             {
                 Color tint = highlighted ? Color.White : Color.White * 0.92f;
-                spriteBatch.Draw(cursorTex, handleRect, tint);
+                float scale = Math.Max(1f, handleRect.Width / OPJourneyShellMetrics.HandleTexturePx);
+                Vector2 origin = new Vector2(cursorTex.Width * 0.5f, cursorTex.Height * 0.5f);
+                Vector2 center = handleRect.Center.ToVector2();
+                spriteBatch.Draw(
+                    cursorTex,
+                    center,
+                    null,
+                    tint,
+                    0f,
+                    origin,
+                    scale,
+                    SpriteEffects.None,
+                    0f);
                 return;
             }
 
@@ -363,10 +400,11 @@ namespace EvenMoreOverpoweredJourney.Shell.UI.Components
 
         private static void DrawFallbackGrip(SpriteBatch spriteBatch, Rectangle handleRect)
         {
+            const float GripThicknessScale = 1.5f;
             Texture2D pixel = TextureAssets.MagicPixel.Value;
-            int arm = Math.Max(5, (int)(handleRect.Width * 0.65f));
-            int thick = Math.Max(2, handleRect.Width / 6);
-            Color gold = new Color(255, 210, 50, 255);
+            int arm = Math.Max(6, (int)(handleRect.Width * 0.65f * GripThicknessScale));
+            int thick = Math.Max(3, (int)(handleRect.Width / 6f * GripThicknessScale));
+            Color gold = OPJourneyUiColors.DragHandleGold;
             spriteBatch.Draw(pixel, new Rectangle(handleRect.Right - arm, handleRect.Bottom - thick, arm, thick), gold);
             spriteBatch.Draw(pixel, new Rectangle(handleRect.Right - thick, handleRect.Bottom - arm, thick, arm), Color.White);
         }

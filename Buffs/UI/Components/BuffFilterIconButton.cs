@@ -3,14 +3,10 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.GameContent;
-using Terraria.GameContent.UI.Elements;
-using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
-using EvenMoreOverpoweredJourney.Shell.UI;
-using EvenMoreOverpoweredJourney.Buffs.UI;
+using EvenMoreOverpoweredJourney.Core.Localization;
 using EvenMoreOverpoweredJourney.ItemHub.UI;
-using EvenMoreOverpoweredJourney.Research.UI;
 using EvenMoreOverpoweredJourney.Shell.UI;
 
 namespace EvenMoreOverpoweredJourney.Buffs.UI.Components
@@ -22,7 +18,6 @@ namespace EvenMoreOverpoweredJourney.Buffs.UI.Components
 
         private readonly OPJourneyUI _shell;
         private readonly Action _onClick;
-        private readonly Item _placeholder = new Item();
 
         public static float OuterSize => BaseSize * UiScale;
 
@@ -30,7 +25,6 @@ namespace EvenMoreOverpoweredJourney.Buffs.UI.Components
         {
             _shell = shell;
             _onClick = onClick;
-            _placeholder.TurnToAir();
             Width.Set(OuterSize, 0);
             Height.Set(OuterSize, 0);
             OnLeftClick += (_, __) => _onClick?.Invoke();
@@ -46,35 +40,27 @@ namespace EvenMoreOverpoweredJourney.Buffs.UI.Components
         protected override void DrawSelf(SpriteBatch spriteBatch)
         {
             CalculatedStyle d = GetDimensions();
-            Vector2 pos = d.Position();
-            Texture2D invBack = TextureAssets.InventoryBack.Value;
-            float slotScale = ItemHubFilterTagMetrics.SlotScale * UiScale;
-            float old = Main.inventoryScale;
-            Main.inventoryScale = slotScale;
-            float slotPixW = invBack.Width * slotScale;
-            float slotPixH = invBack.Height * slotScale;
-            Vector2 slotPos = pos + new Vector2((d.Width - slotPixW) * 0.5f, (d.Height - slotPixH) * 0.5f);
-
-            Item[] dummy = new Item[11];
-            dummy[10] = _placeholder;
-            ItemSlot.Draw(spriteBatch, dummy, ItemSlot.Context.InventoryItem, 10, slotPos);
-            Main.inventoryScale = old;
-
+            Rectangle rect = d.ToRectangle();
             bool open = _shell?.BuffSecondaryPanel?.IsOpen ?? false;
-            if (open)
-            {
-                var outline = new Rectangle((int)slotPos.X - 1, (int)slotPos.Y - 1, (int)slotPixW + 2, (int)slotPixH + 2);
-                BorderDrawUtil.DrawRectOutline(spriteBatch, outline, new Color(255, 220, 120), 2);
-            }
+
+            Color fill = open
+                ? OPJourneyUiColors.ButtonBackgroundOpen
+                : (IsMouseHovering ? OPJourneyUiColors.ButtonBackgroundHover : OPJourneyUiColors.SearchBarBackground);
+            Color border = open ? OPJourneyUiColors.ButtonBorderOpen : OPJourneyUiColors.SearchBarBorder;
+
+            spriteBatch.Draw(TextureAssets.MagicPixel.Value, rect, fill);
+            BorderDrawUtil.DrawRectOutline(spriteBatch, rect, border, 1);
 
             Mod mod = ModContent.GetInstance<global::EvenMoreOverpoweredJourney.EvenMoreOverpoweredJourney>();
-            Texture2D iconTex = ItemHubUiTextureHelper.TryLoad(mod, global::EvenMoreOverpoweredJourney.EvenMoreOverpoweredJourney.ItemHubFilterButton);
+            Texture2D iconTex = ItemHubUiTextureHelper.TryLoad(
+                mod,
+                global::EvenMoreOverpoweredJourney.EvenMoreOverpoweredJourney.ItemHubFilterButton);
             if (iconTex != null)
             {
-                float fit = Math.Min(slotPixW, slotPixH) * 0.82f;
+                float fit = Math.Min(rect.Width, rect.Height) * 0.62f;
                 float sc = fit / Math.Max(iconTex.Width, iconTex.Height);
                 Vector2 origin = new Vector2(iconTex.Width, iconTex.Height) * 0.5f;
-                Vector2 center = slotPos + new Vector2(slotPixW * 0.5f, slotPixH * 0.5f);
+                Vector2 center = new Vector2(rect.Center.X, rect.Center.Y);
                 spriteBatch.Draw(iconTex, center, null, Color.White, 0f, origin, sc, SpriteEffects.None, 0f);
             }
 

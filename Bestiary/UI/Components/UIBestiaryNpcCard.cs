@@ -1,6 +1,5 @@
 using System;
 using System.Reflection;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.UI.Elements;
@@ -12,14 +11,13 @@ using EvenMoreOverpoweredJourney.Bestiary.UI;
 namespace EvenMoreOverpoweredJourney.Bestiary.UI.Components
 {
     /// <summary>
-    /// 72px 网格卡：原版 UIBestiaryEntryButton，<b>isAPrettyPortrait 必须为 false</b>（卡片图标模式，悬停才动）。
-    /// 详情大图为 true，仅用于详情页（非本类）。
+    /// 72px 网格卡：原版 UIBestiaryEntryButton（isAPrettyPortrait=false）。
+    /// 10% 生态背景由 <see cref="BestiaryGridEntryButtonHookSystem"/> 在 EntryButton.DrawSelf 内绘制。
     /// </summary>
     public sealed class UIBestiaryNpcCard : UIElement
     {
         public const float VanillaSlotPx = BestiaryCardLayout.RefOuterPx;
 
-        /// <summary>原版图鉴左侧网格 = 图标模式，非肖像大图模式。</summary>
         public const bool GridIsPortraitMode = false;
 
         private static readonly FieldInfo EntryButtonIconField = typeof(UIBestiaryEntryButton).GetField(
@@ -63,9 +61,7 @@ namespace EvenMoreOverpoweredJourney.Bestiary.UI.Components
             };
 
             ApplyAllVisibleIconIfNeeded(_entryButton, faceMode);
-            BestiaryEntryButtonVisuals.ApplyPortraitBackgroundAlpha(
-                _entryButton,
-                BestiaryCardVisuals.BackgroundImageAlpha);
+            BestiaryEntryButtonVisuals.StripVanillaBackgroundLayers(_entryButton);
 
             Append(_entryButton);
         }

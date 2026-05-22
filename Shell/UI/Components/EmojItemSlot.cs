@@ -101,8 +101,8 @@ namespace EvenMoreOverpoweredJourney.Shell.UI.Components
             if (isRecipeNode && item.type > ItemID.None && !RecipeAnalyzer.IsResearched(item.type))
             {
                 Vector2 p = dims.Position();
-                int sw = (int)(TextureAssets.InventoryBack.Value.Width * Main.inventoryScale);
-                int sh = (int)(TextureAssets.InventoryBack.Value.Height * Main.inventoryScale);
+                int sw = (int)(global::EvenMoreOverpoweredJourney.Shell.UI.Assets.EojUiTextures.Common.InventoryBack.Width * Main.inventoryScale);
+                int sh = (int)(global::EvenMoreOverpoweredJourney.Shell.UI.Assets.EojUiTextures.Common.InventoryBack.Height * Main.inventoryScale);
                 BorderDrawUtil.DrawInventorySlotRimTint(spriteBatch, p, sw, sh, Color.Red * 0.65f, 4);
             }
 

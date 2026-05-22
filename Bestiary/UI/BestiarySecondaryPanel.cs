@@ -12,6 +12,7 @@ using Terraria.UI;
 using Terraria.GameContent.Bestiary;
 using EvenMoreOverpoweredJourney.Bestiary.Catalog;
 using EvenMoreOverpoweredJourney.Bestiary.Filters;
+using EvenMoreOverpoweredJourney.Bestiary.UI.Components;
 using EvenMoreOverpoweredJourney.Core.Localization;
 using EvenMoreOverpoweredJourney.ItemHub.UI;
 using EvenMoreOverpoweredJourney.Shell.UI;
@@ -21,23 +22,33 @@ namespace EvenMoreOverpoweredJourney.Bestiary.UI
     public sealed class BestiarySecondaryPanel : UIElement
     {
         private readonly OPJourneyUI _shell;
+        private UIScaledDrawHost _scaleHost;
+        private UIElement _filterRoot;
         private UIPanel _body;
         private UIList _scroll;
         private UIScrollbar _scrollBar;
-        private UIElement _tabRow;
-        private UIElement _activeStrip;
+        private UIElement _tabRail;
         private bool _open;
         private float _layoutInnerWidthUsed = 280f;
         private float _lastRebuildOuterW = -1f;
 
-        private const float BottomTabsH = 44f;
-        private const float ActiveFiltersStripH = 36f;
-        private const float GapAboveTabs = 4f;
-        private const float BottomReservedH = BottomTabsH + ActiveFiltersStripH + GapAboveTabs;
-        private const float ContentPadLeft = 5f;
-        private const float ContentPadRight = OPJourneyShellMetrics.ScrollSafeMarginRight;
-        private const float ContentPadTop = 14f;
-        private const float ContentPadBottom = 5f;
+        /// <summary>????????????????????????</summary>
+        private const float OutsideTabRailW = 52f;
+        private const float OutsideTabGap = 4f;
+
+        private static float S => BestiaryChromeLayout.FilterDisplayScale;
+        private static float TabBtnW => 48f;
+        private static float TabBtnH => 36f * S;
+        private static float TabBtnGap => 4f * S;
+        private static float TabRailPad => 2f * S;
+        private const float ContentPadLeft = 10f;
+        private const float ContentPadRight = OPJourneyShellMetrics.ScrollSafeMarginRight + 12f;
+        private const float ContentPadTop = 8f;
+        private const float ContentPadBottom = 8f;
+        /// <summary>????????????????</summary>
+        private const float HeaderToGridGapPx = 3f;
+        private const float SectionHeaderRowH = 10f;
+        private const float ScrollBarW = 18f;
 
         public bool IsOpen => _open;
 
@@ -49,42 +60,59 @@ namespace EvenMoreOverpoweredJourney.Bestiary.UI
             Width.Set(0, 0);
             Height.Set(0, 0);
 
+            float logicalW = OPJourneyShellMetrics.DefaultMainWidth;
+            float logicalH = OPJourneyShellMetrics.DefaultMainHeight * 0.8f;
+
+            _filterRoot = new UIElement();
+            _filterRoot.Width.Set(0f, 1f);
+            _filterRoot.Height.Set(0f, 1f);
+
             _body = new UIPanel();
-            _body.Width.Set(0, 1f);
-            _body.Height.Set(-BottomReservedH, 1f);
-            _body.BackgroundColor = new Color(28, 28, 48) * 0.98f;
-            _body.BorderColor = new Color(130, 130, 200);
-            Append(_body);
+            _body.SetPadding(0);
+            _body.Width.Set(0f, 1f);
+            _body.Height.Set(0f, 1f);
+            _body.BackgroundColor = OPJourneyUiColors.MainPanelBackground;
+            _body.BorderColor = OPJourneyUiColors.PanelBorder;
+            _filterRoot.Append(_body);
 
             _scroll = new UIList();
             _scroll.Left.Set(ContentPadLeft, 0);
-            _scroll.Top.Set(ContentPadTop + 3f, 0);
+            _scroll.Top.Set(ContentPadTop, 0);
             _scroll.Width.Set(-(ContentPadLeft + ContentPadRight), 1f);
-            _scroll.Height.Set(-(ContentPadTop + ContentPadBottom + 3f + OPJourneyShellMetrics.ContentBottomSafeMargin), 1f);
+            _scroll.Height.Set(-(ContentPadTop + ContentPadBottom + OPJourneyShellMetrics.ContentBottomSafeMargin), 1f);
             _body.Append(_scroll);
 
             _scrollBar = new UIScrollbar();
             _scrollBar.Left.Set(-ContentPadRight, 1f);
-            _scrollBar.Top.Set(ContentPadTop + 3f, 0);
-            _scrollBar.Height.Set(-(ContentPadTop + ContentPadBottom + 3f + OPJourneyShellMetrics.ContentBottomSafeMargin), 1f);
+            _scrollBar.Top.Set(ContentPadTop, 0);
+            _scrollBar.Height.Set(-(ContentPadTop + ContentPadBottom + OPJourneyShellMetrics.ContentBottomSafeMargin), 1f);
             _scroll.SetScrollbar(_scrollBar);
             _body.Append(_scrollBar);
 
-            _activeStrip = new UIElement();
-            _activeStrip.Left.Set(6, 0);
-            _activeStrip.Top.Set(-(ActiveFiltersStripH + GapAboveTabs), 1f);
-            _activeStrip.Width.Set(-12, 1f);
-            _activeStrip.Height.Set(ActiveFiltersStripH, 0);
-            Append(_activeStrip);
+            _scaleHost = new UIScaledDrawHost(_filterRoot, logicalW, logicalH, BestiaryChromeLayout.FilterDisplayScale);
+            _scaleHost.Left.Set(0f, 0f);
+            _scaleHost.Top.Set(0f, 0f);
+            Append(_scaleHost);
 
-            _tabRow = new UIElement();
-            _tabRow.Left.Set(6, 0);
-            _tabRow.Top.Set(-(ActiveFiltersStripH + GapAboveTabs + BottomTabsH), 1f);
-            _tabRow.Width.Set(-12, 1f);
-            _tabRow.Height.Set(BottomTabsH, 0);
-            Append(_tabRow);
-
+            _tabRail = new UIElement();
+            _tabRail.Width.Set(OutsideTabRailW, 0f);
+            _tabRail.Height.Set(0f, 1f);
+            _tabRail.Left.Set(-(OutsideTabRailW + OutsideTabGap), 0f);
+            _tabRail.Top.Set(0f, 0f);
+            Append(_tabRail);
             BuildTabs();
+        }
+
+        public override bool ContainsPoint(Vector2 point)
+        {
+            CalculatedStyle dims = GetDimensions();
+            if (dims.Width < 2f || dims.Height < 2f)
+                return false;
+
+            Rectangle hit = dims.ToRectangle();
+            hit.X -= (int)(OutsideTabRailW + OutsideTabGap);
+            hit.Width += (int)(OutsideTabRailW + OutsideTabGap);
+            return hit.Contains(point.ToPoint());
         }
 
         public void SetOpen(bool open)
@@ -92,30 +120,52 @@ namespace EvenMoreOverpoweredJourney.Bestiary.UI
             _open = open;
             if (open)
                 RebuildScroll();
-            else
-                _activeStrip?.RemoveAllChildren();
         }
 
         public override void Update(GameTime gameTime)
         {
             if (!_open || GetDimensions().Width < 2f)
-            {
-                base.Update(gameTime);
                 return;
-            }
 
             CalculatedStyle outer = GetDimensions();
             if (outer.Width > 2f && outer.ToRectangle().Contains(Main.MouseScreen.ToPoint()) && Main.LocalPlayer != null)
                 Main.LocalPlayer.mouseInterface = true;
 
-            float ow = outer.Width;
+            SyncHostFromOuterDimensions();
+
+            float ow = GetContentLogicalWidth();
             if (ow > 50f && Math.Abs(ow - _lastRebuildOuterW) > 4f)
                 RebuildScroll();
 
             base.Update(gameTime);
         }
 
-        public void RebuildActiveFilterStrip() => BestiaryActiveFiltersStripLayout.Populate(_shell, _activeStrip, Math.Max(40f, GetDimensions().Width - 12f));
+        private void SyncHostFromOuterDimensions()
+        {
+            CalculatedStyle outer = GetDimensions();
+            if (outer.Width < 2f || outer.Height < 2f || _scaleHost == null)
+                return;
+
+            float logicalW = outer.Width / S;
+            float logicalH = outer.Height / S;
+            _scaleHost.SetLogicalSize(logicalW, logicalH);
+        }
+
+        private float GetContentLogicalWidth()
+        {
+            if (_scroll != null)
+            {
+                float inner = _scroll.GetInnerDimensions().Width;
+                if (inner > 40f)
+                    return inner;
+            }
+
+            CalculatedStyle outer = GetDimensions();
+            if (outer.Width < 2f)
+                return _layoutInnerWidthUsed;
+
+            return Math.Max(80f, outer.Width - ContentPadLeft - ContentPadRight - ScrollBarW);
+        }
 
         public void RebuildScroll()
         {
@@ -123,10 +173,8 @@ namespace EvenMoreOverpoweredJourney.Bestiary.UI
             if (!BestiaryFilterIndex.Ready)
                 return;
 
-            float ow = GetDimensions().Width;
-            _layoutInnerWidthUsed = ow > 40f
-                ? Math.Max(120f, ow - ContentPadLeft - ContentPadRight - 6f)
-                : 280f;
+            float ow = GetContentLogicalWidth();
+            _layoutInnerWidthUsed = ow > 40f ? ow : 280f;
 
             _scroll.Clear();
             if (_shell.BestiarySecondary.MajorTabIndex == 0)
@@ -135,47 +183,36 @@ namespace EvenMoreOverpoweredJourney.Bestiary.UI
                 BuildBiomeTab();
 
             _lastRebuildOuterW = ow;
-            RebuildActiveFilterStrip();
         }
 
         private void BuildTabs()
         {
-            _tabRow.RemoveAllChildren();
+            _tabRail.RemoveAllChildren();
             string[] keys = { "BestiarySec_Mod", "BestiarySec_Vanilla" };
-            float gap = 3f;
-            float side = 6f;
-            float outer = Math.Max(0f, GetDimensions().Width - side * 2f);
-            bool usePixelTabs = outer > 120f;
-            float tabW = usePixelTabs ? (outer - gap * 2f) / 3f : -1f;
-            const float txtScale = 0.62f * 1.5f;
+            float txtScale = 0.62f * 1.5f * S;
+            float btnW = TabBtnW - TabRailPad * 2f;
 
             for (int i = 0; i < 3; i++)
             {
                 int idx = i;
                 var p = new UIPanel();
                 p.SetPadding(0);
-                p.Top.Set(4, 0f);
-                p.Height.Set(-6, 1f);
-                if (usePixelTabs)
-                {
-                    p.Left.Set(side + i * (tabW + gap), 0f);
-                    p.Width.Set(tabW, 0f);
-                }
-                else
-                {
-                    float frac = 1f / 3f;
-                    p.Left.Set(0, i * frac);
-                    p.Width.Set(0, frac);
-                }
+                p.Left.Set(TabRailPad, 0f);
+                p.Width.Set(btnW, 0f);
+                p.Height.Set(TabBtnH, 0f);
+                p.Top.Set(TabRailPad + i * (TabBtnH + TabBtnGap), 0f);
 
                 bool on = i < 2 && _shell.BestiarySecondary.MajorTabIndex == idx;
                 if (i < 2)
                 {
-                    p.BackgroundColor = on ? new Color(62, 62, 98) : new Color(38, 38, 60);
-                    p.BorderColor = on ? new Color(255, 210, 120) : new Color(55, 55, 85);
-                    var t = new UIText(EOPJText.UI(keys[i]), txtScale);
+                    p.SetPadding(0);
+                    p.BackgroundColor = on ? OPJourneyUiColors.SecondaryTabOnBackground : OPJourneyUiColors.SecondaryTabOffBackground;
+                    p.BorderColor = on ? OPJourneyUiColors.SecondaryTabOnBorder : OPJourneyUiColors.SecondaryTabOffBorder;
+                    var t = new UIText(EOPJText.UI(keys[i]), txtScale * 0.92f);
                     t.HAlign = 0.5f;
                     t.VAlign = 0.5f;
+                    t.Top.Set(0f, 0f);
+                    t.TextColor = OPJourneyUiColors.TextPrimary;
                     t.IgnoresMouseInteraction = true;
                     p.Append(t);
                     p.OnLeftClick += (_, _) =>
@@ -187,11 +224,14 @@ namespace EvenMoreOverpoweredJourney.Bestiary.UI
                 }
                 else
                 {
-                    p.BackgroundColor = new Color(120, 32, 32);
-                    p.BorderColor = new Color(180, 70, 70);
-                    var t = new UIText(EOPJText.UI("BestiaryFilterReset"), txtScale);
+                    p.SetPadding(0);
+                    p.BackgroundColor = OPJourneyUiColors.DangerBackground;
+                    p.BorderColor = OPJourneyUiColors.DangerBorder;
+                    var t = new UIText(EOPJText.UI("BestiaryFilterReset"), txtScale * 0.85f);
                     t.HAlign = 0.5f;
                     t.VAlign = 0.5f;
+                    t.Top.Set(0f, 0f);
+                    t.TextColor = OPJourneyUiColors.DangerText;
                     t.IgnoresMouseInteraction = true;
                     p.Append(t);
                     p.OnLeftClick += (_, _) =>
@@ -203,7 +243,7 @@ namespace EvenMoreOverpoweredJourney.Bestiary.UI
                     };
                 }
 
-                _tabRow.Append(p);
+                _tabRail.Append(p);
             }
         }
 
@@ -239,21 +279,23 @@ namespace EvenMoreOverpoweredJourney.Bestiary.UI
         {
             var row = new UIElement();
             row.Width.Set(0, 1f);
-            row.Height.Set(relaxedSpacingAfterTitle ? 28 : 20, 0);
+            row.Height.Set(relaxedSpacingAfterTitle ? 28f : SectionHeaderRowH, 0);
 
             var tx = new UIText(title, 0.72f * 1.5f);
-            tx.Left.Set(0, 0);
-            tx.Top.Set(relaxedSpacingAfterTitle ? 4 : 0, 0);
+            tx.TextColor = OPJourneyUiColors.TextPrimary;
+            tx.IsWrapped = true;
+            tx.Width.Set(-(ContentPadLeft + ContentPadRight), 1f);
+            tx.Height.Set(0f, 1f);
+            tx.Left.Set(ContentPadLeft, 0);
+            tx.Top.Set(1f, 0);
             tx.IgnoresMouseInteraction = true;
             row.Append(tx);
             _scroll.Add(row);
+
             if (relaxedSpacingAfterTitle)
-            {
-                var sp = new UIElement();
-                sp.Width.Set(0, 1f);
-                sp.Height.Set(8, 0);
-                _scroll.Add(sp);
-            }
+                AddSectionGap(6f);
+            else
+                AddSectionGap(HeaderToGridGapPx);
         }
 
         private void AddModGrid(List<string> modKeys)
@@ -362,18 +404,12 @@ namespace EvenMoreOverpoweredJourney.Bestiary.UI
         {
             CalculatedStyle d = GetDimensions();
             Vector2 pos = d.Position();
-            Texture2D invBack = TextureAssets.InventoryBack.Value;
+            Texture2D invBack = global::EvenMoreOverpoweredJourney.Shell.UI.Assets.EojUiTextures.Common.InventoryBack;
             float slotScale = BestiaryFilterTagMetrics.ActiveStripScale;
-            float old = Main.inventoryScale;
-            Main.inventoryScale = slotScale;
             float slotPixW = invBack.Width * slotScale;
             float slotPixH = invBack.Height * slotScale;
             Vector2 slotPos = pos + new Vector2((d.Width - slotPixW) * 0.5f, (d.Height - slotPixH) * 0.5f);
-
-            Item[] dummy = new Item[11];
-            dummy[10] = new Item();
-            ItemSlot.Draw(spriteBatch, dummy, ItemSlot.Context.InventoryItem, 10, slotPos);
-            Main.inventoryScale = old;
+            BestiaryFilterSlotDrawHelper.DrawInventorySlot(spriteBatch, slotPos, slotScale, true, IsMouseHovering);
 
             Mod mod = _modKey != "Terraria" && ModLoader.TryGetMod(_modKey, out Mod m) ? m : null;
             Texture2D iconTex = ItemHubModGridIcons.Resolve(mod, _modKey);
@@ -387,7 +423,7 @@ namespace EvenMoreOverpoweredJourney.Bestiary.UI
             }
 
             var outline = new Rectangle((int)slotPos.X - 1, (int)slotPos.Y - 1, (int)slotPixW + 2, (int)slotPixH + 2);
-            BorderDrawUtil.DrawRectOutline(spriteBatch, outline, new Color(120, 220, 255), 2);
+            BorderDrawUtil.DrawRectOutline(spriteBatch, outline, OPJourneyUiColors.AccentCyanOutline, 2);
 
             if (IsMouseHovering && Main.LocalPlayer != null)
             {
@@ -426,26 +462,18 @@ namespace EvenMoreOverpoweredJourney.Bestiary.UI
         protected override void DrawSelf(SpriteBatch spriteBatch)
         {
             CalculatedStyle d = GetDimensions();
-            Texture2D invBack = TextureAssets.InventoryBack.Value;
+            Texture2D invBack = global::EvenMoreOverpoweredJourney.Shell.UI.Assets.EojUiTextures.Common.InventoryBack;
             float slotScale = BestiaryFilterTagMetrics.ActiveStripScale;
             float slotPixW = invBack.Width * slotScale;
             float slotPixH = invBack.Height * slotScale;
             Vector2 slotPos = d.Position() + new Vector2((d.Width - slotPixW) * 0.5f, (d.Height - slotPixH) * 0.5f);
-            BestiaryFilterSlotDrawHelper.DrawInventorySlot(spriteBatch, slotPos, slotScale);
+            BestiaryFilterSlotDrawHelper.DrawInventorySlot(spriteBatch, slotPos, slotScale, true, IsMouseHovering);
 
-            var iconRect = new Rectangle(
-                (int)(slotPos.X + slotPixW * 0.12f),
-                (int)(slotPos.Y + slotPixH * 0.12f),
-                (int)(slotPixW * 0.76f),
-                (int)(slotPixH * 0.76f));
             BestiaryFilterDef def = BestiaryActiveFiltersStripLayout.FindFilter(_filterId);
-            if (def != null && def.IconFrame != Point.Zero)
-                BestiaryVanillaFilterIcons.DrawFilterIcon(spriteBatch, iconRect, def.IconFrame);
-            else
-                BestiaryFilterIconResolver.DrawInto(spriteBatch, iconRect, _filter);
+            BestiaryFilterChipDraw.DrawBiomeChipAtSlot(spriteBatch, slotPos, slotPixW, slotPixH, def, BestiaryVisibilityPolicy.ListAppearance.FullPortraitAndName);
 
             var outline = new Rectangle((int)slotPos.X - 1, (int)slotPos.Y - 1, (int)slotPixW + 2, (int)slotPixH + 2);
-            BorderDrawUtil.DrawRectOutline(spriteBatch, outline, new Color(255, 220, 120), 2);
+            BorderDrawUtil.DrawRectOutline(spriteBatch, outline, OPJourneyUiColors.AccentGoldOutline, 2);
 
             if (IsMouseHovering && Main.LocalPlayer != null)
             {
@@ -505,18 +533,13 @@ namespace EvenMoreOverpoweredJourney.Bestiary.UI
         {
             CalculatedStyle d = GetDimensions();
             Vector2 pos = d.Position();
-            Texture2D invBack = TextureAssets.InventoryBack.Value;
+            Texture2D invBack = global::EvenMoreOverpoweredJourney.Shell.UI.Assets.EojUiTextures.Common.InventoryBack;
             float slotScale = BestiaryFilterTagMetrics.SlotScale;
-            float old = Main.inventoryScale;
-            Main.inventoryScale = slotScale;
             float slotPixW = invBack.Width * slotScale;
             float slotPixH = invBack.Height * slotScale;
             Vector2 slotPos = pos + new Vector2((d.Width - slotPixW) * 0.5f, (d.Height - slotPixH) * 0.5f);
-
-            Item[] dummy = new Item[11];
-            dummy[10] = new Item();
-            ItemSlot.Draw(spriteBatch, dummy, ItemSlot.Context.InventoryItem, 10, slotPos);
-            Main.inventoryScale = old;
+            bool on = _shell.BestiarySecondary.ActiveModKeys.Contains(_modKey);
+            BestiaryFilterSlotDrawHelper.DrawInventorySlot(spriteBatch, slotPos, slotScale, on, IsMouseHovering);
 
             Mod mod = _modKey != "Terraria" && ModLoader.TryGetMod(_modKey, out Mod m) ? m : null;
             Texture2D iconTex = ItemHubModGridIcons.Resolve(mod, _modKey);
@@ -537,11 +560,10 @@ namespace EvenMoreOverpoweredJourney.Bestiary.UI
                 Utils.DrawBorderStringFourWay(spriteBatch, f, ab, tpos.X, tpos.Y, Color.White, Color.Black, Vector2.One);
             }
 
-            bool on = _shell.BestiarySecondary.ActiveModKeys.Contains(_modKey);
             if (on)
             {
                 var outline = new Rectangle((int)slotPos.X - 1, (int)slotPos.Y - 1, (int)slotPixW + 2, (int)slotPixH + 2);
-                BorderDrawUtil.DrawRectOutline(spriteBatch, outline, new Color(255, 220, 120), 2);
+                BorderDrawUtil.DrawRectOutline(spriteBatch, outline, OPJourneyUiColors.AccentGoldOutline, 2);
             }
 
             if (IsMouseHovering && Main.LocalPlayer != null)
@@ -599,28 +621,19 @@ namespace EvenMoreOverpoweredJourney.Bestiary.UI
         protected override void DrawSelf(SpriteBatch spriteBatch)
         {
             CalculatedStyle d = GetDimensions();
-            Texture2D invBack = TextureAssets.InventoryBack.Value;
+            Texture2D invBack = global::EvenMoreOverpoweredJourney.Shell.UI.Assets.EojUiTextures.Common.InventoryBack;
             float slotScale = BestiaryFilterTagMetrics.SlotScale;
             float slotPixW = invBack.Width * slotScale;
             float slotPixH = invBack.Height * slotScale;
             Vector2 slotPos = d.Position() + new Vector2((d.Width - slotPixW) * 0.5f, (d.Height - slotPixH) * 0.5f);
-            BestiaryFilterSlotDrawHelper.DrawInventorySlot(spriteBatch, slotPos, slotScale);
-
-            var iconRect = new Rectangle(
-                (int)(slotPos.X + slotPixW * 0.12f),
-                (int)(slotPos.Y + slotPixH * 0.12f),
-                (int)(slotPixW * 0.76f),
-                (int)(slotPixH * 0.76f));
-            if (_def.IconFrame != Point.Zero)
-                BestiaryVanillaFilterIcons.DrawFilterIcon(spriteBatch, iconRect, _def.IconFrame);
-            else
-                BestiaryFilterIconResolver.DrawInto(spriteBatch, iconRect, _def.Filter);
-
             bool on = _shell.BestiarySecondary.ActiveBestiaryFilterIds.Contains(_def.Id);
+            BestiaryFilterSlotDrawHelper.DrawInventorySlot(spriteBatch, slotPos, slotScale, on, IsMouseHovering);
+
+            BestiaryFilterChipDraw.DrawBiomeChipAtSlot(spriteBatch, slotPos, slotPixW, slotPixH, _def, BestiaryVisibilityPolicy.ListAppearance.FullPortraitAndName);
             if (on)
             {
                 var outline = new Rectangle((int)slotPos.X - 1, (int)slotPos.Y - 1, (int)slotPixW + 2, (int)slotPixH + 2);
-                BorderDrawUtil.DrawRectOutline(spriteBatch, outline, new Color(255, 220, 120), 2);
+                BorderDrawUtil.DrawRectOutline(spriteBatch, outline, OPJourneyUiColors.AccentGoldOutline, 2);
             }
 
             if (IsMouseHovering && Main.LocalPlayer != null)
@@ -637,7 +650,7 @@ namespace EvenMoreOverpoweredJourney.Bestiary.UI
         {
             CalculatedStyle d = element.GetDimensions();
             Vector2 pos = d.Position();
-            Texture2D invBack = TextureAssets.InventoryBack.Value;
+            Texture2D invBack = global::EvenMoreOverpoweredJourney.Shell.UI.Assets.EojUiTextures.Common.InventoryBack;
             float old = Main.inventoryScale;
             Main.inventoryScale = slotScale;
             float slotPixW = invBack.Width * slotScale;
@@ -658,8 +671,33 @@ namespace EvenMoreOverpoweredJourney.Bestiary.UI
 
     internal static class BestiaryFilterSlotDrawHelper
     {
-        internal static void DrawInventorySlot(SpriteBatch spriteBatch, Vector2 slotPos, float slotScale)
+        internal static void DrawThemedBacking(
+            SpriteBatch spriteBatch,
+            Rectangle slotRect,
+            bool selected,
+            bool hover)
         {
+            Color fill = selected
+                ? OPJourneyUiColors.ButtonBackgroundOpen
+                : (hover ? OPJourneyUiColors.ButtonBackgroundHover : OPJourneyUiColors.SlotCellFill);
+            Color border = selected ? OPJourneyUiColors.ButtonBorderOpen : OPJourneyUiColors.SlotCellBorder;
+            spriteBatch.Draw(TextureAssets.MagicPixel.Value, slotRect, fill);
+            BorderDrawUtil.DrawRectOutline(spriteBatch, slotRect, border, 1);
+        }
+
+        internal static void DrawInventorySlot(
+            SpriteBatch spriteBatch,
+            Vector2 slotPos,
+            float slotScale,
+            bool selected = false,
+            bool hover = false)
+        {
+            Texture2D invBack = global::EvenMoreOverpoweredJourney.Shell.UI.Assets.EojUiTextures.Common.InventoryBack;
+            float slotPixW = invBack.Width * slotScale;
+            float slotPixH = invBack.Height * slotScale;
+            var slotRect = new Rectangle((int)slotPos.X, (int)slotPos.Y, (int)slotPixW, (int)slotPixH);
+            DrawThemedBacking(spriteBatch, slotRect, selected, hover);
+
             float old = Main.inventoryScale;
             Main.inventoryScale = slotScale;
             Item[] dummy = new Item[11];

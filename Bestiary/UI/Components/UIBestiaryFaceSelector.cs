@@ -1,7 +1,7 @@
 using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Content;
+using EvenMoreOverpoweredJourney.Shell.UI.Assets;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent;
@@ -9,6 +9,7 @@ using Terraria.ID;
 using Terraria.UI;
 using EvenMoreOverpoweredJourney.Bestiary;
 using EvenMoreOverpoweredJourney.Core.Localization;
+using EvenMoreOverpoweredJourney.Shell.UI;
 
 namespace EvenMoreOverpoweredJourney.Bestiary.UI.Components
 {
@@ -42,21 +43,14 @@ namespace EvenMoreOverpoweredJourney.Bestiary.UI.Components
 
         private void TryLoadSheet()
         {
-            try
+            EojUiTextureCache.WarmTab(EojUiTab.Bestiary);
+            _sheet = EojUiTextures.Bestiary.NpcHappiness;
+            if (_sheet != null && _sheet.Width >= 4)
             {
-                Asset<Texture2D> asset = Main.Assets.Request<Texture2D>("Images/UI/NPCHappiness", AssetRequestMode.ImmediateLoad);
-                _sheet = asset?.Value;
-                if (_sheet != null && _sheet.Width >= 4)
-                {
-                    _sliceW = _sheet.Width / 4;
-                    _sliceH = _sheet.Height;
-                    _fallback = false;
-                    return;
-                }
-            }
-            catch
-            {
-                // ignored
+                _sliceW = _sheet.Width / 4;
+                _sliceH = _sheet.Height;
+                _fallback = false;
+                return;
             }
 
             _sheet = TextureAssets.MagicPixel.Value;
@@ -125,7 +119,13 @@ namespace EvenMoreOverpoweredJourney.Bestiary.UI.Components
 
                 if (_fallback)
                 {
-                    Color[] cols = { Color.Goldenrod, Color.LimeGreen, Color.DeepSkyBlue, Color.MediumPurple };
+                    Color[] cols =
+                    {
+                        OPJourneyUiColors.FaceFallback0,
+                        OPJourneyUiColors.FaceFallback1,
+                        OPJourneyUiColors.FaceFallback2,
+                        OPJourneyUiColors.FaceFallback3
+                    };
                     spriteBatch.Draw(TextureAssets.MagicPixel.Value, dest, cols[i] * dim);
                 }
                 else

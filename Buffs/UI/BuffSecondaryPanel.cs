@@ -11,19 +11,10 @@ using Terraria.ModLoader;
 using Terraria.UI;
 using EvenMoreOverpoweredJourney;
 using EvenMoreOverpoweredJourney.Buffs.Systems.Catalog;
-using EvenMoreOverpoweredJourney.Buffs.Systems.Virtual;
-using EvenMoreOverpoweredJourney.Buffs.Systems.Managed;
-using EvenMoreOverpoweredJourney.Buffs.Systems.Combat;
-using EvenMoreOverpoweredJourney.Buffs.Systems.Spawning;
-using EvenMoreOverpoweredJourney.Buffs.Systems.SetBonus;
-using EvenMoreOverpoweredJourney.Buffs.Systems.ModSupport;
-using EvenMoreOverpoweredJourney.Buffs.Systems.FedState;
-using EvenMoreOverpoweredJourney.Buffs.Systems.Diagnostics;
-using EvenMoreOverpoweredJourney.Buffs.Systems.Display;
 using EvenMoreOverpoweredJourney.Core.Logging;
 using EvenMoreOverpoweredJourney.Shell.UI;
-using EvenMoreOverpoweredJourney.Buffs.UI.Components;
 using EvenMoreOverpoweredJourney.Shell.UI.Components;
+using EvenMoreOverpoweredJourney.ItemHub.UI;
 
 namespace EvenMoreOverpoweredJourney.Buffs.UI
 {
@@ -33,19 +24,19 @@ namespace EvenMoreOverpoweredJourney.Buffs.UI
         private UIPanel _body;
         private UIList _scroll;
         private UIScrollbar _scrollBar;
+        private UIElement _bottomBar;
         private UIElement _activeStrip;
         private bool _open;
         private float _layoutInnerWidthUsed = 280f;
         private float _lastRebuildOuterW = -1f;
 
-        private const float BottomTabsH = 44f;
+        private const float BottomBarH = 44f;
         private const float ActiveFiltersStripH = 36f;
-        private const float GapAboveTabs = 4f;
-        private const float BottomReservedH = BottomTabsH + ActiveFiltersStripH + GapAboveTabs;
+        private const float GapAboveBottomBar = 4f;
+        private const float BottomReservedH = BottomBarH + ActiveFiltersStripH + GapAboveBottomBar;
         private const float ContentPadLeft = 5f;
         private const float ContentPadRight = OPJourneyShellMetrics.ScrollSafeMarginRight;
-        private const float ContentPadTop = 24f;
-        private const float ScrollListTopExtra = 8f;
+        private const float ContentPadTop = 20f;
         private const float ContentPadBottom = 5f;
 
         public bool IsOpen => _open;
@@ -56,43 +47,63 @@ namespace EvenMoreOverpoweredJourney.Buffs.UI
             _body = new UIPanel();
             _body.Width.Set(0, 1f);
             _body.Height.Set(-BottomReservedH, 1f);
-            _body.BackgroundColor = new Color(28, 28, 48) * 0.98f;
-            _body.BorderColor = new Color(130, 130, 200);
+            _body.BackgroundColor = BestiaryUiColors.PanelBackground;
+            _body.BorderColor = BestiaryUiColors.PanelBorder;
             Append(_body);
 
             _scroll = new UIList();
             _scroll.Left.Set(ContentPadLeft, 0);
-            _scroll.Top.Set(ContentPadTop + ScrollListTopExtra, 0);
+            _scroll.Top.Set(ContentPadTop, 0);
             _scroll.Width.Set(-(ContentPadLeft + ContentPadRight), 1f);
-            _scroll.Height.Set(-(ContentPadTop + ContentPadBottom + ScrollListTopExtra + OPJourneyShellMetrics.ContentBottomSafeMargin), 1f);
+            _scroll.Height.Set(-(ContentPadTop + ContentPadBottom + OPJourneyShellMetrics.ContentBottomSafeMargin), 1f);
             _body.Append(_scroll);
 
             _scrollBar = new UIScrollbar();
             _scrollBar.Left.Set(-ContentPadRight, 1f);
-            _scrollBar.Top.Set(ContentPadTop + ScrollListTopExtra, 0);
-            _scrollBar.Height.Set(-(ContentPadTop + ContentPadBottom + ScrollListTopExtra + OPJourneyShellMetrics.ContentBottomSafeMargin), 1f);
+            _scrollBar.Top.Set(ContentPadTop, 0);
+            _scrollBar.Height.Set(-(ContentPadTop + ContentPadBottom + OPJourneyShellMetrics.ContentBottomSafeMargin), 1f);
             _scroll.SetScrollbar(_scrollBar);
             _body.Append(_scrollBar);
 
             _activeStrip = new UIElement();
             _activeStrip.Left.Set(6, 0);
-            _activeStrip.Top.Set(-(ActiveFiltersStripH + GapAboveTabs), 1f);
+            _activeStrip.Top.Set(-(ActiveFiltersStripH + GapAboveBottomBar), 1f);
             _activeStrip.Width.Set(-12, 1f);
             _activeStrip.Height.Set(ActiveFiltersStripH, 0);
             Append(_activeStrip);
 
-            var resetRow = new UIElement();
-            resetRow.Left.Set(6, 0);
-            resetRow.Top.Set(-(ActiveFiltersStripH + GapAboveTabs + BottomTabsH), 1f);
-            resetRow.Width.Set(-12, 1f);
-            resetRow.Height.Set(BottomTabsH, 0);
+            _bottomBar = new UIElement();
+            _bottomBar.Left.Set(6, 0);
+            _bottomBar.Top.Set(-(ActiveFiltersStripH + GapAboveBottomBar + BottomBarH), 1f);
+            _bottomBar.Width.Set(-12, 1f);
+            _bottomBar.Height.Set(BottomBarH, 0);
+            Append(_bottomBar);
 
-            const float resetTextScale = 0.9f;
+            BuildBottomResetBar();
+        }
+
+        private void BuildBottomResetBar()
+        {
+            _bottomBar.RemoveAllChildren();
+
+            var resetPanel = new UIPanel();
+            resetPanel.SetPadding(0);
+            resetPanel.Left.Set(0, 0f);
+            resetPanel.Top.Set(4, 0f);
+            resetPanel.Width.Set(0, 1f);
+            resetPanel.Height.Set(-6, 1f);
+            resetPanel.BackgroundColor = OPJourneyUiColors.DangerBackground;
+            resetPanel.BorderColor = OPJourneyUiColors.DangerBorder;
+
+            const float resetTextScale = 0.72f * 1.5f;
             var resetTxt = new UIText(EOPJText.UI("BuffFilterReset"), resetTextScale);
             resetTxt.HAlign = 0.5f;
             resetTxt.VAlign = 0.5f;
-            resetTxt.TextColor = new Color(235, 235, 255);
-            resetTxt.OnLeftClick += (_, __) =>
+            resetTxt.TextColor = OPJourneyUiColors.DangerText;
+            resetTxt.IgnoresMouseInteraction = true;
+            resetPanel.Append(resetTxt);
+
+            resetPanel.OnLeftClick += (_, __) =>
             {
                 EmojLog.InfoFull(EmojLogChannel.Buff, "buff mod filter reset");
                 _shell.BuffSecondary.Reset();
@@ -100,8 +111,8 @@ namespace EvenMoreOverpoweredJourney.Buffs.UI
                 _shell.NotifyBuffFiltersChanged();
                 RebuildScroll();
             };
-            resetRow.Append(resetTxt);
-            Append(resetRow);
+
+            _bottomBar.Append(resetPanel);
         }
 
         public void SetOpen(bool open)
@@ -140,13 +151,13 @@ namespace EvenMoreOverpoweredJourney.Buffs.UI
 
         public void RebuildScroll()
         {
+            BuildBottomResetBar();
             float ow = GetDimensions().Width;
             _layoutInnerWidthUsed = ow > 40f
                 ? Math.Max(120f, ow - ContentPadLeft - ContentPadRight - 6f)
                 : 280f;
 
             _scroll.Clear();
-            AddListTopSpacer();
             AddSectionHeader(EOPJText.UI("BuffFilterModPick"));
             var items = BuffModCatalogSystem.ModKeys
                 .Select(mk => (mk, FormatModBuffHover(mk)))
@@ -189,21 +200,13 @@ namespace EvenMoreOverpoweredJourney.Buffs.UI
             return EOPJText.UIFormat("BuffFilterModHoverFmt", display);
         }
 
-        private void AddListTopSpacer()
-        {
-            var spacer = new UIElement();
-            spacer.Width.Set(0, 1f);
-            spacer.Height.Set(10, 0);
-            _scroll.Add(spacer);
-        }
-
         private void AddSectionHeader(string title)
         {
             var row = new UIElement();
             row.Width.Set(0, 1f);
-            row.Height.Set(28, 0);
+            row.Height.Set(26, 0);
             var tx = new UIText(title, 0.72f * 1.5f);
-            tx.Top.Set(8, 0);
+            tx.Top.Set(4, 0);
             tx.IgnoresMouseInteraction = true;
             row.Append(tx);
             _scroll.Add(row);
@@ -215,7 +218,7 @@ namespace EvenMoreOverpoweredJourney.Buffs.UI
             grid.Width.Set(0, 1f);
             _scroll.Add(grid);
             var spacer = new UIElement();
-            spacer.Height.Set(4, 0);
+            spacer.Height.Set(6, 0);
             spacer.Width.Set(0, 1f);
             _scroll.Add(spacer);
         }
@@ -223,12 +226,13 @@ namespace EvenMoreOverpoweredJourney.Buffs.UI
 
     internal static class BuffModFilterMetrics
     {
-        public const float CellSize = 48f;
+        public static float CellSizeForPanel(float panelWidth) =>
+            Math.Clamp(panelWidth * 0.19f, 44f, 56f);
 
         public static void ComputeGridLayout(float innerWidth, int count, out float cellW, out float rowH, out int cols, out int rows)
         {
-            cellW = rowH = CellSize;
-            cols = Math.Max(1, (int)(innerWidth / CellSize));
+            cellW = rowH = CellSizeForPanel(innerWidth);
+            cols = Math.Max(1, (int)(innerWidth / cellW));
             rows = count == 0 ? 0 : (count + cols - 1) / cols;
         }
     }
@@ -280,7 +284,7 @@ namespace EvenMoreOverpoweredJourney.Buffs.UI
         {
             CalculatedStyle d = GetDimensions();
             Vector2 pos = d.Position();
-            Texture2D invBack = TextureAssets.InventoryBack.Value;
+            Texture2D invBack = global::EvenMoreOverpoweredJourney.Shell.UI.Assets.EojUiTextures.Common.InventoryBack;
             float slotScale = ItemHubFilterTagMetrics.SlotScale;
             float old = Main.inventoryScale;
             Main.inventoryScale = slotScale;
@@ -354,7 +358,7 @@ namespace EvenMoreOverpoweredJourney.Buffs.UI
         {
             CalculatedStyle d = GetDimensions();
             Vector2 pos = d.Position();
-            Texture2D invBack = TextureAssets.InventoryBack.Value;
+            Texture2D invBack = global::EvenMoreOverpoweredJourney.Shell.UI.Assets.EojUiTextures.Common.InventoryBack;
             float slotScale = ItemHubFilterTagMetrics.ActiveStripScale;
             float old = Main.inventoryScale;
             Main.inventoryScale = slotScale;

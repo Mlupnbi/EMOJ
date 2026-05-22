@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
@@ -15,7 +17,11 @@ namespace EvenMoreOverpoweredJourney.Bestiary.Catalog
         public string Id;
         public string DisplayName;
         public IBestiaryEntryFilter Filter;
-        public Microsoft.Xna.Framework.Point IconFrame;
+        public Point IconFrame;
+        public Texture2D IconTexture;
+        public Rectangle IconSourceRect;
+        public bool HasResolvedIcon;
+        public bool UsesTagsShadowSheet;
     }
 
     public sealed class BestiaryFilterIndex : ModSystem
@@ -83,13 +89,22 @@ namespace EvenMoreOverpoweredJourney.Bestiary.Catalog
                     id = id + "_" + i;
 
                 string name = TryGetFilterDisplayName(filter, id);
-                BestiaryFilterIconResolver.TryGetIconFrame(filter, out Microsoft.Xna.Framework.Point frame);
+                BestiaryFilterIconResolver.TryResolveIcon(
+                    filter,
+                    out Point frame,
+                    out Texture2D iconTex,
+                    out Rectangle iconSrc);
                 _vanillaFilters.Add(new BestiaryFilterDef
                 {
                     Id = id,
                     DisplayName = name,
                     Filter = filter,
-                    IconFrame = frame
+                    IconFrame = frame,
+                    IconTexture = iconTex,
+                    IconSourceRect = iconSrc,
+                    HasResolvedIcon = iconTex != null && iconSrc.Width > 0,
+                    UsesTagsShadowSheet = iconTex != null &&
+                        ReferenceEquals(iconTex, global::EvenMoreOverpoweredJourney.Shell.UI.Assets.EojUiTextures.Bestiary.IconTagsShadow)
                 });
             }
         }

@@ -34,9 +34,9 @@ namespace EvenMoreOverpoweredJourney.Shell.UI
 
         public readonly BestiarySecondaryFilterState BestiarySecondary = new BestiarySecondaryFilterState();
         public BestiarySecondaryPanel BestiarySecondaryPanel;
+        public BestiaryDetailSecondaryPanel BestiaryDetailPanel;
 
         public BestiaryFaceMode BestiaryFaceMode = BestiaryFaceMode.ProgressivePlus;
-        public BestiaryViewMode BestiaryViewMode = BestiaryViewMode.Card;
         public string BestiarySearchQueryText = "";
 
         public ItemHubSort ItemHubSortMode = ItemHubSort.ById;
@@ -85,7 +85,6 @@ namespace EvenMoreOverpoweredJourney.Shell.UI
 
         public void NotifyBestiaryFiltersChanged()
         {
-            BestiarySecondaryPanel?.RebuildActiveFilterStrip();
             if (contentContainer == null)
                 return;
 
@@ -95,6 +94,13 @@ namespace EvenMoreOverpoweredJourney.Shell.UI
                     page.OnFiltersChanged();
             }
         }
+
+        public void OpenBestiaryDetail(Bestiary.Catalog.BestiaryNpcMeta meta)
+        {
+            BestiaryDetailPanel?.Show(meta);
+        }
+
+        public void CloseBestiaryDetail() => BestiaryDetailPanel?.SetOpen(false);
 
         public void NotifyItemHubFiltersChanged()
         {
@@ -127,7 +133,10 @@ namespace EvenMoreOverpoweredJourney.Shell.UI
             foreach (UITab t in tabs)
                 t.Active = t.ID == currentTab;
             if (currentTab != 3)
+            {
                 BestiarySecondaryPanel?.SetOpen(false);
+                BestiaryDetailPanel?.SetOpen(false);
+            }
             if (currentTab != 2)
                 ItemHubSecondaryPanel?.SetOpen(false);
             if (currentTab != 1)
@@ -146,7 +155,8 @@ namespace EvenMoreOverpoweredJourney.Shell.UI
             mainPanel.Height.Set(OPJourneyShellMetrics.DefaultMainHeight, 0);
             mainPanel.Left.Set(Main.screenWidth / 2f - OPJourneyShellMetrics.DefaultMainWidth * 0.5f, 0f);
             mainPanel.Top.Set(Main.screenHeight / 2f - OPJourneyShellMetrics.DefaultMainHeight * 0.5f, 0f);
-            mainPanel.BackgroundColor = new Color(40, 40, 60) * 0.95f;
+            mainPanel.BackgroundColor = OPJourneyUiColors.MainPanelBackground;
+            mainPanel.BorderColor = OPJourneyUiColors.PanelBorder;
             Append(mainPanel);
 
             UIDragHandle titleBar = new UIDragHandle();
@@ -173,22 +183,15 @@ namespace EvenMoreOverpoweredJourney.Shell.UI
             contentContainer.Left.Set(0, 0);
             contentContainer.Top.Set(OPJourneyShellMetrics.TitleBarHeight, 0);
             contentContainer.Width.Set(0, 1f);
-            contentContainer.Height.Set(-(OPJourneyShellMetrics.TitleBarHeight + OPJourneyShellMetrics.ResizeHandleSize), 1f);
+            contentContainer.Height.Set(-(OPJourneyShellMetrics.TitleBarHeight + OPJourneyShellMetrics.ContentLayoutBottomInset), 1f);
             mainPanel.Append(contentContainer);
 
             string[] tabTextKeys = { "TabResearch", "TabBuff", "TabStorage", "TabBestiary" };
             string[] tabHoverKeys = { "TabHoverResearch", "TabHoverBuff", "TabHoverStorage", "TabHoverBestiary" };
-            string[] tabIcons =
-            {
-                global::EvenMoreOverpoweredJourney.EvenMoreOverpoweredJourney.TabIconResearch,
-                global::EvenMoreOverpoweredJourney.EvenMoreOverpoweredJourney.TabIconBuff,
-                global::EvenMoreOverpoweredJourney.EvenMoreOverpoweredJourney.TabIconStorage,
-                global::EvenMoreOverpoweredJourney.EvenMoreOverpoweredJourney.TabIconBestiary
-            };
             for (int i = 0; i < 4; i++)
             {
                 int id = i;
-                var tab = new UITab(id, tabTextKeys[i], tabIcons[i], tabHoverKeys[i]);
+                var tab = new UITab(id, tabTextKeys[i], tabHoverKeys[i]);
                 tab.Left.Set(-42, 0);
                 tab.Top.Set(27 + i * 45, 0);
                 tab.OnLeftClick += (_, el) => { SwitchToTab(((UITab)el).ID); };
@@ -206,6 +209,10 @@ namespace EvenMoreOverpoweredJourney.Shell.UI
             BestiarySecondaryPanel = new BestiarySecondaryPanel(this);
             Append(BestiarySecondaryPanel);
             BestiarySecondaryPanel.SetOpen(false);
+
+            BestiaryDetailPanel = new BestiaryDetailSecondaryPanel(this);
+            Append(BestiaryDetailPanel);
+            BestiaryDetailPanel.SetOpen(false);
 
             resizeHandle = new UIResizeHandle(mainPanel);
             resizeHandle.OnResized = RecalculateMainLayout;
@@ -292,6 +299,25 @@ namespace EvenMoreOverpoweredJourney.Shell.UI
                     continue;
                 child.Draw(spriteBatch);
             }
+
+            DrawResizeGrip(spriteBatch);
+        }
+
+        /// <summary>??? UI ?????????????????????????????</summary>
+        private void DrawResizeGrip(SpriteBatch spriteBatch)
+        {
+            if (resizeHandle == null || mainPanel == null)
+                return;
+
+            Rectangle gripRect = UIResizeHandle.GetGripScreenRect(mainPanel);
+            if (gripRect.Width <= 0 || gripRect.Height <= 0)
+                return;
+
+            UIResizeHandle.DrawGripAt(
+                spriteBatch,
+                gripRect,
+                resizeHandle.GetCursorTexture(),
+                resizeHandle.IsGripHighlighted);
         }
 
         public override void Update(GameTime gameTime)
@@ -309,12 +335,35 @@ namespace EvenMoreOverpoweredJourney.Shell.UI
             float secW = OPJourneyShellMetrics.FixedSecondaryWidth;
             float secH = OPJourneyShellMetrics.FixedSecondaryHeight;
 
-            if (Visible && currentTab == 3 && BestiarySecondaryPanel.IsOpen)
+            bool onBestiary = Visible && currentTab == 3;
+            BestiaryChromeLayout.Layout chrome = BestiaryChromeLayout.Compute(
+                d,
+                onBestiary && BestiarySecondaryPanel.IsOpen,
+                onBestiary && BestiaryDetailPanel.IsOpen);
+
+            if (onBestiary && chrome.HasDetail)
             {
-                BestiarySecondaryPanel.Left.Set(d.X + d.Width + 6f, 0f);
-                BestiarySecondaryPanel.Top.Set(d.Y, 0f);
-                BestiarySecondaryPanel.Width.Set(secW, 0f);
-                BestiarySecondaryPanel.Height.Set(secH, 0f);
+                BestiaryDetailPanel.Left.Set(chrome.DetailLeft, 0f);
+                BestiaryDetailPanel.Top.Set(chrome.DetailTop, 0f);
+                BestiaryDetailPanel.Width.Set(chrome.DetailWidth, 0f);
+                BestiaryDetailPanel.Height.Set(chrome.DetailHeight, 0f);
+                BestiaryDetailPanel.IgnoresMouseInteraction = false;
+            }
+            else
+            {
+                BestiaryDetailPanel.Left.Set(0f, 0f);
+                BestiaryDetailPanel.Top.Set(0f, 0f);
+                BestiaryDetailPanel.Width.Set(0f, 0f);
+                BestiaryDetailPanel.Height.Set(0f, 0f);
+                BestiaryDetailPanel.IgnoresMouseInteraction = true;
+            }
+
+            if (onBestiary && chrome.HasFilter)
+            {
+                BestiarySecondaryPanel.Left.Set(chrome.FilterLeft, 0f);
+                BestiarySecondaryPanel.Top.Set(chrome.FilterTop, 0f);
+                BestiarySecondaryPanel.Width.Set(chrome.FilterWidth, 0f);
+                BestiarySecondaryPanel.Height.Set(chrome.FilterHeight, 0f);
                 BestiarySecondaryPanel.IgnoresMouseInteraction = false;
             }
             else

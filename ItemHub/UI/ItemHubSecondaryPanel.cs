@@ -69,7 +69,7 @@ namespace EvenMoreOverpoweredJourney.ItemHub.UI
             tex != null && tex.Width >= 4 && tex.Height >= 4;
     }
 
-    /// <summary>��Ʒ�������ɸѡ�����������Ҳࣻɸѡ�������������ر�ʱ�����ơ�??</summary>
+    /// <summary>????????????????????????????????????????????????????????????????????????</summary>
     public sealed class ItemHubSecondaryPanel : UIElement
     {
         private readonly OPJourneyUI _shell;
@@ -109,8 +109,8 @@ namespace EvenMoreOverpoweredJourney.ItemHub.UI
             _body.Top.Set(0, 0);
             _body.Width.Set(0, 1f);
             _body.Height.Set(-BottomReservedH, 1f);
-            _body.BackgroundColor = new Color(28, 28, 48) * 0.98f;
-            _body.BorderColor = new Color(130, 130, 200);
+            _body.BackgroundColor = BestiaryUiColors.PanelBackground;
+            _body.BorderColor = BestiaryUiColors.PanelBorder;
             Append(_body);
 
             _scroll = new UIList();
@@ -186,8 +186,8 @@ namespace EvenMoreOverpoweredJourney.ItemHub.UI
             if (_chainTogglePanel == null)
                 return;
             bool on = _shell.ItemHubSecondary.UpstreamChainActive;
-            _chainTogglePanel.BorderColor = on ? new Color(255, 210, 120) : new Color(55, 55, 85);
-            _chainTogglePanel.BackgroundColor = on ? new Color(62, 62, 98) : new Color(50, 50, 80);
+            _chainTogglePanel.BorderColor = on ? OPJourneyUiColors.AccentGoldOutline : OPJourneyUiColors.ButtonBorder;
+            _chainTogglePanel.BackgroundColor = on ? OPJourneyUiColors.ButtonBackgroundOpen : OPJourneyUiColors.ButtonBackground;
         }
 
         public void SyncChainSlotFromSecondaryState()
@@ -249,8 +249,8 @@ namespace EvenMoreOverpoweredJourney.ItemHub.UI
                 bool on = i < 2 && _shell.ItemHubSecondary.MajorTabIndex == idx;
                 if (i < 2)
                 {
-                    p.BackgroundColor = on ? new Color(62, 62, 98) : new Color(38, 38, 60);
-                    p.BorderColor = on ? new Color(255, 210, 120) : new Color(55, 55, 85);
+                    p.BackgroundColor = on ? OPJourneyUiColors.ButtonBackgroundOpen : OPJourneyUiColors.ButtonBackground;
+                    p.BorderColor = on ? OPJourneyUiColors.AccentGoldOutline : OPJourneyUiColors.ButtonBorder;
                     var t = new UIText(EOPJText.UI(keys[i]), txtScale);
                     t.HAlign = 0.5f;
                     t.VAlign = 0.5f;
@@ -265,8 +265,8 @@ namespace EvenMoreOverpoweredJourney.ItemHub.UI
                 }
                 else
                 {
-                    p.BackgroundColor = new Color(120, 32, 32);
-                    p.BorderColor = new Color(180, 70, 70);
+                    p.BackgroundColor = OPJourneyUiColors.DangerBackground;
+                    p.BorderColor = OPJourneyUiColors.DangerBorder;
                     var t = new UIText(EOPJText.UI("ItemHubResetFilters"), txtScale);
                     t.HAlign = 0.5f;
                     t.VAlign = 0.5f;
@@ -536,7 +536,7 @@ namespace EvenMoreOverpoweredJourney.ItemHub.UI
         {
             CalculatedStyle d = GetDimensions();
             Vector2 pos = d.Position();
-            Texture2D invBack = TextureAssets.InventoryBack.Value;
+            Texture2D invBack = global::EvenMoreOverpoweredJourney.Shell.UI.Assets.EojUiTextures.Common.InventoryBack;
             float slotScale = ItemHubFilterTagMetrics.ActiveStripScale;
             float old = Main.inventoryScale;
             Main.inventoryScale = slotScale;
@@ -624,7 +624,7 @@ namespace EvenMoreOverpoweredJourney.ItemHub.UI
         }
     }
 
-    /// <summary>��Ʒ����������ê��ۡ��Ҳࡸ�����ť��˵���İ���??</summary>
+    /// <summary>???????????????????????????????????????????????????????</summary>
     internal sealed class ItemHubChainSectionPanel : UIPanel
     {
         private const float Pad = 6f;
@@ -647,8 +647,8 @@ namespace EvenMoreOverpoweredJourney.ItemHub.UI
             SetPadding(0);
             Width.Set(0, 1f);
             Height.Set(108, 0);
-            BackgroundColor = new Color(40, 40, 62);
-            BorderColor = new Color(80, 80, 120);
+            BackgroundColor = OPJourneyUiColors.ButtonBackground;
+            BorderColor = OPJourneyUiColors.ButtonBorder;
 
             float btnLeft = Pad + SlotSize + ColGap;
 
@@ -667,8 +667,8 @@ namespace EvenMoreOverpoweredJourney.ItemHub.UI
             TogglePanel.Top.Set(Pad, 0);
             TogglePanel.Width.Set(BtnW, 0);
             TogglePanel.Height.Set(BtnH, 0);
-            TogglePanel.BackgroundColor = new Color(50, 50, 80);
-            TogglePanel.BorderColor = new Color(55, 55, 85);
+            TogglePanel.BackgroundColor = OPJourneyUiColors.ButtonBackground;
+            TogglePanel.BorderColor = OPJourneyUiColors.ButtonBorder;
             var btnTxt = new UIText(EOPJText.UI("ItemHubChainActivate"), 0.58f * 1.5f);
             btnTxt.HAlign = 0.5f;
             btnTxt.VAlign = 0.5f;
@@ -688,7 +688,7 @@ namespace EvenMoreOverpoweredJourney.ItemHub.UI
             activateHint.Top.Set(Pad + BtnH + HintGap, 0);
             activateHint.Width.Set(-(btnLeft + Pad), 1f);
             activateHint.IsWrapped = true;
-            activateHint.TextColor = new Color(190, 190, 210);
+            activateHint.TextColor = OPJourneyUiColors.TextMuted;
             activateHint.IgnoresMouseInteraction = true;
             Append(activateHint);
 
@@ -757,7 +757,7 @@ namespace EvenMoreOverpoweredJourney.ItemHub.UI
             RefreshItem();
             CalculatedStyle d = GetDimensions();
             Vector2 pos = d.Position();
-            Texture2D invBack = TextureAssets.InventoryBack.Value;
+            Texture2D invBack = global::EvenMoreOverpoweredJourney.Shell.UI.Assets.EojUiTextures.Common.InventoryBack;
             float slotScale = ItemHubFilterTagMetrics.ActiveStripScale;
             float old = Main.inventoryScale;
             Main.inventoryScale = slotScale;
@@ -806,7 +806,7 @@ namespace EvenMoreOverpoweredJourney.ItemHub.UI
         {
             CalculatedStyle d = GetDimensions();
             Vector2 pos = d.Position();
-            Texture2D invBack = TextureAssets.InventoryBack.Value;
+            Texture2D invBack = global::EvenMoreOverpoweredJourney.Shell.UI.Assets.EojUiTextures.Common.InventoryBack;
             float slotScale = ItemHubFilterTagMetrics.ActiveStripScale;
             float old = Main.inventoryScale;
             Main.inventoryScale = slotScale;
@@ -849,7 +849,7 @@ namespace EvenMoreOverpoweredJourney.ItemHub.UI
 
         public static void ComputeActiveStripCell(float innerWidth, int count, out float cellW, out float rowH)
         {
-            Texture2D inv = TextureAssets.InventoryBack.Value;
+            Texture2D inv = global::EvenMoreOverpoweredJourney.Shell.UI.Assets.EojUiTextures.Common.InventoryBack;
             float baseCell = inv.Width * ActiveStripScale + 3f;
             rowH = inv.Height * ActiveStripScale + 3f;
             if (count <= 0)
@@ -864,7 +864,7 @@ namespace EvenMoreOverpoweredJourney.ItemHub.UI
 
         public static void ComputeGridLayout(float innerWidth, int count, out float cellW, out float rowH, out int cols, out int rows)
         {
-            Texture2D inv = TextureAssets.InventoryBack.Value;
+            Texture2D inv = global::EvenMoreOverpoweredJourney.Shell.UI.Assets.EojUiTextures.Common.InventoryBack;
             cellW = inv.Width * SlotScale + 4f;
             rowH = inv.Height * SlotScale + 4f;
             cols = Math.Max(1, (int)(innerWidth / cellW));
@@ -925,7 +925,7 @@ namespace EvenMoreOverpoweredJourney.ItemHub.UI
         {
             CalculatedStyle d = GetDimensions();
             Vector2 pos = d.Position();
-            Texture2D invBack = TextureAssets.InventoryBack.Value;
+            Texture2D invBack = global::EvenMoreOverpoweredJourney.Shell.UI.Assets.EojUiTextures.Common.InventoryBack;
             float slotScale = ItemHubFilterTagMetrics.SlotScale;
             float old = Main.inventoryScale;
             Main.inventoryScale = slotScale;
@@ -1030,7 +1030,7 @@ namespace EvenMoreOverpoweredJourney.ItemHub.UI
         {
             CalculatedStyle d = GetDimensions();
             Vector2 pos = d.Position();
-            Texture2D invBack = TextureAssets.InventoryBack.Value;
+            Texture2D invBack = global::EvenMoreOverpoweredJourney.Shell.UI.Assets.EojUiTextures.Common.InventoryBack;
             float slotScale = ItemHubFilterTagMetrics.SlotScale;
             float old = Main.inventoryScale;
             Main.inventoryScale = slotScale;

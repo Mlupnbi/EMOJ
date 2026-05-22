@@ -11,13 +11,13 @@
     "C:\\Users\\14451\\.nuget\\packages\\": {}
   },
   "project": {
-    "version": "0.4.70",
+    "version": "0.5.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\14451\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\EvenMoreOverpoweredJourney\\EvenMoreOverpoweredJourney.csproj",
+      "projectUniqueName": "c:\\Users\\14451\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\EvenMoreOverpoweredJourney\\EvenMoreOverpoweredJourney.csproj",
       "projectName": "EvenMoreOverpoweredJourney",
-      "projectPath": "C:\\Users\\14451\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\EvenMoreOverpoweredJourney\\EvenMoreOverpoweredJourney.csproj",
+      "projectPath": "c:\\Users\\14451\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\EvenMoreOverpoweredJourney\\EvenMoreOverpoweredJourney.csproj",
       "packagesPath": "C:\\Users\\14451\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\14451\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\EvenMoreOverpoweredJourney\\obj\\",
+      "outputPath": "c:\\Users\\14451\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\EvenMoreOverpoweredJourney\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\14451\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -1,18 +1,19 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using EvenMoreOverpoweredJourney.Shell.UI.Assets;
 using Terraria;
+using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
 
 namespace EvenMoreOverpoweredJourney.Bestiary.UI.Components
 {
-    /// <summary>
-    /// È«²¿ÏÔÊ¾Á³£ºÌ§¸ß UnlockState£»ÆäÓàÓë UIBestiaryEntryIcon Ò»ÖÂ£¨Íø¸ñ isPortrait=false£¬½öĞüÍ£ Update£©¡£
-    /// </summary>
+    /// <summary>å…¨éƒ¨å¯è§è„¸ï¼šæŠ¬é«˜ UnlockStateï¼›Update/Draw ä¸åŸç‰ˆ UIBestiaryEntryIcon ä¸€è‡´ã€‚</summary>
     public sealed class EMOJBestiaryAllVisibleEntryIcon : UIBestiaryEntryIcon
     {
         private readonly BestiaryEntry _entryRef;
+        private readonly Texture2D _notUnlockedTexture;
         private readonly bool _isPortrait;
 
         public EMOJBestiaryAllVisibleEntryIcon(BestiaryEntry entry, bool isPortrait)
@@ -20,30 +21,55 @@ namespace EvenMoreOverpoweredJourney.Bestiary.UI.Components
         {
             _entryRef = entry;
             _isPortrait = isPortrait;
+            EojUiTextureCache.WarmTab(EojUiTab.Bestiary);
+            _notUnlockedTexture = EojUiTextures.Bestiary.IconLocked;
         }
+
+        public bool UsesPortraitMode => _isPortrait;
 
         public override void Update(GameTime gameTime)
         {
+            bool hovered = IsMouseHovering || ForceHover;
+            if (hovered)
+            {
+                int interval = BestiaryCardVisuals.GridIconAnimationInterval;
+                if (interval > 1 && Main.GameUpdateCount % interval != 0)
+                    return;
+            }
+
             base.Update(gameTime);
         }
 
         protected override void DrawSelf(SpriteBatch spriteBatch)
         {
             BestiaryUICollectionInfo info = BuildAllVisibleInfo();
-            Rectangle iconBox = Parent?.GetDimensions().ToRectangle() ?? GetDimensions().ToRectangle();
+            CalculatedStyle dimensions = GetDimensions();
+            Rectangle iconBox = dimensions.ToRectangle();
             bool hovered = IsMouseHovering || ForceHover;
-            var settings = new EntryIconDrawSettings
+
+            if (_entryRef.Icon.GetUnlockState(info))
             {
-                iconbox = iconBox,
-                IsPortrait = _isPortrait,
-                IsHovered = hovered
-            };
-
-            // ÓëÔ­°æ UIBestiaryEntryIcon ÏàÍ¬£º·ÇĞüÍ£ÇÒ·ÇĞ¤ÏñÄ£Ê½Ê±²» Update ¡ú ¾²Ì¬µÚÒ»Ö¡
-            if (hovered || _isPortrait)
-                _entryRef.Icon.Update(info, iconBox, settings);
-
-            _entryRef.Icon.Draw(info, spriteBatch, settings);
+                _entryRef.Icon.Draw(info, spriteBatch, new EntryIconDrawSettings
+                {
+                    iconbox = iconBox,
+                    IsPortrait = _isPortrait,
+                    IsHovered = hovered
+                });
+            }
+            else if (_notUnlockedTexture != null)
+            {
+                Texture2D locked = _notUnlockedTexture;
+                spriteBatch.Draw(
+                    locked,
+                    dimensions.Center(),
+                    null,
+                    Color.White * 0.15f,
+                    0f,
+                    locked.Size() * 0.5f,
+                    1f,
+                    SpriteEffects.None,
+                    0f);
+            }
         }
 
         private BestiaryUICollectionInfo BuildAllVisibleInfo()

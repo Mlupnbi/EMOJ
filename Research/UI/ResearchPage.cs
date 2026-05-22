@@ -95,13 +95,14 @@ namespace EvenMoreOverpoweredJourney.Research.UI
             };
             Append(productList);
 
-            UIScrollbar scrollbar = new UIScrollbar();
+            var scrollbar = new UIScrollbar();
             scrollbar.Left.Set(-OPJourneyShellMetrics.ScrollSafeMarginRight, 1f);
             float productTop = slotSize + 26f;
             productList.Top.Set(productTop, 0f);
-            productList.Height.Set(-(145f + OPJourneyShellMetrics.ContentBottomSafeMargin), 0.66f);
+            float productBottomPad = 130f + OPJourneyShellMetrics.ContentBottomSafeMargin + OPJourneyShellMetrics.ContentLayoutBottomInset;
+            productList.Height.Set(-productBottomPad, 0.66f);
             scrollbar.Top.Set(productTop, 0f);
-            scrollbar.Height.Set(-(145f + OPJourneyShellMetrics.ContentBottomSafeMargin), 0.66f);
+            scrollbar.Height.Set(-productBottomPad, 0.66f);
             productList.SetScrollbar(scrollbar);
             Append(scrollbar);
 
@@ -112,9 +113,9 @@ namespace EvenMoreOverpoweredJourney.Research.UI
             recipesPanel.Height.Set(-25, 0.34f);
             Append(recipesPanel);
 
-            UIScrollbar recScroll = new UIScrollbar();
+            var recScroll = new UIScrollbar();
             recScroll.Left.Set(-OPJourneyShellMetrics.ScrollSafeMarginRight, 1f);
-            float recipeBottomPad = 25f + OPJourneyShellMetrics.ContentBottomSafeMargin;
+            float recipeBottomPad = 25f + OPJourneyShellMetrics.ContentBottomSafeMargin + OPJourneyShellMetrics.ContentLayoutBottomInset;
             recipesPanel.Height.Set(-recipeBottomPad, 0.34f);
             recScroll.Top.Set(25, 0.66f);
             recScroll.Height.Set(-recipeBottomPad, 0.34f);
@@ -131,19 +132,19 @@ namespace EvenMoreOverpoweredJourney.Research.UI
             bottomStrip.Left.Set(OPJourneyShellMetrics.ContentInsetLeft, 0);
             bottomStrip.Width.Set(OPJourneyShellMetrics.ChromeWidth, 0);
             bottomStrip.Height.Set(OPJourneyShellMetrics.ResearchBottomStripHeight, 0f);
-            bottomStrip.Top.Set(-50, 0.66f);
+            bottomStrip.Top.Set(-38, 0.66f);
             bottomStrip.VAlign = 0f;
             Append(bottomStrip);
 
-            modeBtnP = StripButton(60, 35, 0, 2, new Color(40, 40, 60), isCardMode ? EOPJText.UI("ViewCard") : EOPJText.UI("ViewList"), out modeBtnT);
+            modeBtnP = StripButton(60, 35, 0, 2, OPJourneyUiColors.ButtonBackground, isCardMode ? EOPJText.UI("ViewCard") : EOPJText.UI("ViewList"), out modeBtnT);
             modeBtnP.OnLeftClick += ToggleViewMode;
             bottomStrip.Append(modeBtnP);
 
-            researchBtnP = StripButton(90, 35, 68, 2, new Color(60, 100, 60), EOPJText.UI("ResearchAll"), out researchBtnT);
+            researchBtnP = StripButton(90, 35, 68, 2, OPJourneyUiColors.ButtonActionSuccess, EOPJText.UI("ResearchAll"), out researchBtnT);
             researchBtnP.OnLeftClick += (_, __) => OnPrimaryAction();
             bottomStrip.Append(researchBtnP);
 
-            giveBtnP = StripButton(90, 35, 164, 2, new Color(180, 150, 40), EOPJText.UI("GiveAll"), out giveBtnT);
+            giveBtnP = StripButton(90, 35, 164, 2, OPJourneyUiColors.ButtonActionWarm, EOPJText.UI("GiveAll"), out giveBtnT);
             giveBtnP.OnLeftClick += (_, __) => OnSecondaryGiveAll();
             bottomStrip.Append(giveBtnP);
 
@@ -194,7 +195,7 @@ namespace EvenMoreOverpoweredJourney.Research.UI
             return p;
         }
 
-        /// <summary>????????????? UI ??????????§µ??????¦Å???????????¦Ä??????????</summary>
+        /// <summary>????????????? UI ??????????Ð£??????Îµ???????????Î´??????????</summary>
         private void TryApplyPendingQuickQuery()
         {
             if (Main.dedServ || Main.gameMenu)
@@ -386,6 +387,7 @@ namespace EvenMoreOverpoweredJourney.Research.UI
                 return;
             if (highlightedProductType.HasValue)
                 return;
+
             int t = inputSlot.item.type;
             var list = RecipeAnalyzer.GetRecipesForItem(t);
             if (list.Count == 0)
@@ -402,7 +404,10 @@ namespace EvenMoreOverpoweredJourney.Research.UI
         private void ShowRecipes(int itemType)
         {
             recipesPanel.Clear();
-            var list = RecipeAnalyzer.GetRecipesForItem(itemType);
+            int seed = inputSlot.item.IsAir ? ItemID.None : inputSlot.item.type;
+            var list = RecipeAnalyzer.IsJourneyWorld && activeFace == ResearchFaceMode.Green
+                ? RecipeAnalyzer.GetGreenFaceQualifyingRecipes(itemType, seed)
+                : RecipeAnalyzer.GetRecipesForItem(itemType);
             if (list.Count == 0)
             {
                 AppendNoRecipePathMessage();

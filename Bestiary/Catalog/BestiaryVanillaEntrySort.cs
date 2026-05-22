@@ -4,14 +4,21 @@ using Terraria.ID;
 
 namespace EvenMoreOverpoweredJourney.Bestiary.Catalog
 {
-    /// <summary>ÓëÔ­°æ UIBestiaryEntryGrid Ä¬ÈÏÅÅĞòÒ»ÖÂ£º<see cref="SortingSteps.ByBestiarySortingId"/>¡£</summary>
+    /// <summary>ä¸åŸç‰ˆ UIBestiaryEntryGrid é»˜è®¤æ’åºä¸€è‡´ï¼š<see cref="SortingSteps.ByBestiarySortingId"/>ã€‚</summary>
     internal static class BestiaryVanillaEntrySort
     {
         private static readonly SortingSteps.ByBestiarySortingId VanillaStep = new();
 
         public static int Compare(BestiaryNpcMeta a, BestiaryNpcMeta b)
         {
-            if (a?.Entry != null && b?.Entry != null)
+            if (a == null && b == null)
+                return 0;
+            if (a == null)
+                return 1;
+            if (b == null)
+                return -1;
+
+            if (a.Entry != null && b.Entry != null)
             {
                 try
                 {
@@ -19,7 +26,7 @@ namespace EvenMoreOverpoweredJourney.Bestiary.Catalog
                 }
                 catch
                 {
-                    // Ä£×éÌõÄ¿Òì³£Ê±×ßÊıÖµ¶µµ×
+                    // æ¨¡ç»„æ’åºè¡¨ç¼ºæ¡ç›®æ—¶èµ°æ•°å€¼å…œåº•ï¼Œé¿å… client.log åˆ·å±
                 }
             }
 
@@ -36,7 +43,7 @@ namespace EvenMoreOverpoweredJourney.Bestiary.Catalog
             return a.CatalogIndex.CompareTo(b.CatalogIndex);
         }
 
-        /// <summary>Ô­°æÅÅĞò id£¨<see cref="ContentSamples.NpcBestiarySortingId"/>£©¡£</summary>
+        /// <summary>åŸç‰ˆæ’åº idï¼ˆ<see cref="ContentSamples.NpcBestiarySortingId"/>ï¼‰ã€‚</summary>
         public static int GetSortKey(BestiaryNpcMeta meta)
         {
             if (meta == null)

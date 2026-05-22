@@ -5,6 +5,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.GameContent.Bestiary;
 using Terraria.UI;
+using EvenMoreOverpoweredJourney.Shell.UI;
+using EvenMoreOverpoweredJourney.Shell.UI.Assets;
 
 namespace EvenMoreOverpoweredJourney.Bestiary.UI
 {
@@ -33,7 +35,7 @@ namespace EvenMoreOverpoweredJourney.Bestiary.UI
 
             Color tint = bg.Color;
             if (tint.A == 0)
-                tint = new Color(45, 48, 72);
+                tint = OPJourneyUiColors.SlotCellFill;
 
             float alpha = Math.Clamp(backgroundAlpha, 0f, 1f);
             tint = new Color(
@@ -46,7 +48,7 @@ namespace EvenMoreOverpoweredJourney.Bestiary.UI
             {
                 try
                 {
-                    Texture2D bgTex = Main.Assets.Request<Texture2D>(bg.ImagePath).Value;
+                    Texture2D bgTex = EojUiTextures.ResolveVanillaUiPath(bg.ImagePath);
                     if (bgTex != null)
                     {
                         spriteBatch.Draw(bgTex, bounds, tint);
@@ -82,7 +84,7 @@ namespace EvenMoreOverpoweredJourney.Bestiary.UI
 
             Color tint = bg.Color;
             if (tint.A == 0)
-                tint = new Color(45, 48, 72);
+                tint = OPJourneyUiColors.SlotCellFill;
 
             float alpha = Math.Clamp(backgroundAlpha, 0f, 1f);
             tint = new Color(
@@ -97,7 +99,7 @@ namespace EvenMoreOverpoweredJourney.Bestiary.UI
                 {
                     try
                     {
-                        Texture2D bgTex = Main.Assets.Request<Texture2D>(bg.ImagePath).Value;
+                        Texture2D bgTex = EojUiTextures.ResolveVanillaUiPath(bg.ImagePath);
                         if (bgTex != null)
                             spriteBatch.Draw(bgTex, contentBounds, tint);
                     }
@@ -115,6 +117,44 @@ namespace EvenMoreOverpoweredJourney.Bestiary.UI
             if (slotFront != null)
                 spriteBatch.Draw(slotFront, contentBounds, Color.White);
         }
+
+        /// <summary>仅绘制 Slot_Front 边框（中心透明），避免整张贴图盖住 10% 生态底。</summary>
+        public static void DrawFrameOnly(SpriteBatch spriteBatch, Rectangle outerBounds)
+        {
+            if (outerBounds.Width <= 0 || outerBounds.Height <= 0)
+                return;
+
+            BestiaryUiAssets.EnsureLoaded();
+            Texture2D slotFront = BestiaryUiAssets.SlotFront;
+            if (slotFront == null)
+                return;
+
+            int border = Math.Max(4, (int)(outerBounds.Width * (10f / 52f)));
+            DrawTextureBorder(spriteBatch, slotFront, outerBounds, border);
+        }
+
+        private static void DrawTextureBorder(SpriteBatch spriteBatch, Texture2D tex, Rectangle dest, int border)
+        {
+            border = Math.Min(border, Math.Min(dest.Width, dest.Height) / 3);
+            if (border <= 0)
+                return;
+
+            int tw = tex.Width;
+            int th = tex.Height;
+            int srcBorder = Math.Max(1, (int)(10f * tw / 52f));
+
+            DrawSlice(spriteBatch, tex, new Rectangle(dest.X, dest.Y, dest.Width, border),
+                new Rectangle(0, 0, tw, srcBorder));
+            DrawSlice(spriteBatch, tex, new Rectangle(dest.X, dest.Bottom - border, dest.Width, border),
+                new Rectangle(0, th - srcBorder, tw, srcBorder));
+            DrawSlice(spriteBatch, tex, new Rectangle(dest.X, dest.Y, border, dest.Height),
+                new Rectangle(0, 0, srcBorder, th));
+            DrawSlice(spriteBatch, tex, new Rectangle(dest.Right - border, dest.Y, border, dest.Height),
+                new Rectangle(tw - srcBorder, 0, srcBorder, th));
+        }
+
+        private static void DrawSlice(SpriteBatch spriteBatch, Texture2D tex, Rectangle dest, Rectangle source) =>
+            spriteBatch.Draw(tex, dest, source, Color.White);
 
         private static bool TryResolveBackground(BestiaryEntry entry, out (string ImagePath, Color Color) result)
         {

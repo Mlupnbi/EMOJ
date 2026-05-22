@@ -46,8 +46,8 @@ namespace EvenMoreOverpoweredJourney.Research.UI
             Main.inventoryScale = 0.8f;
 
             Vector2 slotPos = pos + new Vector2(2, 2);
-            int slotW = (int)(TextureAssets.InventoryBack.Value.Width * Main.inventoryScale);
-            int slotH = (int)(TextureAssets.InventoryBack.Value.Height * Main.inventoryScale);
+            int slotW = (int)(global::EvenMoreOverpoweredJourney.Shell.UI.Assets.EojUiTextures.Common.InventoryBack.Width * Main.inventoryScale);
+            int slotH = (int)(global::EvenMoreOverpoweredJourney.Shell.UI.Assets.EojUiTextures.Common.InventoryBack.Height * Main.inventoryScale);
 
             Item[] dummy = new Item[11];
             dummy[10] = _item;
@@ -108,8 +108,8 @@ namespace EvenMoreOverpoweredJourney.Research.UI
             Main.inventoryScale = 0.8f;
 
             Vector2 slotPos = pos + new Vector2(4, 2);
-            int slotW = (int)(TextureAssets.InventoryBack.Value.Width * Main.inventoryScale);
-            int slotH = (int)(TextureAssets.InventoryBack.Value.Height * Main.inventoryScale);
+            int slotW = (int)(global::EvenMoreOverpoweredJourney.Shell.UI.Assets.EojUiTextures.Common.InventoryBack.Width * Main.inventoryScale);
+            int slotH = (int)(global::EvenMoreOverpoweredJourney.Shell.UI.Assets.EojUiTextures.Common.InventoryBack.Height * Main.inventoryScale);
 
             Item[] dummy = new Item[11];
             dummy[10] = _item;
@@ -194,8 +194,8 @@ namespace EvenMoreOverpoweredJourney.Research.UI
             var materials = _recipe.requiredItem.Where(i => i != null && !i.IsAir).ToList();
             float matY = top + 20;
             float x = textX;
-            int matSlotW = (int)(TextureAssets.InventoryBack.Value.Width * Main.inventoryScale);
-            int matSlotH = (int)(TextureAssets.InventoryBack.Value.Height * Main.inventoryScale);
+            int matSlotW = (int)(global::EvenMoreOverpoweredJourney.Shell.UI.Assets.EojUiTextures.Common.InventoryBack.Width * Main.inventoryScale);
+            int matSlotH = (int)(global::EvenMoreOverpoweredJourney.Shell.UI.Assets.EojUiTextures.Common.InventoryBack.Height * Main.inventoryScale);
             foreach (Item mat in materials)
             {
                 if (x + 36 > dims.X + _containerWidth - 20)

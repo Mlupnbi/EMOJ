@@ -45,7 +45,7 @@ namespace EvenMoreOverpoweredJourney.Buffs.UI
         public const string CombatSummon = "CombatSummon";
         public const string Disabled = "Disabled";
 
-        /// <summary>??????????งน?? ??20 ???????????????????</summary>
+        /// <summary>????????????? ??20 ???????????????????</summary>
         public static bool IsVirtualizablePositiveSubCategory(string subCategory) =>
             subCategory == PositivePotionFood ||
             subCategory == PositiveEquipment ||
@@ -273,7 +273,7 @@ namespace EvenMoreOverpoweredJourney.Buffs.UI
                         releaseBtn.Height.Set(26, 0);
                         releaseBtn.Top.Set(buttonTop, 0);
                         releaseBtn.Left.Set(buttonLeftStart + disabledRestoreExtraLeft, 0);
-                        releaseBtn.BackgroundColor = new Color(180, 150, 40);
+                        releaseBtn.BackgroundColor = OPJourneyUiColors.ButtonActionWarm;
                         var releaseText = new UIText(EOPJText.UI("BuffBtnRestoreAll"), 0.6f);
                         releaseText.HAlign = releaseText.VAlign = 0.5f;
                         releaseBtn.Append(releaseText);
@@ -298,7 +298,7 @@ namespace EvenMoreOverpoweredJourney.Buffs.UI
                             enableAllBtn.Height.Set(26, 0);
                             enableAllBtn.Top.Set(buttonTop, 0);
                             enableAllBtn.Left.Set(buttonLeftStart, 0);
-                            enableAllBtn.BackgroundColor = new Color(60, 100, 60);
+                            enableAllBtn.BackgroundColor = OPJourneyUiColors.ButtonActionSuccess;
                             var enableText = new UIText(EOPJText.UI("BuffBtnEnableAll"), 0.6f);
                             enableText.HAlign = enableText.VAlign = 0.5f;
                             enableAllBtn.Append(enableText);
@@ -312,7 +312,7 @@ namespace EvenMoreOverpoweredJourney.Buffs.UI
                         clearBtn.Height.Set(26, 0);
                         clearBtn.Top.Set(buttonTop, 0);
                         clearBtn.Left.Set(clearLeft, 0);
-                        clearBtn.BackgroundColor = new Color(100, 60, 60);
+                        clearBtn.BackgroundColor = OPJourneyUiColors.DangerBackground;
                         var clearText = new UIText(EOPJText.UI("BuffBtnClearAll"), 0.6f);
                         clearText.HAlign = clearText.VAlign = 0.5f;
                         clearBtn.Append(clearText);
@@ -326,7 +326,7 @@ namespace EvenMoreOverpoweredJourney.Buffs.UI
                             disableAllBtn.Height.Set(26, 0);
                             disableAllBtn.Top.Set(buttonTop, 0);
                             disableAllBtn.Left.Set(clearLeft + buttonSpacing, 0);
-                            disableAllBtn.BackgroundColor = new Color(180, 150, 40);
+                            disableAllBtn.BackgroundColor = OPJourneyUiColors.ButtonActionWarm;
                             var disText = new UIText(EOPJText.UI("BuffBtnDisableAllDebuffs"), 0.6f);
                             disText.HAlign = disText.VAlign = 0.5f;
                             disableAllBtn.Append(disText);
@@ -740,7 +740,6 @@ namespace EvenMoreOverpoweredJourney.Buffs.UI
 
         private sealed class UIBuffCategoryFoldButton : UIElement
         {
-            private const string ButtonPlayAssetPath = "Images/UI/ButtonPlay";
             private static Texture2D expandedTexture;
 
             private readonly Func<bool> isExpanded;
@@ -762,8 +761,12 @@ namespace EvenMoreOverpoweredJourney.Buffs.UI
                 spriteBatch.Draw(texture, dims.ToRectangle(), color);
             }
 
-            private static Texture2D GetCollapsedTexture() =>
-                Main.Assets.Request<Texture2D>(ButtonPlayAssetPath).Value;
+            private static Texture2D GetCollapsedTexture()
+            {
+                global::EvenMoreOverpoweredJourney.Shell.UI.Assets.EojUiTextureCache.WarmTab(
+                    global::EvenMoreOverpoweredJourney.Shell.UI.Assets.EojUiTab.Buff);
+                return global::EvenMoreOverpoweredJourney.Shell.UI.Assets.EojUiTextures.Buff.ButtonPlay;
+            }
 
             private static Texture2D GetExpandedTexture()
             {

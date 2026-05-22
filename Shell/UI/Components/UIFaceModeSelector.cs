@@ -1,7 +1,7 @@
 using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Content;
+using EvenMoreOverpoweredJourney.Shell.UI.Assets;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent;
@@ -11,7 +11,7 @@ using EvenMoreOverpoweredJourney.Research;
 
 namespace EvenMoreOverpoweredJourney.Shell.UI.Components
 {
-    /// <summary>从原版 <c>Images/UI/NPCHappiness</c> 横向裁剪四张脸，互斥选中。</summary>
+    /// <summary>从原�? <c>Images/UI/NPCHappiness</c> 横向裁剪四张脸，互斥选中�?</summary>
     public class UIFaceModeSelector : UIElement
     {
         private Texture2D _sheet;
@@ -21,7 +21,7 @@ namespace EvenMoreOverpoweredJourney.Shell.UI.Components
 
         public ResearchFaceMode ActiveFace { get; set; }
 
-        /// <summary>若返回 false，点击无效（仍绘制暗淡）。</summary>
+        /// <summary>若返�? false，点击无效（仍绘制暗淡）�?</summary>
         public Func<ResearchFaceMode, bool> CanInteract = _ => true;
 
         public Action<ResearchFaceMode> OnFaceSelected;
@@ -36,22 +36,16 @@ namespace EvenMoreOverpoweredJourney.Shell.UI.Components
 
         private void TryLoadSheet()
         {
-            try
+            EojUiTextureCache.WarmTab(EojUiTab.Buff);
+            _sheet = EojUiTextures.Buff.NpcHappiness;
+            if (_sheet != null && _sheet.Width >= 4)
             {
-                Asset<Texture2D> asset = Main.Assets.Request<Texture2D>("Images/UI/NPCHappiness", AssetRequestMode.ImmediateLoad);
-                _sheet = asset?.Value;
-                if (_sheet != null && _sheet.Width >= 4)
-                {
-                    _sliceW = _sheet.Width / 4;
-                    _sliceH = _sheet.Height;
-                    _fallback = false;
-                    return;
-                }
+                _sliceW = _sheet.Width / 4;
+                _sliceH = _sheet.Height;
+                _fallback = false;
+                return;
             }
-            catch
-            {
-                // ignored
-            }
+
             _sheet = TextureAssets.MagicPixel.Value;
             _sliceW = 1;
             _sliceH = 1;

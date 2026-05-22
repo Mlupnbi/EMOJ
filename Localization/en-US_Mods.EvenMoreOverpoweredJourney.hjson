@@ -48,18 +48,18 @@ Configs: {
 			Label: Virtual buff apply mode
 			Tooltip:
 				'''
-				Balanced (recommended): stat buffs every frame, particle/combat buffs on an interval ù smoother with near-full stats
-				Unified every frame: legacy behavior, all virtual buffs every frame ù heaviest
+				Balanced (recommended): stat buffs every frame, particle/combat buffs on an interval ? smoother with near-full stats
+				Unified every frame: legacy behavior, all virtual buffs every frame ? heaviest
 				Re-enter world or toggle buffs after changing
 				'''
 			BuffsPlusRealBar.Label: Real buff bar (smooth, recommended)
-			BalancedVirtualScratch.Label: Virtual scratch ù balanced (full stats, heavy)
-			UnifiedVirtualEveryFrame.Label: Virtual scratch ù every frame (heaviest)
+			BalancedVirtualScratch.Label: Virtual scratch ? balanced (full stats, heavy)
+			UnifiedVirtualEveryFrame.Label: Virtual scratch ? every frame (heaviest)
 		}
 
 		CombatVisualUpdateInterval: {
 			Label: Visual effect interval (frames) (balanced mode only)
-			Tooltip: Affects the combat/visual queue only. Most lag is the stat queue ù use stat spread below
+			Tooltip: Affects the combat/visual queue only. Most lag is the stat queue ? use stat spread below
 		}
 
 		StatUpdateSpreadFrames: {
@@ -107,7 +107,7 @@ Configs: {
 			Tooltip:
 				'''
 				For common vanilla buffs listed in VanillaBuffStatRegistry (Ironskin, Regen, Swiftness, etc.):
-				apply stats directly without running Buff.Update ù saves CPU
+				apply stats directly without running Buff.Update ? saves CPU
 				See Data/BuffModSupport/vanilla_stats_manifest.json
 				'''
 		}
@@ -118,7 +118,7 @@ Configs: {
 			Label: Progressive unlock uses vanilla kill counts
 			Tooltip:
 				'''
-				Affects detail disclosure on bestiary face modes 2ù4.
+				Affects detail disclosure on bestiary face modes 2?4.
 				On: matches vanilla bestiary kill requirements.
 				Off: only "seen vs not seen", no per-kill tiers.
 				If ImproveGame is loaded with Bestiary Quick Unlock, one kill counts as fully unlocked (overrides this).
@@ -239,21 +239,39 @@ UI: {
 	BestiaryFilterBtn: Filters
 	BestiaryViewCard: Cards
 	BestiaryViewGroup: Group
-	BestiaryCatalogLoading: Loading bestiary catalogù
+	BestiaryCatalogLoading: Loading bestiary catalog?
 	BestiarySearchHint: Search creature name / internal id / pinyin...
 	BestiarySec_Mod: Mods
 	BestiarySec_Vanilla: Biomes
 	BestiarySec_ModPick: Filter by mod
 	BestiaryFilterReset: Reset filters
-	BestiaryFilterEmpty: (No vanilla filters loaded ù enter a world and retry)
+	BestiaryFilterEmpty: (No vanilla filters loaded ? enter a world and retry)
 	BestiaryDetailBack: Back
 	BestiaryDetailModFmt: Mod: {0}
 	BestiaryDetailNetIdFmt: NPC ID: {0}
 	BestiaryDetailUnlockFmt: Unlock state: {0}
 	BestiaryDetailPlaceholder: Full bestiary fields will be added in a later pass (detail shell).
-	BestiaryDetailEmpty: Not discovered yet ù no details.
+	BestiaryDetailEmpty: Not discovered yet ? no details.
 	BestiaryDetailUnregistered: Not in vanilla bestiary database.
+	BestiaryDetailField_Name: Name
+	BestiaryDetailField_Mod: Mod
+	BestiaryDetailField_Status: Status
+	BestiaryDetailField_Debug: Debug
+	BestiaryDetailField_Flavor: Description
+	BestiaryDetailField_Kills: Kills
+	BestiaryDetailField_Drops: Drops
+	BestiaryDetailField_Stats: Stats
+	BestiaryDetailField_Spawn: Spawn
+	BestiaryDetailField_NoNumbers: (Numbers hidden for current face mode)
 	BestiaryGroupPhotoWip: Group photo layout (Phase 2)
+	BestiaryBand_TownNpc: Town NPCs
+	BestiaryBand_Critter: Critters
+	BestiaryBand_Event: Events
+	BestiaryBand_NormalEnemy: Enemies
+	BestiaryBand_MiniBoss: Mini bosses
+	BestiaryBand_Boss: Bosses
+	BestiaryBand_Other: Other
+	BestiaryBand_Unregistered: Unlisted
 	BestiaryPendingDiscoveryFmt: "{0} more creatures waiting to be discovered"
 	BestiaryStatsLine: Vanilla bestiary {0} | Catalog {1} | Visible {2} | Not listed {3} | View {4}
 	BestiaryFaceTip_AllVisible: All visible
@@ -273,6 +291,8 @@ UI: {
 	DragItemHint: Drag an item here to query
 	ResearchSearchHint: Search by name / internal id / pinyin initials...
 	NoRecipePath: No crafting path for this item
+	GreenFaceNoProducts: No products here still need Journey research, or nested craft is blocked (stand near placed crafting stations; Shimmer rules apply before you touch Shimmer)
+	NoProductsForFilter: No products match the current filter
 	ViewCard: Cards
 	ViewList: List
 	ResearchAll: Research all
@@ -284,7 +304,7 @@ UI: {
 	FaceTipPurpleNonJourney: Products crafted from this material
 	FaceTipPurpleNeedJourney: Enable this mode in Journey mode
 	FaceTipYellow: Researched products crafted from this material
-	FaceTipGreen: Researchable products crafted from this material
+	FaceTipGreen: Products using this material whose full nested craft chain is researched, with available recipes and seen crafting stations; hides Shimmer outputs and indirect dependents until you touch Shimmer
 	FaceTipBlue: Unresearched products crafted from this material
 	FaceTipPurpleJourney: Enable this mode in other game modes
 	BuffUnlockedTitle: Unlocked buffs

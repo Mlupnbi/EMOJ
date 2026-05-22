@@ -430,3 +430,4 @@ c:\Users\14451\Documents\My Games\Terraria\tModLoader\ModSources\EvenMoreOverpow
 c:\Users\14451\Documents\My Games\Terraria\tModLoader\ModSources\EvenMoreOverpoweredJourney\bin\Release\net8.0\Data\BuffModSupport\scans\WMITF_registration_compare.tsv
 c:\Users\14451\Documents\My Games\Terraria\tModLoader\ModSources\EvenMoreOverpoweredJourney\bin\Release\net8.0\Data\BuffModSupport\scans\WMITF_support_report.txt
 c:\Users\14451\Documents\My Games\Terraria\tModLoader\ModSources\EvenMoreOverpoweredJourney\bin\Release\net8.0\Data\BuffModSupport\support_summary.tsv
+c:\Users\14451\Documents\My Games\Terraria\tModLoader\ModSources\EvenMoreOverpoweredJourney\obj\Release\net8.0\EvenMoreOverpoweredJourney.sourcelink.json

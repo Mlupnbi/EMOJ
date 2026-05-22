@@ -14,6 +14,7 @@ using Terraria.UI;
 using EvenMoreOverpoweredJourney;
 using EvenMoreOverpoweredJourney.ItemHub.Rules;
 using EvenMoreOverpoweredJourney.Shell.UI;
+using EvenMoreOverpoweredJourney.Shell.UI.Assets;
 using EvenMoreOverpoweredJourney.Buffs.UI.Components;
 using EvenMoreOverpoweredJourney.Shell.UI.Components;
 
@@ -21,52 +22,25 @@ namespace EvenMoreOverpoweredJourney.ItemHub.UI
 {
     internal static class ItemHubUiTextureHelper
     {
-        internal static Texture2D TryLoad(Mod mod, string assetPath)
-        {
-            if (mod == null || string.IsNullOrEmpty(assetPath))
-                return null;
-            try
-            {
-                return mod.Assets.Request<Texture2D>(assetPath, AssetRequestMode.ImmediateLoad).Value;
-            }
-            catch
-            {
-                return null;
-            }
-        }
+        internal static Texture2D TryLoad(Mod mod, string assetPath) =>
+            EojUiTextureCache.TryLoadFirst(assetPath);
 
-        internal static Texture2D TryLoadFirst(Mod mod, params string[] paths)
-        {
-            if (mod == null || paths == null)
-                return null;
-            foreach (string p in paths)
-            {
-                if (string.IsNullOrEmpty(p))
-                    continue;
-                Texture2D t = TryLoad(mod, p);
-                if (t != null)
-                    return t;
-            }
-
-            return null;
-        }
+        internal static Texture2D TryLoadFirst(Mod mod, params string[] paths) =>
+            EojUiTextureCache.TryLoadFirst(paths);
 
         internal static Texture2D TryLoadSortDirection(Mod mod, bool descending)
         {
-            if (descending)
-            {
-                return TryLoadFirst(mod,
-                    global::EvenMoreOverpoweredJourney.EvenMoreOverpoweredJourney.ItemHubSortOrderDesc,
-                    global::EvenMoreOverpoweredJourney.EvenMoreOverpoweredJourney.ItemHubSortOrderDescAlt,
-                    "Assets/UI/ItemHubSortDesc",
-                    "Assets/UI/SortOrderDesc");
-            }
+            EojUiTextureCache.WarmTab(EojUiTab.ItemHub);
+            return descending ? EojUiTextures.ItemHub.SortDesc : EojUiTextures.ItemHub.SortAsc;
+        }
 
-            return TryLoadFirst(mod,
-                global::EvenMoreOverpoweredJourney.EvenMoreOverpoweredJourney.ItemHubSortOrderAsc,
-                "Assets/UI/ItemHubSortOrderASC",
-                "Assets/UI/ItemHubSortAsc",
-                "Assets/UI/SortOrderAsc");
+        internal static Texture2D FilterButton
+        {
+            get
+            {
+                EojUiTextureCache.WarmTab(EojUiTab.ItemHub);
+                return EojUiTextures.ItemHub.FilterButton;
+            }
         }
     }
 
@@ -204,8 +178,8 @@ namespace EvenMoreOverpoweredJourney.ItemHub.UI
             sortFieldHit.Top.Set(stripY, 0);
             sortFieldHit.Width.Set(sortPanelW, 0);
             sortFieldHit.Height.Set(28, 0);
-            sortFieldHit.BackgroundColor = new Color(40, 40, 60);
-            sortFieldHit.BorderColor = new Color(70, 70, 100);
+            sortFieldHit.BackgroundColor = OPJourneyUiColors.ButtonBackground;
+            sortFieldHit.BorderColor = OPJourneyUiColors.ButtonBorder;
             sortFieldHit.SetPadding(4);
 
             sortDirBtn = new ItemHubSortDirectionButton(_shell, () =>
@@ -333,7 +307,7 @@ namespace EvenMoreOverpoweredJourney.ItemHub.UI
         private int ComputePerRowForWidth(float listInnerW)
         {
             const float slotScale = 0.56f * 1.2f;
-            int tw = TextureAssets.InventoryBack.Value.Width;
+            int tw = global::EvenMoreOverpoweredJourney.Shell.UI.Assets.EojUiTextures.Common.InventoryBack.Width;
             float cellW = tw * slotScale + 4f;
             return Math.Max(1, (int)(listInnerW / cellW));
         }
@@ -449,8 +423,8 @@ namespace EvenMoreOverpoweredJourney.ItemHub.UI
             itemList.Clear();
 
             const float slotScale = 0.56f * 1.2f;
-            int tw = TextureAssets.InventoryBack.Value.Width;
-            int th = TextureAssets.InventoryBack.Value.Height;
+            int tw = global::EvenMoreOverpoweredJourney.Shell.UI.Assets.EojUiTextures.Common.InventoryBack.Width;
+            int th = global::EvenMoreOverpoweredJourney.Shell.UI.Assets.EojUiTextures.Common.InventoryBack.Height;
             _buildCellW = tw * slotScale + 4f;
             _buildRowH = th * slotScale + 4f;
             _buildPerRow = isCardMode ? ComputePerRowForWidth(width) : 1;
@@ -627,8 +601,8 @@ namespace EvenMoreOverpoweredJourney.ItemHub.UI
             float old = Main.inventoryScale;
             Main.inventoryScale = _scale;
             Vector2 slotPos = pos + new Vector2(1, 2);
-            int sw = (int)(TextureAssets.InventoryBack.Value.Width * Main.inventoryScale);
-            int sh = (int)(TextureAssets.InventoryBack.Value.Height * Main.inventoryScale);
+            int sw = (int)(global::EvenMoreOverpoweredJourney.Shell.UI.Assets.EojUiTextures.Common.InventoryBack.Width * Main.inventoryScale);
+            int sh = (int)(global::EvenMoreOverpoweredJourney.Shell.UI.Assets.EojUiTextures.Common.InventoryBack.Height * Main.inventoryScale);
             Item[] dummy = new Item[11];
             dummy[10] = _item;
             ItemSlot.Draw(spriteBatch, dummy, ItemSlot.Context.InventoryItem, 10, slotPos);
@@ -709,8 +683,8 @@ namespace EvenMoreOverpoweredJourney.ItemHub.UI
             float old = Main.inventoryScale;
             Main.inventoryScale = _scale;
             Vector2 slotPos = dims.Position() + new Vector2(2, 2);
-            int sw = (int)(TextureAssets.InventoryBack.Value.Width * Main.inventoryScale);
-            int sh = (int)(TextureAssets.InventoryBack.Value.Height * Main.inventoryScale);
+            int sw = (int)(global::EvenMoreOverpoweredJourney.Shell.UI.Assets.EojUiTextures.Common.InventoryBack.Width * Main.inventoryScale);
+            int sh = (int)(global::EvenMoreOverpoweredJourney.Shell.UI.Assets.EojUiTextures.Common.InventoryBack.Height * Main.inventoryScale);
             Item[] dummy = new Item[11];
             dummy[10] = _item;
             ItemSlot.Draw(spriteBatch, dummy, ItemSlot.Context.InventoryItem, 10, slotPos);
@@ -847,8 +821,8 @@ namespace EvenMoreOverpoweredJourney.ItemHub.UI
             _shell = shell;
             _onClick = onClick;
             SetPadding(4);
-            BackgroundColor = new Color(40, 40, 60);
-            BorderColor = new Color(70, 70, 100);
+            BackgroundColor = OPJourneyUiColors.ButtonBackground;
+            BorderColor = OPJourneyUiColors.ButtonBorder;
             OnLeftClick += (_, __) => _onClick?.Invoke();
         }
 
@@ -860,7 +834,7 @@ namespace EvenMoreOverpoweredJourney.ItemHub.UI
             float tw = FontAssets.MouseText.Value.MeasureString(lab).X * textScale;
             float gap = 6f;
             float sidePad = 12f;
-            Texture2D icon = ItemHubUiTextureHelper.TryLoad(mod, global::EvenMoreOverpoweredJourney.EvenMoreOverpoweredJourney.ItemHubFilterButton);
+            Texture2D icon = ItemHubUiTextureHelper.FilterButton;
             float iw = 22f;
             if (icon != null)
                 iw = Math.Min(24f, icon.Width * (22f / icon.Height));
@@ -873,8 +847,8 @@ namespace EvenMoreOverpoweredJourney.ItemHub.UI
         {
             base.Update(gameTime);
             bool open = _shell?.ItemHubSecondaryPanel?.IsOpen ?? false;
-            BorderColor = open ? new Color(255, 220, 120) : new Color(70, 70, 100);
-            BackgroundColor = open ? new Color(56, 52, 78) : new Color(40, 40, 60);
+            BorderColor = open ? OPJourneyUiColors.ButtonBorderOpen : OPJourneyUiColors.ButtonBorder;
+            BackgroundColor = open ? OPJourneyUiColors.ButtonBackgroundOpen : OPJourneyUiColors.ButtonBackground;
         }
 
         protected override void DrawSelf(SpriteBatch spriteBatch)
@@ -884,11 +858,11 @@ namespace EvenMoreOverpoweredJourney.ItemHub.UI
             Mod mod = ModContent.GetInstance<global::EvenMoreOverpoweredJourney.EvenMoreOverpoweredJourney>();
             float yMid = d.Y + d.Height * 0.5f;
             bool open = _shell?.ItemHubSecondaryPanel?.IsOpen ?? false;
-            Color tint = open ? Color.White : new Color(220, 220, 255) * 0.9f;
+            Color tint = open ? OPJourneyUiColors.TextPrimary : OPJourneyUiColors.TabIconInactiveTint;
             const float textScale = 0.7f;
             string lab = EOPJText.UI("ItemHubFilterLabel");
             Vector2 ms = FontAssets.MouseText.Value.MeasureString(lab) * textScale;
-            Texture2D iconTex = ItemHubUiTextureHelper.TryLoad(mod, global::EvenMoreOverpoweredJourney.EvenMoreOverpoweredJourney.ItemHubFilterButton);
+            Texture2D iconTex = ItemHubUiTextureHelper.FilterButton;
             float ih = 22f;
             float iwIcon = 0f;
             float gap = 6f;
