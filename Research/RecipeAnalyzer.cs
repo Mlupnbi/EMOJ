@@ -11,8 +11,6 @@ namespace EvenMoreOverpoweredJourney.Research
 {
     public static class RecipeAnalyzer
     {
-        private const int MaterialChainMaxDepth = 48;
-
         private static int _recipeIndexBuiltForCount = -1;
         private static List<Recipe>[] _producersByItemType;
 
@@ -69,40 +67,26 @@ namespace EvenMoreOverpoweredJourney.Research
             return set.OrderBy(t => t).ToList();
         }
 
+        /// <summary>????????????????????????????????0.1 ??????</summary>
         public static List<int> GetDeepCraftableProducts(Item seedItem)
         {
             var result = new List<int>();
-            if (seedItem.IsAir)
+            if (seedItem == null || seedItem.IsAir)
                 return result;
 
             int seedType = seedItem.type;
-            EnsureProducerIndex();
-            var memo = new Dictionary<int, bool>();
-            var visiting = new HashSet<int>();
-
-            foreach (int productType in GetAllProductTypesUsingMaterial(seedType))
+            foreach (Recipe recipe in Main.recipe)
             {
-                if (IsFullyResearched(productType))
+                if (recipe.createItem == null || recipe.createItem.IsAir)
                     continue;
-                if (IsShimmerItemTransformLink(seedType, productType))
+                if (IsFullyResearched(recipe.createItem.type))
                     continue;
-
-                bool qualifies = false;
-                foreach (Recipe recipe in GetProducersFor(productType))
-                {
-                    if (!RecipeUsesIngredient(recipe, seedType))
-                        continue;
-                    if (!IsGreenFaceCraftPathValid(recipe, seedType))
-                        continue;
-                    if (RecipeIngredientsResearchComplete(recipe, memo, visiting, 0))
-                    {
-                        qualifies = true;
-                        break;
-                    }
-                }
-
-                if (qualifies)
-                    result.Add(productType);
+                if (!RecipeUsesIngredient(recipe, seedType))
+                    continue;
+                if (!AllMaterialsResearched(recipe))
+                    continue;
+                if (!result.Contains(recipe.createItem.type))
+                    result.Add(recipe.createItem.type);
             }
 
             return result;
@@ -142,7 +126,14 @@ namespace EvenMoreOverpoweredJourney.Research
             return fromProducts.Where(t => IsFullyResearched(t)).Distinct().OrderBy(t => t).ToList();
         }
 
-        public static List<int> FilterJourneyGreen(Item seedItem) => GetDeepCraftableProducts(seedItem);
+        public static List<int> FilterJourneyGreen(Item seedItem)
+        {
+            if (seedItem == null || seedItem.IsAir)
+                return new List<int>();
+            if (!IsFullyResearched(seedItem.type))
+                return new List<int>();
+            return GetDeepCraftableProducts(seedItem);
+        }
 
         public static List<int> FilterJourneyBlue(int seedType)
         {
@@ -254,148 +245,6 @@ namespace EvenMoreOverpoweredJourney.Research
             var recipes = new List<Recipe>();
             foreach (Recipe recipe in GetProducersFor(itemType))
                 recipes.Add(recipe);
-            return recipes;
-        }
-
-        public static bool IsInJourneyResearchCatalog(int itemType) =>
-            TryGetJourneyUnlockQuota(itemType, out _);
-
-        public static bool RecipeIngredientsResearchComplete(
-            Recipe recipe,
-            Dictionary<int, bool> memo = null,
-            HashSet<int> visiting = null,
-            int depth = 0)
-        {
-            memo ??= new Dictionary<int, bool>();
-            visiting ??= new HashSet<int>();
-            if (depth > MaterialChainMaxDepth)
-                return false;
-            if (!IsGreenFaceCraftPathValid(recipe))
-                return false;
-
-            EnsureProducerIndex();
-            int n = recipe.requiredItem.Count;
-            for (int i = 0; i < n; i++)
-            {
-                Item req = recipe.requiredItem[i];
-                if (req == null || req.IsAir)
-                    continue;
-                if (!IsMaterialResearchComplete(req.type, visiting, memo, depth + 1))
-                    return false;
-            }
-            return true;
-        }
-
-        private static bool IsMaterialResearchComplete(
-            int itemType,
-            HashSet<int> visiting,
-            Dictionary<int, bool> memo,
-            int depth)
-        {
-            if (itemType <= ItemID.None)
-                return true;
-            if (depth > MaterialChainMaxDepth)
-                return false;
-
-            if (memo.TryGetValue(itemType, out bool cached))
-                return cached;
-
-            if (!IsInJourneyResearchCatalog(itemType))
-            {
-                memo[itemType] = true;
-                return true;
-            }
-
-            if (IsFullyResearched(itemType))
-            {
-                memo[itemType] = true;
-                return true;
-            }
-
-            if (visiting.Contains(itemType))
-                return false;
-
-            visiting.Add(itemType);
-            bool ok = false;
-            foreach (Recipe producer in GetProducersFor(itemType))
-            {
-                if (!IsGreenFaceCraftPathValid(producer))
-                    continue;
-                if (RecipeIngredientsResearchComplete(producer, memo, visiting, depth + 1))
-                {
-                    ok = true;
-                    break;
-                }
-            }
-            visiting.Remove(itemType);
-            memo[itemType] = ok;
-            return ok;
-        }
-
-        public static bool IsGreenFaceCraftPathValid(Recipe recipe, int seedType = -1)
-        {
-            if (recipe?.createItem == null || recipe.createItem.IsAir)
-                return false;
-            if (IsShimmerExcludedRecipe(recipe, seedType))
-                return false;
-            if (Main.netMode == NetmodeID.Server)
-                return false;
-            Player player = Main.LocalPlayer;
-            if (player == null || !player.active)
-                return false;
-            return RecipeLoader.RecipeAvailable(recipe);
-        }
-
-        private static bool IsShimmerExcludedRecipe(Recipe recipe, int seedType = -1)
-        {
-            if (recipe?.createItem == null || recipe.createItem.IsAir)
-                return false;
-
-            int product = recipe.createItem.type;
-            int decraftIdx = ShimmerTransforms.GetDecraftingRecipeIndex(product);
-            if (decraftIdx >= 0 && decraftIdx < Recipe.numRecipes && Main.recipe[decraftIdx] == recipe)
-                return true;
-
-            if (seedType > ItemID.None && IsShimmerItemTransformLink(seedType, product))
-                return true;
-
-            return false;
-        }
-
-        private static bool IsShimmerItemTransformLink(int inputType, int outputType)
-        {
-            if (inputType > ItemID.None && inputType < ItemID.Sets.ShimmerTransformToItem.Length)
-            {
-                if (ItemID.Sets.ShimmerTransformToItem[inputType] == outputType)
-                    return true;
-            }
-            if (outputType > ItemID.None && outputType < ItemID.Sets.ShimmerTransformToItem.Length)
-            {
-                if (ItemID.Sets.ShimmerTransformToItem[outputType] == inputType)
-                    return true;
-            }
-            return false;
-        }
-
-        public static List<Recipe> GetGreenFaceQualifyingRecipes(int productType, int seedType)
-        {
-            var recipes = new List<Recipe>();
-            if (seedType <= ItemID.None)
-                return recipes;
-
-            EnsureProducerIndex();
-            var memo = new Dictionary<int, bool>();
-            var visiting = new HashSet<int>();
-            foreach (Recipe recipe in GetProducersFor(productType))
-            {
-                if (!RecipeUsesIngredient(recipe, seedType))
-                    continue;
-                if (!IsGreenFaceCraftPathValid(recipe, seedType))
-                    continue;
-                if (!RecipeIngredientsResearchComplete(recipe, memo, visiting, 0))
-                    continue;
-                recipes.Add(recipe);
-            }
             return recipes;
         }
 
