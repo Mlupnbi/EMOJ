@@ -5,7 +5,6 @@ using Terraria.ModLoader;
 using Terraria.UI;
 using EvenMoreOverpoweredJourney.Core.Logging;
 using EvenMoreOverpoweredJourney.Bestiary.Catalog;
-using EvenMoreOverpoweredJourney.Bestiary.UI;
 using EvenMoreOverpoweredJourney.Shell.UI;
 
 namespace EvenMoreOverpoweredJourney.Shell
@@ -14,6 +13,7 @@ namespace EvenMoreOverpoweredJourney.Shell
     {
         internal OPJourneyUI opJourneyUI;
         private UserInterface _opInterface;
+        private GameTime _lastUiGameTime;
 
         public override void Load()
         {
@@ -43,12 +43,12 @@ namespace EvenMoreOverpoweredJourney.Shell
 
         private void ResetUIStateForWorldLoad()
         {
-            OPJourneyUI.Visible = false;
+            OPJourneyUI.HideAndResetForWorld();
+            SyncInterfaceVisibility();
             HubRegistry.Reset();
             HubRegistry.EnsureBuilt();
             BestiaryListCatalog.Rebuild();
             opJourneyUI?.ItemHubSecondaryPanel?.RebuildScroll();
-            opJourneyUI?.BestiarySecondaryPanel?.SetOpen(false);
         }
 
         private void CreateInterface()
@@ -72,8 +72,20 @@ namespace EvenMoreOverpoweredJourney.Shell
 
         public override void UpdateUI(GameTime gameTime)
         {
-            if (OPJourneyUI.Visible)
-                _opInterface?.Update(gameTime);
+            _lastUiGameTime = gameTime;
+            SyncInterfaceVisibility();
+            if (!OPJourneyUI.Visible)
+                return;
+
+            _opInterface?.Update(gameTime);
+        }
+
+        internal void SyncInterfaceVisibility()
+        {
+            if (_opInterface == null)
+                return;
+
+            _opInterface.IsVisible = OPJourneyUI.Visible;
         }
 
         public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
@@ -86,8 +98,11 @@ namespace EvenMoreOverpoweredJourney.Shell
                 "EvenMoreOverpoweredJourney: Main UI",
                 delegate
                 {
-                    if (OPJourneyUI.Visible)
-                        _opInterface?.Draw(Main.spriteBatch, new GameTime());
+                    if (!OPJourneyUI.Visible || _opInterface?.CurrentState == null || _lastUiGameTime == null)
+                        return true;
+
+                    SyncInterfaceVisibility();
+                    _opInterface.Draw(Main.spriteBatch, _lastUiGameTime);
                     return true;
                 },
                 InterfaceScaleType.UI)

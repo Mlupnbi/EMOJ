@@ -1,6 +1,0 @@
-﻿﻿Name	HasModBuffClass	HasBuffTypeRef	SuggestedPhase	Confidence	File
-BigSuckBuff	Y	Y	Unknown	Low	Fargowiltas.Content.Buffs/BigSuckBuff.cs
-CoolCrabBuff	Y	Y	CombatVisual	Medium	Fargowiltas.Content.Buffs/CoolCrabBuff.cs
-Omnistation	Y	N	Stat	High	Fargowiltas.Content.Buffs/Omnistation.cs
-Semistation	Y	Y	Stat	High	Fargowiltas.Content.Buffs/Semistation.cs
-WoodDrop	Y	Y	Unknown	Low	Fargowiltas.Content.Buffs/WoodDrop.cs

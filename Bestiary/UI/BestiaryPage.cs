@@ -69,6 +69,9 @@ namespace EvenMoreOverpoweredJourney.Bestiary.UI
 
         public override void Draw(SpriteBatch spriteBatch)
         {
+            if (!OPJourneyUI.Visible || _shell.CurrentTab != 3)
+                return;
+
             DrawGridBackdrop(spriteBatch);
             base.Draw(spriteBatch);
         }
@@ -318,6 +321,9 @@ namespace EvenMoreOverpoweredJourney.Bestiary.UI
 
         public override void Update(GameTime gameTime)
         {
+            if (!OPJourneyUI.Visible || _shell.CurrentTab != 3)
+                return;
+
             base.Update(gameTime);
 
             if (!_catalogRefreshAttempted || BestiaryListCatalog.BestiaryDbEntryCount != (Main.BestiaryDB?.Entries?.Count ?? 0))
@@ -484,8 +490,16 @@ namespace EvenMoreOverpoweredJourney.Bestiary.UI
             return a.NetId.CompareTo(b.NetId);
         }
 
+        private void RefreshLocalizedChrome()
+        {
+            _titleText?.SetText(EOPJText.UI("BestiaryTitle"));
+            if (_searchBar != null)
+                _searchBar.SearchHint = EOPJText.UI("BestiarySearchHint");
+        }
+
         public void RefreshSummary()
         {
+            RefreshLocalizedChrome();
             _faceSelector.ActiveFace = _shell.BestiaryFaceMode;
             RebuildActiveFilterSummary();
 

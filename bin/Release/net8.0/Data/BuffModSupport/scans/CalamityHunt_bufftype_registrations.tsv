@@ -1,9 +1,0 @@
-﻿﻿RegisteredTypeName	ReferenceCount	SampleFiles
-Absorption	1	CalamityHunt.Content.Projectiles.Weapons.Summoner/GobfloggerProj.cs
-BloatBabyBuff	1	CalamityHunt.Content.Pets.BloatBabyPet/ImperialGelato.cs
-FusionBurn	7	CalamityHunt.Content.NPCs.Bosses.GoozmaBoss.Projectiles/FusionRay.cs|CalamityHunt.Content.NPCs.Bosses.GoozmaBoss.Projectiles/GooLightning.cs|CalamityHunt.Content.Projectiles.Weapons.Melee/FissionFlayerProjectile.cs|CalamityHunt.Content.Projectiles.Weapons.Melee/ScytheOfTheOldGodHeld.cs|CalamityHunt.Content.Projectiles.Weapons.Ranged/TrailblazerFlame.cs
-Gobbed	1	CalamityHunt.Content.Projectiles.Weapons.Summoner/GobfloggerProj.cs
-PaladinPalanquinBuff	1	CalamityHunt.Content.Mounts/PaladinPalanquinMount.cs
-SlimeCaneBuff	3	CalamityHunt/CalamityHunt.cs|CalamityHunt.Common.Players/SlimeCanePlayer.cs|CalamityHunt.Content.Items.Weapons.Summoner/SlimeCane.cs
-SplendorJamBuff	1	CalamityHunt.Common.Players/SplendorJamPlayer.cs
-Swamped	1	CalamityHunt.Content.Projectiles/SwampBall.cs

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EvenMoreOverpoweredJourney")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("0.5.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("0.5.0+4e6453cef5384d9a2f5460e5d002ec0a42a1a339")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("0.5.0+ab813645ff7664b330746d898d6f4bfabfc90345")]
 [assembly: System.Reflection.AssemblyProductAttribute("EvenMoreOverpoweredJourney")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EvenMoreOverpoweredJourney")]
 [assembly: System.Reflection.AssemblyVersionAttribute("0.5.0.0")]

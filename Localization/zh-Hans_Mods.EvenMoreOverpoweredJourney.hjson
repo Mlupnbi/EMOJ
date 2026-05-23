@@ -237,9 +237,9 @@ UI: {
 	BestiaryFilterReset: 重置
 	BestiaryFilterEmpty: （未加载原版筛选，请进入世界后重试）
 	BestiaryDetailBack: 返回
-	BestiaryDetailModFmt: "模组：{0}"
-	BestiaryDetailNetIdFmt: "NPC ID：{0}"
-	BestiaryDetailUnlockFmt: "解锁状态：{0}"
+	BestiaryDetailModFmt: 模组：{0}
+	BestiaryDetailNetIdFmt: NPC ID：{0}
+	BestiaryDetailUnlockFmt: 解锁状态：{0}
 	BestiaryDetailPlaceholder: 完整图鉴字段将在后续版本补全（当前为详情外壳）。
 	BestiaryDetailEmpty: 尚未发现，无详情。
 	BestiaryDetailUnregistered: 不在原版图鉴数据库中。
@@ -262,17 +262,17 @@ UI: {
 	BestiaryBand_Boss: Boss
 	BestiaryBand_Other: 其他
 	BestiaryBand_Unregistered: 未登录
-	BestiaryPendingDiscoveryFmt: "还有 {0} 种生物待发现"
-	BestiaryStatsLine: "原版图鉴 {0} | 目录 {1} | 可见 {2} | 未登录 {3} | 视图 {4}"
+	BestiaryPendingDiscoveryFmt: 还有 {0} 种生物待发现
+	BestiaryStatsLine: 原版图鉴 {0} | 目录 {1} | 可见 {2} | 未登录 {3} | 视图 {4}
 	BestiaryFaceTip_AllVisible: 全部可见
 	BestiaryFaceTip_ProgressivePlus: 渐进解锁 +
 	BestiaryFaceTip_ProgressiveMinus: 仅已发现
 	BestiaryFaceTip_UnlockedOnly: 仅未解锁
-	BestiaryCollectionStats: "已找到 {0} | 未找到 {1} ({2:0.#}%)"
-	BestiaryCollectionSummary: "已找到 {0} ({1:0.#}%) | 未找到 {2} | 总计 {3}"
-	BestiaryFaceSummary_DiscoveredOnly: "已找到 {0} | 总计 {1}"
-	BestiaryFaceSummary_UnlockedOnly: "未发现 {0} | 总计 {1}"
-	BestiaryCardSourceModFmt: "来源：{0}"
+	BestiaryCollectionStats: 已找到 {0} | 未找到 {1} ({2:0.#}%)
+	BestiaryCollectionSummary: 已找到 {0} ({1:0.#}%) | 未找到 {2} | 总计 {3}
+	BestiaryFaceSummary_DiscoveredOnly: 已找到 {0} | 总计 {1}
+	BestiaryFaceSummary_UnlockedOnly: 未发现 {0} | 总计 {1}
+	BestiaryCardSourceModFmt: 来源：{0}
 	BestiaryCardSourceVanilla: 来源：原版生物
 	BestiaryModTipVanilla: 原版生物
 	SectionQuery: 查询物品
@@ -281,7 +281,9 @@ UI: {
 	DragItemHint: 拖入物品查询
 	ResearchSearchHint: 按名称/内部ID/拼音首字母搜索…
 	NoRecipePath: 当前物品无合成路径
-	GreenFaceNoProducts: 此处无仍需旅途研究的产物，或嵌套合成被阻断（请靠近已摆放的制作台；触摸微光前适用微光规则）
+	GreenFaceNoProducts: 此处无仍需旅途研究的产物，或嵌套合成被阻断（请靠近已摆放的制作台、或先研究对应工作台物品；也可切蓝脸查看未研究产物；触摸微光前适用微光规则）
+	GreenFaceNeedResearchedSeed: 绿脸要求查询物本身已旅途研究满；请先研究该物品，或切换到蓝脸查看未研究产物
+	GreenFaceQuerying: 正在查询可研究产物…
 	NoProductsForFilter: 没有符合当前筛选的产物
 	ViewCard: 卡片
 	ViewList: 列表
@@ -290,7 +292,7 @@ UI: {
 	GiveAll: 获取全部
 	GetThisItem: 获取此物
 	WarehouseWip: 仓库页签尚未就绪。
-	ResearchDoneLine: "本次已研究，{0}"
+	ResearchDoneLine: 本次已研究，{0}
 	FaceTipPurpleNonJourney: 以此材料合成的产物
 	FaceTipPurpleNeedJourney: 请在旅途模式下启用此模式
 	FaceTipYellow: 已研究、以此材料合成的产物
@@ -301,21 +303,21 @@ UI: {
 	BuffControlsHint: 左键切换 - 右键禁用 - 中键固定到增益栏
 	BuffWarning: 堆叠过多增益可能导致不稳定；部分模组增益可能无效。
 	BuffSearchHint: 搜索增益名/内部ID/拼音…
-	BuffStats: "已解锁：{0}/{1} | 激活：{2} | 禁用：{3}"
+	BuffStats: 已解锁：{0}/{1} | 激活：{2} | 禁用：{3}
 	BuffCat_Positive: 增益
 	BuffCat_PositivePotionFood: 药水与食物
 	BuffCat_PositiveEquipment: 装备（饰品/部件）
 	BuffCat_PositiveSetBonus: 套装效果
 	BuffCat_PositiveEnvironment: 环境
-	BuffBulkEnableSummary: "已启用 {0}；跳过 {1}（锁定 {3}/手动实体 {4}/仅手动 {5}/不安全虚拟 {6}）；{2} 个套装请在套装区切换"
-	BuffBulkEnableSummaryUnsafeAllowed: "已启用 {0}（配置允许不安全虚拟）；跳过 {1}（锁定 {3}/手动实体 {4}/仅手动 {5}）；{2} 个套装请在套装区切换"
+	BuffBulkEnableSummary: 已启用 {0}；跳过 {1}（锁定 {3}/手动实体 {4}/仅手动 {5}/不安全虚拟 {6}）；{2} 个套装请在套装区切换
+	BuffBulkEnableSummaryUnsafeAllowed: 已启用 {0}（配置允许不安全虚拟）；跳过 {1}（锁定 {3}/手动实体 {4}/仅手动 {5}）；{2} 个套装请在套装区切换
 	BuffBulkSetBonusNoBulk: 套装效果不可批量启用，请逐个点击图标
 	BuffBulkMiscExclusiveNoBulk: 宠物、光宠、坐骑、矿车各占一位，每区仅可启用一个
 	SetBonusCircuitBroken: 套装效果过多，已暂停自动应用。请关闭部分套装并重进世界
 	BuffCat_Negative: 减益
 	BuffFilterTitle: 增益模组筛选
 	BuffFilterModPick: 按模组筛选
-	BuffFilterModHoverFmt: "来自模组 {0} 的增益"
+	BuffFilterModHoverFmt: 来自模组 {0} 的增益
 	BuffFilterReset: 重置
 	BuffCat_Other: 其他
 	BuffCat_Mount: 坐骑
@@ -325,7 +327,7 @@ UI: {
 	BuffCat_Minion: 弟子
 	BuffCat_Sentry: 啾塔
 	BuffCat_CombatSummon: 仆从
-	BuffHoverMinionSlots: "此弟子占用 {0} 个弟子槽（最多 {1} 个）。"
+	BuffHoverMinionSlots: 此弟子占用 {0} 个弟子槽（最多 {1} 个）。
 	BuffCat_Disabled: 已禁用
 	BuffBtnEnableAll: 全部启用
 	BuffBtnClearAll: 全部清除
@@ -336,7 +338,7 @@ UI: {
 	BuffHoverMiddle: "[c/FFAA00:中键：固定/取消固定到增益栏]"
 	BuffHoverDisabled: "[c/FF0000:已禁用]"
 	BuffHoverPinned: "[c/FFAA00:已固定到增益栏]"
-	BuffHoverSource: "来源：{0}"
+	BuffHoverSource: 来源：{0}
 	BuffHoverMiscEquip: "[c/FFAA00:通过杂项槽位维持；每区一个，关闭时恢复原槽位]"
 	BuffHoverVirtual: "[c/88CCFF:虚拟效果；≤20 个聚合为 Alpha 图标]"
 	BuffHoverPinAdvice: 若效果不生效，可尝试中键固定到增益栏
@@ -407,7 +409,7 @@ UI: {
 	ItemHubSec_Chain: 合成依赖链
 	ItemHubModVanillaShort: 原
 	ItemHubModTipVanilla: 原版物品
-	ItemHubModTipModFmt: "来自模组「{0}」的物品"
+	ItemHubModTipModFmt: 来自模组「{0}」的物品
 	ItemHubTip_Block: 固体方块：可摆放的实体方块（非框架重要物）
 	ItemHubTip_Light: 照明：火把类方块、发光方块、筱火；发光墙；手持/消胗光源
 	ItemHubTip_Wall: 墙体：可摆放墙的物品
@@ -451,15 +453,15 @@ UI: {
 	ItemHubTip_Material: 材料（标记为材料的物品）
 	ItemHubTip_OtherMisc: 其他杂项
 	ItemHubTip_Debug: 调试 / 废弃（仅在此筛选下可见；不可领取）
-	ItemHubTip_RareFmt: "稀有度 {0}"
+	ItemHubTip_RareFmt: 稀有度 {0}
 	ItemHubChainActivate: 启用
 	ItemHubChainActivateDesc: 启用后显示该物品的上游材料与下游产物。
-	ItemHubChainSlotHint: "拖入物品，或启用后按 [{0}] 点击物品查询。"
+	ItemHubChainSlotHint: 拖入物品，或启用后按 [{0}] 点击物品查询。
 	ItemHubChainKeyUnbound: 未绑定
 	ItemHubChainToggle: 筛选此物品的配方网络
-	ItemHubChainKeyHint: "页签3 + 本面板 + 链条开：对物品按 {0} 设为种子（不打开研究页）。"
+	ItemHubChainKeyHint: 页签3 + 本面板 + 链条开：对物品按 {0} 设为种子（不打开研究页）。
 	ItemHubActiveStripRemove: 点击移除此筛选
-	ItemHubActiveRareHoverFmt: "稀有度 {0}~{1}"
+	ItemHubActiveRareHoverFmt: 稀有度 {0}~{1}
 	ItemHubRareSliderFmt: "{0} → {1}"
 	ItemHubChainHint: 链式筛选：列表中每条规则都必须满足。左侧选类型，中间编辑，点「加入链条」。
 	ItemHubChainListTitle: 当前链条
@@ -470,7 +472,7 @@ UI: {
 	ItemHubChainRarityMax: 最高
 	ItemHubChainValueHint: 上 = 最低价值，下 = 最高价值（整数）。
 	ItemHubChainNameHint: 匹配显示名或内部名（子串、小写）。
-	ItemHubChainActiveFmt: "链条·{0}"
+	ItemHubChainActiveFmt: 链条·{0}
 	ItemHubChainKind_Mod: 模组
 	ItemHubChainKind_Rarity: 稀有度
 	ItemHubChainKind_Tile: 方块
@@ -485,12 +487,12 @@ UI: {
 	ItemHubChainKind_Cons: 消胗
 	ItemHubChainKind_Place: 可摆放
 	ItemHubRuleEmpty: ?
-	ItemHubRuleModsFmt: "模组 ({0})"
-	ItemHubRuleRarityFmt: "稀有度 {0}–{1}"
-	ItemHubRuleValueFmt: "价值 {0}–{1}"
-	ItemHubRuleTileFmt: "方块 {0}"
-	ItemHubRuleToolsFmt: "工具 {0}"
-	ItemHubRuleNameFmt: "名称包含「{0}」"
+	ItemHubRuleModsFmt: 模组 ({0})
+	ItemHubRuleRarityFmt: 稀有度 {0}–{1}
+	ItemHubRuleValueFmt: 价值 {0}–{1}
+	ItemHubRuleTileFmt: 方块 {0}
+	ItemHubRuleToolsFmt: 工具 {0}
+	ItemHubRuleNameFmt: 名称包含「{0}」
 	ItemHubRuleDmgMelee: 近战武器
 	ItemHubRuleDmgRanged: 远程武器
 	ItemHubRuleDmgMagic: 魔法武器

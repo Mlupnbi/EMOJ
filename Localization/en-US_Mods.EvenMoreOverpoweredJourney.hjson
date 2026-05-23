@@ -291,7 +291,9 @@ UI: {
 	DragItemHint: Drag an item here to query
 	ResearchSearchHint: Search by name / internal id / pinyin initials...
 	NoRecipePath: No crafting path for this item
-	GreenFaceNoProducts: No products here still need Journey research, or nested craft is blocked (stand near placed crafting stations; Shimmer rules apply before you touch Shimmer)
+	GreenFaceNoProducts: No products here still need Journey research, or nested craft is blocked (stand near crafting stations, or research the station item first; try Blue face for unresearched products; Shimmer rules apply before you touch Shimmer)
+	GreenFaceNeedResearchedSeed: Green face requires the query item to be fully Journey-researched first. Research it, or switch to Blue face for unresearched products.
+	GreenFaceQuerying: Querying researchable products…
 	NoProductsForFilter: No products match the current filter
 	ViewCard: Cards
 	ViewList: List

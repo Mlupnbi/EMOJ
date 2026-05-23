@@ -1,6 +1,0 @@
-﻿﻿# EmojBuffModScanner catalog
-# Mod: FargosSoulsDLC
-# Scanned: 2026-05-20T07:10:33.4113372Z
-# Source: C:\Users\14451\AppData\Local\Temp\EmojBuffGit_ddf8f005501d4d3f91c9d9f9865cd378\extracted\FargosSoulsDLC-main\Content\Calamity
-StableKey	ClassName	File	SuggestedPhase	Confidence	StatSignals	VisualSignals	EntitySignals	Note
-FargosSoulsDLC/CalamitousPresenceBuff	CalamitousPresenceBuff	Buffs/CalamitousPresenceBuff.cs	Unknown	Low				DisplayName: Mutant Presence

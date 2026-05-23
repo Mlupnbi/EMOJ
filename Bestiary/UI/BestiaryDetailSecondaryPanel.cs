@@ -176,6 +176,14 @@ namespace EvenMoreOverpoweredJourney.Bestiary.UI
             base.Update(gameTime);
         }
 
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            if (!_open || !OPJourneyUI.Visible || _shell.CurrentTab != 3 || GetDimensions().Width < 2f)
+                return;
+
+            base.Draw(spriteBatch);
+        }
+
         public override void ScrollWheel(UIScrollWheelEvent evt)
         {
             if (_open && _infoPage != null && GetDimensions().Width > 2f)

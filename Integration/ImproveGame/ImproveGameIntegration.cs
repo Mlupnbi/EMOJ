@@ -1,6 +1,7 @@
 using System;
 using System.Reflection;
 using Terraria.ModLoader;
+using EvenMoreOverpoweredJourney.Research.Crafting;
 
 namespace EvenMoreOverpoweredJourney.Integration.ImproveGame
 {
@@ -32,12 +33,17 @@ namespace EvenMoreOverpoweredJourney.Integration.ImproveGame
 
         public static string LastProbeError => _lastProbeError;
 
+        public static bool ImproveGamePortableCraftingEnabled => _portableCraftingEnabled;
+
+        private static bool _portableCraftingEnabled;
+
         public static void Refresh()
         {
             _loaded = false;
             _extraPlayerBuffSlots = 0;
             _dontDeleteBuff = false;
             _bestiaryQuickUnlock = false;
+            _portableCraftingEnabled = false;
             _lastProbeError = null;
 
             if (!ModLoader.TryGetMod(ModSlug, out Mod mod) || mod.Code == null)
@@ -48,12 +54,16 @@ namespace EvenMoreOverpoweredJourney.Integration.ImproveGame
             if (!TryReadImproveConfigs(mod, out int extraSlots, out bool dontDelete, out bool bestiaryQuick, out string error))
             {
                 _lastProbeError = error;
-                return;
+            }
+            else
+            {
+                _extraPlayerBuffSlots = Math.Max(0, extraSlots);
+                _dontDeleteBuff = dontDelete;
+                _bestiaryQuickUnlock = bestiaryQuick;
             }
 
-            _extraPlayerBuffSlots = Math.Max(0, extraSlots);
-            _dontDeleteBuff = dontDelete;
-            _bestiaryQuickUnlock = bestiaryQuick;
+            TryReadPortableCraftingConfig(mod, out _portableCraftingEnabled);
+            TryImportPortableStations(mod);
         }
 
         private static bool TryReadImproveConfigs(Mod mod, out int extraSlots, out bool dontDelete, out bool bestiaryQuickUnlock, out string error)
@@ -117,6 +127,53 @@ namespace EvenMoreOverpoweredJourney.Integration.ImproveGame
             {
                 error = ex.Message;
                 return false;
+            }
+        }
+
+        private static void TryReadPortableCraftingConfig(Mod mod, out bool enabled)
+        {
+            enabled = false;
+            Type configType = mod.Code.GetType("ImproveGame.Common.Configs.ImproveConfigs");
+            PropertyInfo instanceProp = configType?.GetProperty("Instance", BindingFlags.Public | BindingFlags.Static);
+            object instance = instanceProp?.GetValue(null);
+            FieldInfo field = configType?.GetField("PortableCraftingStation", BindingFlags.Public | BindingFlags.Instance);
+            if (instance == null || field == null)
+                return;
+
+            try
+            {
+                enabled = Convert.ToBoolean(field.GetValue(instance));
+            }
+            catch
+            {
+                enabled = false;
+            }
+        }
+
+        private static void TryImportPortableStations(Mod mod)
+        {
+            try
+            {
+                Type integrationsType = mod.Code.GetType("ImproveGame.Common.ModSystems.ModIntegrationsSystem");
+                FieldInfo field = integrationsType?.GetField(
+                    "PortableStations",
+                    BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public);
+                if (field?.GetValue(null) is System.Collections.IDictionary dict)
+                {
+                    var mapped = new System.Collections.Generic.Dictionary<int, System.Collections.Generic.List<int>>();
+                    foreach (System.Collections.DictionaryEntry entry in dict)
+                    {
+                        if (entry.Key is not int itemType || entry.Value is not System.Collections.Generic.List<int> tiles)
+                            continue;
+                        mapped[itemType] = tiles;
+                    }
+
+                    PortableCraftEnvironmentRegistry.RegisterImproveGamePortableStations(mapped);
+                }
+            }
+            catch
+            {
+                // ImproveGame internal layout may change; optional integration.
             }
         }
     }

@@ -30,9 +30,10 @@
 		<None Remove="Data\BuffModSupport\decompiled_cache\**\*" />
 	</ItemGroup>
 
-	<!-- ??????? .cs ???????????????????? client.log ????? CS1525 ????? -->
+	<!-- 反编译/工具目录不参与 tModLoader 编译（否则与正式源码重复，client.log 会报 CS0111/14722 错误） -->
 	<ItemGroup>
 		<Compile Remove="Data\BuffModSupport\decompiled_cache\**\*.cs" />
+		<Compile Remove="_tools\**\*.cs" />
 	</ItemGroup>
 
 	<!-- References -->

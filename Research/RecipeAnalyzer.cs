@@ -5,7 +5,7 @@ using Terraria.GameContent;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-using EvenMoreOverpoweredJourney.Research;
+using EvenMoreOverpoweredJourney.Research.Crafting;
 
 namespace EvenMoreOverpoweredJourney.Research
 {
@@ -13,6 +13,42 @@ namespace EvenMoreOverpoweredJourney.Research
     {
         private static int _recipeIndexBuiltForCount = -1;
         private static List<Recipe>[] _producersByItemType;
+        private static List<Recipe>[] _consumersByItemType;
+        private static List<Recipe>[] _recipesByGroupId;
+        private static List<int>[] _groupsForItemType;
+
+        public const int HighMaterialFanoutThreshold = 240;
+
+        /// <summary>??/??????????????????</summary>
+        public static long WarmIndices()
+        {
+            var sw = System.Diagnostics.Stopwatch.StartNew();
+            EnsureRecipeIndices();
+            sw.Stop();
+            return sw.ElapsedMilliseconds;
+        }
+
+        public static int EstimateMaterialFanout(int itemType)
+        {
+            EnsureRecipeIndices();
+            if (itemType <= ItemID.None || _consumersByItemType == null || itemType >= _consumersByItemType.Length)
+                return 0;
+
+            int count = _consumersByItemType[itemType]?.Count ?? 0;
+            if (_groupsForItemType != null && itemType < _groupsForItemType.Length)
+            {
+                foreach (int gid in _groupsForItemType[itemType])
+                {
+                    if (gid >= 0 && gid < _recipesByGroupId.Length)
+                        count += _recipesByGroupId[gid]?.Count ?? 0;
+                }
+            }
+
+            return count;
+        }
+
+        public static bool IsHighFanoutMaterial(int itemType) =>
+            EstimateMaterialFanout(itemType) > HighMaterialFanoutThreshold;
 
         public static bool IsJourneyWorld =>
             Main.ActiveWorldFileData != null && Main.ActiveWorldFileData.GameMode == GameModeID.Creative;
@@ -92,33 +128,129 @@ namespace EvenMoreOverpoweredJourney.Research
             return result;
         }
 
-        private static void EnsureProducerIndex()
+        private static void EnsureRecipeIndices()
         {
             int recipeCount = Recipe.numRecipes;
-            if (_producersByItemType != null && _recipeIndexBuiltForCount == recipeCount)
+            if (_producersByItemType != null && _consumersByItemType != null && _recipesByGroupId != null
+                && _groupsForItemType != null && _recipeIndexBuiltForCount == recipeCount)
                 return;
 
             int itemCount = ItemLoader.ItemCount;
+            int groupCount = RecipeGroup.recipeGroups.Count;
             _producersByItemType = new List<Recipe>[itemCount];
+            _consumersByItemType = new List<Recipe>[itemCount];
+            _recipesByGroupId = new List<Recipe>[groupCount];
+            _groupsForItemType = new List<int>[itemCount];
+
+            for (int g = 0; g < groupCount; g++)
+            {
+                RecipeGroup group = RecipeGroup.recipeGroups[g];
+                if (group?.ValidItems == null)
+                    continue;
+                foreach (int valid in group.ValidItems)
+                {
+                    if (valid <= ItemID.None || valid >= itemCount)
+                        continue;
+                    _groupsForItemType[valid] ??= new List<int>();
+                    _groupsForItemType[valid].Add(g);
+                }
+            }
+
             for (int i = 0; i < recipeCount; i++)
             {
                 Recipe recipe = Main.recipe[i];
                 if (recipe?.createItem == null || recipe.createItem.IsAir)
                     continue;
+
                 int product = recipe.createItem.type;
-                if (product <= ItemID.None || product >= itemCount)
-                    continue;
-                _producersByItemType[product] ??= new List<Recipe>();
-                _producersByItemType[product].Add(recipe);
+                if (product > ItemID.None && product < itemCount)
+                {
+                    _producersByItemType[product] ??= new List<Recipe>();
+                    _producersByItemType[product].Add(recipe);
+                }
+
+                IndexRecipeConsumers(recipe, itemCount);
             }
+
             _recipeIndexBuiltForCount = recipeCount;
+        }
+
+        private static void IndexRecipeConsumers(Recipe recipe, int itemCount)
+        {
+            if (recipe.requiredItem == null)
+                return;
+
+            int slotCount = recipe.requiredItem.Count;
+            for (int slot = 0; slot < slotCount; slot++)
+            {
+                Item req = recipe.requiredItem[slot];
+                if (req == null || req.IsAir)
+                    continue;
+
+                AddConsumer(req.type, recipe, itemCount);
+
+                int gid = slot < recipe.acceptedGroups.Count ? recipe.acceptedGroups[slot] : -1;
+                if (gid < 0 || gid >= _recipesByGroupId.Length)
+                    continue;
+
+                _recipesByGroupId[gid] ??= new List<Recipe>();
+                List<Recipe> groupList = _recipesByGroupId[gid];
+                if (groupList.Count == 0 || groupList[groupList.Count - 1] != recipe)
+                    groupList.Add(recipe);
+            }
+        }
+
+        private static void AddConsumer(int itemType, Recipe recipe, int itemCount)
+        {
+            if (itemType <= ItemID.None || itemType >= itemCount)
+                return;
+            _consumersByItemType[itemType] ??= new List<Recipe>();
+            List<Recipe> list = _consumersByItemType[itemType];
+            if (list.Count == 0 || list[list.Count - 1] != recipe)
+                list.Add(recipe);
         }
 
         private static IEnumerable<Recipe> GetProducersFor(int productType)
         {
+            EnsureRecipeIndices();
             if (productType <= ItemID.None || _producersByItemType == null || productType >= _producersByItemType.Length)
                 return Enumerable.Empty<Recipe>();
             return _producersByItemType[productType] ?? Enumerable.Empty<Recipe>();
+        }
+
+        public static IEnumerable<Recipe> GetRecipesConsumingMaterial(int itemType)
+        {
+            EnsureRecipeIndices();
+            if (itemType <= ItemID.None || _consumersByItemType == null || itemType >= _consumersByItemType.Length)
+                yield break;
+
+            var seen = new HashSet<Recipe>();
+            List<Recipe> direct = _consumersByItemType[itemType];
+            if (direct != null)
+            {
+                foreach (Recipe recipe in direct)
+                {
+                    if (recipe != null && seen.Add(recipe))
+                        yield return recipe;
+                }
+            }
+
+            if (_groupsForItemType == null || itemType >= _groupsForItemType.Length)
+                yield break;
+
+            foreach (int gid in _groupsForItemType[itemType])
+            {
+                if (gid < 0 || gid >= _recipesByGroupId.Length)
+                    continue;
+                List<Recipe> groupRecipes = _recipesByGroupId[gid];
+                if (groupRecipes == null)
+                    continue;
+                foreach (Recipe recipe in groupRecipes)
+                {
+                    if (recipe != null && seen.Add(recipe))
+                        yield return recipe;
+                }
+            }
         }
 
         public static List<int> FilterJourneyYellow(int seedType, IEnumerable<int> fromProducts)
@@ -130,13 +262,18 @@ namespace EvenMoreOverpoweredJourney.Research
         {
             if (seedItem == null || seedItem.IsAir)
                 return new List<int>();
-            if (!IsFullyResearched(seedItem.type))
-                return new List<int>();
-            return GetDeepCraftableProducts(seedItem);
+            return RecipeBrowserNestedCraft.GetDeepCraftableProductsForGreenFace(seedItem.type);
         }
 
         public static List<int> FilterJourneyBlue(int seedType)
         {
+            HashSet<int> greenExclude = null;
+            if (IsFullyResearched(seedType))
+            {
+                greenExclude = new HashSet<int>(
+                    RecipeBrowserNestedCraft.GetDeepCraftableProductsForGreenFace(seedType));
+            }
+
             var set = new HashSet<int>();
             foreach (Recipe recipe in Main.recipe)
             {
@@ -144,11 +281,14 @@ namespace EvenMoreOverpoweredJourney.Research
                     continue;
                 if (!RecipeUsesIngredient(recipe, seedType))
                     continue;
-                if (AllMaterialsResearched(recipe))
+                int product = recipe.createItem.type;
+                if (IsFullyResearched(product))
                     continue;
-                if (!IsFullyResearched(recipe.createItem.type))
-                    set.Add(recipe.createItem.type);
+                if (greenExclude != null && greenExclude.Contains(product))
+                    continue;
+                set.Add(product);
             }
+
             if (!IsFullyResearched(seedType))
                 set.Add(seedType);
             return set.OrderBy(t => t).ToList();
@@ -197,6 +337,9 @@ namespace EvenMoreOverpoweredJourney.Research
 
         public static bool RecipeUsesIngredient(Recipe recipe, int itemType)
         {
+            if (recipe?.requiredItem == null)
+                return false;
+
             int n = recipe.requiredItem.Count;
             for (int i = 0; i < n; i++)
             {
@@ -216,6 +359,9 @@ namespace EvenMoreOverpoweredJourney.Research
         /// <summary>??????????????????????????????</summary>
         public static bool AllMaterialsResearched(Recipe recipe)
         {
+            if (recipe?.requiredItem == null)
+                return true;
+
             int n = recipe.requiredItem.Count;
             for (int i = 0; i < n; i++)
             {
@@ -241,7 +387,7 @@ namespace EvenMoreOverpoweredJourney.Research
 
         public static List<Recipe> GetRecipesForItem(int itemType)
         {
-            EnsureProducerIndex();
+            EnsureRecipeIndices();
             var recipes = new List<Recipe>();
             foreach (Recipe recipe in GetProducersFor(itemType))
                 recipes.Add(recipe);

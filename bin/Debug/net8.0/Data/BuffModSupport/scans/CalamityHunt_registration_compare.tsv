@@ -1,9 +1,0 @@
-﻿﻿Name	HasModBuffClass	HasBuffTypeRef	SuggestedPhase	Confidence	File
-Absorption	Y	Y	Unknown	Low	CalamityHunt.Content.Buffs/Absorption.cs
-BloatBabyBuff	Y	Y	Unknown	Low	CalamityHunt.Content.Pets.BloatBabyPet/BloatBabyBuff.cs
-FusionBurn	Y	Y	Unknown	Low	CalamityHunt.Content.Buffs/FusionBurn.cs
-Gobbed	Y	Y	Unknown	Low	CalamityHunt.Content.Buffs/Gobbed.cs
-PaladinPalanquinBuff	Y	Y	Unknown	Low	CalamityHunt.Content.Buffs/PaladinPalanquinBuff.cs
-SlimeCaneBuff	Y	Y	Unknown	Low	CalamityHunt.Content.Buffs/SlimeCaneBuff.cs
-SplendorJamBuff	Y	Y	Stat	High	CalamityHunt.Content.Buffs/SplendorJamBuff.cs
-Swamped	Y	Y	Unknown	Low	CalamityHunt.Content.Buffs/Swamped.cs

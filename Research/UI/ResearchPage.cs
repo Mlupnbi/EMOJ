@@ -11,16 +11,28 @@ using Terraria.UI;
 using EvenMoreOverpoweredJourney;
 using EvenMoreOverpoweredJourney.Core.Logging;
 using EvenMoreOverpoweredJourney.Research;
+using EvenMoreOverpoweredJourney.Research.Crafting;
+using EvenMoreOverpoweredJourney.Research.Players;
 using EvenMoreOverpoweredJourney.Shell.UI;
 using EvenMoreOverpoweredJourney.Shell.UI.Components;
 
 namespace EvenMoreOverpoweredJourney.Research.UI
 {
-    /// <summary>研究页签（页签 1）：产物列表与配方逻辑对齐 0.1 超备份，仅保留现行配色与外壳布局。</summary>
+    /// <summary>研究页签：旅途四脸筛选 + RecipeBrowser 式嵌套可研究判定。</summary>
     public class ResearchPage : UIElement
     {
+        private static readonly string[] FaceTipKeys =
+        {
+            "FaceTipYellow",
+            "FaceTipGreen",
+            "FaceTipBlue",
+            "FaceTipPurpleNonJourney"
+        };
+
         private EmojItemSlot inputSlot;
         private UIText hintText;
+        private UIText emptyHintText;
+        private UIFaceModeSelector faceSelector;
         private UIList productList;
         private UIList recipesPanel;
         private UIPanel modeBtnP;
@@ -32,7 +44,13 @@ namespace EvenMoreOverpoweredJourney.Research.UI
 
         private bool isCardMode = true;
         private bool _triedApplyPendingQuickQuery;
+        private ResearchFaceMode _activeFace = ResearchFaceMode.Green;
+        private int _lastEnvironmentSignature = int.MinValue;
+        private bool _lastShimmerEncountered;
+        private int _craftingRefreshCooldown;
+        private RecipeBrowserNestedCraft.GreenFaceQuerySession _greenQuerySession;
         private List<int> currentProducts = new List<int>();
+        private Dictionary<int, bool> _purpleCanCraft;
 
         public ResearchPage()
         {
@@ -40,6 +58,7 @@ namespace EvenMoreOverpoweredJourney.Research.UI
             Height.Set(0, 1f);
 
             const float slotSize = 52f;
+            const float faceHeight = 22f;
             const float hintFrameOverlap = 4f;
             const float hintExtraOffsetPx = 15f;
             const float hintTextScale = 1.4f;
@@ -62,10 +81,18 @@ namespace EvenMoreOverpoweredJourney.Research.UI
             hintText.Left.Set(hintLeft, 0);
             hintText.Top.Set(0, 0);
             hintText.VAlign = 0.5f;
-            hintText.Width.Set(280f, 0);
+            hintText.Width.Set(220f, 0);
             hintText.IsWrapped = false;
             hintText.IgnoresMouseInteraction = true;
             queryRow.Append(hintText);
+
+            faceSelector = new UIFaceModeSelector(faceHeight);
+            faceSelector.Top.Set((slotSize - faceHeight) * 0.5f, 0);
+            faceSelector.Left.Set(-(faceHeight * 4f + 6f), 1f);
+            faceSelector.ActiveFace = _activeFace;
+            faceSelector.CanInteract = CanSelectFace;
+            faceSelector.OnFaceSelected = OnFaceSelected;
+            queryRow.Append(faceSelector);
             Append(queryRow);
 
             UIText secProd = new UIText(EOPJText.UI("SectionProducts"), 0.72f);
@@ -97,6 +124,15 @@ namespace EvenMoreOverpoweredJourney.Research.UI
             scrollbar.Height.Set(-productBottomPad, 0.66f);
             productList.SetScrollbar(scrollbar);
             Append(scrollbar);
+
+            emptyHintText = new UIText("", 0.72f);
+            emptyHintText.Left.Set(10, 0);
+            emptyHintText.Top.Set(productTop + 4f, 0);
+            emptyHintText.Width.Set(-OPJourneyShellMetrics.ScrollSafeMarginRight, 1f);
+            emptyHintText.TextColor = Color.Gray;
+            emptyHintText.IsWrapped = true;
+            emptyHintText.IgnoresMouseInteraction = true;
+            Append(emptyHintText);
 
             recipesPanel = new UIList();
             recipesPanel.Top.Set(25, 0.66f);
@@ -140,6 +176,27 @@ namespace EvenMoreOverpoweredJourney.Research.UI
             bottomStrip.Append(giveBtnP);
 
             UpdateProductList();
+        }
+
+        private static bool CanSelectFace(ResearchFaceMode face)
+        {
+            if (RecipeAnalyzer.IsJourneyWorld)
+                return face != ResearchFaceMode.Purple;
+            return face == ResearchFaceMode.Purple;
+        }
+
+        private void OnFaceSelected(ResearchFaceMode face)
+        {
+            if (!CanSelectFace(face))
+                return;
+
+            _activeFace = face;
+            faceSelector.ActiveFace = face;
+            CancelGreenQuery();
+            RebuildProducts(inputSlot.item);
+            UpdateProductList();
+            recipesPanel.Clear();
+            ProcessGreenQuery();
         }
 
         private static string TruncateForHint(string name)
@@ -205,10 +262,152 @@ namespace EvenMoreOverpoweredJourney.Research.UI
 
         private void OnInputItemChanged(Item item)
         {
-            currentProducts = RecipeAnalyzer.GetDeepCraftableProducts(item);
+            if (item.IsAir)
+            {
+                _activeFace = ResearchFaceMode.Green;
+            }
+            else if (RecipeAnalyzer.IsJourneyWorld)
+            {
+                _activeFace = RecipeAnalyzer.GetDefaultFaceForJourneySeed(item);
+            }
+            else
+            {
+                _activeFace = ResearchFaceMode.Purple;
+            }
+
+            faceSelector.ActiveFace = _activeFace;
+            CancelGreenQuery();
+            RebuildProducts(item);
             UpdateProductList();
             recipesPanel.Clear();
             hintText?.SetText(item.IsAir ? EOPJText.UI("DragItemHint") : TruncateForHint(item.Name));
+            _lastEnvironmentSignature = ResearchCraftingPlayer.GetEnvironmentSignature();
+            _lastShimmerEncountered = ResearchCraftingPlayer.HasEncounteredShimmer;
+        }
+
+        private void CancelGreenQuery() => _greenQuerySession = null;
+
+        private void StartGreenQuery(int seedType)
+        {
+            Main.LocalPlayer?.GetModPlayer<ResearchCraftingPlayer>()?.RefreshEnvironmentForResearchQuery();
+            _greenQuerySession = RecipeBrowserNestedCraft.BeginGreenFaceQuery(seedType);
+            currentProducts.Clear();
+            emptyHintText?.SetText(EOPJText.UI("GreenFaceQuerying"));
+            UpdateProductList();
+        }
+
+        private void ProcessGreenQuery()
+        {
+            if (_greenQuerySession == null)
+                return;
+
+            if (!_greenQuerySession.Complete)
+            {
+                RecipeBrowserNestedCraft.StepGreenFaceQuery(_greenQuerySession);
+                if (!_greenQuerySession.Complete)
+                    return;
+            }
+
+            currentProducts = _greenQuerySession.Results;
+            _greenQuerySession = null;
+            UpdateProductList();
+        }
+
+        private void RebuildProducts(Item item)
+        {
+            _purpleCanCraft = null;
+            currentProducts.Clear();
+            if (item == null || item.IsAir)
+                return;
+
+            Main.LocalPlayer?.GetModPlayer<ResearchCraftingPlayer>()?.RefreshEnvironmentForResearchQuery();
+
+            int seedType = item.type;
+            try
+            {
+                if (RecipeAnalyzer.IsJourneyWorld)
+                {
+                    switch (_activeFace)
+                    {
+                        case ResearchFaceMode.Yellow:
+                            currentProducts = RecipeAnalyzer.FilterJourneyYellow(
+                                seedType,
+                                RecipeAnalyzer.GetAllProductTypesUsingMaterial(seedType));
+                            break;
+                        case ResearchFaceMode.Green:
+                            if (!RecipeAnalyzer.IsFullyResearched(seedType))
+                            {
+                                CancelGreenQuery();
+                                break;
+                            }
+
+                            StartGreenQuery(seedType);
+                            return;
+                        case ResearchFaceMode.Blue:
+                            CancelGreenQuery();
+                            currentProducts = RecipeAnalyzer.FilterJourneyBlue(seedType);
+                            break;
+                    }
+                }
+                else if (_activeFace == ResearchFaceMode.Purple)
+                {
+                    currentProducts = RecipeAnalyzer.FilterAdventurePurple(seedType, out _purpleCanCraft);
+                }
+                else
+                {
+                    currentProducts = RecipeAnalyzer.GetAllProductTypesUsingMaterial(seedType);
+                }
+            }
+            catch (System.Exception ex)
+            {
+                EmojLog.Warn(EmojLogChannel.Research, $"RebuildProducts failed seed={seedType} face={_activeFace}: {ex.Message}");
+            }
+        }
+
+        private void MaybeRefreshForCraftingDiscovery()
+        {
+            if (inputSlot.item.IsAir || _activeFace != ResearchFaceMode.Green)
+                return;
+
+            if (_craftingRefreshCooldown > 0)
+            {
+                _craftingRefreshCooldown--;
+                return;
+            }
+
+            int signature = ResearchCraftingPlayer.GetEnvironmentSignature();
+            bool shimmer = ResearchCraftingPlayer.HasEncounteredShimmer;
+            if (signature == _lastEnvironmentSignature && shimmer == _lastShimmerEncountered)
+                return;
+
+            _lastEnvironmentSignature = signature;
+            _lastShimmerEncountered = shimmer;
+            _craftingRefreshCooldown = 60;
+            StartGreenQuery(inputSlot.item.type);
+        }
+
+        private ResearchProductTint GetProductTint(int type)
+        {
+            switch (_activeFace)
+            {
+                case ResearchFaceMode.Yellow:
+                    return ResearchProductTint.BlueResearched;
+                case ResearchFaceMode.Green:
+                    return ResearchProductTint.GreenResearchable;
+                case ResearchFaceMode.Blue:
+                    return ResearchProductTint.RedUnresearched;
+                case ResearchFaceMode.Purple:
+                    if (_purpleCanCraft != null
+                        && _purpleCanCraft.TryGetValue(type, out bool canCraft))
+                    {
+                        return canCraft
+                            ? ResearchProductTint.PurpleCraftable
+                            : ResearchProductTint.PurpleCannotCraft;
+                    }
+                    return ResearchProductTint.None;
+                default:
+                    return ResearchProductTint.None;
+            }
         }
 
         private void ResearchAllVisible()
@@ -259,6 +458,22 @@ namespace EvenMoreOverpoweredJourney.Research.UI
         private void UpdateProductList()
         {
             productList.Clear();
+            bool greenNeedsResearchedSeed = !inputSlot.item.IsAir
+                && RecipeAnalyzer.IsJourneyWorld
+                && _activeFace == ResearchFaceMode.Green
+                && !RecipeAnalyzer.IsFullyResearched(inputSlot.item.type);
+            bool showGreenEmptyHint = !inputSlot.item.IsAir
+                && RecipeAnalyzer.IsJourneyWorld
+                && _activeFace == ResearchFaceMode.Green
+                && _greenQuerySession == null
+                && !greenNeedsResearchedSeed
+                && currentProducts.Count == 0;
+            emptyHintText?.SetText(
+                _greenQuerySession != null ? EOPJText.UI("GreenFaceQuerying")
+                : greenNeedsResearchedSeed ? EOPJText.UI("GreenFaceNeedResearchedSeed")
+                : showGreenEmptyHint ? EOPJText.UI("GreenFaceNoProducts")
+                : string.Empty);
+
             if (isCardMode)
             {
                 int cardsPerRow = Math.Max(1, (int)(productList.GetInnerDimensions().Width / 46f));
@@ -274,7 +489,7 @@ namespace EvenMoreOverpoweredJourney.Research.UI
                     }
 
                     var entry = new UIProductEntryCardView(currentProducts[i]);
-                    entry.Tint = ResearchProductTint.GreenResearchable;
+                    entry.Tint = GetProductTint(currentProducts[i]);
                     entry.Left.Set((i % cardsPerRow) * 46, 0);
                     entry.OnLeftClick += (evt, el) => ShowRecipes(((UIProductEntryCardView)el).ItemType);
                     currentRow.Append(entry);
@@ -285,7 +500,7 @@ namespace EvenMoreOverpoweredJourney.Research.UI
                 foreach (int type in currentProducts)
                 {
                     var entry = new UIProductEntryListView(type);
-                    entry.Tint = ResearchProductTint.GreenResearchable;
+                    entry.Tint = GetProductTint(type);
                     entry.OnLeftClick += (evt, el) => ShowRecipes(((UIProductEntryListView)el).ItemType);
                     productList.Add(entry);
                 }
@@ -295,11 +510,45 @@ namespace EvenMoreOverpoweredJourney.Research.UI
         private void ShowRecipes(int itemType)
         {
             recipesPanel.Clear();
-            var recipes = RecipeAnalyzer.GetRecipesForItem(itemType);
             float panelWidth = GetInnerDimensions().Width - 60f;
+            List<Recipe> recipes;
+            bool tintMaterials;
 
-            foreach (Recipe r in recipes)
-                recipesPanel.Add(new UIResearchRecipeRow(r, panelWidth, false));
+            if (RecipeAnalyzer.IsJourneyWorld
+                && _activeFace == ResearchFaceMode.Green
+                && !inputSlot.item.IsAir)
+            {
+                Main.LocalPlayer?.GetModPlayer<ResearchCraftingPlayer>()?.RefreshEnvironmentForResearchQuery();
+                recipes = RecipeBrowserNestedCraft.GetQualifyingRecipesForGreenFace(itemType, inputSlot.item.type);
+                tintMaterials = true;
+            }
+            else
+            {
+                recipes = RecipeAnalyzer.GetRecipesForItem(itemType);
+                tintMaterials = RecipeAnalyzer.IsJourneyWorld && _activeFace == ResearchFaceMode.Blue;
+            }
+
+            foreach (Recipe recipe in recipes)
+                recipesPanel.Add(new UIResearchRecipeRow(recipe, panelWidth, tintMaterials));
+        }
+
+        private void UpdateFaceTooltip()
+        {
+            if (faceSelector == null || !faceSelector.IsMouseHovering)
+                return;
+
+            ResearchFaceMode face = faceSelector.GetFaceUnderMouse();
+            if (!CanSelectFace(face))
+            {
+                Main.instance.MouseText(
+                    RecipeAnalyzer.IsJourneyWorld
+                        ? EOPJText.UI("FaceTipPurpleJourney")
+                        : EOPJText.UI("FaceTipPurpleNeedJourney"));
+                return;
+            }
+
+            if ((int)face >= 0 && (int)face < FaceTipKeys.Length)
+                Main.instance.MouseText(EOPJText.UI(FaceTipKeys[(int)face]));
         }
 
         public override void Update(GameTime gameTime)
@@ -310,6 +559,9 @@ namespace EvenMoreOverpoweredJourney.Research.UI
                 TryApplyPendingQuickQuery();
             }
 
+            MaybeRefreshForCraftingDiscovery();
+            ProcessGreenQuery();
+            UpdateFaceTooltip();
             base.Update(gameTime);
         }
     }

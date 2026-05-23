@@ -11,12 +11,16 @@ using EvenMoreOverpoweredJourney.Research;
 
 namespace EvenMoreOverpoweredJourney.Shell.UI.Components
 {
-    /// <summary>EMOJ 自定义物品槽（避免与 Terraria.GameContent.UI.Elements.UIItemSlot 重名）。</summary>
+    /// <summary>EMOJ ?????????????????????????????????</summary>
     public class EmojItemSlot : UIElement
     {
         public Item item = new Item();
         public event Action<Item> OnItemChanged;
         public bool isRecipeNode = false;
+        /// <summary>????????????????????/????? true??</summary>
+        public bool ReturnPhysicalOnPlace { get; set; } = true;
+        /// <summary>????????????????????? false???????</summary>
+        public bool ReturnPhysicalOnClear { get; set; } = false;
 
         public EmojItemSlot() { Width.Set(52, 0); Height.Set(52, 0); }
 
@@ -36,19 +40,21 @@ namespace EvenMoreOverpoweredJourney.Shell.UI.Components
                 SoundEngine.PlaySound(SoundID.Grab);
                 OnItemChanged?.Invoke(item);
 
-                ReturnPhysicalItemToPlayer(dragged);
+                if (ReturnPhysicalOnPlace)
+                    ReturnPhysicalItemToPlayer(dragged);
             }
             else if (item.type > ItemID.None)
             {
-                Item was = item.Clone();
+                Item was = ReturnPhysicalOnClear ? item.Clone() : null;
                 item = new Item();
                 SoundEngine.PlaySound(SoundID.Grab);
                 OnItemChanged?.Invoke(item);
-                ReturnPhysicalItemToPlayer(was);
+                if (ReturnPhysicalOnClear)
+                    ReturnPhysicalItemToPlayer(was);
             }
         }
 
-        /// <summary>灏嗗疄浣撶墿鍝佸悎骞惰繘涓荤墿鍝佹爮锛?0鈥?49锛夛紝鏀句笉涓嬪垯鍦ㄧ帺瀹跺鐢熸垚鎺夎惤銆?</summary>
+        /// <summary>?????????????0?49???????????????</summary>
         private static void ReturnPhysicalItemToPlayer(Item physical)
         {
             if (physical == null || physical.IsAir)

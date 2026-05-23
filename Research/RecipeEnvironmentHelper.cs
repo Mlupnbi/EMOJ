@@ -62,6 +62,24 @@ namespace EvenMoreOverpoweredJourney.Research
             return f?.GetValue(r) is bool b && b;
         }
 
+        public static bool RecipeNeedsWater(Recipe recipe) => GetRecipeBool(recipe, "needWater");
+        public static bool RecipeNeedsLava(Recipe recipe) => GetRecipeBool(recipe, "needLava");
+        public static bool RecipeNeedsHoney(Recipe recipe) => GetRecipeBool(recipe, "needHoney");
+        public static bool RecipeNeedsSnowBiome(Recipe recipe) => GetRecipeBool(recipe, "needSnowBiome");
+        public static bool RecipeNeedsGraveyard(Recipe recipe) => GetRecipeBool(recipe, "needGraveyardBiome");
+
+        public static bool RecipeNeedsAlchemyTable(Recipe recipe)
+        {
+            if (recipe?.requiredTile == null)
+                return false;
+            foreach (int tile in recipe.requiredTile)
+            {
+                if (tile == Terraria.ID.TileID.AlchemyTable)
+                    return true;
+            }
+            return false;
+        }
+
         public static string GetCraftingStationDisplayName(int tileType)
         {
             if (TileTypeToItemNameCache.TryGetValue(tileType, out string cached))

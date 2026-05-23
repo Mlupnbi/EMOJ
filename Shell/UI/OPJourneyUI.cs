@@ -56,10 +56,23 @@ namespace EvenMoreOverpoweredJourney.Shell.UI
         public static void ShowAndSwitchTab(int tabIndex)
         {
             Visible = true;
+            ModContent.GetInstance<OPJourneyUISystem>()?.SyncInterfaceVisibility();
             if (Instance != null)
                 Instance.SwitchToTab(tabIndex);
             else
                 _pendingTabOnFirstInit = tabIndex;
+        }
+
+        public static void Hide()
+        {
+            Visible = false;
+            ModContent.GetInstance<OPJourneyUISystem>()?.SyncInterfaceVisibility();
+        }
+
+        public static void HideAndResetForWorld()
+        {
+            Hide();
+            Instance?.ResetForWorldLoad();
         }
 
         /// <summary>ģ������ʱ�ͷž�̬���ã����� UI ���޷��� GC ���ա�</summary>
@@ -175,7 +188,7 @@ namespace EvenMoreOverpoweredJourney.Shell.UI
             closeBtn.OnLeftClick += (_, _) =>
             {
                 DeactivateItemHubChainOnClose();
-                Visible = false;
+                Hide();
             };
             mainPanel.Append(closeBtn);
 
@@ -291,12 +304,19 @@ namespace EvenMoreOverpoweredJourney.Shell.UI
             if (!Visible)
                 return;
 
-            mainPanel?.Draw(spriteBatch);
+            if (mainPanel == null)
+                return;
+
+            mainPanel.Draw(spriteBatch);
 
             foreach (UIElement child in Elements)
             {
                 if (child == null || child == mainPanel)
                     continue;
+
+                if (child.GetDimensions().Width < 2f || child.GetDimensions().Height < 2f)
+                    continue;
+
                 child.Draw(spriteBatch);
             }
 
@@ -320,8 +340,24 @@ namespace EvenMoreOverpoweredJourney.Shell.UI
                 resizeHandle.IsGripHighlighted);
         }
 
+        public void ResetForWorldLoad()
+        {
+            DeactivateItemHubChainOnClose();
+            BestiaryDetailPanel?.SetOpen(false);
+            BestiarySecondaryPanel?.SetOpen(false);
+            ItemHubSecondaryPanel?.SetOpen(false);
+            BuffSecondaryPanel?.SetOpen(false);
+            BestiarySearchQueryText = "";
+
+            if (currentTab != 0)
+                SwitchToTab(0);
+        }
+
         public override void Update(GameTime gameTime)
         {
+            if (!Visible)
+                return;
+
             base.Update(gameTime);
             SyncChromePositions();
 

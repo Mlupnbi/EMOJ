@@ -3,10 +3,7 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 using EvenMoreOverpoweredJourney.Shell.UI;
-using EvenMoreOverpoweredJourney.Buffs.UI;
 using EvenMoreOverpoweredJourney.ItemHub.UI;
-using EvenMoreOverpoweredJourney.Research.UI;
-using EvenMoreOverpoweredJourney.Shell.UI;
 
 namespace EvenMoreOverpoweredJourney.Shell.Players
 {
@@ -18,13 +15,11 @@ namespace EvenMoreOverpoweredJourney.Shell.Players
         public override void OnEnterWorld()
         {
             PendingResearchQueryType = 0;
-            OPJourneyUI.Visible = false;
+            OPJourneyUI.HideAndResetForWorld();
             if (OPJourneyUI.Instance != null)
             {
                 OPJourneyUI.Instance.ItemHubSecondary.ResetForNewSession();
                 OPJourneyUI.Instance.BestiarySecondary.ResetForNewSession();
-                OPJourneyUI.Instance.ItemHubSecondaryPanel?.SetOpen(false);
-                OPJourneyUI.Instance.BestiarySecondaryPanel?.SetOpen(false);
                 OPJourneyUI.Instance.ItemHubSortMode = ItemHubSort.ById;
                 OPJourneyUI.Instance.ItemHubSortDescending = false;
                 OPJourneyUI.Instance.ItemHubCardMode = true;

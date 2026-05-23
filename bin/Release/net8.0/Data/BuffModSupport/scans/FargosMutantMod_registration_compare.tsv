@@ -1,6 +1,0 @@
-﻿﻿Name	HasModBuffClass	HasBuffTypeRef	SuggestedPhase	Confidence	File
-BigSuckBuff	Y	N	Unknown	Low	Buffs/BigSuckBuff.cs
-CoolCrabBuff	Y	N	CombatVisual	Medium	Buffs/CoolCrabBuff.cs
-Omnistation	Y	N	Stat	High	Buffs/Omnistation.cs
-Semistation	Y	Y	Stat	High	Buffs/Semistation.cs
-WoodDrop	Y	N	Unknown	Low	Buffs/WoodDrop.cs
