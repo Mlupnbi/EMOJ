@@ -1,11 +1,11 @@
-﻿=== EMOJ Buff 扫描支持报告 ===
+=== EMOJ Buff 扫描支持报告 ===
 模组: CalamityModMusic
 扫描时间(UTC): 2026-05-20T08:27:18.8561873Z
 源码路径: C:\Users\14451\Documents\My Games\Terraria\tModLoader\ModSources\EvenMoreOverpoweredJourney\Data\BuffModSupport\decompiled_cache\CalamityModMusic\decompiled_cs
 来源类型: extracted_source
-build.txt 版本: 0.4.65
+build.txt 版本: 0.5.0
 csproj 版本: (无)
-建议登记版本: 0.4.65
+建议登记版本: 0.5.0
 
 ModBuff 类数量: 0
   Stat 建议: 0

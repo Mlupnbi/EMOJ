@@ -1,69 +1,69 @@
-﻿﻿Mod	ScannedVersion	SourceKind	GitHubUrl	BranchTipShort	LatestRelease	BuffClasses	BuffTypeRegs	NameMatches	LastScanUtc	ScanJson
-AlchemistNPCLite	0.4.65	extracted_source				27	27	27	2026-05-20T08:26:57.7271086Z	AlchemistNPCLite_buff_scan.json
-BetterBlending	0.4.65	extracted_source				0	0	0	2026-05-20T08:27:56.6280867Z	BetterBlending_buff_scan.json
-BetterZoom	0.4.65	extracted_source				0	0	0	2026-05-20T08:27:03.0838454Z	BetterZoom_buff_scan.json
-BIntros	0.4.65	extracted_source				0	0	0	2026-05-20T08:27:53.2688682Z	BIntros_buff_scan.json
-BossChecklist	0.4.65	extracted_source				0	0	0	2026-05-20T08:27:03.8793669Z	BossChecklist_buff_scan.json
-BossCursor	0.4.65	extracted_source				0	0	0	2026-05-20T08:27:02.5218395Z	BossCursor_buff_scan.json
-CalamityCN	0.4.65	extracted_source				0	0	0	2026-05-20T08:27:04.4192212Z	CalamityCN_buff_scan.json
-CalamityFables	0.4.65	extracted_source				34	34	34	2026-05-20T08:27:02.0004759Z	CalamityFables_buff_scan.json
-CalamityHunt	0.4.65	extracted_source				8	8	8	2026-05-20T08:27:59.1702283Z	CalamityHunt_buff_scan.json
-CalamityHuntCN	0.4.65	extracted_source				0	0	0	2026-05-20T08:28:16.9491053Z	CalamityHuntCN_buff_scan.json
-CalamityMod	0.4.65	extracted_source	https://github.com/CalamityTeam/CalamityModPublic	70e3e05		291	287	287	2026-05-20T08:39:22.3739588Z	CalamityMod_buff_scan.json
-CalamityModMusic	0.4.65	extracted_source				0	0	0	2026-05-20T08:27:18.8715236Z	CalamityModMusic_buff_scan.json
-CalValEX	0.4.65	extracted_source	https://github.com/GinYuH/CalValEX	3af35bb		137	133	133	2026-05-20T08:27:20.6676509Z	CalValEX_buff_scan.json
-CatalystMod	0.4.65	extracted_source				13	23	12	2026-05-20T08:27:56.0937683Z	CatalystMod_buff_scan.json
-CLVanityCN	0.4.65	extracted_source				0	0	0	2026-05-20T08:27:21.1710705Z	CLVanityCN_buff_scan.json
-ColoredCalRelics	0.4.65	extracted_source				0	0	0	2026-05-20T08:27:21.8037788Z	ColoredCalRelics_buff_scan.json
-ColoredFargoRelics	0.4.65	extracted_source				0	0	0	2026-05-20T08:27:22.3323420Z	ColoredFargoRelics_buff_scan.json
-ColouredModsRelics	0.4.65	extracted_source				0	0	0	2026-05-20T08:27:54.4047184Z	ColouredModsRelics_buff_scan.json
-CompatChecker	0.4.65	extracted_source				0	0	0	2026-05-20T08:27:59.7475615Z	CompatChecker_buff_scan.json
-ConciseModList	0.4.65	extracted_source				0	0	0	2026-05-20T08:28:00.3357157Z	ConciseModList_buff_scan.json
-Daybreak	0.4.65	extracted_source				0	0	0	2026-05-20T08:27:46.9955144Z	Daybreak_buff_scan.json
-DialogueTweak	0.4.65	extracted_source				0	0	0	2026-05-20T08:28:08.6583584Z	DialogueTweak_buff_scan.json
-DragonLens	0.4.65	extracted_source				0	0	0	2026-05-20T08:28:06.9081955Z	DragonLens_buff_scan.json
+﻿Mod	ScannedVersion	SourceKind	GitHubUrl	BranchTipShort	LatestRelease	BuffClasses	BuffTypeRegs	NameMatches	LastScanUtc	ScanJson
+AlchemistNPCLite	0.5.0	extracted_source				27	27	27	2026-05-20T08:26:57.7271086Z	AlchemistNPCLite_buff_scan.json
+BetterBlending	0.5.0	extracted_source				0	0	0	2026-05-20T08:27:56.6280867Z	BetterBlending_buff_scan.json
+BetterZoom	0.5.0	extracted_source				0	0	0	2026-05-20T08:27:03.0838454Z	BetterZoom_buff_scan.json
+BIntros	0.5.0	extracted_source				0	0	0	2026-05-20T08:27:53.2688682Z	BIntros_buff_scan.json
+BossChecklist	0.5.0	extracted_source				0	0	0	2026-05-20T08:27:03.8793669Z	BossChecklist_buff_scan.json
+BossCursor	0.5.0	extracted_source				0	0	0	2026-05-20T08:27:02.5218395Z	BossCursor_buff_scan.json
+CalamityCN	0.5.0	extracted_source				0	0	0	2026-05-20T08:27:04.4192212Z	CalamityCN_buff_scan.json
+CalamityFables	0.5.0	extracted_source				34	34	34	2026-05-20T08:27:02.0004759Z	CalamityFables_buff_scan.json
+CalamityHunt	0.5.0	extracted_source				8	8	8	2026-05-20T08:27:59.1702283Z	CalamityHunt_buff_scan.json
+CalamityHuntCN	0.5.0	extracted_source				0	0	0	2026-05-20T08:28:16.9491053Z	CalamityHuntCN_buff_scan.json
+CalamityMod	0.5.0	extracted_source	https://github.com/CalamityTeam/CalamityModPublic	70e3e05		291	287	287	2026-05-20T08:39:22.3739588Z	CalamityMod_buff_scan.json
+CalamityModMusic	0.5.0	extracted_source				0	0	0	2026-05-20T08:27:18.8715236Z	CalamityModMusic_buff_scan.json
+CalValEX	0.5.0	extracted_source	https://github.com/GinYuH/CalValEX	3af35bb		137	133	133	2026-05-20T08:27:20.6676509Z	CalValEX_buff_scan.json
+CatalystMod	0.5.0	extracted_source				13	23	12	2026-05-20T08:27:56.0937683Z	CatalystMod_buff_scan.json
+CLVanityCN	0.5.0	extracted_source				0	0	0	2026-05-20T08:27:21.1710705Z	CLVanityCN_buff_scan.json
+ColoredCalRelics	0.5.0	extracted_source				0	0	0	2026-05-20T08:27:21.8037788Z	ColoredCalRelics_buff_scan.json
+ColoredFargoRelics	0.5.0	extracted_source				0	0	0	2026-05-20T08:27:22.3323420Z	ColoredFargoRelics_buff_scan.json
+ColouredModsRelics	0.5.0	extracted_source				0	0	0	2026-05-20T08:27:54.4047184Z	ColouredModsRelics_buff_scan.json
+CompatChecker	0.5.0	extracted_source				0	0	0	2026-05-20T08:27:59.7475615Z	CompatChecker_buff_scan.json
+ConciseModList	0.5.0	extracted_source				0	0	0	2026-05-20T08:28:00.3357157Z	ConciseModList_buff_scan.json
+Daybreak	0.5.0	extracted_source				0	0	0	2026-05-20T08:27:46.9955144Z	Daybreak_buff_scan.json
+DialogueTweak	0.5.0	extracted_source				0	0	0	2026-05-20T08:28:08.6583584Z	DialogueTweak_buff_scan.json
+DragonLens	0.5.0	extracted_source				0	0	0	2026-05-20T08:28:06.9081955Z	DragonLens_buff_scan.json
 EvenMoreOverpoweredJourney						2	0	0	2026-05-20T05:46:51.7553027Z	EvenMoreOverpoweredJourney_buff_scan.json
-ExpandedInventory	0.4.65	extracted_source				0	0	0	2026-05-20T08:27:22.8372056Z	ExpandedInventory_buff_scan.json
-ExtraWorldSizes	0.4.65	extracted_source				0	0	0	2026-05-20T08:28:09.2231738Z	ExtraWorldSizes_buff_scan.json
-FargoChinese	0.4.65	extracted_source				0	0	0	2026-05-20T08:27:23.3337390Z	FargoChinese_buff_scan.json
-FargoCP	0.4.65	extracted_source				0	0	0	2026-05-20T08:27:23.8584251Z	FargoCP_buff_scan.json
-FargoSeeds	0.4.65	extracted_source				0	0	0	2026-05-20T08:28:23.2973398Z	FargoSeeds_buff_scan.json
+ExpandedInventory	0.5.0	extracted_source				0	0	0	2026-05-20T08:27:22.8372056Z	ExpandedInventory_buff_scan.json
+ExtraWorldSizes	0.5.0	extracted_source				0	0	0	2026-05-20T08:28:09.2231738Z	ExtraWorldSizes_buff_scan.json
+FargoChinese	0.5.0	extracted_source				0	0	0	2026-05-20T08:27:23.3337390Z	FargoChinese_buff_scan.json
+FargoCP	0.5.0	extracted_source				0	0	0	2026-05-20T08:27:23.8584251Z	FargoCP_buff_scan.json
+FargoSeeds	0.5.0	extracted_source				0	0	0	2026-05-20T08:28:23.2973398Z	FargoSeeds_buff_scan.json
 FargosMutantMod		github_source	https://github.com/Fargo-Team/FargosMutantMod	0153d4a	V3.1.3	5	1	1	2026-05-20T07:19:05.8742937Z	FargosMutantMod_buff_scan.json
 FargosSoulsDLC		github_source	https://github.com/Fargo-Team/FargosSoulsDLC	9333f30		1	15	0	2026-05-20T07:10:35.2683980Z	FargosSoulsDLC_buff_scan.json
 FargosSoulsMod		github_source	https://github.com/Fargo-Team/FargosSoulsMod	226fade	v1.6	157	157	132	2026-05-20T07:13:44.2851225Z	FargosSoulsMod_buff_scan.json
-Fargowiltas	0.4.65	extracted_source				5	4	4	2026-05-20T08:27:24.7216881Z	Fargowiltas_buff_scan.json
-FargowiltasCrossmod	0.4.65	extracted_source				1	106	1	2026-05-20T08:27:26.9948418Z	FargowiltasCrossmod_buff_scan.json
-FargowiltasMusic	0.4.65	extracted_source				0	0	0	2026-05-20T08:27:27.5554513Z	FargowiltasMusic_buff_scan.json
-FargowiltasSouls	0.4.65	extracted_source				154	145	145	2026-05-20T08:27:33.6407699Z	FargowiltasSouls_buff_scan.json
-FasterUI	0.4.65	extracted_source				0	0	0	2026-05-20T08:28:17.5474660Z	FasterUI_buff_scan.json
-HighFPSSupport	0.4.65	extracted_source				0	0	0	2026-05-20T08:28:04.9366199Z	HighFPSSupport_buff_scan.json
-HighFPSSupportCN	0.4.65	extracted_source				0	0	0	2026-05-20T08:28:05.4764528Z	HighFPSSupportCN_buff_scan.json
-HyperResearch	0.4.65	extracted_source				0	0	0	2026-05-20T08:27:34.8227858Z	HyperResearch_buff_scan.json
-hyperresearchcn	0.4.65	extracted_source				0	0	0	2026-05-20T08:27:34.1724172Z	hyperresearchcn_buff_scan.json
-ImproveGame	0.4.65	extracted_source	https://github.com/487666123/ImproveGame	0e52de3	v1.6.7.1	0	0	0	2026-05-20T08:27:40.5179148Z	ImproveGame_buff_scan.json
-InfernumAbyssGenerationPatch	0.4.65	extracted_source				0	0	0	2026-05-20T08:27:57.5262682Z	InfernumAbyssGenerationPatch_buff_scan.json
-InfernumChineseFontAddon	0.4.65	extracted_source				0	0	0	2026-05-20T08:28:06.0505575Z	InfernumChineseFontAddon_buff_scan.json
-InfernumMode	0.4.65	extracted_source				17	0	0	2026-05-20T08:28:22.5966036Z	InfernumMode_buff_scan.json
-InfiniteAddPointSystem	0.4.65	extracted_source				0	0	0	2026-05-20T08:27:35.4624728Z	InfiniteAddPointSystem_buff_scan.json
-ItemChecklist	0.4.65	extracted_source				0	0	0	2026-05-20T08:27:36.2229867Z	ItemChecklist_buff_scan.json
-ItemsOuttaBlocks	0.4.65	extracted_source				0	0	0	2026-05-20T08:27:53.7988651Z	ItemsOuttaBlocks_buff_scan.json
-Lights	0.4.65	extracted_source				0	0	0	2026-05-20T08:27:36.8226903Z	Lights_buff_scan.json
-Luminance	0.4.65	extracted_source				0	0	0	2026-05-20T08:27:37.6454143Z	Luminance_buff_scan.json
-NathansSaferCritters	0.4.65	extracted_source				0	0	0	2026-05-20T08:27:38.1668580Z	NathansSaferCritters_buff_scan.json
-NoItemFrameResize	0.4.65	extracted_source				0	0	0	2026-05-20T08:27:38.7959477Z	NoItemFrameResize_buff_scan.json
-NoxusBoss	0.4.65	extracted_source				6	6	5	2026-05-20T08:27:51.7116830Z	NoxusBoss_buff_scan.json
-RealisticSky	0.4.65	extracted_source				0	0	0	2026-05-20T08:28:07.4573999Z	RealisticSky_buff_scan.json
-RecipeBrowser	0.4.65	extracted_source				0	0	0	2026-05-20T08:27:41.3626152Z	RecipeBrowser_buff_scan.json
-RecipeBrowserPinyin	0.4.65	extracted_source				0	0	0	2026-05-20T08:27:42.0667273Z	RecipeBrowserPinyin_buff_scan.json
-ShopExpander	0.4.65	extracted_source				0	0	0	2026-05-20T08:27:42.6173036Z	ShopExpander_buff_scan.json
-SilkyUIFramework	0.4.65	extracted_source				0	0	0	2026-05-20T08:27:52.5386220Z	SilkyUIFramework_buff_scan.json
-SpiritMusic	0.4.65	extracted_source				0	0	0	2026-05-20T08:28:04.2899910Z	SpiritMusic_buff_scan.json
-SpiritReforged	0.4.65	extracted_source				20	24	19	2026-05-20T08:28:03.6941117Z	SpiritReforged_buff_scan.json
-Spooky	0.4.65	extracted_source	https://github.com/DylanDoe21/Spooky	af87068		129	129	129	2026-05-20T08:28:15.8758238Z	Spooky_buff_scan.json
-SpookyChinesePatch	0.4.65	extracted_source				0	0	0	2026-05-20T08:28:09.7569178Z	SpookyChinesePatch_buff_scan.json
-StructureHelper	0.4.65	extracted_source				0	0	0	2026-05-20T08:27:43.2429855Z	StructureHelper_buff_scan.json
-SubworldLibrary	0.4.65	extracted_source				0	0	0	2026-05-20T08:27:44.0046008Z	SubworldLibrary_buff_scan.json
-UnCalamityModMusic	0.4.65	extracted_source				0	0	0	2026-05-20T08:27:44.8212562Z	UnCalamityModMusic_buff_scan.json
-UpgradedResearch	0.4.65	extracted_source				2	2	2	2026-05-20T08:27:45.4448539Z	UpgradedResearch_buff_scan.json
-WingSlotExtra	0.4.65	extracted_source				0	0	0	2026-05-20T08:28:08.0367823Z	WingSlotExtra_buff_scan.json
-WMITF	0.4.65	extracted_source				0	0	0	2026-05-20T08:28:16.3972210Z	WMITF_buff_scan.json
+Fargowiltas	0.5.0	extracted_source				5	4	4	2026-05-20T08:27:24.7216881Z	Fargowiltas_buff_scan.json
+FargowiltasCrossmod	0.5.0	extracted_source				1	106	1	2026-05-20T08:27:26.9948418Z	FargowiltasCrossmod_buff_scan.json
+FargowiltasMusic	0.5.0	extracted_source				0	0	0	2026-05-20T08:27:27.5554513Z	FargowiltasMusic_buff_scan.json
+FargowiltasSouls	0.5.0	extracted_source				154	145	145	2026-05-20T08:27:33.6407699Z	FargowiltasSouls_buff_scan.json
+FasterUI	0.5.0	extracted_source				0	0	0	2026-05-20T08:28:17.5474660Z	FasterUI_buff_scan.json
+HighFPSSupport	0.5.0	extracted_source				0	0	0	2026-05-20T08:28:04.9366199Z	HighFPSSupport_buff_scan.json
+HighFPSSupportCN	0.5.0	extracted_source				0	0	0	2026-05-20T08:28:05.4764528Z	HighFPSSupportCN_buff_scan.json
+HyperResearch	0.5.0	extracted_source				0	0	0	2026-05-20T08:27:34.8227858Z	HyperResearch_buff_scan.json
+hyperresearchcn	0.5.0	extracted_source				0	0	0	2026-05-20T08:27:34.1724172Z	hyperresearchcn_buff_scan.json
+ImproveGame	0.5.0	extracted_source	https://github.com/487666123/ImproveGame	0e52de3	v1.6.7.1	0	0	0	2026-05-20T08:27:40.5179148Z	ImproveGame_buff_scan.json
+InfernumAbyssGenerationPatch	0.5.0	extracted_source				0	0	0	2026-05-20T08:27:57.5262682Z	InfernumAbyssGenerationPatch_buff_scan.json
+InfernumChineseFontAddon	0.5.0	extracted_source				0	0	0	2026-05-20T08:28:06.0505575Z	InfernumChineseFontAddon_buff_scan.json
+InfernumMode	0.5.0	extracted_source				17	0	0	2026-05-20T08:28:22.5966036Z	InfernumMode_buff_scan.json
+InfiniteAddPointSystem	0.5.0	extracted_source				0	0	0	2026-05-20T08:27:35.4624728Z	InfiniteAddPointSystem_buff_scan.json
+ItemChecklist	0.5.0	extracted_source				0	0	0	2026-05-20T08:27:36.2229867Z	ItemChecklist_buff_scan.json
+ItemsOuttaBlocks	0.5.0	extracted_source				0	0	0	2026-05-20T08:27:53.7988651Z	ItemsOuttaBlocks_buff_scan.json
+Lights	0.5.0	extracted_source				0	0	0	2026-05-20T08:27:36.8226903Z	Lights_buff_scan.json
+Luminance	0.5.0	extracted_source				0	0	0	2026-05-20T08:27:37.6454143Z	Luminance_buff_scan.json
+NathansSaferCritters	0.5.0	extracted_source				0	0	0	2026-05-20T08:27:38.1668580Z	NathansSaferCritters_buff_scan.json
+NoItemFrameResize	0.5.0	extracted_source				0	0	0	2026-05-20T08:27:38.7959477Z	NoItemFrameResize_buff_scan.json
+NoxusBoss	0.5.0	extracted_source				6	6	5	2026-05-20T08:27:51.7116830Z	NoxusBoss_buff_scan.json
+RealisticSky	0.5.0	extracted_source				0	0	0	2026-05-20T08:28:07.4573999Z	RealisticSky_buff_scan.json
+RecipeBrowser	0.5.0	extracted_source				0	0	0	2026-05-20T08:27:41.3626152Z	RecipeBrowser_buff_scan.json
+RecipeBrowserPinyin	0.5.0	extracted_source				0	0	0	2026-05-20T08:27:42.0667273Z	RecipeBrowserPinyin_buff_scan.json
+ShopExpander	0.5.0	extracted_source				0	0	0	2026-05-20T08:27:42.6173036Z	ShopExpander_buff_scan.json
+SilkyUIFramework	0.5.0	extracted_source				0	0	0	2026-05-20T08:27:52.5386220Z	SilkyUIFramework_buff_scan.json
+SpiritMusic	0.5.0	extracted_source				0	0	0	2026-05-20T08:28:04.2899910Z	SpiritMusic_buff_scan.json
+SpiritReforged	0.5.0	extracted_source				20	24	19	2026-05-20T08:28:03.6941117Z	SpiritReforged_buff_scan.json
+Spooky	0.5.0	extracted_source	https://github.com/DylanDoe21/Spooky	af87068		129	129	129	2026-05-20T08:28:15.8758238Z	Spooky_buff_scan.json
+SpookyChinesePatch	0.5.0	extracted_source				0	0	0	2026-05-20T08:28:09.7569178Z	SpookyChinesePatch_buff_scan.json
+StructureHelper	0.5.0	extracted_source				0	0	0	2026-05-20T08:27:43.2429855Z	StructureHelper_buff_scan.json
+SubworldLibrary	0.5.0	extracted_source				0	0	0	2026-05-20T08:27:44.0046008Z	SubworldLibrary_buff_scan.json
+UnCalamityModMusic	0.5.0	extracted_source				0	0	0	2026-05-20T08:27:44.8212562Z	UnCalamityModMusic_buff_scan.json
+UpgradedResearch	0.5.0	extracted_source				2	2	2	2026-05-20T08:27:45.4448539Z	UpgradedResearch_buff_scan.json
+WingSlotExtra	0.5.0	extracted_source				0	0	0	2026-05-20T08:28:08.0367823Z	WingSlotExtra_buff_scan.json
+WMITF	0.5.0	extracted_source				0	0	0	2026-05-20T08:28:16.3972210Z	WMITF_buff_scan.json
