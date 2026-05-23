@@ -10,127 +10,117 @@ Keybinds: {
 
 Configs: {
 	OPJourneyConfig: {
-		DisplayName: 游戏设置
+		DisplayName: 更超模的旅途
 
 		PurpleLosslessGiveAmount: {
-			Label: Super crafting research - lossless craft output count
-			Tooltip: Number of items granted per lossless craft in non-Journey mode (purple face).
+			Label: 超级制造研究 - 无损合成次数
+			Tooltip: 非旅途模式下紫脸无损合成每次赠予的物品数量。
 			Five.Label: "5"
 			Ten.Label: "10"
 			Fifty.Label: "50"
-			MaxStack.Label: Max stack
+			MaxStack.Label: 最大堆叠
 		}
 
 		ItemHubUnlockRequirement: {
-			Label: Super item research - unlock requirement
-			Tooltip:
-				'''
-				How many acquisitions / research progress unlock claiming in Journey.
-				Non-stackable gear counts as one pickup.
-				The '5' option will use stack counting via hooks later.
-				'''
+			Label: 超级物品研究 - 解锁条件
+			Tooltip: 旅途模式中需多少次获得/研究进度才能在中枢领取。非堆叠装备计为获得1次。「5次」选项将在后续通过钩子按堆叠计数。
 		}
 
 		ModLogMode: {
-			Label: EMOJ log mode
+			Label: EMOJ 日志模式
 			Tooltip:
 				'''
-				Off by default. Logs go to Documents/.../tModLoader/Logs/EMOJ/<timestamp>/
-				Simplified: single simple.log event stream, low overhead, safe to leave on
-				Full: simple.log + split channel logs + manifest-full.txt for deep debugging
+					默认关闭。日志写入 Documents/.../tModLoader/Logs/EMOJ/时间戳/
+					简化：单一 simple.log，开销低，可常开
+					完整：simple.log + 分频道日志 + manifest-full.txt，用于深度排错
 				'''
-			Off.Label: Off
-			Simplified.Label: Simplified (always-on friendly)
-			Full.Label: Full (troubleshooting)
+			Off.Label: 关
+			Simplified.Label: 简化（可常开）
+			Full.Label: 完整（排错用）
 		}
 
 		VirtualBuffApplyMode: {
-			Label: Virtual buff apply mode
+			Label: 虚拟增益应用模式
 			Tooltip:
 				'''
-				Balanced (recommended): stat buffs every frame, particle/combat buffs on an interval ? smoother with near-full stats
-				Unified every frame: legacy behavior, all virtual buffs every frame ? heaviest
-				Re-enter world or toggle buffs after changing
+					平衡（推荐）：属性增益每帧刷新，战斗/视觉增益按间隔刷新
+					每帧统一：旧行为，所有虚拟增益每帧刷新，负载最高
+					更改后请重进世界或重新切换增益
 				'''
-			BuffsPlusRealBar.Label: Real buff bar (smooth, recommended)
-			BalancedVirtualScratch.Label: Virtual scratch ? balanced (full stats, heavy)
-			UnifiedVirtualEveryFrame.Label: Virtual scratch ? every frame (heaviest)
+			BuffsPlusRealBar.Label: 流畅（推荐）
+			BalancedVirtualScratch.Label: 实验 - 批处理（易卡）
+			UnifiedVirtualEveryFrame.Label: 实验 - 每帧（最卡）
 		}
 
 		CombatVisualUpdateInterval: {
-			Label: Visual effect interval (frames) (balanced mode only)
-			Tooltip: Affects the combat/visual queue only. Most lag is the stat queue ? use stat spread below
+			Label: 视觉效果间隔（帧）（仅平衡模式）
+			Tooltip: 仅影响战斗/视觉队列。大多数卡顿来自属性队列，请优先调下方属性分散。
 		}
 
 		StatUpdateSpreadFrames: {
-			Label: Stat queue spread (frames) (balanced mode only)
-			Tooltip:
-				'''
-				How many frames to rotate through all stat buffs (1 = every frame, 3 ? ~2/3 less stat work)
-				This is the main FPS win in balanced mode; raising visual interval alone barely helps
-				'''
+			Label: 属性队列分散（帧）（仅平衡模式）
+			Tooltip: 多少帧内轮换所有属性增益（1=每帧，3≈减少 2/3 属性负载）。这是平衡模式主要帧率提升手段。
 		}
 
-		BuffInfrastructureHeader: Buff slots & persistence (cross-mod)
+		BuffInfrastructureHeader: 增益栏位与持久化（跨模组）
 
 		ExtraPlayerBuffSlots: {
-			Label: Extra buff slots
+			Label: 额外增益栏位
 			Tooltip:
 				'''
-				0 = no extra slots (vanilla ~22)
-				If ImproveGame is loaded and its "Extra BUFF slots" > 0, this setting is ignored (often 99; reload world after change)
-				Otherwise EMOJ provides extra slots here
+					0 = 无额外位（原版约 22）
+					若已加载 ImproveGame 且其「额外 BUFF 栏位」> 0，本项被忽略（常为 99；改后请重进世界）
+					否则由 EMOJ 在此提供额外栏位
 				'''
 		}
 
 		PreserveBuffsOnDeath: {
-			Label: Preserve buffs on death / respawn
+			Label: 死亡/重生保留增益
 			Tooltip:
 				'''
-				On: keep non-debuff bar buffs through death when possible; re-apply managed list after respawn
-				If ImproveGame "Preserve buffs on death" is on, death clearing is handled there; EMOJ still re-applies its managed list on respawn
+					开：尽可能保留非减益栏增益，重生后重新应用管理列表
+					若 ImproveGame 开启死亡保留，清除由其处理；EMOJ 仍在重生时重新应用管理列表
 				'''
 		}
 
 		PreserveBuffsOnWorldEnter: {
-			Label: Re-apply managed buffs on world enter
+			Label: 进世界时重新应用管理增益
 			Tooltip:
 				'''
-				On: re-apply checked buffs from the super buff panel each time you enter a world
-				Off: no auto re-apply on enter (checks are saved; toggle manually)
-				Not controlled by ImproveGame
+					开：每次进世界重新应用超级增益面板中勾选的增益
+					关：进世界不自动应用（勾选仍会保存，需手动切换）
+					不受 ImproveGame 控制
 				'''
 		}
 
 		UseVanillaSyntheticStats: {
-			Label: Vanilla stat potions (direct apply)
+			Label: 原版属性药水（直接应用）
 			Tooltip:
 				'''
-				For common vanilla buffs listed in VanillaBuffStatRegistry (Ironskin, Regen, Swiftness, etc.):
-				apply stats directly without running Buff.Update ? saves CPU
-				See Data/BuffModSupport/vanilla_stats_manifest.json
+					对 VanillaBuffStatRegistry 中列出的常见增益（铁皮、回血、迅捷等）：不走 Buff.Update 直接加属性，节省 CPU
+					见 Data/BuffModSupport/vanilla_stats_manifest.json
 				'''
 		}
 
-		BestiaryHeader: Super creature bestiary
+		BestiaryHeader: 超级生物图鉴
 
 		BestiaryUseVanillaKillCountForProgressiveDisclosure: {
-			Label: Progressive unlock uses vanilla kill counts
+			Label: 渐进解锁使用原版击杀计数
 			Tooltip:
 				'''
-				Affects detail disclosure on bestiary face modes 2?4.
-				On: matches vanilla bestiary kill requirements.
-				Off: only "seen vs not seen", no per-kill tiers.
-				If ImproveGame is loaded with Bestiary Quick Unlock, one kill counts as fully unlocked (overrides this).
+					影响图鉴表情 2–4 的详情开放。
+					开：与原版图鉴击杀要求一致。
+					关：仅「已见/未见」，无击杀阶段。
+					若 ImproveGame 开启图鉴快速解锁，击杀1次视为完全解锁（覆盖本项）。
 				'''
 		}
 
 		ForceBulkEnableUnsafeVirtual: {
-			Label: Bulk enable includes unsafe virtual buffs
+			Label: 批量启用包含不安全虚拟增益
 			Tooltip:
 				'''
-				Off (default): "Enable all" skips Inferno, poison, and similar buffs marked unsafe for virtual scratch apply; toggle them manually.
-				On: those buffs can be bulk-enabled too (still subject to locked/manual-entity rules; single-click rules unchanged).
+					关（默认）：「全部启用」跳过地狱、中毒等标记为虚拟不安全的增益，需手动切换。
+					开：也可批量启用（仍受锁定/手动实体规则约束）。
 				'''
 		}
 	}
@@ -154,29 +144,29 @@ Configs: {
 		}
 
 		MaxStack: {
-			Label: Max stack
+			Label: 最大堆叠
 			Tooltip: ""
 		}
 	}
 
 	ItemHubUnlockRequirementKind: {
 		Once: {
-			Label: Picked up once
+			Label: 获得一次
 			Tooltip: ""
 		}
 
 		Five: {
-			Label: Five pickups (stackables)
+			Label: 获得五次（可堆叠）
 			Tooltip: ""
 		}
 
 		JourneyHalf: {
-			Label: Half Journey research
+			Label: 旅途研究达半数
 			Tooltip: ""
 		}
 
 		JourneyFull: {
-			Label: Full Journey research
+			Label: 旅途研究完成
 			Tooltip: ""
 		}
 
@@ -185,17 +175,17 @@ Configs: {
 
 	ModLogModeKind: {
 		Off: {
-			Label: Off
+			Label: 关
 			Tooltip: ""
 		}
 
 		Simplified: {
-			Label: Brief
+			Label: 简化（可常开）
 			Tooltip: ""
 		}
 
 		Full: {
-			Label: Detailed
+			Label: 完整（排错用）
 			Tooltip: ""
 		}
 
@@ -204,17 +194,17 @@ Configs: {
 
 	VirtualBuffApplyModeKind: {
 		BuffsPlusRealBar: {
-			Label: Smooth (recommended)
+			Label: 流畅（推荐）
 			Tooltip: ""
 		}
 
 		BalancedVirtualScratch: {
-			Label: Experimental - batched (laggy)
+			Label: 实验 - 批处理（易卡）
 			Tooltip: ""
 		}
 
 		UnifiedVirtualEveryFrame: {
-			Label: Experimental - every frame (worst)
+			Label: 实验 - 每帧（最卡）
 			Tooltip: ""
 		}
 
@@ -228,338 +218,338 @@ UI: {
 	TabResearch: 研究
 	TabBuff: 增益
 	TabStorage: 超级物品中枢
-	BestiaryTitle: Super creature bestiary
+	BestiaryTitle: 超级生物图鉴
 	TabBestiary: 超级生物图鉴
 	TabHoverResearch: 超级制造研究
 	TabHoverBuff: 超级增益
 	TabHoverStorage: 超级物品研究
 	TabHoverBestiary: 超级生物图鉴
 	BestiaryFilterJoiner: " | "
-	BestiaryNoActiveFilters: All creatures
-	BestiaryFilterBtn: Filters
+	BestiaryNoActiveFilters: 全部生物
+	BestiaryFilterBtn: 筛选
 	BestiaryViewCard: 卡片
-	BestiaryViewGroup: Group
-	BestiaryCatalogLoading: Loading bestiary catalog?
-	BestiarySearchHint: Search creature name / internal id / pinyin...
-	BestiarySec_Mod: Mods
-	BestiarySec_Vanilla: Biomes
-	BestiarySec_ModPick: Filter by mod
-	BestiaryFilterReset: Reset filters
-	BestiaryFilterEmpty: (No vanilla filters loaded ? enter a world and retry)
-	BestiaryDetailBack: Back
-	BestiaryDetailModFmt: Mod: {0}
-	BestiaryDetailNetIdFmt: NPC ID: {0}
-	BestiaryDetailUnlockFmt: Unlock state: {0}
-	BestiaryDetailPlaceholder: Full bestiary fields will be added in a later pass (detail shell).
-	BestiaryDetailEmpty: Not discovered yet ? no details.
-	BestiaryDetailUnregistered: Not in vanilla bestiary database.
-	BestiaryDetailField_Name: Name
-	BestiaryDetailField_Mod: Mod
-	BestiaryDetailField_Status: Status
-	BestiaryDetailField_Debug: Debug
-	BestiaryDetailField_Flavor: Description
-	BestiaryDetailField_Kills: Kills
-	BestiaryDetailField_Drops: Drops
-	BestiaryDetailField_Stats: Stats
-	BestiaryDetailField_Spawn: Spawn
-	BestiaryDetailField_NoNumbers: (Numbers hidden for current face mode)
-	BestiaryGroupPhotoWip: Group photo layout (Phase 2)
-	BestiaryBand_TownNpc: Town NPCs
-	BestiaryBand_Critter: Critters
-	BestiaryBand_Event: Events
-	BestiaryBand_NormalEnemy: Enemies
-	BestiaryBand_MiniBoss: Mini bosses
-	BestiaryBand_Boss: Bosses
-	BestiaryBand_Other: Other
-	BestiaryBand_Unregistered: Unlisted
-	BestiaryPendingDiscoveryFmt: "{0} more creatures waiting to be discovered"
-	BestiaryStatsLine: Vanilla bestiary {0} | Catalog {1} | Visible {2} | Not listed {3} | View {4}
-	BestiaryFaceTip_AllVisible: All visible
-	BestiaryFaceTip_ProgressivePlus: Progressive unlock +
-	BestiaryFaceTip_ProgressiveMinus: Discovered only
-	BestiaryFaceTip_UnlockedOnly: Not unlocked only
-	BestiaryCollectionStats: Found {0} | Missing {1} ({2:0.#}%)
-	BestiaryCollectionSummary: Found {0} ({1:0.#}%) | Missing {2} | Total {3}
-	BestiaryFaceSummary_DiscoveredOnly: Found {0} | Total {1}
-	BestiaryFaceSummary_UnlockedOnly: Undiscovered {0} | Total {1}
-	BestiaryCardSourceModFmt: Source: {0}
-	BestiaryCardSourceVanilla: Source: Vanilla creatures
-	BestiaryModTipVanilla: Vanilla creatures
+	BestiaryViewGroup: 分组
+	BestiaryCatalogLoading: 正在加载图鉴目录…
+	BestiarySearchHint: 搜索生物名/内部ID/拼音…
+	BestiarySec_Mod: 模组
+	BestiarySec_Vanilla: 群系
+	BestiarySec_ModPick: 按模组筛选
+	BestiaryFilterReset: 重置
+	BestiaryFilterEmpty: （未加载原版筛选，请进入世界后重试）
+	BestiaryDetailBack: 返回
+	BestiaryDetailModFmt: "模组：{0}"
+	BestiaryDetailNetIdFmt: "NPC ID：{0}"
+	BestiaryDetailUnlockFmt: "解锁状态：{0}"
+	BestiaryDetailPlaceholder: 完整图鉴字段将在后续版本补全（当前为详情外壳）。
+	BestiaryDetailEmpty: 尚未发现，无详情。
+	BestiaryDetailUnregistered: 不在原版图鉴数据库中。
+	BestiaryDetailField_Name: 名称
+	BestiaryDetailField_Mod: 模组
+	BestiaryDetailField_Status: 状态
+	BestiaryDetailField_Debug: 调试
+	BestiaryDetailField_Flavor: 描述
+	BestiaryDetailField_Kills: 击杀
+	BestiaryDetailField_Drops: 掉落
+	BestiaryDetailField_Stats: 数值
+	BestiaryDetailField_Spawn: 刷新
+	BestiaryDetailField_NoNumbers: （当前表情模式隐藏数值）
+	BestiaryGroupPhotoWip: 合影布局（第二阶段）
+	BestiaryBand_TownNpc: 城镇 NPC
+	BestiaryBand_Critter: 小动物
+	BestiaryBand_Event: 事件
+	BestiaryBand_NormalEnemy: 敌人
+	BestiaryBand_MiniBoss: 小头目
+	BestiaryBand_Boss: Boss
+	BestiaryBand_Other: 其他
+	BestiaryBand_Unregistered: 未登录
+	BestiaryPendingDiscoveryFmt: "还有 {0} 种生物待发现"
+	BestiaryStatsLine: "原版图鉴 {0} | 目录 {1} | 可见 {2} | 未登录 {3} | 视图 {4}"
+	BestiaryFaceTip_AllVisible: 全部可见
+	BestiaryFaceTip_ProgressivePlus: 渐进解锁 +
+	BestiaryFaceTip_ProgressiveMinus: 仅已发现
+	BestiaryFaceTip_UnlockedOnly: 仅未解锁
+	BestiaryCollectionStats: "已找到 {0} | 未找到 {1} ({2:0.#}%)"
+	BestiaryCollectionSummary: "已找到 {0} ({1:0.#}%) | 未找到 {2} | 总计 {3}"
+	BestiaryFaceSummary_DiscoveredOnly: "已找到 {0} | 总计 {1}"
+	BestiaryFaceSummary_UnlockedOnly: "未发现 {0} | 总计 {1}"
+	BestiaryCardSourceModFmt: "来源：{0}"
+	BestiaryCardSourceVanilla: 来源：原版生物
+	BestiaryModTipVanilla: 原版生物
 	SectionQuery: 查询物品
 	SectionProducts: 产物列表
 	SectionRecipes: 合成路径
 	DragItemHint: 拖入物品查询
-	ResearchSearchHint: Search by name / internal id / pinyin initials...
+	ResearchSearchHint: 按名称/内部ID/拼音首字母搜索…
 	NoRecipePath: 当前物品无合成路径
-	GreenFaceNoProducts: No products here still need Journey research, or nested craft is blocked (stand near placed crafting stations; Shimmer rules apply before you touch Shimmer)
-	NoProductsForFilter: No products match the current filter
+	GreenFaceNoProducts: 此处无仍需旅途研究的产物，或嵌套合成被阻断（请靠近已摆放的制作台；触摸微光前适用微光规则）
+	NoProductsForFilter: 没有符合当前筛选的产物
 	ViewCard: 卡片
 	ViewList: 列表
 	ResearchAll: 一键研究
-	LosslessCraft: Lossless craft
+	LosslessCraft: 无损合成
 	GiveAll: 获取全部
 	GetThisItem: 获取此物
-	WarehouseWip: Storage tab is not ready yet.
-	ResearchDoneLine: 本次已研究，{0}
-	FaceTipPurpleNonJourney: Products crafted from this material
-	FaceTipPurpleNeedJourney: Enable this mode in Journey mode
-	FaceTipYellow: Researched products crafted from this material
-	FaceTipGreen: Products using this material whose full nested craft chain is researched, with available recipes and seen crafting stations; hides Shimmer outputs and indirect dependents until you touch Shimmer
-	FaceTipBlue: Unresearched products crafted from this material
-	FaceTipPurpleJourney: Enable this mode in other game modes
-	BuffUnlockedTitle: Unlocked buffs
-	BuffControlsHint: LMB toggle - RMB disable - MMB pin to buff bar
-	BuffWarning: Stacking many buffs may cause instability; some mod buffs may not work.
-	BuffSearchHint: Search buff name / internal id / pinyin initials...
-	BuffStats: Unlocked: {0} / {1} | Active: {2} | Disabled: {3}
-	BuffCat_Positive: Buffs
-	BuffCat_PositivePotionFood: Potions & food
-	BuffCat_PositiveEquipment: Gear (accessories / pieces)
-	BuffCat_PositiveSetBonus: Set bonuses
-	BuffCat_PositiveEnvironment: Environment
-	BuffBulkEnableSummary: Enabled {0}; skipped {1} (locked {3} / manual entity {4} / manual only {5} / unsafe virtual {6}); {2} set bonuses belong in the Set bonuses section
-	BuffBulkEnableSummaryUnsafeAllowed: Enabled {0} (unsafe virtual allowed in config); skipped {1} (locked {3} / manual entity {4} / manual only {5}); {2} set bonuses belong in the Set bonuses section
-	BuffBulkSetBonusNoBulk: Set bonuses cannot be bulk-enabled; toggle each icon manually
-	BuffBulkMiscExclusiveNoBulk: Pets, light pets, mounts, and minecarts share one slot each; enable only one per section
-	SetBonusCircuitBroken: Too many set effects; auto apply paused. Disable some set bonuses and re-enter the world
-	BuffCat_Negative: Debuffs
-	BuffFilterTitle: Buff mod filter
-	BuffFilterModPick: Filter by mod
-	BuffFilterModHoverFmt: Buffs from {0}
-	BuffFilterReset: Reset filters
-	BuffCat_Other: Other
-	BuffCat_Mount: Mounts
-	BuffCat_Minecart: Minecarts
-	BuffCat_Pet: Pets
-	BuffCat_LightPet: Light pets
-	BuffCat_Minion: Minions
-	BuffCat_Sentry: Sentries
-	BuffCat_CombatSummon: Summon & Minions
-	BuffHoverMinionSlots: This minion uses {0} minion slot(s). Max slots: {1}.
-	BuffCat_Disabled: Disabled
-	BuffBtnEnableAll: Enable all
-	BuffBtnClearAll: Clear all
-	BuffBtnDisableAllDebuffs: Disable all
-	BuffBtnRestoreAll: Restore all
-	BuffHoverLeft: "[c/00FF00:LMB: toggle permanent]"
-	BuffHoverRight: "[c/FF5555:RMB: disable this buff]"
-	BuffHoverMiddle: "[c/FFAA00:MMB: pin / unpin on buff bar]"
-	BuffHoverDisabled: "[c/FF0000:Disabled]"
-	BuffHoverPinned: "[c/FFAA00:Pinned to buff bar]"
-	BuffHoverSource: Source: {0}
-	BuffHoverMiscEquip: "[c/FFAA00:Maintained via misc equip slot swap; one per section, restores original when off]"
-	BuffHoverVirtual: "[c/88CCFF:Virtual effect; ��20 aggregate as Alpha icon]"
-	BuffHoverPinAdvice: If an effect does not work, try [MMB] to pin it to the buff bar
-	ItemHubTitle: Item research hub
-	ItemHubTitleHint: One claim, lifetime perks, free refresh [fog]
+	WarehouseWip: 仓库页签尚未就绪。
+	ResearchDoneLine: "本次已研究，{0}"
+	FaceTipPurpleNonJourney: 以此材料合成的产物
+	FaceTipPurpleNeedJourney: 请在旅途模式下启用此模式
+	FaceTipYellow: 已研究、以此材料合成的产物
+	FaceTipGreen: 使用此材料且嵌套链材料均已研究、配方可用且已见制作台的产物；触摸微光前隐藏微光产出与间接依赖
+	FaceTipBlue: 未研究、以此材料合成的产物
+	FaceTipPurpleJourney: 请在非旅途模式下启用此模式
+	BuffUnlockedTitle: 已解锁增益
+	BuffControlsHint: 左键切换 - 右键禁用 - 中键固定到增益栏
+	BuffWarning: 堆叠过多增益可能导致不稳定；部分模组增益可能无效。
+	BuffSearchHint: 搜索增益名/内部ID/拼音…
+	BuffStats: "已解锁：{0}/{1} | 激活：{2} | 禁用：{3}"
+	BuffCat_Positive: 增益
+	BuffCat_PositivePotionFood: 药水与食物
+	BuffCat_PositiveEquipment: 装备（饰品/部件）
+	BuffCat_PositiveSetBonus: 套装效果
+	BuffCat_PositiveEnvironment: 环境
+	BuffBulkEnableSummary: "已启用 {0}；跳过 {1}（锁定 {3}/手动实体 {4}/仅手动 {5}/不安全虚拟 {6}）；{2} 个套装请在套装区切换"
+	BuffBulkEnableSummaryUnsafeAllowed: "已启用 {0}（配置允许不安全虚拟）；跳过 {1}（锁定 {3}/手动实体 {4}/仅手动 {5}）；{2} 个套装请在套装区切换"
+	BuffBulkSetBonusNoBulk: 套装效果不可批量启用，请逐个点击图标
+	BuffBulkMiscExclusiveNoBulk: 宠物、光宠、坐骑、矿车各占一位，每区仅可启用一个
+	SetBonusCircuitBroken: 套装效果过多，已暂停自动应用。请关闭部分套装并重进世界
+	BuffCat_Negative: 减益
+	BuffFilterTitle: 增益模组筛选
+	BuffFilterModPick: 按模组筛选
+	BuffFilterModHoverFmt: "来自模组 {0} 的增益"
+	BuffFilterReset: 重置
+	BuffCat_Other: 其他
+	BuffCat_Mount: 坐骑
+	BuffCat_Minecart: 矿车
+	BuffCat_Pet: 宠物
+	BuffCat_LightPet: 光宠
+	BuffCat_Minion: 弟子
+	BuffCat_Sentry: 啾塔
+	BuffCat_CombatSummon: 仆从
+	BuffHoverMinionSlots: "此弟子占用 {0} 个弟子槽（最多 {1} 个）。"
+	BuffCat_Disabled: 已禁用
+	BuffBtnEnableAll: 全部启用
+	BuffBtnClearAll: 全部清除
+	BuffBtnDisableAllDebuffs: 全部禁用
+	BuffBtnRestoreAll: 全部恢复
+	BuffHoverLeft: "[c/00FF00:左键：永久切换]"
+	BuffHoverRight: "[c/FF5555:右键：禁用此增益]"
+	BuffHoverMiddle: "[c/FFAA00:中键：固定/取消固定到增益栏]"
+	BuffHoverDisabled: "[c/FF0000:已禁用]"
+	BuffHoverPinned: "[c/FFAA00:已固定到增益栏]"
+	BuffHoverSource: "来源：{0}"
+	BuffHoverMiscEquip: "[c/FFAA00:通过杂项槽位维持；每区一个，关闭时恢复原槽位]"
+	BuffHoverVirtual: "[c/88CCFF:虚拟效果；≤20 个聚合为 Alpha 图标]"
+	BuffHoverPinAdvice: 若效果不生效，可尝试中键固定到增益栏
+	ItemHubTitle: 物品研究中枢
+	ItemHubTitleHint: 领取一次，终身效果，免费刷新
 	ItemHubProgressFmt: "{0}/{1} | {2}%"
-	ItemHubProgressTitle: Research progress
-	ItemHubMajor_Mod: Nature
-	ItemHubMajor_Categories: Categories
-	ItemHubIc_Melee: Melee weapons
-	ItemHubIc_Yoyo: Yoyos
-	ItemHubIc_Magic: Magic weapons
-	ItemHubIc_Ranged: Ranged weapons
-	ItemHubIc_Throwing: Throwing weapons
-	ItemHubIc_Summon: Summon weapons
-	ItemHubIc_Sentry: Sentries
-	ItemHubIc_Pickaxe: Pickaxes
-	ItemHubIc_Axe: Axes
-	ItemHubIc_Hammer: Hammers
-	ItemHubIc_Head: Head armor
-	ItemHubIc_Body: Body armor
-	ItemHubIc_Legs: Leg armor
-	ItemHubIc_VanityArmor: Vanity armor
-	ItemHubIc_NonVanityArmor: Non-vanity armor
-	ItemHubIc_Tiles: Placeable tiles
-	ItemHubIc_Containers: Containers
-	ItemHubIc_Wiring: Wiring
-	ItemHubIc_Statues: Statues
-	ItemHubIc_Doors: Doors
-	ItemHubIc_Chairs: Chairs
-	ItemHubIc_Tables: Tables
-	ItemHubIc_LightSources: Light sources
-	ItemHubIc_Torches: Torches
-	ItemHubIc_Walls: Walls
-	ItemHubIc_Accessories: Accessories
-	ItemHubIc_Wings: Wings
-	ItemHubIc_Ammo: Ammo
-	ItemHubIc_Potions: Potions (Item3 use sound)
-	ItemHubIc_Health: Health potions
-	ItemHubIc_Mana: Mana potions
-	ItemHubIc_BuffPotion: Buff potions
-	ItemHubIc_Expert: Expert items
-	ItemHubIc_Pets: Pets
-	ItemHubIc_LightPets: Light pets
-	ItemHubIc_Mounts: Mounts
-	ItemHubIc_Carts: Minecarts
-	ItemHubIc_Hooks: Hooks
-	ItemHubIc_Dyes: Dyes
-	ItemHubIc_HairDyes: Hair dyes
-	ItemHubIc_BossSummon: Boss summons
-	ItemHubIc_Consumables: Consumables
-	ItemHubIc_CapturedNpc: Captured NPCs
-	ItemHubIc_FishingPole: Fishing poles
-	ItemHubIc_Bait: Bait
-	ItemHubIc_QuestFish: Quest fish
-	ItemHubIc_Extractinator: Extractinator
-	ItemHubIc_Materials: Materials (IsAMaterial)
-	ItemHubIc_Other: Other
-	ItemHubSec_ModPick: Filter by mod
-	ItemHubSec_Tile: By block type
-	ItemHubSec_Weapon: By weapon
-	ItemHubSec_Equip: By gear slot
-	ItemHubSec_Vanity: Vanity / mounts / pets
-	ItemHubSec_ConBuff: Potions & food
-	ItemHubSec_ConBio: Critters & boss items
-	ItemHubSec_Misc: Misc filters
-	ItemHubSec_Rare: By rarity
-	ItemHubSec_Chain: Crafting dependency chain
-	ItemHubModVanillaShort: V
-	ItemHubModTipVanilla: Vanilla items
-	ItemHubModTipModFmt: Items from mod "{0}"
-	ItemHubTip_Block: Solid blocks: placeable solid tiles (not frame-important)
-	ItemHubTip_Light: Lighting: torch-style tiles, glowing tiles, campfires; glowing walls; held or consumable glow sources
-	ItemHubTip_Wall: Walls: wall placement items
-	ItemHubTip_Furniture: Furniture: frame-important tiles not in the station-tile index; painting-sort items without a place tile
-	ItemHubTip_Station: Crafting stations: tile types that appear as requiredTile in loaded recipes
-	ItemHubTip_Chest: Containers: chests, dressers, and other container tiles
-	ItemHubTip_StatWire: Wiring and statues: wiring sort group, statue-list pairs, mechanical items, banners
-	ItemHubTip_Melee: Melee weapons (excludes pickaxe / axe / hammer tools)
-	ItemHubTip_Magic: Magic weapons
-	ItemHubTip_Ranged: Ranged weapons
-	ItemHubTip_Ammo: Ammo (or items usable as ammo)
-	ItemHubTip_Summon: Minion summon weapons (no whips or sentries)
-	ItemHubTip_Whip: Whips
-	ItemHubTip_Thrown: Thrown weapons (includes throwing-class and ranged consumable weapons)
-	ItemHubTip_Sentry: Sentries
-	ItemHubTip_Yoyo: Yoyos
-	ItemHubTip_Pick: Pickaxe power
-	ItemHubTip_Axe: Axe power
-	ItemHubTip_Hammer: Hammer power
-	ItemHubTip_Armor: Armor slot gear
-	ItemHubTip_Acc: Accessories (no wings)
-	ItemHubTip_Wing: Wings
-	ItemHubTip_Grapple: Grappling hooks
-	ItemHubTip_Fashion: Vanity
-	ItemHubTip_Mount: Mounts
-	ItemHubTip_Pet: Pets
-	ItemHubTip_LightPet: Light pets
-	ItemHubTip_Heal: Healing potions / food heals
-	ItemHubTip_ManaPot: Mana potions
-	ItemHubTip_BuffPot: Utility buff potions
-	ItemHubTip_Food: Food items
-	ItemHubTip_Spawn: Critters / jars
-	ItemHubTip_BossSummon: Boss summon items
-	ItemHubTip_GoodieBag: Goodie bags / similar
-	ItemHubTip_OtherCons: Other consumables (heuristic remainder)
-	ItemHubTip_Expert: Expert-only
-	ItemHubTip_Master: Master-only
-	ItemHubTip_Dye: Dyes / hair dyes
-	ItemHubTip_Extract: Extractinator-related
-	ItemHubTip_Fish: Fishing (rods, bait, quest fish, Seafood Dinner mats heuristic)
-	ItemHubTip_Material: Materials ? items flagged material
-	ItemHubTip_OtherMisc: Other misc
-	ItemHubTip_Debug: Debug / deprecated (only visible with this filter; cannot be claimed)
-	ItemHubTip_RareFmt: Rarity tier {0}
-	ItemHubChainActivate: Activate
-	ItemHubChainActivateDesc: When active, show upstream materials and downstream products for this item.
-	ItemHubChainSlotHint: Drag an item here, or while active click an item with [{0}] to query.
-	ItemHubChainKeyUnbound: Unbound
-	ItemHubChainToggle: Filter this item's recipe network
-	ItemHubChainKeyHint: Tab 3 + this panel + chain on: press {0} on an item to set seed (does not open research).
-	ItemHubActiveStripRemove: Click to remove this filter
-	ItemHubActiveRareHoverFmt: Rarity {0}~{1}
-	ItemHubRareSliderFmt: "{0} >> {1}"
-	ItemHubChainHint: Chained filters ? every rule in the list must pass. Pick a type on the left, edit in the middle, press Add to chain.
-	ItemHubChainListTitle: Active chain
-	ItemHubChainAddRule: Add to chain
-	ItemHubChainOneClickHint: Press Add to chain below (melee / ranged / etc.).
-	ItemHubChainRarityHint: Rarity range (inclusive).
-	ItemHubChainRarityMin: Min
-	ItemHubChainRarityMax: Max
-	ItemHubChainValueHint: Top = min value, bottom = max value (integers).
-	ItemHubChainNameHint: Matches display or internal name (substring, lowercased).
-	ItemHubChainActiveFmt: chain?{0}
-	ItemHubChainKind_Mod: Mod
-	ItemHubChainKind_Rarity: Rarity
-	ItemHubChainKind_Tile: Tile
-	ItemHubChainKind_Tools: Tools
-	ItemHubChainKind_Value: Value
-	ItemHubChainKind_Name: Name
-	ItemHubChainKind_DmgMelee: Melee
-	ItemHubChainKind_DmgRanged: Ranged
-	ItemHubChainKind_DmgMagic: Magic
-	ItemHubChainKind_DmgSummon: Summon
-	ItemHubChainKind_Acc: Accessory
-	ItemHubChainKind_Cons: Consumable
-	ItemHubChainKind_Place: Placeable
+	ItemHubProgressTitle: 研究进度
+	ItemHubMajor_Mod: 天性
+	ItemHubMajor_Categories: 分类
+	ItemHubIc_Melee: 近战武器
+	ItemHubIc_Yoyo: 瑜伽
+	ItemHubIc_Magic: 魔法武器
+	ItemHubIc_Ranged: 远程武器
+	ItemHubIc_Throwing: 投掷武器
+	ItemHubIc_Summon: 召唤武器
+	ItemHubIc_Sentry: 啾塔
+	ItemHubIc_Pickaxe: 镐
+	ItemHubIc_Axe: 斧
+	ItemHubIc_Hammer: 锤
+	ItemHubIc_Head: 头盔
+	ItemHubIc_Body: 身甲
+	ItemHubIc_Legs: 腿甲
+	ItemHubIc_VanityArmor: 时装护甲
+	ItemHubIc_NonVanityArmor: 非时装护甲
+	ItemHubIc_Tiles: 可摆放方块
+	ItemHubIc_Containers: 容器
+	ItemHubIc_Wiring: 电线
+	ItemHubIc_Statues: 雕像
+	ItemHubIc_Doors: 门
+	ItemHubIc_Chairs: 椅子
+	ItemHubIc_Tables: 桌子
+	ItemHubIc_LightSources: 光源
+	ItemHubIc_Torches: 火把
+	ItemHubIc_Walls: 墙
+	ItemHubIc_Accessories: 饰品
+	ItemHubIc_Wings: 翅膀
+	ItemHubIc_Ammo: 弹药
+	ItemHubIc_Potions: 药水
+	ItemHubIc_Health: 生命药水
+	ItemHubIc_Mana: 魔力药水
+	ItemHubIc_BuffPotion: 增益药水
+	ItemHubIc_Expert: 专家物品
+	ItemHubIc_Pets: 宠物
+	ItemHubIc_LightPets: 光宠
+	ItemHubIc_Mounts: 坐骑
+	ItemHubIc_Carts: 矿车
+	ItemHubIc_Hooks: 钩爪
+	ItemHubIc_Dyes: 染料
+	ItemHubIc_HairDyes: 发型染料
+	ItemHubIc_BossSummon: Boss 召唤物
+	ItemHubIc_Consumables: 消胗品
+	ItemHubIc_CapturedNpc: 捕获 NPC
+	ItemHubIc_FishingPole: 鱼竿
+	ItemHubIc_Bait: 鱼饵
+	ItemHubIc_QuestFish: 任务鱼
+	ItemHubIc_Extractinator: 提取机
+	ItemHubIc_Materials: 材料
+	ItemHubIc_Other: 其他
+	ItemHubSec_ModPick: 按模组筛选
+	ItemHubSec_Tile: 按方块类型
+	ItemHubSec_Weapon: 按武器
+	ItemHubSec_Equip: 按装备槽位
+	ItemHubSec_Vanity: 时装 / 坐骑 / 宠物
+	ItemHubSec_ConBuff: 药水与食物
+	ItemHubSec_ConBio: 小动物与 Boss 物品
+	ItemHubSec_Misc: 其他筛选
+	ItemHubSec_Rare: 按稀有度
+	ItemHubSec_Chain: 合成依赖链
+	ItemHubModVanillaShort: 原
+	ItemHubModTipVanilla: 原版物品
+	ItemHubModTipModFmt: "来自模组「{0}」的物品"
+	ItemHubTip_Block: 固体方块：可摆放的实体方块（非框架重要物）
+	ItemHubTip_Light: 照明：火把类方块、发光方块、筱火；发光墙；手持/消胗光源
+	ItemHubTip_Wall: 墙体：可摆放墙的物品
+	ItemHubTip_Furniture: 家具：框架重要方块且不在制作台索引中；无摆放方块的绘画类
+	ItemHubTip_Station: 制作台：在已加载配方中作为 requiredTile 的方块类型
+	ItemHubTip_Chest: 容器：箱子、衣柜等容器方块
+	ItemHubTip_StatWire: 电线与雕像：电线分组、雕像列表、机械物品、旗帜
+	ItemHubTip_Melee: 近战武器（不含钻/斧/锤工具）
+	ItemHubTip_Magic: 魔法武器
+	ItemHubTip_Ranged: 远程武器
+	ItemHubTip_Ammo: 弹药（或可当弹药使用的物品）
+	ItemHubTip_Summon: 弟子召唤武器（不含鞭与啾塔）
+	ItemHubTip_Whip: 鞭子
+	ItemHubTip_Thrown: 投掷武器（含投掷类与远程消胗武器）
+	ItemHubTip_Sentry: 啾塔
+	ItemHubTip_Yoyo: 瑜伽
+	ItemHubTip_Pick: 钻力
+	ItemHubTip_Axe: 斧力
+	ItemHubTip_Hammer: 锤力
+	ItemHubTip_Armor: 护甲槽位装备
+	ItemHubTip_Acc: 饰品（不含翅膀）
+	ItemHubTip_Wing: 翅膀
+	ItemHubTip_Grapple: 钩爪
+	ItemHubTip_Fashion: 时装
+	ItemHubTip_Mount: 坐骑
+	ItemHubTip_Pet: 宠物
+	ItemHubTip_LightPet: 光宠
+	ItemHubTip_Heal: 生命药水 / 食物回复
+	ItemHubTip_ManaPot: 魔力药水
+	ItemHubTip_BuffPot: 功能增益药水
+	ItemHubTip_Food: 食物
+	ItemHubTip_Spawn: 小动物 / 瓶装
+	ItemHubTip_BossSummon: Boss 召唤物
+	ItemHubTip_GoodieBag: 礼袋等
+	ItemHubTip_OtherCons: 其他消胗（启发式剩余）
+	ItemHubTip_Expert: 仅专家
+	ItemHubTip_Master: 仅大师
+	ItemHubTip_Dye: 染料 / 发型染料
+	ItemHubTip_Extract: 提取机相关
+	ItemHubTip_Fish: 钓鱼（杆、饵、任务鱼等）
+	ItemHubTip_Material: 材料（标记为材料的物品）
+	ItemHubTip_OtherMisc: 其他杂项
+	ItemHubTip_Debug: 调试 / 废弃（仅在此筛选下可见；不可领取）
+	ItemHubTip_RareFmt: "稀有度 {0}"
+	ItemHubChainActivate: 启用
+	ItemHubChainActivateDesc: 启用后显示该物品的上游材料与下游产物。
+	ItemHubChainSlotHint: "拖入物品，或启用后按 [{0}] 点击物品查询。"
+	ItemHubChainKeyUnbound: 未绑定
+	ItemHubChainToggle: 筛选此物品的配方网络
+	ItemHubChainKeyHint: "页签3 + 本面板 + 链条开：对物品按 {0} 设为种子（不打开研究页）。"
+	ItemHubActiveStripRemove: 点击移除此筛选
+	ItemHubActiveRareHoverFmt: "稀有度 {0}~{1}"
+	ItemHubRareSliderFmt: "{0} → {1}"
+	ItemHubChainHint: 链式筛选：列表中每条规则都必须满足。左侧选类型，中间编辑，点「加入链条」。
+	ItemHubChainListTitle: 当前链条
+	ItemHubChainAddRule: 加入链条
+	ItemHubChainOneClickHint: 在下方点「加入链条」（近战 / 远程等）。
+	ItemHubChainRarityHint: 稀有度范围（包含端点）。
+	ItemHubChainRarityMin: 最低
+	ItemHubChainRarityMax: 最高
+	ItemHubChainValueHint: 上 = 最低价值，下 = 最高价值（整数）。
+	ItemHubChainNameHint: 匹配显示名或内部名（子串、小写）。
+	ItemHubChainActiveFmt: "链条·{0}"
+	ItemHubChainKind_Mod: 模组
+	ItemHubChainKind_Rarity: 稀有度
+	ItemHubChainKind_Tile: 方块
+	ItemHubChainKind_Tools: 工具
+	ItemHubChainKind_Value: 价值
+	ItemHubChainKind_Name: 名称
+	ItemHubChainKind_DmgMelee: 近战
+	ItemHubChainKind_DmgRanged: 远程
+	ItemHubChainKind_DmgMagic: 魔法
+	ItemHubChainKind_DmgSummon: 召唤
+	ItemHubChainKind_Acc: 饰品
+	ItemHubChainKind_Cons: 消胗
+	ItemHubChainKind_Place: 可摆放
 	ItemHubRuleEmpty: ?
-	ItemHubRuleModsFmt: Mods ({0})
-	ItemHubRuleRarityFmt: Rarity {0}?{1}
-	ItemHubRuleValueFmt: Value {0}?{1}
-	ItemHubRuleTileFmt: Tile {0}
-	ItemHubRuleToolsFmt: Tools {0}
-	ItemHubRuleNameFmt: Name contains "{0}"
-	ItemHubRuleDmgMelee: Melee weapon
-	ItemHubRuleDmgRanged: Ranged weapon
-	ItemHubRuleDmgMagic: Magic weapon
-	ItemHubRuleDmgSummon: Summon weapon
-	ItemHubRuleAcc: Accessory
-	ItemHubRuleCons: Consumable
-	ItemHubRulePlace: Placeable
-	ItemHubSearchHint: Search item name / internal id / pinyin initials...
-	ItemHubCategory: Category
-	ItemHubMod: Mod
-	ItemHubSort: Sort
-	ItemHubCatAll: All
-	ItemHubCatMelee: Melee
-	ItemHubCatRanged: Ranged
-	ItemHubCatMagic: Magic
-	ItemHubCatSummon: Summon
-	ItemHubCatAccessory: Accessory
-	ItemHubCatConsumable: Consumable
-	ItemHubCatPlaceable: Placeable
-	ItemHubCatOther: Other
-	ItemHubModAll: All mods
-	ItemHubModVanilla: Vanilla
-	ItemHubSortName: Name
+	ItemHubRuleModsFmt: "模组 ({0})"
+	ItemHubRuleRarityFmt: "稀有度 {0}–{1}"
+	ItemHubRuleValueFmt: "价值 {0}–{1}"
+	ItemHubRuleTileFmt: "方块 {0}"
+	ItemHubRuleToolsFmt: "工具 {0}"
+	ItemHubRuleNameFmt: "名称包含「{0}」"
+	ItemHubRuleDmgMelee: 近战武器
+	ItemHubRuleDmgRanged: 远程武器
+	ItemHubRuleDmgMagic: 魔法武器
+	ItemHubRuleDmgSummon: 召唤武器
+	ItemHubRuleAcc: 饰品
+	ItemHubRuleCons: 消胗品
+	ItemHubRulePlace: 可摆放
+	ItemHubSearchHint: 搜索物品名/内部ID/拼音…
+	ItemHubCategory: 分类
+	ItemHubMod: 模组
+	ItemHubSort: 排序
+	ItemHubCatAll: 全部
+	ItemHubCatMelee: 近战
+	ItemHubCatRanged: 远程
+	ItemHubCatMagic: 魔法
+	ItemHubCatSummon: 召唤
+	ItemHubCatAccessory: 饰品
+	ItemHubCatConsumable: 消胗
+	ItemHubCatPlaceable: 可摆放
+	ItemHubCatOther: 其他
+	ItemHubModAll: 全部模组
+	ItemHubModVanilla: 原版
+	ItemHubSortName: 名称
 	ItemHubSortId: ID
-	ItemHubSortValue: Value
-	ItemHubSortRare: Rarity
-	ItemHubSortDamage: Damage
-	ItemHubSortDefense: Defense
-	ItemHubSortDirHint: Click to toggle ascending / descending
-	ItemHubResetFilters: Reset
-	ItemHubFilterLabel: Filter
-	ItemHubFilterOpen: Filters
-	ItemHubFilterTitle: Item filters
-	ItemHubFilterClose: Close
-	ItemHubFilterModHint: Mods (multi-select; empty = all)
-	ItemHubFilterTileHint: Placeable keyword (match item name, use its createTile)
-	ItemHubFilterApplyTile: Apply tile filter
-	ItemHubFilterClearTile: Clear tile filter
-	ItemHubFilterToolsHint: Tools (OR if any checked: item must match one)
-	ItemHubFilterPick: Pickaxe
-	ItemHubFilterAxe: Axe
-	ItemHubFilterHammer: Hammer
-	ItemHubFilterFish: Fishing pole
-	ItemHubFilterClearAll: Clear all
-	ItemHubFilterApply: Apply & close
-	ItemHubLockedTip: Obtain this item once before claiming here
-	ItemHubLockedShort: (locked)
-	ItemHubNotOwnedSuffix: Never obtained
+	ItemHubSortValue: 价值
+	ItemHubSortRare: 稀有度
+	ItemHubSortDamage: 伤害
+	ItemHubSortDefense: 防御
+	ItemHubSortDirHint: 点击切换升降序
+	ItemHubResetFilters: 重置
+	ItemHubFilterLabel: 筛选
+	ItemHubFilterOpen: 筛选
+	ItemHubFilterTitle: 物品筛选
+	ItemHubFilterClose: 关闭
+	ItemHubFilterModHint: 模组（多选；空 = 全部）
+	ItemHubFilterTileHint: 可摆放关键词（匹配物品名，用其 createTile）
+	ItemHubFilterApplyTile: 应用方块筛选
+	ItemHubFilterClearTile: 清除方块筛选
+	ItemHubFilterToolsHint: 工具（勾选任一项即可；物品须匹配其一）
+	ItemHubFilterPick: 镐
+	ItemHubFilterAxe: 斧
+	ItemHubFilterHammer: 锤
+	ItemHubFilterFish: 鱼竿
+	ItemHubFilterClearAll: 全部清除
+	ItemHubFilterApply: 应用并关闭
+	ItemHubLockedTip: 需先获得该物品才能在此领取
+	ItemHubLockedShort: （未解锁）
+	ItemHubNotOwnedSuffix: 从未获得
 }
 
 Buffs: {
 	EMOJAlphaBuff: {
-		DisplayName: Aggregated buffs
-		Description: Combines all enabled positive effects
+		DisplayName: 更超模的旅途
+		Description: 组合所有已启用的正面增益
 	}
 
 	EMOJOmegaBuff: {
-		DisplayName: Aggregated debuffs
-		Description: Combines all enabled debuff effects
+		DisplayName: 更超模的旅途
+		Description: 组合所有已启用的减益
 	}
 }
 
@@ -567,10 +557,10 @@ RecipeEnv: {
 	NearWater: 临近水体
 	NearLava: 临近熔岩
 	NearHoney: 临近蜂蜜
-	SnowBiome: Snow biome
-	Graveyard: Graveyard
-	ZenithWorld: Everything seed
-	CorruptionWorld: Corruption world
-	CrimsonWorld: Crimson world
+	SnowBiome: 雪地群系
+	Graveyard: 墓地
+	ZenithWorld: 天顶种子世界
+	CorruptionWorld: 腐化世界
+	CrimsonWorld: 血腫世界
 	UnknownStation: 未知制作台
 }
