@@ -1,0 +1,162 @@
+﻿﻿# EmojBuffModScanner catalog
+# Mod: FargosSoulsMod
+# Scanned: 2026-05-20T07:13:42.9088832Z
+# Source: C:\Users\14451\AppData\Local\Temp\EmojBuffGit_d0712dc2096a4c21950f6db952bf6432\extracted\FargosSoulsMod-master\Content
+StableKey	ClassName	File	SuggestedPhase	Confidence	StatSignals	VisualSignals	EntitySignals	Note
+FargosSoulsMod/AbomCooldownBuff	AbomCooldownBuff	Buffs/Masomode/AbomCooldownBuff.cs	Unknown	Low				DisplayName: Abominable Cooldown
+FargosSoulsMod/AbomFangBuff	AbomFangBuff	Buffs/Boss/AbomFangBuff.cs	Unknown	Low				DisplayName: Abominable Fang
+FargosSoulsMod/AbomPresenceBuff	AbomPresenceBuff	Buffs/Boss/AbomPresenceBuff.cs	Stat	Medium	player\.stat\w+\s*[\+\-\*\/]?=			DisplayName: Abominable Presence
+FargosSoulsMod/AbomRebirthBuff	AbomRebirthBuff	Buffs/Masomode/AbomRebirthBuff.cs	Unknown	Low				DisplayName: Abominable Rebirth
+FargosSoulsMod/AccursedSarcophagusBuff	AccursedSarcophagusBuff	Buffs/Pets/AccursedSarcophagusBuff.cs	CombatVisual	Medium		Projectile\.NewProjectile|NewProjectile\s*\(		DisplayName: Accursed Sarcophagus
+FargosSoulsMod/AmbrosiaBuff	AmbrosiaBuff	Buffs/Souls/AmbrosiaBuff.cs	Stat	High	player\.GetDamage\s*\(|player\.GetAttackSpeed\s*\(|DamageClass\.			
+FargosSoulsMod/AnticoagulationBuff	AnticoagulationBuff	Buffs/Masomode/AnticoagulationBuff.cs	Unknown	Low				DisplayName: Anticoagulation
+FargosSoulsMod/AntisocialBuff	AntisocialBuff	Buffs/Masomode/AntisocialBuff.cs	Stat	High	player\.GetDamage\s*\(|DamageClass\.			DisplayName: Antisocial
+FargosSoulsMod/AtrophiedBuff	AtrophiedBuff	Buffs/Masomode/AtrophiedBuff.cs	Stat	High	player\.GetDamage\s*\(|DamageClass\.			DisplayName: Atrophied
+FargosSoulsMod/BabyAbomBuff	BabyAbomBuff	Buffs/Pets/BabyAbomBuff.cs	CombatVisual	Medium		Projectile\.NewProjectile|NewProjectile\s*\(		DisplayName: Baby Abom
+FargosSoulsMod/BabyLifelightBuff	BabyLifelightBuff	Buffs/Pets/BabyLifelightBuff.cs	CombatVisual	Medium		Projectile\.NewProjectile|NewProjectile\s*\(		DisplayName: Petlight
+FargosSoulsMod/BabySilhouetteBuff	BabySilhouetteBuff	Buffs/Pets/BabySilhouetteBuff.cs	CombatVisual	Medium		Projectile\.NewProjectile|NewProjectile\s*\(		DisplayName: Baby Silhouette
+FargosSoulsMod/BaronsBurdenBuff	BaronsBurdenBuff	Buffs/Boss/BaronsBurdenBuff.cs	Stat	Medium	player\.lifeRegen\s*[\+\-\*\/]?=			DisplayName: Baron's Burden
+FargosSoulsMod/BerserkedBuff	BerserkedBuff	Buffs/Masomode/BerserkedBuff.cs	Stat	High	player\.GetDamage\s*\(|player\.moveSpeed\s*[\+\-\*\/]?=|DamageClass\.			DisplayName: Berserked
+FargosSoulsMod/BerserkerInstallBuff	BerserkerInstallBuff	Buffs/BerserkerInstallBuff.cs	Stat	High	player\.stat\w+\s*[\+\-\*\/]?=|player\.GetDamage\s*\(|player\.GetCritChance\s*\(|player\.moveSpeed\s*[\+\-\*\/]?=|DamageClass\.			DisplayName: Berserker Install
+FargosSoulsMod/BerserkerInstallCDBuff	BerserkerInstallCDBuff	Buffs/BerserkerInstallCDBuff.cs	Unknown	Low				DisplayName: Berserker Cooldown
+FargosSoulsMod/BetsyDashBuff	BetsyDashBuff	Buffs/BetsyDashBuff.cs	Unknown	Low				DisplayName: Dash
+FargosSoulsMod/BigBrainMinionBuff	BigBrainMinionBuff	Buffs/Minions/BigBrainMinionBuff.cs	Unknown	Low				DisplayName: Big Brain of Cthulhu
+FargosSoulsMod/BiteSizeBaronBuff	BiteSizeBaronBuff	Buffs/Pets/BiteSizeBaronBuff.cs	CombatVisual	Medium		Projectile\.NewProjectile|NewProjectile\s*\(		DisplayName: Bite-size Baron
+FargosSoulsMod/BloodDrinkerBuff	BloodDrinkerBuff	Buffs/Masomode/BloodDrinkerBuff.cs	Stat	High	player\.GetDamage\s*\(|DamageClass\.			DisplayName: Blood Drinker
+FargosSoulsMod/BloodthirstyBuff	BloodthirstyBuff	Buffs/Masomode/BloodthirstyBuff.cs	Unknown	Low				DisplayName: Bloodthirsty
+FargosSoulsMod/BrainMinionBuff	BrainMinionBuff	Buffs/Minions/BrainMinionBuff.cs	Unknown	Low				DisplayName: Brain of Cthulhu
+FargosSoulsMod/BrainOfConfusionBuff	BrainOfConfusionBuff	Buffs/Masomode/BrainOfConfusionBuff.cs	Unknown	Low				DisplayName: Cerebral Mindbreak
+FargosSoulsMod/BrokenShellBuff	BrokenShellBuff	Buffs/Souls/BrokenShellBuff.cs	Unknown	Low				DisplayName: Broken Shell
+FargosSoulsMod/ChibiDeviBuff	ChibiDeviBuff	Buffs/Pets/ChibiDeviBuff.cs	CombatVisual	Medium		Projectile\.NewProjectile|NewProjectile\s*\(		DisplayName: Chibi Devi
+FargosSoulsMod/ChibiiRemiiBuff	ChibiiRemiiBuff	Patreon/Phupperbat/ChibiiRemiiBuff.cs	CombatVisual	Medium		Projectile\.NewProjectile|NewProjectile\s*\(		DisplayName: Chibii Remii
+FargosSoulsMod/ClippedWingsBuff	ClippedWingsBuff	Buffs/Masomode/ClippedWingsBuff.cs	Unknown	Low				DisplayName: Clipped Wings
+FargosSoulsMod/CoffinTossBuff	CoffinTossBuff	Buffs/Boss/CoffinTossBuff.cs	Unknown	Low				未检测到常见 stat/visual 模式
+FargosSoulsMod/CorruptingBuff	CorruptingBuff	Buffs/Souls/CorruptingBuff.cs	Unknown	Low				未检测到常见 stat/visual 模式
+FargosSoulsMod/CrimetroidBuff	CrimetroidBuff	Patreon/Shucks/CrimetroidBuff.cs	Unknown	Low				DisplayName: Baby Crimetroid
+FargosSoulsMod/CrimsonRegenBuff	CrimsonRegenBuff	Buffs/Souls/CrimsonRegenBuff.cs	Mixed	Low	player\.stat\w+\s*[\+\-\*\/]?=	Dust\.NewDust		DisplayName: Crimson Regen
+FargosSoulsMod/CrippledBuff	CrippledBuff	Buffs/Masomode/CrippledBuff.cs	Unknown	Low				DisplayName: Crippled
+FargosSoulsMod/CrystalSkullBuff	CrystalSkullBuff	Buffs/Minions/CrystalSkullBuff.cs	Unknown	Low				DisplayName: Crystal Skull
+FargosSoulsMod/CurseoftheMoonBuff	CurseoftheMoonBuff	Buffs/Masomode/CurseoftheMoonBuff.cs	Stat	High	player\.stat\w+\s*[\+\-\*\/]?=|player\.GetDamage\s*\(|player\.GetCritChance\s*\(|DamageClass\.			DisplayName: Curse of the Moon
+FargosSoulsMod/DefenselessBuff	DefenselessBuff	Buffs/Masomode/DefenselessBuff.cs	Unknown	Low				DisplayName: Defenseless
+FargosSoulsMod/DoveBuff	DoveBuff	Patreon/ManliestDove/DoveBuff.cs	CombatVisual	Medium		Projectile\.NewProjectile|NewProjectile\s*\(		DisplayName: Dove
+FargosSoulsMod/DukeFishronBuff	DukeFishronBuff	Patreon/DemonKing/DukeFishronBuff.cs	Unknown	Low				DisplayName: Duke Fishron
+FargosSoulsMod/EarthPoison	EarthPoison	Buffs/Souls/EarthPoison.cs	Unknown	Low				未检测到常见 stat/visual 模式
+FargosSoulsMod/EaterMinionBuff	EaterMinionBuff	Buffs/Minions/EaterMinionBuff.cs	Unknown	Low				DisplayName: Eater of Worlds
+FargosSoulsMod/FirstStrikeBuff	FirstStrikeBuff	Buffs/Souls/FirstStrikeBuff.cs	Stat	Medium	player\.aggro\s*[\+\-\*\/]?=			DisplayName: First Strike
+FargosSoulsMod/FishMinionBuff	FishMinionBuff	Patreon/Sasha/FishMinionBuff.cs	Unknown	Low				DisplayName: Fish
+FargosSoulsMod/FlamesoftheUniverseBuff	FlamesoftheUniverseBuff	Buffs/Masomode/FlamesoftheUniverseBuff.cs	Unknown	Low				DisplayName: Flames of the Universe
+FargosSoulsMod/FlippedBuff	FlippedBuff	Buffs/Masomode/FlippedBuff.cs	Unknown	Low				DisplayName: Flipped
+FargosSoulsMod/FossilReviveCDBuff	FossilReviveCDBuff	Buffs/Souls/FossilReviveCDBuff.cs	Unknown	Low				DisplayName: Revived
+FargosSoulsMod/FrozenBuff	FrozenBuff	Buffs/Souls/FrozenBuff.cs	Unknown	Low				DisplayName: Frozen
+FargosSoulsMod/FusedBuff	FusedBuff	Buffs/Masomode/FusedBuff.cs	CombatVisual	Medium		Projectile\.NewProjectile|NewProjectile\s*\(		DisplayName: Fused
+FargosSoulsMod/GladiatorBuff	GladiatorBuff	Buffs/GladiatorBuff.cs	Unknown	Low				未检测到常见 stat/visual 模式
+FargosSoulsMod/GladiatorSpiritBuff	GladiatorSpiritBuff	Buffs/GladiatorSpiritBuff.cs	Stat	High	player\.GetDamage\s*\(|DamageClass\.			
+FargosSoulsMod/GodEaterBuff	GodEaterBuff	Buffs/Masomode/GodEaterBuff.cs	Unknown	Low				DisplayName: God Eater
+FargosSoulsMod/GoldenStasisBuff	GoldenStasisBuff	Buffs/Souls/GoldenStasisBuff.cs	Unknown	Low				DisplayName: Golden Stasis
+FargosSoulsMod/GoldenStasisCDBuff	GoldenStasisCDBuff	Buffs/Souls/GoldenStasisCDBuff.cs	Unknown	Low				DisplayName: Golden Stasis Cooldown
+FargosSoulsMod/GrabbedBuff	GrabbedBuff	Buffs/Boss/GrabbedBuff.cs	Unknown	Low				DisplayName: Grabbed
+FargosSoulsMod/GrabbedHarmlessBuff	GrabbedHarmlessBuff	Buffs/Boss/GrabbedHarmlessBuff.cs	Unknown	Low				DisplayName: Grabbed
+FargosSoulsMod/GuiltyBuff	GuiltyBuff	Buffs/Masomode/GuiltyBuff.cs	Stat	High	player\.GetDamage\s*\(|DamageClass\.			DisplayName: Guilty
+FargosSoulsMod/HallowCooldownBuff	HallowCooldownBuff	Buffs/Souls/HallowCooldownBuff.cs	Unknown	Low				DisplayName: Hallowed Shield Cooldown
+FargosSoulsMod/HallowIlluminatedBuff	HallowIlluminatedBuff	Buffs/Masomode/HallowIlluminatedBuff.cs	CombatVisual	Medium		Lighting\.AddLight		
+FargosSoulsMod/HellFireBuff	HellFireBuff	Buffs/HellFireBuff.cs	Unknown	Low				DisplayName: Hell Fire
+FargosSoulsMod/HellFireMarkedBuff	HellFireMarkedBuff	Buffs/HellFireMarkedBuff.cs	Unknown	Low				DisplayName: Hell Fire
+FargosSoulsMod/HexedBuff	HexedBuff	Buffs/Masomode/HexedBuff.cs	Unknown	Low				DisplayName: Hexed
+FargosSoulsMod/HolyPriceBuff	HolyPriceBuff	Buffs/Masomode/HolyPriceBuff.cs	Unknown	Low				DisplayName: Holy Price
+FargosSoulsMod/HuntressBleedBuff	HuntressBleedBuff	Buffs/Souls/HuntressBleedBuff.cs	Unknown	Low				DisplayName: Huntress Bleed
+FargosSoulsMod/HuntressCDBuff	HuntressCDBuff	Buffs/Souls/HuntressCDBuff.cs	Unknown	Low				DisplayName: Arrow Rain Cooldown
+FargosSoulsMod/HypothermiaBuff	HypothermiaBuff	Buffs/Masomode/HypothermiaBuff.cs	Unknown	Low				DisplayName: Hypothermia
+FargosSoulsMod/InfestedBuff	InfestedBuff	Buffs/Masomode/InfestedBuff.cs	Unknown	Low				DisplayName: Infested
+FargosSoulsMod/IvyVenomBuff	IvyVenomBuff	Buffs/Masomode/IvyVenomBuff.cs	Unknown	Low				DisplayName: Ivy Venom
+FargosSoulsMod/JammedBuff	JammedBuff	Buffs/Masomode/JammedBuff.cs	Stat	High	player\.GetDamage\s*\(|DamageClass\.			DisplayName: Jammed
+FargosSoulsMod/JungleMimicSummonBuff	JungleMimicSummonBuff	Buffs/Minions/JungleMimicSummonBuff.cs	Unknown	Low				DisplayName: Jungle Mimic
+FargosSoulsMod/KingSlimeMinionBuff	KingSlimeMinionBuff	Patreon/Catsounds/KingSlimeMinionBuff.cs	Unknown	Low				DisplayName: Mini King Slime
+FargosSoulsMod/LeadPoisonBuff	LeadPoisonBuff	Buffs/Souls/LeadPoisonBuff.cs	Unknown	Low				DisplayName: Lead Poison
+FargosSoulsMod/LethargicBuff	LethargicBuff	Buffs/Masomode/LethargicBuff.cs	Unknown	Low				DisplayName: Lethargic
+FargosSoulsMod/LightningRodBuff	LightningRodBuff	Buffs/Masomode/LightningRodBuff.cs	CombatVisual	Medium		Projectile\.NewProjectile|NewProjectile\s*\(		DisplayName: Lightning Rod
+FargosSoulsMod/LihzahrdBlessingBuff	LihzahrdBlessingBuff	Buffs/Masomode/LihzahrdBlessingBuff.cs	Unknown	Low				DisplayName: Lihzahrd Blessing
+FargosSoulsMod/LihzahrdCurseBuff	LihzahrdCurseBuff	Buffs/Masomode/LihzahrdCurseBuff.cs	Unknown	Low				DisplayName: Lihzahrd Curse
+FargosSoulsMod/LivingWastelandBuff	LivingWastelandBuff	Buffs/Masomode/LivingWastelandBuff.cs	Mixed	Low	player\.stat\w+\s*[\+\-\*\/]?=|player\.GetDamage\s*\(|DamageClass\.	Dust\.NewDust		DisplayName: Living Wasteland
+FargosSoulsMod/LoosePocketsBuff	LoosePocketsBuff	Buffs/Masomode/LoosePocketsBuff.cs	Unknown	Low				DisplayName: Loose Pockets
+FargosSoulsMod/LovestruckBuff	LovestruckBuff	Buffs/Masomode/LovestruckBuff.cs	Unknown	Low				DisplayName: Lovestruck
+FargosSoulsMod/LowGroundBuff	LowGroundBuff	Buffs/Masomode/LowGroundBuff.cs	Unknown	Low				DisplayName: Low Ground
+FargosSoulsMod/LowGroundEridanusBuff	LowGroundEridanusBuff	Buffs/Masomode/LowGroundEridanusBuff.cs	Unknown	Low				未检测到常见 stat/visual 模式
+FargosSoulsMod/LunarCultistBuff	LunarCultistBuff	Buffs/Minions/LunarCultistBuff.cs	Unknown	Low				DisplayName: Lunar Cultist
+FargosSoulsMod/MagicalCleanseCDBuff	MagicalCleanseCDBuff	Buffs/MagicalCleanseCDBuff.cs	Unknown	Low				DisplayName: Magical Cleanse Cooldown
+FargosSoulsMod/MagicalCurseBuff	MagicalCurseBuff	Buffs/Masomode/MagicalCurseBuff.cs	Unknown	Low				未检测到常见 stat/visual 模式
+FargosSoulsMod/MarkedforDeathBuff	MarkedforDeathBuff	Buffs/Masomode/MarkedforDeathBuff.cs	CombatVisual	Medium		Projectile\.NewProjectile|NewProjectile\s*\(		DisplayName: Marked for Death
+FargosSoulsMod/MidasBuff	MidasBuff	Buffs/Masomode/MidasBuff.cs	Unknown	Low				DisplayName: Midas
+FargosSoulsMod/MoltenAmplifyBuff	MoltenAmplifyBuff	Buffs/Souls/MoltenAmplifyBuff.cs	Unknown	Low				DisplayName: Molten Amplify
+FargosSoulsMod/MonkBuff	MonkBuff	Buffs/Souls/MonkBuff.cs	Unknown	Low				DisplayName: Meditation
+FargosSoulsMod/MoonBowBuff	MoonBowBuff	Buffs/MoonBowBuff.cs	Unknown	Low				未检测到常见 stat/visual 模式
+FargosSoulsMod/MoonFangBuff	MoonFangBuff	Buffs/Boss/MoonFangBuff.cs	Unknown	Low				未检测到常见 stat/visual 模式
+FargosSoulsMod/MushroomPowerBuff	MushroomPowerBuff	Buffs/Souls/MushroomPowerBuff.cs	Stat	High	player\.GetDamage\s*\(|player\.GetCritChance\s*\(|DamageClass\.			
+FargosSoulsMod/MutantDesperationBuff	MutantDesperationBuff	Buffs/Boss/MutantDesperationBuff.cs	Unknown	Low				DisplayName: Mutant Presence
+FargosSoulsMod/MutantFangBuff	MutantFangBuff	Buffs/Boss/MutantFangBuff.cs	Unknown	Low				DisplayName: Mutant Fang
+FargosSoulsMod/MutantNibbleBuff	MutantNibbleBuff	Buffs/Masomode/MutantNibbleBuff.cs	Stat	High	player\.GetDamage\s*\(|DamageClass\.			DisplayName: Mutant Nibble
+FargosSoulsMod/MutantPowerBuff	MutantPowerBuff	Buffs/Minions/MutantPowerBuff.cs	Unknown	Low				DisplayName: Mutant Power
+FargosSoulsMod/MutantPresenceBuff	MutantPresenceBuff	Buffs/Boss/MutantPresenceBuff.cs	Unknown	Low				DisplayName: Mutant Presence
+FargosSoulsMod/MutantRebirthBuff	MutantRebirthBuff	Buffs/MutantRebirthBuff.cs	Unknown	Low				DisplayName: Mutant Rebirth
+FargosSoulsMod/MutantSpawnBuff	MutantSpawnBuff	Buffs/Pets/MutantSpawnBuff.cs	CombatVisual	Medium		Projectile\.NewProjectile|NewProjectile\s*\(		DisplayName: Mutant Spawn
+FargosSoulsMod/NanoInjectionBuff	NanoInjectionBuff	Buffs/Masomode/NanoInjectionBuff.cs	Stat	High	player\.stat\w+\s*[\+\-\*\/]?=|player\.GetDamage\s*\(|player\.moveSpeed\s*[\+\-\*\/]?=|DamageClass\.			DisplayName: Nano Injection
+FargosSoulsMod/NebulaBuff	NebulaBuff	Buffs/Souls/SolarBuff.cs	Unknown	Low				未检测到常见 stat/visual 模式
+FargosSoulsMod/NeurotoxinBuff	NeurotoxinBuff	Buffs/Masomode/NeurotoxinBuff.cs	Unknown	Low				DisplayName: Neurotoxin
+FargosSoulsMod/NibbleBuff	NibbleBuff	Buffs/Pets/NibbleBuff.cs	CombatVisual	Medium		Projectile\.NewProjectile|NewProjectile\s*\(		
+FargosSoulsMod/NullificationCurseBuff	NullificationCurseBuff	Buffs/Masomode/NullificationCurseBuff.cs	Unknown	Low				DisplayName: Nullification Curse
+FargosSoulsMod/ObsidianLavaWetBuff	ObsidianLavaWetBuff	Buffs/Souls/ObsidianLavaWetBuff.cs	Unknown	Low				DisplayName: Lava Wet
+FargosSoulsMod/OceanicMaulBuff	OceanicMaulBuff	Buffs/Masomode/OceanicMaulBuff.cs	Stat	Medium	player\.stat\w+\s*[\+\-\*\/]?=			DisplayName: Oceanic Maul
+FargosSoulsMod/OceanicSealBuff	OceanicSealBuff	Buffs/Masomode/OceanicSealBuff.cs	CombatVisual	Medium		Projectile\.NewProjectile|NewProjectile\s*\(|Dust\.NewDust		DisplayName: Oceanic Seal
+FargosSoulsMod/OiledBuff	OiledBuff	Buffs/Masomode/OiledBuff.cs	Unknown	Low				DisplayName: Oiled
+FargosSoulsMod/OriPoisonBuff	OriPoisonBuff	Buffs/Souls/OriPoisonBuff.cs	Unknown	Low				DisplayName: Orichalcum Poison
+FargosSoulsMod/PlanterasChildBuff	PlanterasChildBuff	Buffs/Minions/PlanterasChildBuff.cs	Unknown	Low				DisplayName: Plantera's Child
+FargosSoulsMod/PrimeMinionBuff	PrimeMinionBuff	Patreon/Purified/PrimeMinionBuff.cs	Unknown	Low				DisplayName: Mini Prime
+FargosSoulsMod/ProbesBuff	ProbesBuff	Buffs/Minions/ProbesBuff.cs	Unknown	Low				DisplayName: Probes
+FargosSoulsMod/PungentEyeballBuff	PungentEyeballBuff	Buffs/Minions/PungentEyeballBuff.cs	Unknown	Low				DisplayName: Pungent Eyeball
+FargosSoulsMod/PungentGazeBuff	PungentGazeBuff	Buffs/Masomode/PungentGazeBuff.cs	Unknown	Low				DisplayName: Pungent Gaze
+FargosSoulsMod/PurgedBuff	PurgedBuff	Buffs/Masomode/PurgedBuff.cs	Unknown	Low				DisplayName: Purged
+FargosSoulsMod/PurifiedBuff	PurifiedBuff	Buffs/Masomode/PurifiedBuff.cs	Unknown	Low				DisplayName: Purified
+FargosSoulsMod/ROBBuff	ROBBuff	Patreon/DanielTheRobot/ROBBuff.cs	CombatVisual	Medium		Projectile\.NewProjectile|NewProjectile\s*\(		
+FargosSoulsMod/RainCDBuff	RainCDBuff	Buffs/Souls/RainCDBuff.cs	Unknown	Low				未检测到常见 stat/visual 模式
+FargosSoulsMod/RainbowSlimeBuff	RainbowSlimeBuff	Buffs/Minions/RainbowSlimeBuff.cs	Unknown	Low				DisplayName: Rainbow Slime
+FargosSoulsMod/RefreshedBuff	RefreshedBuff	Buffs/Masomode/RefreshedBuff.cs	Unknown	Low				DisplayName: Refreshed
+FargosSoulsMod/ReverseManaFlowBuff	ReverseManaFlowBuff	Buffs/Masomode/ReverseManaFlowBuff.cs	Stat	High	player\.GetDamage\s*\(|DamageClass\.			DisplayName: Reverse Mana Flow
+FargosSoulsMod/RoombaPetBuff	RoombaPetBuff	Patreon/Gittle/RoombaPetBuff.cs	CombatVisual	Medium		Projectile\.NewProjectile|NewProjectile\s*\(		DisplayName: Roomba
+FargosSoulsMod/RottingBuff	RottingBuff	Buffs/Masomode/RottingBuff.cs	Stat	High	player\.stat\w+\s*[\+\-\*\/]?=|player\.GetDamage\s*\(|DamageClass\.			DisplayName: Rotting
+FargosSoulsMod/RushJobBuff	RushJobBuff	Buffs/Masomode/RushJobBuff.cs	Unknown	Low				DisplayName: Rush Job
+FargosSoulsMod/SadismBuff	SadismBuff	Buffs/Masomode/SadismBuff.cs	Unknown	Low				DisplayName: Eternity
+FargosSoulsMod/SaucerMinionBuff	SaucerMinionBuff	Buffs/Minions/SaucerMinionBuff.cs	Unknown	Low				DisplayName: Mini Saucer
+FargosSoulsMod/SeekerOfTreasuresBuff	SeekerOfTreasuresBuff	Buffs/Pets/SeekerOfTreasuresBuff.cs	CombatVisual	Medium		Projectile\.NewProjectile|NewProjectile\s*\(		DisplayName: Seeker of Treasures
+FargosSoulsMod/ShadowflameBuff	ShadowflameBuff	Buffs/Masomode/ShadowflameBuff.cs	Unknown	Low				DisplayName: Shadowflame
+FargosSoulsMod/ShellHideBuff	ShellHideBuff	Buffs/Souls/ShellHideBuff.cs	CombatVisual	Medium		Projectile\.NewProjectile|NewProjectile\s*\(|Dust\.NewDust		DisplayName: Shell Hide
+FargosSoulsMod/SkeletronArmsBuff	SkeletronArmsBuff	Buffs/Minions/SkeletronArmsBuff.cs	Unknown	Low				DisplayName: Skeletron Arms
+FargosSoulsMod/SmiteBuff	SmiteBuff	Buffs/Masomode/SmiteBuff.cs	Unknown	Low				DisplayName: Smite
+FargosSoulsMod/SnowstormCDBuff	SnowstormCDBuff	Buffs/Souls/SnowstormCDBuff.cs	Unknown	Low				DisplayName: Snowstorm Cooldown
+FargosSoulsMod/SolarBuff	SolarBuff	Buffs/Souls/NebulaBuff.cs	Unknown	Low				未检测到常见 stat/visual 模式
+FargosSoulsMod/SolarFlareBuff	SolarFlareBuff	Buffs/Souls/SolarFlareBuff.cs	CombatVisual	Medium		Projectile\.NewProjectile|NewProjectile\s*\(|Main\.rand\.NextFloat		DisplayName: Solar Flare
+FargosSoulsMod/SouloftheMasochistBuff	SouloftheMasochistBuff	Buffs/Minions/SouloftheMasochistBuff.cs	Unknown	Low				DisplayName: Soul of the Master
+FargosSoulsMod/SqueakyToyBuff	SqueakyToyBuff	Buffs/Masomode/SqueakyToyBuff.cs	Unknown	Low				DisplayName: Squeaky Toy
+FargosSoulsMod/StardustBuff	StardustBuff	Buffs/Souls/StardustBuff.cs	Unknown	Low				未检测到常见 stat/visual 模式
+FargosSoulsMod/StunnedBuff	StunnedBuff	Buffs/Masomode/StunnedBuff.cs	Unknown	Low				DisplayName: Stunned
+FargosSoulsMod/SublimationBuff	SublimationBuff	Buffs/SublimationBuff.cs	Unknown	Low				未检测到常见 stat/visual 模式
+FargosSoulsMod/SuperBleedBuff	SuperBleedBuff	Buffs/Souls/SuperBleedBuff.cs	Unknown	Low				DisplayName: Blood Geyser
+FargosSoulsMod/SuperchargedBuff	SuperchargedBuff	Buffs/SuperchargedBuff.cs	Stat	Medium	player\.moveSpeed\s*[\+\-\*\/]?=			DisplayName: Supercharged
+FargosSoulsMod/SwarmingBuff	SwarmingBuff	Buffs/Masomode/SwarmingBuff.cs	Unknown	Low				DisplayName: Swarming
+FargosSoulsMod/ThiefCDBuff	ThiefCDBuff	Buffs/Masomode/ThiefCDBuff.cs	Unknown	Low				DisplayName: Thief Cooldown
+FargosSoulsMod/TimberBleedBuff	TimberBleedBuff	Buffs/Souls/TimberBleedBuff.cs	Unknown	Low				未检测到常见 stat/visual 模式
+FargosSoulsMod/TimeFrozenBuff	TimeFrozenBuff	Buffs/Souls/TimeFrozenBuff.cs	Unknown	Low				DisplayName: Time Frozen
+FargosSoulsMod/TimeStopCDBuff	TimeStopCDBuff	Buffs/Souls/TimeStopCDBuff.cs	CombatVisual	Medium		Dust\.NewDust		DisplayName: Time Stop Cooldown
+FargosSoulsMod/TitaniumCDBuff	TitaniumCDBuff	Buffs/Souls/TitaniumCDBuff.cs	Unknown	Low				DisplayName: Titanium Shield Cooldown
+FargosSoulsMod/TitaniumDRBuff	TitaniumDRBuff	Buffs/Souls/TitaniumDRBuff.cs	Unknown	Low				DisplayName: Titanium Shield
+FargosSoulsMod/TouhouHoardBuff	TouhouHoardBuff	Patreon/Tiger/TouhouHoardBuff.cs	Unknown	Low				未检测到常见 stat/visual 模式
+FargosSoulsMod/TribalCharmClickBuff	TribalCharmClickBuff	Buffs/TribalCharmClickBuff.cs	Unknown	Low				DisplayName: Tribal Charm
+FargosSoulsMod/TrojanSquirrelMountBuff	TrojanSquirrelMountBuff	Buffs/Mounts/TrojanSquirrelMountBuff.cs	Unknown	Low				DisplayName: Trojan Squirrel
+FargosSoulsMod/TrueEyesBuff	TrueEyesBuff	Buffs/Minions/TrueEyesBuff.cs	Unknown	Low				DisplayName: True Eyes of Cthulhu
+FargosSoulsMod/TwinsEXBuff	TwinsEXBuff	Buffs/Minions/TwinsEXBuff.cs	Unknown	Low				DisplayName: Twins EX
+FargosSoulsMod/TwinsInstallBuff	TwinsInstallBuff	Buffs/TwinsInstallBuff.cs	Stat	Medium	player\.stat\w+\s*[\+\-\*\/]?=			DisplayName: Twins Install
+FargosSoulsMod/UnluckyBuff	UnluckyBuff	Buffs/Masomode/UnluckyBuff.cs	Unknown	Low				DisplayName: Unlucky
+FargosSoulsMod/UnstableBuff	UnstableBuff	Buffs/Masomode/UnstableBuff.cs	Unknown	Low				DisplayName: Unstable
+FargosSoulsMod/VortexBuff	VortexBuff	Buffs/Souls/VortexBuff.cs	Unknown	Low				未检测到常见 stat/visual 模式
+FargosSoulsMod/VortexCDBuff	VortexCDBuff	Buffs/Souls/VortexCDBuff.cs	Unknown	Low				DisplayName: Vortex Cooldown
+FargosSoulsMod/WitheredBuff	WitheredBuff	Buffs/Souls/WitheredBuff.cs	Unknown	Low				未检测到常见 stat/visual 模式
+FargosSoulsMod/WitheredForceBuff	WitheredForceBuff	Buffs/Souls/WitheredForceBuff.cs	Unknown	Low				未检测到常见 stat/visual 模式
+FargosSoulsMod/WitheredWizardBuff	WitheredWizardBuff	Buffs/Souls/WitheredWizardBuff.cs	Unknown	Low				未检测到常见 stat/visual 模式

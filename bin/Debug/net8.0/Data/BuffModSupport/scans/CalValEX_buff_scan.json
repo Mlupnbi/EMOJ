@@ -1,0 +1,2011 @@
+﻿{
+  "schemaVersion": 1,
+  "mod": "CalValEX",
+  "scannedAtUtc": "2026-05-20T08:27:20.5179695Z",
+  "sourcePath": "C:\\Users\\14451\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\EvenMoreOverpoweredJourney\\Data\\BuffModSupport\\decompiled_cache\\CalValEX\\decompiled_cs",
+  "sourceKind": "extracted_source",
+  "buffClassCount": 137,
+  "buffs": [
+    {
+      "mod": "CalValEX",
+      "internalName": "AeroBuff",
+      "className": "AeroBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/AeroBuff.cs",
+      "stableKey": "CalValEX/AeroBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "AmberBuff",
+      "className": "AmberBuff",
+      "relativeFile": "CalValEX.Buffs.Pets.Scuttlers/AmberBuff.cs",
+      "stableKey": "CalValEX/AmberBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "AmethystBuff",
+      "className": "AmethystBuff",
+      "relativeFile": "CalValEX.Buffs.Pets.Scuttlers/AmethystBuff.cs",
+      "stableKey": "CalValEX/AmethystBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "AmogusBuff",
+      "className": "AmogusBuff",
+      "relativeFile": "CalValEX.AprilFools/AmogusBuff.cs",
+      "stableKey": "CalValEX/AmogusBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "AndroombaBuff",
+      "className": "AndroombaBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/AndroombaBuff.cs",
+      "stableKey": "CalValEX/AndroombaBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "AnthozoanBuff",
+      "className": "AnthozoanBuff",
+      "relativeFile": "CalValEX.Buffs.Mounts/AnthozoanBuff.cs",
+      "stableKey": "CalValEX/AnthozoanBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "AquaBuff",
+      "className": "AquaBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/AquaBuff.cs",
+      "stableKey": "CalValEX/AquaBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "AresBuff",
+      "className": "AresBuff",
+      "relativeFile": "CalValEX.Buffs.Pets.ExoMechs/AresBuff.cs",
+      "stableKey": "CalValEX/AresBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "AuricTeslaBuff",
+      "className": "AuricTeslaBuff",
+      "relativeFile": "CalValEX.Buffs.Mounts/AuricTeslaBuff.cs",
+      "stableKey": "CalValEX/AuricTeslaBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "AvalonBuff",
+      "className": "AvalonBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/AvalonBuff.cs",
+      "stableKey": "CalValEX/AvalonBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "BabySquidBuff",
+      "className": "BabySquidBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/BabySquidBuff.cs",
+      "stableKey": "CalValEX/BabySquidBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "BeeBuff",
+      "className": "BeeBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/BeeBuff.cs",
+      "stableKey": "CalValEX/BeeBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "BejeweledBuff",
+      "className": "BejeweledBuff",
+      "relativeFile": "CalValEX.Buffs.Pets.Scuttlers/BejeweledBuff.cs",
+      "stableKey": "CalValEX/BejeweledBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "BikeBuff",
+      "className": "BikeBuff",
+      "relativeFile": "CalValEX.Buffs.Mounts/BikeBuff.cs",
+      "stableKey": "CalValEX/BikeBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "BirdsculeBuff",
+      "className": "BirdsculeBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/BirdsculeBuff.cs",
+      "stableKey": "CalValEX/BirdsculeBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "BlockarozBuff",
+      "className": "BlockarozBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/BlockarozBuff.cs",
+      "stableKey": "CalValEX/BlockarozBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "BloodstoneCarriageBuff",
+      "className": "BloodstoneCarriageBuff",
+      "relativeFile": "CalValEX.Buffs.Mounts/BloodstoneCarriageBuff.cs",
+      "stableKey": "CalValEX/BloodstoneCarriageBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "BrimberryBuff",
+      "className": "BrimberryBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/BrimberryBuff.cs",
+      "stableKey": "CalValEX/BrimberryBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "BuppyBuff",
+      "className": "BuppyBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/BuppyBuff.cs",
+      "stableKey": "CalValEX/BuppyBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "CalamityBABYBuff",
+      "className": "CalamityBABYBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/CalamityBABYBuff.cs",
+      "stableKey": "CalValEX/CalamityBABYBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "CatfishBuff",
+      "className": "CatfishBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/CatfishBuff.cs",
+      "stableKey": "CalValEX/CatfishBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "ChilledOut",
+      "className": "ChilledOut",
+      "relativeFile": "CalValEX.Buffs.Pets/ChilledOut.cs",
+      "stableKey": "CalValEX/ChilledOut",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "ClamHermitBuff",
+      "className": "ClamHermitBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/ClamHermitBuff.cs",
+      "stableKey": "CalValEX/ClamHermitBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "ClassicBrimmyBuff",
+      "className": "ClassicBrimmyBuff",
+      "relativeFile": "CalValEX.Buffs.Transformations/ClassicBrimmyBuff.cs",
+      "stableKey": "CalValEX/ClassicBrimmyBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "CloudTransformationBuff",
+      "className": "CloudTransformationBuff",
+      "relativeFile": "CalValEX.Buffs.Transformations/CloudTransformationBuff.cs",
+      "stableKey": "CalValEX/CloudTransformationBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "CnidBuff",
+      "className": "CnidBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/CnidBuff.cs",
+      "stableKey": "CalValEX/CnidBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "CoolBlueBuff",
+      "className": "CoolBlueBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/CoolBlueBuff.cs",
+      "stableKey": "CalValEX/CoolBlueBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "CrabBuff",
+      "className": "CrabBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/CrabBuff.cs",
+      "stableKey": "CalValEX/CrabBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "CrystalBuff",
+      "className": "CrystalBuff",
+      "relativeFile": "CalValEX.Buffs.Pets.Scuttlers/CrystalBuff.cs",
+      "stableKey": "CalValEX/CrystalBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "DEBuff",
+      "className": "DEBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/DEBuff.cs",
+      "stableKey": "CalValEX/DEBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "DarksunSpiritBuff",
+      "className": "DarksunSpiritBuff",
+      "relativeFile": "CalValEX.Buffs.LightPets/DarksunSpiritBuff.cs",
+      "stableKey": "CalValEX/DarksunSpiritBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "DebrisMount",
+      "className": "DebrisMount",
+      "relativeFile": "CalValEX.Buffs.Mounts/DebrisMount.cs",
+      "stableKey": "CalValEX/DebrisMount",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "DesertBuff",
+      "className": "DesertBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/DesertBuff.cs",
+      "stableKey": "CalValEX/DesertBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "DeusBuff",
+      "className": "DeusBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/DeusBuff.cs",
+      "stableKey": "CalValEX/DeusBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "DiamondBuff",
+      "className": "DiamondBuff",
+      "relativeFile": "CalValEX.Buffs.Pets.Scuttlers/DiamondBuff.cs",
+      "stableKey": "CalValEX/DiamondBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "DiggerBuff",
+      "className": "DiggerBuff",
+      "relativeFile": "CalValEX.Buffs.LightPets/DiggerBuff.cs",
+      "stableKey": "CalValEX/DiggerBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "DogBuff",
+      "className": "DogBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/DogBuff.cs",
+      "stableKey": "CalValEX/DogBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "Doggobuff",
+      "className": "Doggobuff",
+      "relativeFile": "CalValEX.Buffs.Pets/Doggobuff.cs",
+      "stableKey": "CalValEX/Doggobuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "DraedonCartBuff",
+      "className": "DraedonCartBuff",
+      "relativeFile": "CalValEX.Buffs.Mounts/DraedonCartBuff.cs",
+      "stableKey": "CalValEX/DraedonCartBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "EggBuff",
+      "className": "EggBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/EggBuff.cs",
+      "stableKey": "CalValEX/EggBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "EmeraldBuff",
+      "className": "EmeraldBuff",
+      "relativeFile": "CalValEX.Buffs.Pets.Scuttlers/EmeraldBuff.cs",
+      "stableKey": "CalValEX/EmeraldBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "EnredBuff",
+      "className": "EnredBuff",
+      "relativeFile": "CalValEX.Buffs.LightPets/EnredBuff.cs",
+      "stableKey": "CalValEX/EnredBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "EurosBuff",
+      "className": "EurosBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/EurosBuff.cs",
+      "stableKey": "CalValEX/EurosBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "Excalibuff",
+      "className": "Excalibuff",
+      "relativeFile": "CalValEX.Buffs.Pets/Excalibuff.cs",
+      "stableKey": "CalValEX/Excalibuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "ExoMayhemBuff",
+      "className": "ExoMayhemBuff",
+      "relativeFile": "CalValEX.Buffs.Pets.ExoMechs/ExoMayhemBuff.cs",
+      "stableKey": "CalValEX/ExoMayhemBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "FathomEelBuff",
+      "className": "FathomEelBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/FathomEelBuff.cs",
+      "stableKey": "CalValEX/FathomEelBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "FistuloidBuff",
+      "className": "FistuloidBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/FistuloidBuff.cs",
+      "stableKey": "CalValEX/FistuloidBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "FloatyBuff",
+      "className": "FloatyBuff",
+      "relativeFile": "CalValEX.Buffs.Mounts/FloatyBuff.cs",
+      "stableKey": "CalValEX/FloatyBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "FogBuff",
+      "className": "FogBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/FogBuff.cs",
+      "stableKey": "CalValEX/FogBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "FollyBuff",
+      "className": "FollyBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/FollyBuff.cs",
+      "stableKey": "CalValEX/FollyBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "GeorgeBuff",
+      "className": "GeorgeBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/GeorgeBuff.cs",
+      "stableKey": "CalValEX/GeorgeBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "GodRiderBuff",
+      "className": "GodRiderBuff",
+      "relativeFile": "CalValEX.Buffs.Mounts/GodRiderBuff.cs",
+      "stableKey": "CalValEX/GodRiderBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "GodrgeBuff",
+      "className": "GodrgeBuff",
+      "relativeFile": "CalValEX.Buffs.LightPets/GodrgeBuff.cs",
+      "stableKey": "CalValEX/GodrgeBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "GoozmaBuff",
+      "className": "GoozmaBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/GoozmaBuff.cs",
+      "stableKey": "CalValEX/GoozmaBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "GrandBuff",
+      "className": "GrandBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/GrandBuff.cs",
+      "stableKey": "CalValEX/GrandBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "HadarianBuff",
+      "className": "HadarianBuff",
+      "relativeFile": "CalValEX.Buffs.Mounts/HadarianBuff.cs",
+      "stableKey": "CalValEX/HadarianBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "HeatBuff",
+      "className": "HeatBuff",
+      "relativeFile": "CalValEX.Buffs.LightPets/HeatBuff.cs",
+      "stableKey": "CalValEX/HeatBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "HiveVuff",
+      "className": "HiveVuff",
+      "relativeFile": "CalValEX.Buffs.Mounts/HiveVuff.cs",
+      "stableKey": "CalValEX/HiveVuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "HivelingBuff",
+      "className": "HivelingBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/HivelingBuff.cs",
+      "stableKey": "CalValEX/HivelingBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "HoodiedolistBuff",
+      "className": "HoodiedolistBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/HoodiedolistBuff.cs",
+      "stableKey": "CalValEX/HoodiedolistBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "ImpBuff",
+      "className": "ImpBuff",
+      "relativeFile": "CalValEX.Buffs.LightPets/ImpBuff.cs",
+      "stableKey": "CalValEX/ImpBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "JaredBuff",
+      "className": "JaredBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/JaredBuff.cs",
+      "stableKey": "CalValEX/JaredBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "JellyBuff",
+      "className": "JellyBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/JellyBuff.cs",
+      "stableKey": "CalValEX/JellyBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "JunkoBuff",
+      "className": "JunkoBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/JunkoBuff.cs",
+      "stableKey": "CalValEX/JunkoBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "LeviathanMountBuff",
+      "className": "LeviathanMountBuff",
+      "relativeFile": "CalValEX.Buffs.Mounts/LeviathanMountBuff.cs",
+      "stableKey": "CalValEX/LeviathanMountBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "LumpyBuff",
+      "className": "LumpyBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/LumpyBuff.cs",
+      "stableKey": "CalValEX/LumpyBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "MechaGeorgeBuff",
+      "className": "MechaGeorgeBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/MechaGeorgeBuff.cs",
+      "stableKey": "CalValEX/MechaGeorgeBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "MiniBumbleBuff",
+      "className": "MiniBumbleBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/MiniBumbleBuff.cs",
+      "stableKey": "CalValEX/MiniBumbleBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "MiniDogeBuff",
+      "className": "MiniDogeBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/MiniDogeBuff.cs",
+      "stableKey": "CalValEX/MiniDogeBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "MoistBuff",
+      "className": "MoistBuff",
+      "relativeFile": "CalValEX.Buffs.Pets.Elementals/MoistBuff.cs",
+      "stableKey": "CalValEX/MoistBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "MoistScourgeBuff",
+      "className": "MoistScourgeBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/MoistScourgeBuff.cs",
+      "stableKey": "CalValEX/MoistScourgeBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "MorshuBuff",
+      "className": "MorshuBuff",
+      "relativeFile": "CalValEX.Items.Mounts.Morshu/MorshuBuff.cs",
+      "stableKey": "CalValEX/MorshuBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "MushroomWardenBuff",
+      "className": "MushroomWardenBuff",
+      "relativeFile": "CalValEX.Buffs.Transformations/MushroomWardenBuff.cs",
+      "stableKey": "CalValEX/MushroomWardenBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "NautilusJrBuff",
+      "className": "NautilusJrBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/NautilusJrBuff.cs",
+      "stableKey": "CalValEX/NautilusJrBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "NuclearFuryshronBuff",
+      "className": "NuclearFuryshronBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/NuclearFuryshronBuff.cs",
+      "stableKey": "CalValEX/NuclearFuryshronBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "NuclearHorrorBuff",
+      "className": "NuclearHorrorBuff",
+      "relativeFile": "CalValEX.Buffs.Mounts/NuclearHorrorBuff.cs",
+      "stableKey": "CalValEX/NuclearHorrorBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "NuggetBuff",
+      "className": "NuggetBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/NuggetBuff.cs",
+      "stableKey": "CalValEX/NuggetBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "OmegaSquidBuff",
+      "className": "OmegaSquidBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/OmegaSquidBuff.cs",
+      "stableKey": "CalValEX/OmegaSquidBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "OrbBuff",
+      "className": "OrbBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/OrbBuff.cs",
+      "stableKey": "CalValEX/OrbBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "PBGMountBuff",
+      "className": "PBGMountBuff",
+      "relativeFile": "CalValEX.Buffs.Mounts/PBGMountBuff.cs",
+      "stableKey": "CalValEX/PBGMountBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "PhageBuff",
+      "className": "PhageBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/PhageBuff.cs",
+      "stableKey": "CalValEX/PhageBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "PhantomBuff",
+      "className": "PhantomBuff",
+      "relativeFile": "CalValEX.Buffs.LightPets/PhantomBuff.cs",
+      "stableKey": "CalValEX/PhantomBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "PillagerBuff",
+      "className": "PillagerBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/PillagerBuff.cs",
+      "stableKey": "CalValEX/PillagerBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "PolterBuff",
+      "className": "PolterBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/PolterBuff.cs",
+      "stableKey": "CalValEX/PolterBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "ProBuff",
+      "className": "ProBuff",
+      "relativeFile": "CalValEX.Buffs.LightPets/ProBuff.cs",
+      "stableKey": "CalValEX/ProBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "ProtoRingBuff",
+      "className": "ProtoRingBuff",
+      "relativeFile": "CalValEX.Buffs.Transformations/ProtoRingBuff.cs",
+      "stableKey": "CalValEX/ProtoRingBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "PuppoBuff",
+      "className": "PuppoBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/PuppoBuff.cs",
+      "stableKey": "CalValEX/PuppoBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "PylonBuff",
+      "className": "PylonBuff",
+      "relativeFile": "CalValEX.Buffs.LightPets/PylonBuff.cs",
+      "stableKey": "CalValEX/PylonBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "RareSsandBuff",
+      "className": "RareSsandBuff",
+      "relativeFile": "CalValEX.Buffs.Pets.Elementals/RareSsandBuff.cs",
+      "stableKey": "CalValEX/RareSsandBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "ReaperBuff",
+      "className": "ReaperBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/ReaperBuff.cs",
+      "stableKey": "CalValEX/ReaperBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "RedPandaBuff",
+      "className": "RedPandaBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/RedPandaBuff.cs",
+      "stableKey": "CalValEX/RedPandaBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "Rembuff",
+      "className": "Rembuff",
+      "relativeFile": "CalValEX.Buffs.Pets/Rembuff.cs",
+      "stableKey": "CalValEX/Rembuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "RepurposedMonitorBuff",
+      "className": "RepurposedMonitorBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/RepurposedMonitorBuff.cs",
+      "stableKey": "CalValEX/RepurposedMonitorBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "RoverSpindleBuff",
+      "className": "RoverSpindleBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/RoverSpindleBuff.cs",
+      "stableKey": "CalValEX/RoverSpindleBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "RubyBuff",
+      "className": "RubyBuff",
+      "relativeFile": "CalValEX.Buffs.Pets.Scuttlers/RubyBuff.cs",
+      "stableKey": "CalValEX/RubyBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "RustyBuff",
+      "className": "RustyBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/RustyBuff.cs",
+      "stableKey": "CalValEX/RustyBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "SWPetBuff",
+      "className": "SWPetBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/SWPetBuff.cs",
+      "stableKey": "CalValEX/SWPetBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "SadStoneBuff",
+      "className": "SadStoneBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/SadStoneBuff.cs",
+      "stableKey": "CalValEX/SadStoneBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "SandTransformationBuff",
+      "className": "SandTransformationBuff",
+      "relativeFile": "CalValEX.Buffs.Transformations/SandTransformationBuff.cs",
+      "stableKey": "CalValEX/SandTransformationBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "SapphireBuff",
+      "className": "SapphireBuff",
+      "relativeFile": "CalValEX.Buffs.Pets.Scuttlers/SapphireBuff.cs",
+      "stableKey": "CalValEX/SapphireBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "ScorchingFuryshronBuff",
+      "className": "ScorchingFuryshronBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/ScorchingFuryshronBuff.cs",
+      "stableKey": "CalValEX/ScorchingFuryshronBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "ScourgeBuff",
+      "className": "ScourgeBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/ScourgeBuff.cs",
+      "stableKey": "CalValEX/ScourgeBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "SeerBuff",
+      "className": "SeerBuff",
+      "relativeFile": "CalValEX.Buffs.LightPets/SeerBuff.cs",
+      "stableKey": "CalValEX/SeerBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "SentiPet",
+      "className": "SentiPet",
+      "relativeFile": "CalValEX.Buffs.Pets/SentiPet.cs",
+      "stableKey": "CalValEX/SentiPet",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "SepulcherBuff",
+      "className": "SepulcherBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/SepulcherBuff.cs",
+      "stableKey": "CalValEX/SepulcherBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "SepulcherBuffNeo",
+      "className": "SepulcherBuffNeo",
+      "relativeFile": "CalValEX.Buffs.Pets/SepulcherBuffNeo.cs",
+      "stableKey": "CalValEX/SepulcherBuffNeo",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "ShartBuff",
+      "className": "ShartBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/ShartBuff.cs",
+      "stableKey": "CalValEX/ShartBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "SigBuff",
+      "className": "SigBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/SigBuff.cs",
+      "stableKey": "CalValEX/SigBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "SignutTransformationBuff",
+      "className": "SignutTransformationBuff",
+      "relativeFile": "CalValEX.Buffs.Transformations/SignutTransformationBuff.cs",
+      "stableKey": "CalValEX/SignutTransformationBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "SilvaJeepBuff",
+      "className": "SilvaJeepBuff",
+      "relativeFile": "CalValEX.Buffs.Mounts/SilvaJeepBuff.cs",
+      "stableKey": "CalValEX/SilvaJeepBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "SkaterBuff",
+      "className": "SkaterBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/SkaterBuff.cs",
+      "stableKey": "CalValEX/SkaterBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "SlimeBuff",
+      "className": "SlimeBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/SlimeBuff.cs",
+      "stableKey": "CalValEX/SlimeBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "SmaulerBuff",
+      "className": "SmaulerBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/SmaulerBuff.cs",
+      "stableKey": "CalValEX/SmaulerBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "SolarBunBuff",
+      "className": "SolarBunBuff",
+      "relativeFile": "CalValEX.Buffs.LightPets/SolarBunBuff.cs",
+      "stableKey": "CalValEX/SolarBunBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "SsandBuff",
+      "className": "SsandBuff",
+      "relativeFile": "CalValEX.Buffs.Pets.Elementals/SsandBuff.cs",
+      "stableKey": "CalValEX/SsandBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "StasisArmoredBuff",
+      "className": "StasisArmoredBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/StasisArmoredBuff.cs",
+      "stableKey": "CalValEX/StasisArmoredBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "StasisNakedBuff",
+      "className": "StasisNakedBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/StasisNakedBuff.cs",
+      "stableKey": "CalValEX/StasisNakedBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "SupJewelBuff",
+      "className": "SupJewelBuff",
+      "relativeFile": "CalValEX.Buffs.LightPets/SupJewelBuff.cs",
+      "stableKey": "CalValEX/SupJewelBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "TUBBUFF",
+      "className": "TUBBUFF",
+      "relativeFile": "CalValEX.Buffs.Pets/TUBBUFF.cs",
+      "stableKey": "CalValEX/TUBBUFF",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "TerminalRockBuff",
+      "className": "TerminalRockBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/TerminalRockBuff.cs",
+      "stableKey": "CalValEX/TerminalRockBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "ThanatosBuff",
+      "className": "ThanatosBuff",
+      "relativeFile": "CalValEX.Buffs.Pets.ExoMechs/ThanatosBuff.cs",
+      "stableKey": "CalValEX/ThanatosBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "TopazBuff",
+      "className": "TopazBuff",
+      "relativeFile": "CalValEX.Buffs.Pets.Scuttlers/TopazBuff.cs",
+      "stableKey": "CalValEX/TopazBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "TractorMount",
+      "className": "TractorMount",
+      "relativeFile": "CalValEX.Buffs.Mounts/TractorMount.cs",
+      "stableKey": "CalValEX/TractorMount",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "TwinsBuff",
+      "className": "TwinsBuff",
+      "relativeFile": "CalValEX.Buffs.Pets.ExoMechs/TwinsBuff.cs",
+      "stableKey": "CalValEX/TwinsBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "UngodlyBuff",
+      "className": "UngodlyBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/UngodlyBuff.cs",
+      "stableKey": "CalValEX/UngodlyBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "VanityCoreBuff",
+      "className": "VanityCoreBuff",
+      "relativeFile": "CalValEX.Buffs.LightPets/VanityCoreBuff.cs",
+      "stableKey": "CalValEX/VanityCoreBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "WulfrumArmy",
+      "className": "WulfrumArmy",
+      "relativeFile": "CalValEX.Buffs.Pets/WulfrumArmy.cs",
+      "stableKey": "CalValEX/WulfrumArmy",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "WyrmBuff",
+      "className": "WyrmBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/WyrmBuff.cs",
+      "stableKey": "CalValEX/WyrmBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "YeetBuff",
+      "className": "YeetBuff",
+      "relativeFile": "CalValEX.Buffs.LightPets/YeetBuff.cs",
+      "stableKey": "CalValEX/YeetBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "YharimSquidBuff",
+      "className": "YharimSquidBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/YharimSquidBuff.cs",
+      "stableKey": "CalValEX/YharimSquidBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "YharonMountBuff",
+      "className": "YharonMountBuff",
+      "relativeFile": "CalValEX.Buffs.Mounts/YharonMountBuff.cs",
+      "stableKey": "CalValEX/YharonMountBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "YhogoStickBuff",
+      "className": "YhogoStickBuff",
+      "relativeFile": "CalValEX.Buffs.Mounts/YhogoStickBuff.cs",
+      "stableKey": "CalValEX/YhogoStickBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "ZygoteBuff",
+      "className": "ZygoteBuff",
+      "relativeFile": "CalValEX.Buffs.Pets/ZygoteBuff.cs",
+      "stableKey": "CalValEX/ZygoteBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "ckidbuff",
+      "className": "ckidbuff",
+      "relativeFile": "CalValEX.Buffs.Pets/ckidbuff.cs",
+      "stableKey": "CalValEX/ckidbuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "cloudbuff",
+      "className": "cloudbuff",
+      "relativeFile": "CalValEX.Buffs.Pets.Elementals/cloudbuff.cs",
+      "stableKey": "CalValEX/cloudbuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "minihotebuff",
+      "className": "minihotebuff",
+      "relativeFile": "CalValEX.Buffs.Pets.Elementals/minihotebuff.cs",
+      "stableKey": "CalValEX/minihotebuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalValEX",
+      "internalName": "rarebrimlingbuff",
+      "className": "rarebrimlingbuff",
+      "relativeFile": "CalValEX.Buffs.Pets.Elementals/rarebrimlingbuff.cs",
+      "stableKey": "CalValEX/rarebrimlingbuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    }
+  ]
+}

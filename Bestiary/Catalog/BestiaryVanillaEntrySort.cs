@@ -18,16 +18,10 @@ namespace EvenMoreOverpoweredJourney.Bestiary.Catalog
             if (b == null)
                 return -1;
 
-            if (a.Entry != null && b.Entry != null)
+            if (a.Entry != null && b.Entry != null &&
+                HasVanillaSortId(a) && HasVanillaSortId(b))
             {
-                try
-                {
-                    return VanillaStep.Compare(a.Entry, b.Entry);
-                }
-                catch
-                {
-                    // 模组排序表缺条目时走数值兜底，避免 client.log 刷屏
-                }
+                return VanillaStep.Compare(a.Entry, b.Entry);
             }
 
             int aKey = GetSortKey(a);
@@ -42,6 +36,10 @@ namespace EvenMoreOverpoweredJourney.Bestiary.Catalog
 
             return a.CatalogIndex.CompareTo(b.CatalogIndex);
         }
+
+        private static bool HasVanillaSortId(BestiaryNpcMeta meta) =>
+            meta != null && meta.NetId > 0 &&
+            ContentSamples.NpcBestiarySortingId.ContainsKey(meta.NetId);
 
         /// <summary>原版排序 id（<see cref="ContentSamples.NpcBestiarySortingId"/>）。</summary>
         public static int GetSortKey(BestiaryNpcMeta meta)

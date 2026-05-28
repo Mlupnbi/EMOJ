@@ -12,11 +12,11 @@ using System.Reflection;
 
 [assembly: System.Reflection.AssemblyCompanyAttribute("EvenMoreOverpoweredJourney")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
-[assembly: System.Reflection.AssemblyFileVersionAttribute("0.5.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("0.5.0+ab813645ff7664b330746d898d6f4bfabfc90345")]
+[assembly: System.Reflection.AssemblyFileVersionAttribute("0.5.14.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("0.5.14+fe6cd501429b1e75f680a959458cbfbcc3193cfe")]
 [assembly: System.Reflection.AssemblyProductAttribute("EvenMoreOverpoweredJourney")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EvenMoreOverpoweredJourney")]
-[assembly: System.Reflection.AssemblyVersionAttribute("0.5.0.0")]
+[assembly: System.Reflection.AssemblyVersionAttribute("0.5.14.0")]
 
 // 由 MSBuild WriteCodeFragment 类生成。
 

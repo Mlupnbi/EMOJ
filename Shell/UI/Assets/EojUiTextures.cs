@@ -30,6 +30,8 @@ namespace EvenMoreOverpoweredJourney.Shell.UI.Assets
             public static Texture2D TabStorage => EojUiTextureCache.Get(EojUiAssetCatalog.Shell.TabStorage);
 
             public static Texture2D TabBestiary => EojUiTextureCache.Get(EojUiAssetCatalog.Shell.TabBestiary);
+
+            public static Texture2D TabBlueprint => EojUiTextureCache.Get(EojUiAssetCatalog.Shell.TabBlueprint);
         }
 
         public static class Buff

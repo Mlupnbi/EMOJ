@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "source": "user_saved_seeds",
+  "sets": [
+    {
+      "label": "HJ-无系列",
+      "seed": 13905,
+      "material": 9,
+      "stylePrefix": "ItemNothingness",
+      "slots": {
+        "Table": "ItemNothingnessTable",
+        "Chair": "ItemNothingnessChair",
+        "Workbench": "ItemNothingnessWorkbench"
+      }
+    },
+    {
+      "label": "HJ-物质",
+      "seed": 13875,
+      "material": 13985,
+      "stylePrefix": "ItemMatter"
+    },
+    {
+      "label": "HJ-死",
+      "seed": 13851,
+      "material": 13661,
+      "stylePrefix": "ItemDeath"
+    },
+    {
+      "label": "HJ-生命",
+      "seed": 13870,
+      "material": 13980,
+      "stylePrefix": "ItemLife"
+    },
+    {
+      "label": "HJ-深渊",
+      "seed": 13833,
+      "material": 13762,
+      "stylePrefix": "ItemAbyss"
+    },
+    {
+      "label": "HJ-时光",
+      "seed": 13926,
+      "material": 14027,
+      "stylePrefix": "ItemTime"
+    },
+    {
+      "label": "CF-钨钢",
+      "seed": 12131,
+      "material": 12106,
+      "stylePrefix": "Wulfrum"
+    },
+    {
+      "label": "SPOOKY-古老木",
+      "seed": 16372,
+      "material": 16434,
+      "stylePrefix": "OldWood"
+    }
+  ]
+}

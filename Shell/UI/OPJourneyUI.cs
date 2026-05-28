@@ -1,3 +1,4 @@
+using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ using EvenMoreOverpoweredJourney.Bestiary;
 using EvenMoreOverpoweredJourney.Bestiary.Filters;
 using EvenMoreOverpoweredJourney.Bestiary.UI;
 using EvenMoreOverpoweredJourney.Bestiary.UI.Components;
+using EvenMoreOverpoweredJourney.FurnitureBlueprint.UI;
 using EvenMoreOverpoweredJourney.Shell.UI;
 
 namespace EvenMoreOverpoweredJourney.Shell.UI
@@ -35,6 +37,12 @@ namespace EvenMoreOverpoweredJourney.Shell.UI
         public readonly BestiarySecondaryFilterState BestiarySecondary = new BestiarySecondaryFilterState();
         public BestiarySecondaryPanel BestiarySecondaryPanel;
         public BestiaryDetailSecondaryPanel BestiaryDetailPanel;
+
+        public BlueprintTemplateSecondaryPanel BlueprintTemplatePanel;
+        public BlueprintSetLibraryPanel BlueprintSetLibraryPanel;
+        public BlueprintSetDetailPanel BlueprintSetDetailPanel;
+        public BlueprintMaterialSecondaryPanel BlueprintMaterialPanel;
+        public FurnitureBlueprintPage ActiveBlueprintPage;
 
         public BestiaryFaceMode BestiaryFaceMode = BestiaryFaceMode.ProgressivePlus;
         public string BestiarySearchQueryText = "";
@@ -61,6 +69,25 @@ namespace EvenMoreOverpoweredJourney.Shell.UI
                 Instance.SwitchToTab(tabIndex);
             else
                 _pendingTabOnFirstInit = tabIndex;
+        }
+
+        /// <summary>??????????????????</summary>
+        public static void Close()
+        {
+            Instance?.DeactivateItemHubChainOnClose();
+            Hide();
+        }
+
+        /// <summary>??????????? <paramref name="tabIndex"/> ??????????????????</summary>
+        public static void ToggleTab(int tabIndex)
+        {
+            if (Visible && Instance != null && Instance.CurrentTab == tabIndex)
+            {
+                Close();
+                return;
+            }
+
+            ShowAndSwitchTab(tabIndex);
         }
 
         public static void Hide()
@@ -130,6 +157,22 @@ namespace EvenMoreOverpoweredJourney.Shell.UI
             }
         }
 
+        /// <summary>? <see cref="OPJourneyPlayer.PendingBlueprintQueryType"/> ??????????????</summary>
+        public void ApplyPendingBlueprintQuickQuery()
+        {
+            if (contentContainer == null)
+                return;
+
+            foreach (UIElement child in contentContainer.Children)
+            {
+                if (child is FurnitureBlueprintPage page)
+                {
+                    page.TryApplyPendingQuickQuery();
+                    return;
+                }
+            }
+        }
+
         /// <summary>�ر�������ʱ�ر���Ʒ��ɸѡ����̬�������λ������ɸѡ�ɻỰ�߼���������?</summary>
         public void DeactivateItemHubChainOnClose()
         {
@@ -142,7 +185,7 @@ namespace EvenMoreOverpoweredJourney.Shell.UI
         {
             currentTab = tabIndex;
             if (currentTab < 0) currentTab = 0;
-            if (currentTab > 3) currentTab = 3;
+            if (currentTab > 4) currentTab = 4;
             foreach (UITab t in tabs)
                 t.Active = t.ID == currentTab;
             if (currentTab != 3)
@@ -154,9 +197,18 @@ namespace EvenMoreOverpoweredJourney.Shell.UI
                 ItemHubSecondaryPanel?.SetOpen(false);
             if (currentTab != 1)
                 BuffSecondaryPanel?.SetOpen(false);
+            if (currentTab != 4)
+            {
+                BlueprintTemplatePanel?.SetOpen(false);
+                BlueprintSetLibraryPanel?.SetOpen(false);
+                BlueprintSetDetailPanel?.SetOpen(false);
+                BlueprintMaterialPanel?.SetOpen(false);
+            }
             EmojLog.Info(EmojLogChannel.Ui, $"tab switch index={currentTab}");
             SyncResizeMinimums();
             RefreshTabs();
+            if (currentTab == 4)
+                ActiveBlueprintPage?.OnShellResized();
         }
 
         public override void OnInitialize()
@@ -185,11 +237,7 @@ namespace EvenMoreOverpoweredJourney.Shell.UI
             UICloseButton closeBtn = new UICloseButton();
             closeBtn.Left.Set(-28, 1f);
             closeBtn.Top.Set(6, 0f);
-            closeBtn.OnLeftClick += (_, _) =>
-            {
-                DeactivateItemHubChainOnClose();
-                Hide();
-            };
+            closeBtn.OnLeftClick += (_, _) => Close();
             mainPanel.Append(closeBtn);
 
             contentContainer = new UIElement();
@@ -199,14 +247,14 @@ namespace EvenMoreOverpoweredJourney.Shell.UI
             contentContainer.Height.Set(-(OPJourneyShellMetrics.TitleBarHeight + OPJourneyShellMetrics.ContentLayoutBottomInset), 1f);
             mainPanel.Append(contentContainer);
 
-            string[] tabTextKeys = { "TabResearch", "TabBuff", "TabStorage", "TabBestiary" };
-            string[] tabHoverKeys = { "TabHoverResearch", "TabHoverBuff", "TabHoverStorage", "TabHoverBestiary" };
-            for (int i = 0; i < 4; i++)
+            string[] tabTextKeys = { "TabResearch", "TabBuff", "TabStorage", "TabBestiary", "TabBlueprint" };
+            string[] tabHoverKeys = { "TabHoverResearch", "TabHoverBuff", "TabHoverStorage", "TabHoverBestiary", "TabHoverBlueprint" };
+            for (int i = 0; i < 5; i++)
             {
                 int id = i;
                 var tab = new UITab(id, tabTextKeys[i], tabHoverKeys[i]);
                 tab.Left.Set(-42, 0);
-                tab.Top.Set(27 + i * 45, 0);
+                tab.Top.Set(22 + i * 42, 0);
                 tab.OnLeftClick += (_, el) => { SwitchToTab(((UITab)el).ID); };
                 tabs.Add(tab);
             }
@@ -226,6 +274,22 @@ namespace EvenMoreOverpoweredJourney.Shell.UI
             BestiaryDetailPanel = new BestiaryDetailSecondaryPanel(this);
             Append(BestiaryDetailPanel);
             BestiaryDetailPanel.SetOpen(false);
+
+            BlueprintTemplatePanel = new BlueprintTemplateSecondaryPanel(this);
+            Append(BlueprintTemplatePanel);
+            BlueprintTemplatePanel.SetOpen(false);
+
+            BlueprintSetLibraryPanel = new BlueprintSetLibraryPanel(this);
+            Append(BlueprintSetLibraryPanel);
+            BlueprintSetLibraryPanel.SetOpen(false);
+
+            BlueprintSetDetailPanel = new BlueprintSetDetailPanel(this);
+            Append(BlueprintSetDetailPanel);
+            BlueprintSetDetailPanel.SetOpen(false);
+
+            BlueprintMaterialPanel = new BlueprintMaterialSecondaryPanel();
+            Append(BlueprintMaterialPanel);
+            BlueprintMaterialPanel.SetOpen(false);
 
             resizeHandle = new UIResizeHandle(mainPanel);
             resizeHandle.OnResized = RecalculateMainLayout;
@@ -295,6 +359,9 @@ namespace EvenMoreOverpoweredJourney.Shell.UI
                     case BestiaryPage bestiary:
                         bestiary.OnShellResized();
                         break;
+                    case FurnitureBlueprintPage blueprint:
+                        blueprint.OnShellResized();
+                        break;
                 }
             }
         }
@@ -347,6 +414,10 @@ namespace EvenMoreOverpoweredJourney.Shell.UI
             BestiarySecondaryPanel?.SetOpen(false);
             ItemHubSecondaryPanel?.SetOpen(false);
             BuffSecondaryPanel?.SetOpen(false);
+            BlueprintTemplatePanel?.SetOpen(false);
+            BlueprintSetLibraryPanel?.SetOpen(false);
+            BlueprintSetDetailPanel?.SetOpen(false);
+            BlueprintMaterialPanel?.SetOpen(false);
             BestiarySearchQueryText = "";
 
             if (currentTab != 0)
@@ -444,6 +515,93 @@ namespace EvenMoreOverpoweredJourney.Shell.UI
                 BuffSecondaryPanel.Height.Set(0f, 0f);
                 BuffSecondaryPanel.IgnoresMouseInteraction = true;
             }
+
+            if (Visible && currentTab == 4)
+                LayoutBlueprintSecondaryPanels(d);
+            else
+                HideBlueprintSecondaryPanels();
+        }
+
+        private void HideBlueprintSecondaryPanels()
+        {
+            SetBlueprintPanelClosed(BlueprintTemplatePanel);
+            SetBlueprintPanelClosed(BlueprintSetLibraryPanel);
+            SetBlueprintPanelClosed(BlueprintSetDetailPanel);
+            SetBlueprintPanelClosed(BlueprintMaterialPanel);
+        }
+
+        private static void SetBlueprintPanelClosed(UIElement panel)
+        {
+            if (panel == null)
+                return;
+            panel.Left.Set(0f, 0f);
+            panel.Top.Set(0f, 0f);
+            panel.Width.Set(0f, 0f);
+            panel.Height.Set(0f, 0f);
+            panel.IgnoresMouseInteraction = true;
+        }
+
+        private void LayoutBlueprintSecondaryPanels(CalculatedStyle mainDims)
+        {
+            float baseX = mainDims.X + mainDims.Width + 6f;
+            float baseY = mainDims.Y;
+            float cursorX = baseX;
+
+            if (BlueprintSetLibraryPanel?.IsOpen == true)
+            {
+                float w = BlueprintSetLibraryPanel.DefaultWidth;
+                float h = BlueprintSetLibraryPanel.DefaultHeight;
+                PositionBlueprintPanel(BlueprintSetLibraryPanel, cursorX, baseY, w, h);
+                cursorX += w + 6f;
+            }
+            else
+                SetBlueprintPanelClosed(BlueprintSetLibraryPanel);
+
+            if (BlueprintSetDetailPanel?.IsOpen == true)
+            {
+                float w = BlueprintSetDetailPanel.DefaultWidth;
+                float h = BlueprintSetDetailPanel.DefaultHeight;
+                PositionBlueprintPanel(BlueprintSetDetailPanel, cursorX, baseY, w, h);
+                cursorX += w + 6f;
+            }
+            else
+                SetBlueprintPanelClosed(BlueprintSetDetailPanel);
+
+            if (BlueprintTemplatePanel?.IsOpen == true)
+            {
+                float w = BlueprintTemplatePanel.DefaultWidth;
+                float h = BlueprintTemplatePanel.DefaultHeight;
+                PositionBlueprintPanel(BlueprintTemplatePanel, cursorX, baseY, w, h);
+            }
+            else
+                SetBlueprintPanelClosed(BlueprintTemplatePanel);
+
+            if (BlueprintMaterialPanel?.IsOpen == true)
+            {
+                float matW = BlueprintMaterialPanel.GetPreferredWidth();
+                float matH = BlueprintMaterialPanel.GetPreferredHeight();
+                if (matW < 1f || matH < 1f)
+                {
+                    SetBlueprintPanelClosed(BlueprintMaterialPanel);
+                }
+                else
+                {
+                    float matX = mainDims.X + OPJourneyShellMetrics.ContentInsetLeft;
+                    float matY = mainDims.Y + FurnitureBlueprintPageLayout.ToolbarHeight + 2f;
+                    PositionBlueprintPanel(BlueprintMaterialPanel, matX, matY, matW, matH);
+                }
+            }
+            else
+                SetBlueprintPanelClosed(BlueprintMaterialPanel);
+        }
+
+        private static void PositionBlueprintPanel(UIElement panel, float x, float y, float w, float h)
+        {
+            panel.Left.Set(x, 0f);
+            panel.Top.Set(y, 0f);
+            panel.Width.Set(w, 0f);
+            panel.Height.Set(h, 0f);
+            panel.IgnoresMouseInteraction = false;
         }
 
         private void SyncChromePositions()
@@ -473,8 +631,14 @@ namespace EvenMoreOverpoweredJourney.Shell.UI
                 contentContainer.Append(new BuffPage(this));
             else if (currentTab == 2)
                 contentContainer.Append(new ItemHubPage());
-            else
+            else if (currentTab == 3)
                 contentContainer.Append(new BestiaryPage(this));
+            else
+            {
+                var blueprintPage = new FurnitureBlueprintPage(this);
+                ActiveBlueprintPage = blueprintPage;
+                contentContainer.Append(blueprintPage);
+            }
         }
     }
 }

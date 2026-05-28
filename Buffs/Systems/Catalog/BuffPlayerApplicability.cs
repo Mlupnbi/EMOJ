@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace EvenMoreOverpoweredJourney.Buffs.Systems.Catalog
 {
-    /// <summary>�ж� Buff �Ƿ�ɶԱ��������Ч���ų�����/NPC ר�õ������λ����</summary>
+    /// <summary>�ж� Buff �Ƿ�ɶԱ��������Ч���ų�����/NPC ר�õ������λ����?</summary>
     public static class BuffPlayerApplicability
     {
         private static readonly string[] NotForPlayerNameTokens =
@@ -39,6 +39,9 @@ namespace EvenMoreOverpoweredJourney.Buffs.Systems.Catalog
         {
             if (!IsMeantForPlayer(buffId))
                 return true;
+
+            if (BuffBeneficialDebuffFlagSystem.IsBeneficialDespiteDebuffFlag(buffId))
+                return false;
 
             if (buffId > 0 && buffId < Main.debuff.Length && Main.debuff[buffId])
                 return true;

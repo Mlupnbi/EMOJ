@@ -1,6 +1,6 @@
 namespace EvenMoreOverpoweredJourney.Core.Logging
 {
-    /// <summary>���ļ�ͨ�������ڴ������ <c>Logs/EMOJ/&lt;session&gt;/</c> �ļ��С�</summary>
+    /// <summary>锟斤拷锟侥硷拷通锟斤拷锟斤拷锟斤拷锟节达拷锟斤拷锟斤拷锟� <c>Logs/EMOJ/&lt;session&gt;/</c> 锟侥硷拷锟叫★拷</summary>
     public enum EmojLogChannel
     {
         Core,
@@ -12,6 +12,7 @@ namespace EvenMoreOverpoweredJourney.Core.Logging
         Ui,
         ItemHub,
         Research,
+        Blueprint,
         Error
     }
 }

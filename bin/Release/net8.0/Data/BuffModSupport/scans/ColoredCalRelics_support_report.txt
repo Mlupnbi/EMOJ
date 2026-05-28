@@ -1,0 +1,25 @@
+=== EMOJ Buff 扫描支持报告 ===
+模组: ColoredCalRelics
+扫描时间(UTC): 2026-05-20T08:27:21.7956686Z
+源码路径: C:\Users\14451\Documents\My Games\Terraria\tModLoader\ModSources\EvenMoreOverpoweredJourney\Data\BuffModSupport\decompiled_cache\ColoredCalRelics\decompiled_cs
+来源类型: extracted_source
+build.txt 版本: 0.5.0
+csproj 版本: (无)
+建议登记版本: 0.5.0
+
+ModBuff 类数量: 0
+  Stat 建议: 0
+  CombatVisual 建议: 0
+  Mixed: 0
+  Unknown: 0
+  High 置信 Stat: 0
+
+ModContent.BuffType 注册名对照:
+  类与注册同名: 0
+  仅有 ModBuff 类: 0
+  仅有 BuffType 引用: 0
+
+下一步:
+1. 查看 registration_compare.tsv
+2. 将 acceptedVersions 写入 Data/BuffModSupport/mod_profiles.json
+3. 审阅后合并 overrides.json（或 --merge-high-stat）

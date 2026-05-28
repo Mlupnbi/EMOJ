@@ -9,12 +9,16 @@ namespace EvenMoreOverpoweredJourney.Shell.Players
 {
     public class OPJourneyPlayer : ModPlayer
     {
-        /// <summary>?зр???????????? type??0 ??????????</summary>
+        /// <summary>???????????? type?0 ????</summary>
         public int PendingResearchQueryType;
+
+        /// <summary>??????????????? type?0 ????</summary>
+        public int PendingBlueprintQueryType;
 
         public override void OnEnterWorld()
         {
             PendingResearchQueryType = 0;
+            PendingBlueprintQueryType = 0;
             OPJourneyUI.HideAndResetForWorld();
             if (OPJourneyUI.Instance != null)
             {
@@ -29,33 +33,20 @@ namespace EvenMoreOverpoweredJourney.Shell.Players
 
         public override void ProcessTriggers(Terraria.GameInput.TriggersSet triggersSet)
         {
-            if (EvenMoreOverpoweredJourney.OpenResearchPanelKey?.JustPressed == true)
-            {
-                OPJourneyUI.ShowAndSwitchTab(0);
-                SoundEngine.PlaySound(SoundID.MenuOpen);
+            if (TryToggleShellTab(EvenMoreOverpoweredJourney.OpenResearchPanelKey, 0))
                 return;
-            }
 
-            if (EvenMoreOverpoweredJourney.OpenBuffPanelKey?.JustPressed == true)
-            {
-                OPJourneyUI.ShowAndSwitchTab(1);
-                SoundEngine.PlaySound(SoundID.MenuOpen);
+            if (TryToggleShellTab(EvenMoreOverpoweredJourney.OpenBuffPanelKey, 1))
                 return;
-            }
 
-            if (EvenMoreOverpoweredJourney.OpenItemHubPanelKey?.JustPressed == true)
-            {
-                OPJourneyUI.ShowAndSwitchTab(2);
-                SoundEngine.PlaySound(SoundID.MenuOpen);
+            if (TryToggleShellTab(EvenMoreOverpoweredJourney.OpenItemHubPanelKey, 2))
                 return;
-            }
 
-            if (EvenMoreOverpoweredJourney.OpenBestiaryPanelKey?.JustPressed == true)
-            {
-                OPJourneyUI.ShowAndSwitchTab(3);
-                SoundEngine.PlaySound(SoundID.MenuOpen);
+            if (TryToggleShellTab(EvenMoreOverpoweredJourney.OpenBestiaryPanelKey, 3))
                 return;
-            }
+
+            if (TryToggleShellTab(EvenMoreOverpoweredJourney.OpenBlueprintPanelKey, 4))
+                return;
 
             if (EvenMoreOverpoweredJourney.QuickItemQueryKey?.JustPressed == true)
             {
@@ -77,11 +68,30 @@ namespace EvenMoreOverpoweredJourney.Shell.Players
                     }
                 }
 
+                if (OPJourneyUI.Visible && OPJourneyUI.Instance != null && OPJourneyUI.Instance.CurrentTab == 4)
+                {
+                    PendingBlueprintQueryType = hoverType;
+                    OPJourneyUI.Instance.ApplyPendingBlueprintQuickQuery();
+                    SoundEngine.PlaySound(SoundID.MenuTick);
+                    return;
+                }
+
                 PendingResearchQueryType = hoverType;
                 OPJourneyUI.ShowAndSwitchTab(0);
                 SoundEngine.PlaySound(SoundID.MenuOpen);
                 return;
             }
+        }
+
+        private static bool TryToggleShellTab(ModKeybind keybind, int tabIndex)
+        {
+            if (keybind?.JustPressed != true)
+                return false;
+
+            bool closing = OPJourneyUI.Visible && OPJourneyUI.Instance != null && OPJourneyUI.Instance.CurrentTab == tabIndex;
+            OPJourneyUI.ToggleTab(tabIndex);
+            SoundEngine.PlaySound(closing ? SoundID.MenuClose : SoundID.MenuOpen);
+            return true;
         }
     }
 }

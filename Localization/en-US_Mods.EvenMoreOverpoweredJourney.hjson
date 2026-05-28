@@ -5,6 +5,7 @@ Keybinds: {
 	OpenBuffPanel.DisplayName: Open super buff panel
 	OpenItemHubPanel.DisplayName: Open super item research panel
 	OpenBestiaryPanel.DisplayName: Open super creature bestiary
+	OpenBlueprintPanel.DisplayName: Open super furniture blueprint panel
 	QuickItemQuery.DisplayName: Quick query hovered item
 }
 
@@ -109,6 +110,17 @@ Configs: {
 				For common vanilla buffs listed in VanillaBuffStatRegistry (Ironskin, Regen, Swiftness, etc.):
 				apply stats directly without running Buff.Update ? saves CPU
 				See Data/BuffModSupport/vanilla_stats_manifest.json
+				'''
+		}
+
+		ResearchHeader: Super crafting research (green face)
+
+		GreenFaceExtendedNestedSearch: {
+			Label: Green face extended nested search
+			Tooltip:
+				'''
+				On (default): besides products that directly use the query item, also show one layer of crafts that consume unresearched intermediates (e.g. bamboo -> striped bamboo -> bamboo sword).
+				Off: only products whose recipe lists the query item directly (matches Recipe Browser material quick scan).
 				'''
 		}
 
@@ -234,6 +246,131 @@ UI: {
 	TabHoverBuff: Super buffs
 	TabHoverStorage: Super item hub
 	TabHoverBestiary: Super creature bestiary
+	TabBlueprint: Blueprint
+	TabHoverBlueprint: Furniture blueprint (auto sets / templates)
+
+	Blueprint: {
+		BtnSaveSet: Save set
+		BtnSaveAsNewSet: Save as new set
+		BtnBuildingPlan: Building plan
+		BtnOpenSetLibrary: Set library
+		BtnEditCurrentSet: Edit set
+		BtnRenameSet: Rename
+		BtnEditSet: Edit
+		BtnDeleteSet: Delete
+		BtnNewEmptySet: New empty set
+		NewSetDefaultName: New set
+		CoverSlotLabel: Cover
+		StatusSavePrompt: Recognition done ÔøΩ use Save set (material row) to keep this result.
+		DetailFooterHint: Toggle material cost: whether placement consumes inventory.\nApply recognition: discard manual edits and restore the latest recognition result.\nSave set: overwrites the set you are editing.\nSave as new set: writes a new entry with an incremented name; the original set is unchanged.
+		ConsumeOnShort: (on)
+		ConsumeOffShort: (off)
+		BtnApplyRecognitionOverlay: Apply recognition
+		StatusOverlayApplied: Active set restored from the latest recognition result.
+		StatusOverlayBusy: Recognition in progress ÔøΩ try again shortly.
+		StatusOverlayNoSeed: Drop a seed on the main tab and run recognition first.
+		StatusOverlayNoMaterial: Confirm a material block before applying recognition.
+		StatusOverlayEmpty: No recognition result available.
+		MaterialPickerTitle: Pick material block
+		MaterialPickerEmpty: No material blocks available
+		RenameSetTitle: Rename set
+		RenameSetConfirm: OK
+		RenameSetCancel: Cancel
+		SetLibraryMovedHint: Saved sets are on the main blueprint tab; this panel is kept for compatibility.
+		SetLibraryTitle: Set library
+		SetDetailTitle: Set detail
+		HubStatusIdle: Recognition: drop a seed item to start
+		HubStatusFormat: Recognition: {0} ? {1}/{2}
+		HubSummaryFormat: Active set: {0}\nActive template: {1}
+		HubNoSeed: Not set
+		HubNoSet: Unsaved
+		TemplatePanelTitle: Building plan
+		TemplatePickerLabel: Choose plan
+		TemplateLibraryEmpty: No building plans available
+		TemplateCardSizeFormat: "{0}ÔøΩ{1}"
+		TemplateCardPartsFormat: Parts {0}/{1}
+		TemplateActivePartsFormat: "{0}ÔøΩ{1} ÔøΩ parts {2}/{3}"
+		BtnPlacementStrict: Strict
+		BtnPlacementLoose: Loose
+		PlacementModeActiveShort: " *"
+		StrictNeedsFullCoverage: (Strict: complete materials first)
+		PlaceFailedStrict: Strict mode: missing materials or scheme slots
+		PreviewLegend: White icons = configured; red = missing part (wood placeholder)
+		InteractionHint: Building plan = layout; set = 22 slots. Strict = abort if missing; Loose = skip missing parts.
+		SetGridTitle: Furniture set recognition
+		SetGridDesc1: White icons = configured materials; red wood = missing part for that slot.
+		SetGridDesc2: Furniture seed proposes a material block first; confirm, then fill 22 slots. Drop a material block to skip confirm.
+		DragSeedHint: Drag an item to query furniture sets
+		SetGridDescShort: White = configured; red wood = missing. Changing seed or material refreshes the set.
+		MaterialStepLabel: Step 2 ÔøΩ Material block
+		MaterialSlotLabel: Material block
+		BtnConfirmMaterial: Confirm material
+		StatusMaterialProposed: Proposed material block: {0}. Check the slot, then Confirm material.
+		StatusMaterialReady: Material block: {0}. Click Confirm material to search the set.
+		StatusMaterialFailed: Could not infer material block. Place one manually, then confirm.
+		StatusNeedMaterialBlock: Place or confirm a material block first.
+		SavedSetsTitle: Saved sets
+		SavedSetsDesc: Click a set to edit; recognition results on the main tab stay unchanged.
+		BtnToggleConsume: Toggle material cost
+		StatusNeedSeed: Drop a seed block or furniture item
+		StatusRecognized: Recognized: {0}
+		StatusPreviewRecognized: Preview: {0}, material {1}
+		StatusSaved: Custom scheme saved
+		ConsumeOn: Placement consumes inventory materials
+		ConsumeOff: Placement does not consume materials
+		PlaceFailed: Not enough materials or blocked
+		PlaceBusy: A blueprint placement is still in progress
+		PlaceStarted: Large blueprint placing over multiple frames‚Ä¶
+		PlaceBlockedOverlap: Too many existing tiles in the target area; clear space first
+		CustomSchemeName: Custom furniture scheme
+
+		Template: {
+			SimpleNpcRoom: Template: standard NPC room
+			CompactShelter: Template: compact shelter
+			IG.BuildingShowcase: Template: IG prison complex (buildingShowcase 43√ó15)
+
+			Preset: {
+				RoomA: Template: standard room A
+				RoomB: Template: standard room B
+				RoomC: Template: standard room C
+			}
+		}
+
+		SchemeLibraryTitle: Furniture sets
+		SchemeLibraryEmpty: Save a set to list it here
+		StatusLibraryCleared: Showing seed recognition again
+		BtnApplyAll: Apply all
+		StatusSchemeSelected: Selected scheme: {0}
+		StatusAppliedAll: Applied full set: {0}
+		StatusAppliedSlot: Applied slot: {0}
+
+		Slot: {
+			None: ÔøΩ?
+			Block: Block
+			Wall: Wall
+			Bathtub: Tub
+			Bed: Bed
+			Bookcase: Case
+			Candelabra: Candel
+			Candle: Candle
+			Chandelier: Chandel
+			Chair: Chair
+			Chest: Chest
+			Clock: Clock
+			Door: Door
+			Dresser: Dress
+			Lamp: Lamp
+			Lantern: Lantern
+			Piano: Piano
+			Platform: Plat
+			Sink: Sink
+			Sofa: Sofa
+			Table: Table
+			Toilet: Toilet
+			Workbench: Bench
+		}
+	}
+
 	BestiaryFilterJoiner: " | "
 	BestiaryNoActiveFilters: All creatures
 	BestiaryFilterBtn: Filters
@@ -293,7 +430,7 @@ UI: {
 	NoRecipePath: No crafting path for this item
 	GreenFaceNoProducts: No products here still need Journey research, or nested craft is blocked (stand near crafting stations, or research the station item first; try Blue face for unresearched products; Shimmer rules apply before you touch Shimmer)
 	GreenFaceNeedResearchedSeed: Green face requires the query item to be fully Journey-researched first. Research it, or switch to Blue face for unresearched products.
-	GreenFaceQuerying: Querying researchable productsÖ
+	GreenFaceQuerying: Querying researchable productsÔøΩ?
 	NoProductsForFilter: No products match the current filter
 	ViewCard: Cards
 	ViewList: List
@@ -350,7 +487,7 @@ UI: {
 	BuffHoverPinned: "[c/FFAA00:Pinned to buff bar]"
 	BuffHoverSource: Source: {0}
 	BuffHoverMiscEquip: "[c/FFAA00:Maintained via misc equip slot swap; one per section, restores original when off]"
-	BuffHoverVirtual: "[c/88CCFF:Virtual effect; ùù20 aggregate as Alpha icon]"
+	BuffHoverVirtual: "[c/88CCFF:Virtual effect; ÔøΩÔøΩ20 aggregate as Alpha icon]"
 	BuffHoverPinAdvice: If an effect does not work, try [MMB] to pin it to the buff bar
 	ItemHubTitle: Item research hub
 	ItemHubTitleHint: One claim, lifetime perks, free refresh [fog]
@@ -562,6 +699,17 @@ Buffs: {
 	EMOJOmegaBuff: {
 		DisplayName: Aggregated debuffs
 		Description: Combines all enabled debuff effects
+	}
+}
+
+Items: {
+	BlueprintDeployer: {
+		DisplayName: Blueprint Deployer
+		Tooltip:
+			'''
+				Configure furniture sets and templates in the Blueprint tab,
+				then use this item to place the layout at the cursor (optional material cost).
+			'''
 	}
 }
 

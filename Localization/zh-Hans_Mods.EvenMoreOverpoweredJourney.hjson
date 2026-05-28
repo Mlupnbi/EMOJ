@@ -5,6 +5,7 @@ Keybinds: {
 	OpenBuffPanel.DisplayName: 打开超级增益面板
 	OpenItemHubPanel.DisplayName: 打开超级物品研究面板
 	OpenBestiaryPanel.DisplayName: 打开超级生物图鉴
+	OpenBlueprintPanel.DisplayName: 打开超级家具蓝图面板
 	QuickItemQuery.DisplayName: 物品快速查询
 }
 
@@ -99,6 +100,17 @@ Configs: {
 				'''
 					对 VanillaBuffStatRegistry 中列出的常见增益（铁皮、回血、迅捷等）：不走 Buff.Update 直接加属性，节省 CPU
 					见 Data/BuffModSupport/vanilla_stats_manifest.json
+				'''
+		}
+
+		ResearchHeader: 超级制造研究（绿脸）
+
+		GreenFaceExtendedNestedSearch: {
+			Label: 绿脸延伸搜索
+			Tooltip:
+				'''
+					开（默认）：除直接消耗查询物的产物外，再显示一层「未研究满的中间产物」的合成产物（如竹子→条纹竹→竹剑）。
+					关：仅显示配方里直接写到查询物本身的产物（与 Recipe Browser 材料快扫一致）。
 				'''
 		}
 
@@ -224,6 +236,131 @@ UI: {
 	TabHoverBuff: 超级增益
 	TabHoverStorage: 超级物品研究
 	TabHoverBestiary: 超级生物图鉴
+	TabBlueprint: 蓝图
+	TabHoverBlueprint: 家具蓝图（自动识别套装 / 内置模板）
+
+	Blueprint: {
+		BtnSaveSet: 保存套组
+		BtnSaveAsNewSet: 另存为新套组
+		BtnBuildingPlan: 建筑方案
+		BtnOpenSetLibrary: 套组库
+		BtnEditCurrentSet: 编辑套组
+		BtnRenameSet: 改名
+		BtnEditSet: 编辑
+		BtnDeleteSet: 删除
+		BtnNewEmptySet: 新建空套组
+		NewSetDefaultName: 新创建套组
+		CoverSlotLabel: 封面
+		StatusSavePrompt: 识别完成 — 点击材料行「保存套组」以保留当前结果。
+		DetailFooterHint: 切换消耗材料：放置时是否扣背包。\n从识别覆盖：丢弃手改，恢复最近识别结果。\n保存套组：覆盖当前正在编辑的套组。\n另存为新套组：以递增名称写入新条目，原套组不变。
+		ConsumeOnShort: （开）
+		ConsumeOffShort: （关）
+		BtnApplyRecognitionOverlay: 从识别覆盖
+		StatusOverlayApplied: 已用最近识别结果覆盖当前套组。
+		StatusOverlayBusy: 识别进行中，请稍候再试。
+		StatusOverlayNoSeed: 请先在主窗放入种子并完成识别。
+		StatusOverlayNoMaterial: 请先确认材料块后再覆盖。
+		StatusOverlayEmpty: 没有可用的识别结果。
+		MaterialPickerTitle: 选择材料块
+		MaterialPickerEmpty: 无可用材料块
+		RenameSetTitle: 重命名套组
+		RenameSetConfirm: 确定
+		RenameSetCancel: 取消
+		SetLibraryMovedHint: 已保存套组列表在主窗体下方，此处仅保留兼容入口。
+		SetLibraryTitle: 套组库
+		SetDetailTitle: 套组详情
+		HubStatusIdle: 识别：拖入种子物品开始
+		HubStatusFormat: 识别：{0} → {1}/{2}
+		HubSummaryFormat: 当前套组：{0}\n当前模板：{1}
+		HubNoSeed: 未设置
+		HubNoSet: 未保存
+		TemplatePanelTitle: 建筑方案
+		TemplatePickerLabel: 方案选择
+		TemplateLibraryEmpty: 暂无可用户型
+		TemplateCardSizeFormat: "{0}×{1}"
+		TemplateCardPartsFormat: 材料 {0}/{1}
+		TemplateActivePartsFormat: "{0}×{1} · 材料 {2}/{3}"
+		BtnPlacementStrict: 严格
+		BtnPlacementLoose: 宽松
+		PlacementModeActiveShort: ●
+		StrictNeedsFullCoverage: （严格：需补全材料）
+		PlaceFailedStrict: 严格模式：材料或套组未配齐
+		PreviewLegend: 正常=已配置材料；红色=该部位缺件（木家具占位）
+		InteractionHint: 建筑方案=户型；套组=22槽材料。Strict=缺件整次拒绝；Loose=缺件跳过。
+		SetGridTitle: 家具套组识别
+		SetGridDesc1: 白色图标=已配置材料；红色木家具=该槽缺件。
+		SetGridDesc2: 放入家具种子会先倒推材料块；确认后再填充 22 槽。直接放材料块可跳过确认。
+		DragSeedHint: 拖入物品查询家具套组
+		SetGridDescShort: 白=已配置；红木=缺件。换材料或种子会自动刷新套组。
+		MaterialStepLabel: 步骤2 · 材料块
+		MaterialSlotLabel: 材料块
+		BtnConfirmMaterial: 确认材料
+		StatusMaterialProposed: 已倒推材料块：{0}。请核对左侧材料槽后点「确认材料」。
+		StatusMaterialReady: 材料块：{0}。点「确认材料」检索套组。
+		StatusMaterialFailed: 无法倒推材料块，请手动放入材料槽后确认。
+		StatusNeedMaterialBlock: 请先确认或放入材料方块。
+		SavedSetsTitle: 已保存的套组
+		SavedSetsDesc: 点击套组打开编辑；主窗识别结果不会被覆盖。
+		BtnToggleConsume: 切换材料消耗
+		StatusNeedSeed: 请放入种子方块或家具
+		StatusRecognized: 已识别：{0}
+		StatusPreviewRecognized: 预览：{0}，材料 {1}
+		StatusSaved: 已保存自定义方案
+		ConsumeOn: 放置时消耗背包材料
+		ConsumeOff: 放置时不消耗材料
+		PlaceFailed: 材料不足或无法放置
+		PlaceBusy: 上一处建筑仍在放置中
+		PlaceStarted: 大型建筑分帧放置中…
+		PlaceBlockedOverlap: 目标区域已有过多方块，请先清理再放置
+		CustomSchemeName: 自定义家具方案
+
+		Template: {
+			SimpleNpcRoom: 模板：标准 NPC 房间
+			CompactShelter: 模板：紧凑避难所
+			IG.BuildingShowcase: 模板：IG 复合监狱（buildingShowcase 43×15）
+
+			Preset: {
+				RoomA: 模板：标准房间 A
+				RoomB: 模板：标准房间 B
+				RoomC: 模板：标准房间 C
+			}
+		}
+
+		SchemeLibraryTitle: 家具套组
+		SchemeLibraryEmpty: 保存套组后会显示在此
+		StatusLibraryCleared: 已恢复为种子识别预览
+		BtnApplyAll: 套用全部
+		StatusSchemeSelected: 已选方案：{0}
+		StatusAppliedAll: 已套用全套：{0}
+		StatusAppliedSlot: 已套用槽位：{0}
+
+		Slot: {
+			None: ··
+			Block: 方块
+			Wall: 墙壁
+			Bathtub: 浴缸
+			Bed: 床铺
+			Bookcase: 书柜
+			Candelabra: 烛台
+			Candle: 蜡烛
+			Chandelier: 吊灯
+			Chair: 椅子
+			Chest: 箱子
+			Clock: 挂钟
+			Door: 房门
+			Dresser: 衣柜
+			Lamp: 台灯
+			Lantern: 灯笼
+			Piano: 钢琴
+			Platform: 平台
+			Sink: 水槽
+			Sofa: 沙发
+			Table: 桌子
+			Toilet: 马桶
+			Workbench: 工台
+		}
+	}
+
 	BestiaryFilterJoiner: " | "
 	BestiaryNoActiveFilters: 全部生物
 	BestiaryFilterBtn: 筛选
@@ -296,7 +433,7 @@ UI: {
 	FaceTipPurpleNonJourney: 以此材料合成的产物
 	FaceTipPurpleNeedJourney: 请在旅途模式下启用此模式
 	FaceTipYellow: 已研究、以此材料合成的产物
-	FaceTipGreen: 使用此材料且嵌套链材料均已研究、配方可用且已见制作台的产物；触摸微光前隐藏微光产出与间接依赖
+	FaceTipGreen: 使用此材料且嵌套链材料均已研究；绿格要求配方台子在献祭目录中已研究满（不含路过/AdjTiles 扩散）；触摸微光前隐藏微光产出与间接依赖
 	FaceTipBlue: 未研究、以此材料合成的产物
 	FaceTipPurpleJourney: 请在非旅途模式下启用此模式
 	BuffUnlockedTitle: 已解锁增益
@@ -552,6 +689,17 @@ Buffs: {
 	EMOJOmegaBuff: {
 		DisplayName: 更超模的旅途
 		Description: 组合所有已启用的减益
+	}
+}
+
+Items: {
+	BlueprintDeployer: {
+		DisplayName: 蓝图部署器
+		Tooltip:
+			'''
+				在「蓝图」页签配置家具套装与模板后，
+				手持本物品在光标处放置布局（可选消耗材料）。
+			'''
 	}
 }
 

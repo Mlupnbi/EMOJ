@@ -1,0 +1,1795 @@
+﻿{
+  "schemaVersion": 1,
+  "mod": "Spooky",
+  "scannedAtUtc": "2026-05-20T08:28:15.5015528Z",
+  "sourcePath": "C:\\Users\\14451\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\EvenMoreOverpoweredJourney\\Data\\BuffModSupport\\decompiled_cache\\Spooky\\decompiled_cs",
+  "sourceKind": "extracted_source",
+  "buffClassCount": 129,
+  "buffs": [
+    {
+      "mod": "Spooky",
+      "internalName": "AlternateCooldown",
+      "className": "AlternateCooldown",
+      "relativeFile": "Spooky.Content.Buffs.Debuff/AlternateCooldown.cs",
+      "stableKey": "Spooky/AlternateCooldown",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "BackroomsDecay",
+      "className": "BackroomsDecay",
+      "relativeFile": "Spooky.Content.Buffs.Debuff/BackroomsDecay.cs",
+      "stableKey": "Spooky/BackroomsDecay",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "BeeDamageBuff",
+      "className": "BeeDamageBuff",
+      "relativeFile": "Spooky.Content.Buffs/BeeDamageBuff.cs",
+      "stableKey": "Spooky/BeeDamageBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Dust\\.NewDust"
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "BeeHealingBuff",
+      "className": "BeeHealingBuff",
+      "relativeFile": "Spooky.Content.Buffs/BeeHealingBuff.cs",
+      "stableKey": "Spooky/BeeHealingBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Dust\\.NewDust"
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "BeePetBuff",
+      "className": "BeePetBuff",
+      "relativeFile": "Spooky.Content.Buffs.Pets/BeePetBuff.cs",
+      "stableKey": "Spooky/BeePetBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "BeePollinationProcessBuff",
+      "className": "BeePollinationProcessBuff",
+      "relativeFile": "Spooky.Content.Buffs.Debuff/BeePollinationProcessBuff.cs",
+      "stableKey": "Spooky/BeePollinationProcessBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "BigBonePetBuff",
+      "className": "BigBonePetBuff",
+      "relativeFile": "Spooky.Content.Buffs.Pets/BigBonePetBuff.cs",
+      "stableKey": "Spooky/BigBonePetBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "BillyBuff",
+      "className": "BillyBuff",
+      "relativeFile": "Spooky.Content.Buffs.Minion/BillyBuff.cs",
+      "stableKey": "Spooky/BillyBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "BlueberryFrost",
+      "className": "BlueberryFrost",
+      "relativeFile": "Spooky.Content.Buffs.Debuff/BlueberryFrost.cs",
+      "stableKey": "Spooky/BlueberryFrost",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Dust\\.NewDust"
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "BouncerDeathmark",
+      "className": "BouncerDeathmark",
+      "relativeFile": "Spooky.Content.Buffs.Debuff/BouncerDeathmark.cs",
+      "stableKey": "Spooky/BouncerDeathmark",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "BrainyBuff",
+      "className": "BrainyBuff",
+      "relativeFile": "Spooky.Content.Buffs.Minion/BrainyBuff.cs",
+      "stableKey": "Spooky/BrainyBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "BustlingGlowshroomHeal",
+      "className": "BustlingGlowshroomHeal",
+      "relativeFile": "Spooky.Content.Buffs/BustlingGlowshroomHeal.cs",
+      "stableKey": "Spooky/BustlingGlowshroomHeal",
+      "suggestedPhase": "Mixed",
+      "confidence": "Low",
+      "statSignals": [
+        "player\\.lifeRegen\\s*[\\\u002B\\-\\*\\/]?="
+      ],
+      "visualSignals": [
+        "Dust\\.NewDust"
+      ],
+      "entitySignals": [],
+      "note": "\u540C\u65F6\u542B\u5C5E\u6027\u4E0E\u7279\u6548/\u5B9E\u4F53\u4FE1\u53F7\uFF0C\u9700\u4EBA\u5DE5\u786E\u8BA4"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "CatBuff",
+      "className": "CatBuff",
+      "relativeFile": "Spooky.Content.Buffs.Pets/CatBuff.cs",
+      "stableKey": "Spooky/CatBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "CatacombDebuff",
+      "className": "CatacombDebuff",
+      "relativeFile": "Spooky.Content.Buffs.Debuff/CatacombDebuff.cs",
+      "stableKey": "Spooky/CatacombDebuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "CavefishStunned",
+      "className": "CavefishStunned",
+      "relativeFile": "Spooky.Content.Buffs.Debuff/CavefishStunned.cs",
+      "stableKey": "Spooky/CavefishStunned",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Dust\\.NewDust"
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "CemeteryLilyBuff",
+      "className": "CemeteryLilyBuff",
+      "relativeFile": "Spooky.Content.Buffs/CemeteryLilyBuff.cs",
+      "stableKey": "Spooky/CemeteryLilyBuff",
+      "suggestedPhase": "Stat",
+      "confidence": "High",
+      "statSignals": [
+        "player\\.GetDamage\\s*\\(",
+        "player\\.GetCritChance\\s*\\(",
+        "DamageClass\\."
+      ],
+      "visualSignals": [],
+      "entitySignals": []
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "ChalupoBuff",
+      "className": "ChalupoBuff",
+      "relativeFile": "Spooky.Content.Buffs.Pets/ChalupoBuff.cs",
+      "stableKey": "Spooky/ChalupoBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "ColumboBuff",
+      "className": "ColumboBuff",
+      "relativeFile": "Spooky.Content.Buffs.Pets/ColumboBuff.cs",
+      "stableKey": "Spooky/ColumboBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "ColumboPetCombinedBuff",
+      "className": "ColumboPetCombinedBuff",
+      "relativeFile": "Spooky.Content.Buffs.Pets/ColumboPetCombinedBuff.cs",
+      "stableKey": "Spooky/ColumboPetCombinedBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "ColumboneBuff",
+      "className": "ColumboneBuff",
+      "relativeFile": "Spooky.Content.Buffs.Pets/ColumboneBuff.cs",
+      "stableKey": "Spooky/ColumboneBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "ColumbooBuff",
+      "className": "ColumbooBuff",
+      "relativeFile": "Spooky.Content.Buffs.Pets/ColumbooBuff.cs",
+      "stableKey": "Spooky/ColumbooBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "ColumborangeBuff",
+      "className": "ColumborangeBuff",
+      "relativeFile": "Spooky.Content.Buffs.Pets/ColumborangeBuff.cs",
+      "stableKey": "Spooky/ColumborangeBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "CrossCooldown",
+      "className": "CrossCooldown",
+      "relativeFile": "Spooky.Content.Buffs.Debuff/CrossCooldown.cs",
+      "stableKey": "Spooky/CrossCooldown",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "CucumberStomachDebuff",
+      "className": "CucumberStomachDebuff",
+      "relativeFile": "Spooky.Content.Buffs.Debuff/CucumberStomachDebuff.cs",
+      "stableKey": "Spooky/CucumberStomachDebuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "CursedDollDebuff",
+      "className": "CursedDollDebuff",
+      "relativeFile": "Spooky.Content.Buffs.Debuff/CursedDollDebuff.cs",
+      "stableKey": "Spooky/CursedDollDebuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Dust\\.NewDust"
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "DaffodilHandBuff",
+      "className": "DaffodilHandBuff",
+      "relativeFile": "Spooky.Content.Buffs.Minion/DaffodilHandBuff.cs",
+      "stableKey": "Spooky/DaffodilHandBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "DutchmanPipeDebuff",
+      "className": "DutchmanPipeDebuff",
+      "relativeFile": "Spooky.Content.Buffs.Debuff/DutchmanPipeDebuff.cs",
+      "stableKey": "Spooky/DutchmanPipeDebuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "EelTagDebuff",
+      "className": "EelTagDebuff",
+      "relativeFile": "Spooky.Content.Buffs.WhipDebuff/EelTagDebuff.cs",
+      "stableKey": "Spooky/EelTagDebuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "EggplantWhipDebuff",
+      "className": "EggplantWhipDebuff",
+      "relativeFile": "Spooky.Content.Buffs.WhipDebuff/EggplantWhipDebuff.cs",
+      "stableKey": "Spooky/EggplantWhipDebuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "EmbryoCooldown",
+      "className": "EmbryoCooldown",
+      "relativeFile": "Spooky.Content.Buffs.Debuff/EmbryoCooldown.cs",
+      "stableKey": "Spooky/EmbryoCooldown",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "EmbryoRevival",
+      "className": "EmbryoRevival",
+      "relativeFile": "Spooky.Content.Buffs/EmbryoRevival.cs",
+      "stableKey": "Spooky/EmbryoRevival",
+      "suggestedPhase": "Stat",
+      "confidence": "High",
+      "statSignals": [
+        "player\\.stat\\w\u002B\\s*[\\\u002B\\-\\*\\/]?=",
+        "player\\.lifeRegen\\s*[\\\u002B\\-\\*\\/]?="
+      ],
+      "visualSignals": [],
+      "entitySignals": []
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "EnsnaredCooldown",
+      "className": "EnsnaredCooldown",
+      "relativeFile": "Spooky.Content.Buffs.Debuff/EnsnaredCooldown.cs",
+      "stableKey": "Spooky/EnsnaredCooldown",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "EnsnaredDebuff",
+      "className": "EnsnaredDebuff",
+      "relativeFile": "Spooky.Content.Buffs.Debuff/EnsnaredDebuff.cs",
+      "stableKey": "Spooky/EnsnaredDebuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Dust\\.NewDust"
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "EntityMinionBuff",
+      "className": "EntityMinionBuff",
+      "relativeFile": "Spooky.Content.Buffs.Minion/EntityMinionBuff.cs",
+      "stableKey": "Spooky/EntityMinionBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "FleshWhipCooldown",
+      "className": "FleshWhipCooldown",
+      "relativeFile": "Spooky.Content.Buffs.WhipDebuff/FleshWhipCooldown.cs",
+      "stableKey": "Spooky/FleshWhipCooldown",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "FleshWhipDefense",
+      "className": "FleshWhipDefense",
+      "relativeFile": "Spooky.Content.Buffs.WhipDebuff/FleshWhipDefense.cs",
+      "stableKey": "Spooky/FleshWhipDefense",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "FleshWhipDefense2",
+      "className": "FleshWhipDefense2",
+      "relativeFile": "Spooky.Content.Buffs.WhipDebuff/FleshWhipDefense2.cs",
+      "stableKey": "Spooky/FleshWhipDefense2",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "FlowerArmorCooldown",
+      "className": "FlowerArmorCooldown",
+      "relativeFile": "Spooky.Content.Buffs.Debuff/FlowerArmorCooldown.cs",
+      "stableKey": "Spooky/FlowerArmorCooldown",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "FlyBuff",
+      "className": "FlyBuff",
+      "relativeFile": "Spooky.Content.Buffs/FlyBuff.cs",
+      "stableKey": "Spooky/FlyBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "FlyCooldown",
+      "className": "FlyCooldown",
+      "relativeFile": "Spooky.Content.Buffs.Debuff/FlyCooldown.cs",
+      "stableKey": "Spooky/FlyCooldown",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "FlyPetBuff",
+      "className": "FlyPetBuff",
+      "relativeFile": "Spooky.Content.Buffs.Pets/FlyPetBuff.cs",
+      "stableKey": "Spooky/FlyPetBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "FuzzBatPetBuff",
+      "className": "FuzzBatPetBuff",
+      "relativeFile": "Spooky.Content.Buffs.Pets/FuzzBatPetBuff.cs",
+      "stableKey": "Spooky/FuzzBatPetBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "GhostBanditDefense",
+      "className": "GhostBanditDefense",
+      "relativeFile": "Spooky.Content.Buffs/GhostBanditDefense.cs",
+      "stableKey": "Spooky/GhostBanditDefense",
+      "suggestedPhase": "Stat",
+      "confidence": "Medium",
+      "statSignals": [
+        "player\\.stat\\w\u002B\\s*[\\\u002B\\-\\*\\/]?="
+      ],
+      "visualSignals": [],
+      "entitySignals": []
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "GhostPepperMinionBuff",
+      "className": "GhostPepperMinionBuff",
+      "relativeFile": "Spooky.Content.Buffs.Minion/GhostPepperMinionBuff.cs",
+      "stableKey": "Spooky/GhostPepperMinionBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "GhostPetBuff",
+      "className": "GhostPetBuff",
+      "relativeFile": "Spooky.Content.Buffs.Pets/GhostPetBuff.cs",
+      "stableKey": "Spooky/GhostPetBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "GlassEyeDebuff",
+      "className": "GlassEyeDebuff",
+      "relativeFile": "Spooky.Content.Buffs.Debuff/GlassEyeDebuff.cs",
+      "stableKey": "Spooky/GlassEyeDebuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "GooseberryBoostBuff",
+      "className": "GooseberryBoostBuff",
+      "relativeFile": "Spooky.Content.Buffs/GooseberryBoostBuff.cs",
+      "stableKey": "Spooky/GooseberryBoostBuff",
+      "suggestedPhase": "Stat",
+      "confidence": "Medium",
+      "statSignals": [
+        "player\\.lifeRegen\\s*[\\\u002B\\-\\*\\/]?="
+      ],
+      "visualSignals": [],
+      "entitySignals": []
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "GourdDecay",
+      "className": "GourdDecay",
+      "relativeFile": "Spooky.Content.Buffs.Debuff/GourdDecay.cs",
+      "stableKey": "Spooky/GourdDecay",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "GrugBuff",
+      "className": "GrugBuff",
+      "relativeFile": "Spooky.Content.Buffs.Minion/GrugBuff.cs",
+      "stableKey": "Spooky/GrugBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "HallucinationDebuff1",
+      "className": "HallucinationDebuff1",
+      "relativeFile": "Spooky.Content.Buffs.Debuff/HallucinationDebuff1.cs",
+      "stableKey": "Spooky/HallucinationDebuff1",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "HazmatMinionToxic",
+      "className": "HazmatMinionToxic",
+      "relativeFile": "Spooky.Content.Buffs.Debuff/HazmatMinionToxic.cs",
+      "stableKey": "Spooky/HazmatMinionToxic",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Dust\\.NewDust"
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "HerobrineAltarCooldown",
+      "className": "HerobrineAltarCooldown",
+      "relativeFile": "Spooky.Content.Buffs.Debuff/HerobrineAltarCooldown.cs",
+      "stableKey": "Spooky/HerobrineAltarCooldown",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "HunterScarfMark",
+      "className": "HunterScarfMark",
+      "relativeFile": "Spooky.Content.Buffs.Debuff/HunterScarfMark.cs",
+      "stableKey": "Spooky/HunterScarfMark",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "InchwormBuff",
+      "className": "InchwormBuff",
+      "relativeFile": "Spooky.Content.Buffs.Pets/InchwormBuff.cs",
+      "stableKey": "Spooky/InchwormBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "KrampusBricksCooldown",
+      "className": "KrampusBricksCooldown",
+      "relativeFile": "Spooky.Content.Buffs.Debuff/KrampusBricksCooldown.cs",
+      "stableKey": "Spooky/KrampusBricksCooldown",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "KrampusShapeBuff",
+      "className": "KrampusShapeBuff",
+      "relativeFile": "Spooky.Content.Buffs/KrampusShapeBuff.cs",
+      "stableKey": "Spooky/KrampusShapeBuff",
+      "suggestedPhase": "Stat",
+      "confidence": "High",
+      "statSignals": [
+        "player\\.stat\\w\u002B\\s*[\\\u002B\\-\\*\\/]?=",
+        "player\\.GetDamage\\s*\\(",
+        "player\\.GetAttackSpeed\\s*\\(",
+        "DamageClass\\."
+      ],
+      "visualSignals": [],
+      "entitySignals": []
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "LeechBuff",
+      "className": "LeechBuff",
+      "relativeFile": "Spooky.Content.Buffs.Minion/LeechBuff.cs",
+      "stableKey": "Spooky/LeechBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "LeechWhipDebuff",
+      "className": "LeechWhipDebuff",
+      "relativeFile": "Spooky.Content.Buffs.WhipDebuff/LeechWhipDebuff.cs",
+      "stableKey": "Spooky/LeechWhipDebuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "LongisquamaPetBuff",
+      "className": "LongisquamaPetBuff",
+      "relativeFile": "Spooky.Content.Buffs.Pets/LongisquamaPetBuff.cs",
+      "stableKey": "Spooky/LongisquamaPetBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "MocoPetBuff",
+      "className": "MocoPetBuff",
+      "relativeFile": "Spooky.Content.Buffs.Pets/MocoPetBuff.cs",
+      "stableKey": "Spooky/MocoPetBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "MonumentMythosCooldown",
+      "className": "MonumentMythosCooldown",
+      "relativeFile": "Spooky.Content.Buffs.Debuff/MonumentMythosCooldown.cs",
+      "stableKey": "Spooky/MonumentMythosCooldown",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "MonumentMythosShatter",
+      "className": "MonumentMythosShatter",
+      "relativeFile": "Spooky.Content.Buffs.Debuff/MonumentMythosShatter.cs",
+      "stableKey": "Spooky/MonumentMythosShatter",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "NerveWhipDebuff",
+      "className": "NerveWhipDebuff",
+      "relativeFile": "Spooky.Content.Buffs.WhipDebuff/NerveWhipDebuff.cs",
+      "stableKey": "Spooky/NerveWhipDebuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "NineTailsDebuff",
+      "className": "NineTailsDebuff",
+      "relativeFile": "Spooky.Content.Buffs.WhipDebuff/NineTailsDebuff.cs",
+      "stableKey": "Spooky/NineTailsDebuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "NoseBlessingBuff",
+      "className": "NoseBlessingBuff",
+      "relativeFile": "Spooky.Content.Buffs/NoseBlessingBuff.cs",
+      "stableKey": "Spooky/NoseBlessingBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "NoseBlessingDebuff",
+      "className": "NoseBlessingDebuff",
+      "relativeFile": "Spooky.Content.Buffs.Debuff/NoseBlessingDebuff.cs",
+      "stableKey": "Spooky/NoseBlessingDebuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "NoseBlessingDebuffCooldown",
+      "className": "NoseBlessingDebuffCooldown",
+      "relativeFile": "Spooky.Content.Buffs.Debuff/NoseBlessingDebuffCooldown.cs",
+      "stableKey": "Spooky/NoseBlessingDebuffCooldown",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "NoseMinionBuff",
+      "className": "NoseMinionBuff",
+      "relativeFile": "Spooky.Content.Buffs.Minion/NoseMinionBuff.cs",
+      "stableKey": "Spooky/NoseMinionBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "OldHunterBuff",
+      "className": "OldHunterBuff",
+      "relativeFile": "Spooky.Content.Buffs.Minion/OldHunterBuff.cs",
+      "stableKey": "Spooky/OldHunterBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "OrroboroPetBuff",
+      "className": "OrroboroPetBuff",
+      "relativeFile": "Spooky.Content.Buffs.Pets/OrroboroPetBuff.cs",
+      "stableKey": "Spooky/OrroboroPetBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "PandoraBeanBuff",
+      "className": "PandoraBeanBuff",
+      "relativeFile": "Spooky.Content.Buffs.Pets/PandoraBeanBuff.cs",
+      "stableKey": "Spooky/PandoraBeanBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "PandoraCrossCooldown",
+      "className": "PandoraCrossCooldown",
+      "relativeFile": "Spooky.Content.Buffs.Debuff/PandoraCrossCooldown.cs",
+      "stableKey": "Spooky/PandoraCrossCooldown",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "PandoraHandCooldown",
+      "className": "PandoraHandCooldown",
+      "relativeFile": "Spooky.Content.Buffs.Debuff/PandoraHandCooldown.cs",
+      "stableKey": "Spooky/PandoraHandCooldown",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "PepperMinionBuff",
+      "className": "PepperMinionBuff",
+      "relativeFile": "Spooky.Content.Buffs.Minion/PepperMinionBuff.cs",
+      "stableKey": "Spooky/PepperMinionBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "PepperSpice",
+      "className": "PepperSpice",
+      "relativeFile": "Spooky.Content.Buffs.Debuff/PepperSpice.cs",
+      "stableKey": "Spooky/PepperSpice",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\(",
+        "Dust\\.NewDust"
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "PeptoDebuff",
+      "className": "PeptoDebuff",
+      "relativeFile": "Spooky.Content.Buffs.Debuff/PeptoDebuff.cs",
+      "stableKey": "Spooky/PeptoDebuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "PetscopBuff",
+      "className": "PetscopBuff",
+      "relativeFile": "Spooky.Content.Buffs.Pets/PetscopBuff.cs",
+      "stableKey": "Spooky/PetscopBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "PetscopMarvinBuff",
+      "className": "PetscopMarvinBuff",
+      "relativeFile": "Spooky.Content.Buffs.Pets/PetscopMarvinBuff.cs",
+      "stableKey": "Spooky/PetscopMarvinBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "PetscopTiaraBuff",
+      "className": "PetscopTiaraBuff",
+      "relativeFile": "Spooky.Content.Buffs.Pets/PetscopTiaraBuff.cs",
+      "stableKey": "Spooky/PetscopTiaraBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "PheromoneWhipDebuff",
+      "className": "PheromoneWhipDebuff",
+      "relativeFile": "Spooky.Content.Buffs.WhipDebuff/PheromoneWhipDebuff.cs",
+      "stableKey": "Spooky/PheromoneWhipDebuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "PiercedBleedDebuff",
+      "className": "PiercedBleedDebuff",
+      "relativeFile": "Spooky.Content.Buffs.Debuff/PiercedBleedDebuff.cs",
+      "stableKey": "Spooky/PiercedBleedDebuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Dust\\.NewDust"
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "PiercedDebuff",
+      "className": "PiercedDebuff",
+      "relativeFile": "Spooky.Content.Buffs.Debuff/PiercedDebuff.cs",
+      "stableKey": "Spooky/PiercedDebuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "Possessed",
+      "className": "Possessed",
+      "relativeFile": "Spooky.Content.Buffs.Debuff/Possessed.cs",
+      "stableKey": "Spooky/Possessed",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "PumpkinHeadBuff",
+      "className": "PumpkinHeadBuff",
+      "relativeFile": "Spooky.Content.Buffs.Minion/PumpkinHeadBuff.cs",
+      "stableKey": "Spooky/PumpkinHeadBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "PuttyPetBuff",
+      "className": "PuttyPetBuff",
+      "relativeFile": "Spooky.Content.Buffs.Pets/PuttyPetBuff.cs",
+      "stableKey": "Spooky/PuttyPetBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "RatPetBuff",
+      "className": "RatPetBuff",
+      "relativeFile": "Spooky.Content.Buffs.Pets/RatPetBuff.cs",
+      "stableKey": "Spooky/RatPetBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "RotGourdMinionBuff",
+      "className": "RotGourdMinionBuff",
+      "relativeFile": "Spooky.Content.Buffs.Minion/RotGourdMinionBuff.cs",
+      "stableKey": "Spooky/RotGourdMinionBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "RotGourdPetBuff",
+      "className": "RotGourdPetBuff",
+      "relativeFile": "Spooky.Content.Buffs.Pets/RotGourdPetBuff.cs",
+      "stableKey": "Spooky/RotGourdPetBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "SadDebuff",
+      "className": "SadDebuff",
+      "relativeFile": "Spooky.Content.Buffs.Debuff/SadDebuff.cs",
+      "stableKey": "Spooky/SadDebuff",
+      "suggestedPhase": "Stat",
+      "confidence": "High",
+      "statSignals": [
+        "player\\.GetDamage\\s*\\(",
+        "DamageClass\\."
+      ],
+      "visualSignals": [],
+      "entitySignals": []
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "SeaSpongeBuff",
+      "className": "SeaSpongeBuff",
+      "relativeFile": "Spooky.Content.Buffs/SeaSpongeBuff.cs",
+      "stableKey": "Spooky/SeaSpongeBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "SentientKeybrandDebuff",
+      "className": "SentientKeybrandDebuff",
+      "relativeFile": "Spooky.Content.Buffs.Debuff/SentientKeybrandDebuff.cs",
+      "stableKey": "Spooky/SentientKeybrandDebuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "SentientLeatherWhipDebuff",
+      "className": "SentientLeatherWhipDebuff",
+      "relativeFile": "Spooky.Content.Buffs.WhipDebuff/SentientLeatherWhipDebuff.cs",
+      "stableKey": "Spooky/SentientLeatherWhipDebuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "ShroomHopperBuff",
+      "className": "ShroomHopperBuff",
+      "relativeFile": "Spooky.Content.Buffs.Pets/ShroomHopperBuff.cs",
+      "stableKey": "Spooky/ShroomHopperBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "ShroomWhipDebuff",
+      "className": "ShroomWhipDebuff",
+      "relativeFile": "Spooky.Content.Buffs.WhipDebuff/ShroomWhipDebuff.cs",
+      "stableKey": "Spooky/ShroomWhipDebuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "SinisterSnailBuff",
+      "className": "SinisterSnailBuff",
+      "relativeFile": "Spooky.Content.Buffs.Pets/SinisterSnailBuff.cs",
+      "stableKey": "Spooky/SinisterSnailBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "SkullEmojiBuff",
+      "className": "SkullEmojiBuff",
+      "relativeFile": "Spooky.Content.Buffs.Pets/SkullEmojiBuff.cs",
+      "stableKey": "Spooky/SkullEmojiBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "SkullFrenzyBuff",
+      "className": "SkullFrenzyBuff",
+      "relativeFile": "Spooky.Content.Buffs/SkullFrenzyBuff.cs",
+      "stableKey": "Spooky/SkullFrenzyBuff",
+      "suggestedPhase": "Stat",
+      "confidence": "High",
+      "statSignals": [
+        "player\\.GetDamage\\s*\\(",
+        "player\\.GetAttackSpeed\\s*\\(",
+        "DamageClass\\."
+      ],
+      "visualSignals": [],
+      "entitySignals": []
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "SkullGoopBuff",
+      "className": "SkullGoopBuff",
+      "relativeFile": "Spooky.Content.Buffs.Pets/SkullGoopBuff.cs",
+      "stableKey": "Spooky/SkullGoopBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "SkullTotemBuff",
+      "className": "SkullTotemBuff",
+      "relativeFile": "Spooky.Content.Buffs.Minion/SkullTotemBuff.cs",
+      "stableKey": "Spooky/SkullTotemBuff",
+      "suggestedPhase": "Stat",
+      "confidence": "High",
+      "statSignals": [
+        "player\\.GetDamage\\s*\\(",
+        "DamageClass\\."
+      ],
+      "visualSignals": [],
+      "entitySignals": []
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "SkullWispBuff",
+      "className": "SkullWispBuff",
+      "relativeFile": "Spooky.Content.Buffs.Minion/SkullWispBuff.cs",
+      "stableKey": "Spooky/SkullWispBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "SlendermanPageBuff",
+      "className": "SlendermanPageBuff",
+      "relativeFile": "Spooky.Content.Buffs/SlendermanPageBuff.cs",
+      "stableKey": "Spooky/SlendermanPageBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "SmokerCoughDebuff",
+      "className": "SmokerCoughDebuff",
+      "relativeFile": "Spooky.Content.Buffs.Debuff/SmokerCoughDebuff.cs",
+      "stableKey": "Spooky/SmokerCoughDebuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "SmokerLungCooldown",
+      "className": "SmokerLungCooldown",
+      "relativeFile": "Spooky.Content.Buffs.Debuff/SmokerLungCooldown.cs",
+      "stableKey": "Spooky/SmokerLungCooldown",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "SoulSkullBuff",
+      "className": "SoulSkullBuff",
+      "relativeFile": "Spooky.Content.Buffs.Minion/SoulSkullBuff.cs",
+      "stableKey": "Spooky/SoulSkullBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "SpearfishBleed",
+      "className": "SpearfishBleed",
+      "relativeFile": "Spooky.Content.Buffs.Debuff/SpearfishBleed.cs",
+      "stableKey": "Spooky/SpearfishBleed",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Dust\\.NewDust"
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "SpiderArmorStealth",
+      "className": "SpiderArmorStealth",
+      "relativeFile": "Spooky.Content.Buffs/SpiderArmorStealth.cs",
+      "stableKey": "Spooky/SpiderArmorStealth",
+      "suggestedPhase": "Stat",
+      "confidence": "Medium",
+      "statSignals": [
+        "player\\.aggro\\s*[\\\u002B\\-\\*\\/]?="
+      ],
+      "visualSignals": [],
+      "entitySignals": []
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "SpiderBabyBuff",
+      "className": "SpiderBabyBuff",
+      "relativeFile": "Spooky.Content.Buffs.Minion/SpiderBabyBuff.cs",
+      "stableKey": "Spooky/SpiderBabyBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "SpiderSlingshotSlow",
+      "className": "SpiderSlingshotSlow",
+      "relativeFile": "Spooky.Content.Buffs.Debuff/SpiderSlingshotSlow.cs",
+      "stableKey": "Spooky/SpiderSlingshotSlow",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Dust\\.NewDust"
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "SpiderStealthCooldown",
+      "className": "SpiderStealthCooldown",
+      "relativeFile": "Spooky.Content.Buffs.Debuff/SpiderStealthCooldown.cs",
+      "stableKey": "Spooky/SpiderStealthCooldown",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "SpookFishronMinionBuff",
+      "className": "SpookFishronMinionBuff",
+      "relativeFile": "Spooky.Content.Buffs.Minion/SpookFishronMinionBuff.cs",
+      "stableKey": "Spooky/SpookFishronMinionBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "SpookySpiritPetBuff",
+      "className": "SpookySpiritPetBuff",
+      "relativeFile": "Spooky.Content.Buffs.Pets/SpookySpiritPetBuff.cs",
+      "stableKey": "Spooky/SpookySpiritPetBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "SteroidBuff",
+      "className": "SteroidBuff",
+      "relativeFile": "Spooky.Content.Buffs/SteroidBuff.cs",
+      "stableKey": "Spooky/SteroidBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "SteroidWeakness",
+      "className": "SteroidWeakness",
+      "relativeFile": "Spooky.Content.Buffs.Debuff/SteroidWeakness.cs",
+      "stableKey": "Spooky/SteroidWeakness",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "StickyEyeBuff",
+      "className": "StickyEyeBuff",
+      "relativeFile": "Spooky.Content.Buffs.Pets/StickyEyeBuff.cs",
+      "stableKey": "Spooky/StickyEyeBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "StitchedCloakCooldown",
+      "className": "StitchedCloakCooldown",
+      "relativeFile": "Spooky.Content.Buffs.Debuff/StitchedCloakCooldown.cs",
+      "stableKey": "Spooky/StitchedCloakCooldown",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "StockingMinionBuff",
+      "className": "StockingMinionBuff",
+      "relativeFile": "Spooky.Content.Buffs.Minion/StockingMinionBuff.cs",
+      "stableKey": "Spooky/StockingMinionBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "StrawberryBoostBuff",
+      "className": "StrawberryBoostBuff",
+      "relativeFile": "Spooky.Content.Buffs/StrawberryBoostBuff.cs",
+      "stableKey": "Spooky/StrawberryBoostBuff",
+      "suggestedPhase": "Stat",
+      "confidence": "High",
+      "statSignals": [
+        "player\\.GetDamage\\s*\\(",
+        "player\\.GetCritChance\\s*\\(",
+        "DamageClass\\."
+      ],
+      "visualSignals": [],
+      "entitySignals": []
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "Tarred",
+      "className": "Tarred",
+      "relativeFile": "Spooky.Content.Buffs.Debuff/Tarred.cs",
+      "stableKey": "Spooky/Tarred",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "ThornMark",
+      "className": "ThornMark",
+      "relativeFile": "Spooky.Content.Buffs.Debuff/ThornMark.cs",
+      "stableKey": "Spooky/ThornMark",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Dust\\.NewDust"
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "ThornRoseBleed",
+      "className": "ThornRoseBleed",
+      "relativeFile": "Spooky.Content.Buffs.Debuff/ThornRoseBleed.cs",
+      "stableKey": "Spooky/ThornRoseBleed",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Dust\\.NewDust"
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "TitanoboaWhipDebuff",
+      "className": "TitanoboaWhipDebuff",
+      "relativeFile": "Spooky.Content.Buffs.WhipDebuff/TitanoboaWhipDebuff.cs",
+      "stableKey": "Spooky/TitanoboaWhipDebuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "TortumorMinionBuff",
+      "className": "TortumorMinionBuff",
+      "relativeFile": "Spooky.Content.Buffs.Minion/TortumorMinionBuff.cs",
+      "stableKey": "Spooky/TortumorMinionBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "TrapdoorSpiderMountBuff",
+      "className": "TrapdoorSpiderMountBuff",
+      "relativeFile": "Spooky.Content.Buffs.Mounts/TrapdoorSpiderMountBuff.cs",
+      "stableKey": "Spooky/TrapdoorSpiderMountBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "TurkeyMountBuff",
+      "className": "TurkeyMountBuff",
+      "relativeFile": "Spooky.Content.Buffs.Mounts/TurkeyMountBuff.cs",
+      "stableKey": "Spooky/TurkeyMountBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "ValleyNautilusBuff",
+      "className": "ValleyNautilusBuff",
+      "relativeFile": "Spooky.Content.Buffs.Pets/ValleyNautilusBuff.cs",
+      "stableKey": "Spooky/ValleyNautilusBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "WhipSpiderAggression",
+      "className": "WhipSpiderAggression",
+      "relativeFile": "Spooky.Content.Buffs.Debuff/WhipSpiderAggression.cs",
+      "stableKey": "Spooky/WhipSpiderAggression",
+      "suggestedPhase": "Stat",
+      "confidence": "Medium",
+      "statSignals": [
+        "player\\.aggro\\s*[\\\u002B\\-\\*\\/]?="
+      ],
+      "visualSignals": [],
+      "entitySignals": []
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "WingedBiomassBuff",
+      "className": "WingedBiomassBuff",
+      "relativeFile": "Spooky.Content.Buffs.Minion/WingedBiomassBuff.cs",
+      "stableKey": "Spooky/WingedBiomassBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "YuletideArmorCooldown",
+      "className": "YuletideArmorCooldown",
+      "relativeFile": "Spooky.Content.Buffs.Debuff/YuletideArmorCooldown.cs",
+      "stableKey": "Spooky/YuletideArmorCooldown",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Spooky",
+      "internalName": "ZombieCultistPetBuff",
+      "className": "ZombieCultistPetBuff",
+      "relativeFile": "Spooky.Content.Buffs.Pets/ZombieCultistPetBuff.cs",
+      "stableKey": "Spooky/ZombieCultistPetBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    }
+  ]
+}

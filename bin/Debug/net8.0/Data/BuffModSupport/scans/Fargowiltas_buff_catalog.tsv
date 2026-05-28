@@ -1,0 +1,10 @@
+﻿﻿# EmojBuffModScanner catalog
+# Mod: Fargowiltas
+# Scanned: 2026-05-20T08:27:24.6744696Z
+# Source: C:\Users\14451\Documents\My Games\Terraria\tModLoader\ModSources\EvenMoreOverpoweredJourney\Data\BuffModSupport\decompiled_cache\Fargowiltas\decompiled_cs
+StableKey	ClassName	File	SuggestedPhase	Confidence	StatSignals	VisualSignals	EntitySignals	Note
+Fargowiltas/BigSuckBuff	BigSuckBuff	Fargowiltas.Content.Buffs/BigSuckBuff.cs	Unknown	Low				未检测到常见 stat/visual 模式
+Fargowiltas/CoolCrabBuff	CoolCrabBuff	Fargowiltas.Content.Buffs/CoolCrabBuff.cs	CombatVisual	Medium		Projectile\.NewProjectile|NewProjectile\s*\(		
+Fargowiltas/Omnistation	Omnistation	Fargowiltas.Content.Buffs/Omnistation.cs	Stat	High	player\.stat\w+\s*[\+\-\*\/]?=|player\.moveSpeed\s*[\+\-\*\/]?=|player\.lifeRegen\s*[\+\-\*\/]?=			
+Fargowiltas/Semistation	Semistation	Fargowiltas.Content.Buffs/Semistation.cs	Stat	High	player\.moveSpeed\s*[\+\-\*\/]?=|player\.lifeRegen\s*[\+\-\*\/]?=			
+Fargowiltas/WoodDrop	WoodDrop	Fargowiltas.Content.Buffs/WoodDrop.cs	Unknown	Low				未检测到常见 stat/visual 模式

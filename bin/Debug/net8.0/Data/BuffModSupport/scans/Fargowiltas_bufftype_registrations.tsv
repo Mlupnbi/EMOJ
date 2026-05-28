@@ -1,0 +1,5 @@
+﻿﻿RegisteredTypeName	ReferenceCount	SampleFiles
+BigSuckBuff	1	Fargowiltas.Items.Misc/BigSuckPotion.cs
+CoolCrabBuff	1	Fargowiltas.Items.Vanity/CrabSizedGlasses.cs
+Semistation	1	Fargowiltas.Content.Buffs/Omnistation.cs
+WoodDrop	2	Fargowiltas.Items.Weapons/LumberJaxe.cs|Fargowiltas.NPCs/FargoGlobalNPC.cs

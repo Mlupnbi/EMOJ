@@ -1,0 +1,117 @@
+﻿{
+  "schemaVersion": 1,
+  "mod": "CalamityHunt",
+  "scannedAtUtc": "2026-05-20T08:27:59.1043699Z",
+  "sourcePath": "C:\\Users\\14451\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\EvenMoreOverpoweredJourney\\Data\\BuffModSupport\\decompiled_cache\\CalamityHunt\\decompiled_cs",
+  "sourceKind": "extracted_source",
+  "buffClassCount": 8,
+  "buffs": [
+    {
+      "mod": "CalamityHunt",
+      "internalName": "Absorption",
+      "className": "Absorption",
+      "relativeFile": "CalamityHunt.Content.Buffs/Absorption.cs",
+      "stableKey": "CalamityHunt/Absorption",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "CalamityHunt",
+      "internalName": "BloatBabyBuff",
+      "className": "BloatBabyBuff",
+      "relativeFile": "CalamityHunt.Content.Pets.BloatBabyPet/BloatBabyBuff.cs",
+      "stableKey": "CalamityHunt/BloatBabyBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "CalamityHunt",
+      "internalName": "FusionBurn",
+      "className": "FusionBurn",
+      "relativeFile": "CalamityHunt.Content.Buffs/FusionBurn.cs",
+      "stableKey": "CalamityHunt/FusionBurn",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "CalamityHunt",
+      "internalName": "Gobbed",
+      "className": "Gobbed",
+      "relativeFile": "CalamityHunt.Content.Buffs/Gobbed.cs",
+      "stableKey": "CalamityHunt/Gobbed",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "CalamityHunt",
+      "internalName": "PaladinPalanquinBuff",
+      "className": "PaladinPalanquinBuff",
+      "relativeFile": "CalamityHunt.Content.Buffs/PaladinPalanquinBuff.cs",
+      "stableKey": "CalamityHunt/PaladinPalanquinBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "CalamityHunt",
+      "internalName": "SlimeCaneBuff",
+      "className": "SlimeCaneBuff",
+      "relativeFile": "CalamityHunt.Content.Buffs/SlimeCaneBuff.cs",
+      "stableKey": "CalamityHunt/SlimeCaneBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "CalamityHunt",
+      "internalName": "SplendorJamBuff",
+      "className": "SplendorJamBuff",
+      "relativeFile": "CalamityHunt.Content.Buffs/SplendorJamBuff.cs",
+      "stableKey": "CalamityHunt/SplendorJamBuff",
+      "suggestedPhase": "Stat",
+      "confidence": "High",
+      "statSignals": [
+        "player\\.GetDamage\\s*\\(",
+        "player\\.GetCritChance\\s*\\(",
+        "DamageClass\\."
+      ],
+      "visualSignals": [],
+      "entitySignals": []
+    },
+    {
+      "mod": "CalamityHunt",
+      "internalName": "Swamped",
+      "className": "Swamped",
+      "relativeFile": "CalamityHunt.Content.Buffs/Swamped.cs",
+      "stableKey": "CalamityHunt/Swamped",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    }
+  ]
+}

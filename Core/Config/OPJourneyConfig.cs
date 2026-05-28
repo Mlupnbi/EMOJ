@@ -2,6 +2,7 @@ using System.ComponentModel;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Config;
+using EvenMoreOverpoweredJourney.Research.Crafting;
 
 namespace EvenMoreOverpoweredJourney.Core.Config
 {
@@ -76,6 +77,14 @@ namespace EvenMoreOverpoweredJourney.Core.Config
         [LabelKey("$Mods.EvenMoreOverpoweredJourney.Configs.OPJourneyConfig.UseVanillaSyntheticStats.Label")]
         [TooltipKey("$Mods.EvenMoreOverpoweredJourney.Configs.OPJourneyConfig.UseVanillaSyntheticStats.Tooltip")]
         public bool EnableVanillaSyntheticStats { get; set; } = true;
+
+        [Header("$Mods.EvenMoreOverpoweredJourney.Configs.OPJourneyConfig.ResearchHeader")]
+
+        /// <summary>????????????????????????????????????????????????</summary>
+        [DefaultValue(true)]
+        [LabelKey("$Mods.EvenMoreOverpoweredJourney.Configs.OPJourneyConfig.GreenFaceExtendedNestedSearch.Label")]
+        [TooltipKey("$Mods.EvenMoreOverpoweredJourney.Configs.OPJourneyConfig.GreenFaceExtendedNestedSearch.Tooltip")]
+        public bool GreenFaceExtendedNestedSearch { get; set; } = true;
 
         [Header("$Mods.EvenMoreOverpoweredJourney.Configs.OPJourneyConfig.BestiaryHeader")]
 
@@ -153,10 +162,14 @@ namespace EvenMoreOverpoweredJourney.Core.Config
         {
             ImproveGameIntegration.Refresh();
             EmojLog.RefreshFromConfig();
+            RecipeBrowserNestedCraft.InvalidateCaches();
 
             if (Main.LocalPlayer?.active == true)
                 Main.LocalPlayer.GetModPlayer<BuffResearchPlayer>()?.NotifyBuffRuntimeStateChanged();
         }
+
+        public static bool UseGreenFaceExtendedNestedSearch() =>
+            ModContent.GetInstance<OPJourneyConfig>().GreenFaceExtendedNestedSearch;
 
         /// <summary>�Ƿ��� PreUpdate �� scratch ���� ModBuff.Update������/��˸���򣩡�</summary>
         public static bool UseVirtualScratchApply()

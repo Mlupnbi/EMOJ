@@ -113,15 +113,17 @@ namespace EvenMoreOverpoweredJourney.Bestiary.UI
             return null;
         }
 
-        private static bool IsUnderEojGridCard(UIElement element)
+        private static UIBestiaryNpcCard FindHostCard(UIElement element)
         {
-            for (UIElement node = element?.Parent; node != null; node = node.Parent)
+            for (UIElement node = element; node != null; node = node.Parent)
             {
-                if (node is UIBestiaryNpcCard)
-                    return true;
+                if (node is UIBestiaryNpcCard card)
+                    return card;
             }
 
-            return false;
+            return null;
         }
+
+        private static bool IsUnderEojGridCard(UIElement element) => FindHostCard(element) != null;
     }
 }

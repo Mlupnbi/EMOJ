@@ -125,6 +125,13 @@ namespace EvenMoreOverpoweredJourney.Shell.UI.Assets
                 "Assets/UI/Shell/TabBestiary",
                 global::EvenMoreOverpoweredJourney.EvenMoreOverpoweredJourney.TabIconBestiary,
                 "Assets/UI/TabBestiary");
+
+            public static readonly EojUiAssetEntry TabBlueprint = new(
+                EojUiTab.Shell,
+                null,
+                "Assets/UI/Shell/TabBlueprint",
+                global::EvenMoreOverpoweredJourney.EvenMoreOverpoweredJourney.TabIconBlueprint,
+                "Assets/UI/TabBlueprint");
         }
 
         public static class Research

@@ -10,6 +10,7 @@ using Terraria.Chat.Commands;
 using Terraria.ID;
 using Terraria.ModLoader;
 using EvenMoreOverpoweredJourney.Core.Logging;
+using EvenMoreOverpoweredJourney.FurnitureBlueprint;
 
 namespace EvenMoreOverpoweredJourney.SuperAdmin
 {
@@ -18,6 +19,7 @@ namespace EvenMoreOverpoweredJourney.SuperAdmin
     {
         public static bool DebugLetTheLightIn;
         public static bool DebugUnlockAllBuffs;
+        public static bool DebugFillTheBlueprint;
 
         /// <summary>结束 DEBUG_UNLOCKALLBUFFS：先还原解锁快照并清栏，再清除会话标志�?</summary>
         public static void EndDebugUnlockAllBuffs()
@@ -33,6 +35,9 @@ namespace EvenMoreOverpoweredJourney.SuperAdmin
         {
             EndDebugUnlockAllBuffs();
             DebugLetTheLightIn = false;
+            DebugFillTheBlueprint = false;
+            if (FurnitureBlueprintBatchTest.IsRunning)
+                FurnitureBlueprintBatchTest.Cancel();
         }
     }
 
@@ -127,7 +132,63 @@ namespace EvenMoreOverpoweredJourney.SuperAdmin
                     return true;
                 }
 
+                if (t == "CANCEL_DEBUG_FILLTHEBLUEPRINT")
+                {
+                    _lastHandledGameUpdate = tick;
+                    PlayCancelSfx();
+                    SuperAdminSession.DebugFillTheBlueprint = false;
+                    Main.NewText("\u84dd\u56fe\u514d\u6750\u6599\u653e\u7f6e\u5df2\u5173\u95ed", new Color(255, 200, 120));
+                    return true;
+                }
+
+                if (t == "CANCEL_TEST_BLUEPRINT")
+                {
+                    _lastHandledGameUpdate = tick;
+                    PlayCancelSfx();
+                    if (FurnitureBlueprintBatchTest.IsRunning)
+                        FurnitureBlueprintBatchTest.Cancel();
+                    else
+                        Main.NewText("???????????????", new Color(200, 200, 200));
+                    return true;
+                }
+
                 return false;
+            }
+
+            if (t.StartsWith("TEST_BLUEPRINT", StringComparison.Ordinal))
+            {
+                _lastHandledGameUpdate = tick;
+                if (FurnitureBlueprintBatchTest.IsRunning)
+                    return true;
+
+                var mode = FurnitureBlueprintBatchTest.RunMode.Sets;
+                if (t == "TEST_BLUEPRINT QUICK" || t == "TEST_BLUEPRINT_QUICK")
+                    mode = FurnitureBlueprintBatchTest.RunMode.Quick;
+                else if (t == "TEST_BLUEPRINT FULL" || t == "TEST_BLUEPRINT_FULL")
+                    mode = FurnitureBlueprintBatchTest.RunMode.Full;
+                else if (t.StartsWith("TEST_BLUEPRINT SEED=", StringComparison.OrdinalIgnoreCase))
+                {
+                    string num = t.Substring("TEST_BLUEPRINT SEED=".Length).Trim();
+                    if (int.TryParse(num, out int seedType)
+                        && FurnitureBlueprintBatchTest.TryStartSingleSeed(seedType))
+                    {
+                        return true;
+                    }
+
+                    Main.NewText($"???? ID?{num}", new Color(255, 150, 150));
+                    return true;
+                }
+
+                if (FurnitureBlueprintBatchTest.TryStart(mode))
+                {
+                    return true;
+                }
+
+                if (FurnitureBlueprintBatchTest.IsRunning)
+                    Main.NewText("???????????? CANCEL_TEST_BLUEPRINT?", new Color(255, 200, 120));
+                else
+                    Main.NewText("????????????????????", new Color(255, 150, 150));
+                return true;
             }
 
             if (t.StartsWith("DEBUG_", StringComparison.Ordinal))
@@ -184,6 +245,15 @@ namespace EvenMoreOverpoweredJourney.SuperAdmin
                     return true;
                 }
 
+                if (t == "DEBUG_FILLTHEBLUEPRINT")
+                {
+                    _lastHandledGameUpdate = tick;
+                    PlayDebugAcceptSfx();
+                    SuperAdminSession.DebugFillTheBlueprint = true;
+                    Main.NewText("\u84dd\u56fe\u514d\u6750\u6599\u653e\u7f6e\u5df2\u5f00\u542f\uff08CANCEL_DEBUG_FILLTHEBLUEPRINT \u5173\u95ed\uff09", new Color(120, 255, 180));
+                    return true;
+                }
+
                 return false;
             }
 
@@ -217,6 +287,7 @@ namespace EvenMoreOverpoweredJourney.SuperAdmin
         private int _registerAttempts;
         private bool _chatWindowWasOpen;
         private string _lastChatTextWhileOpen = "";
+        private bool _pendingChatSubmit;
 
         public override void OnWorldLoad()
         {
@@ -225,6 +296,7 @@ namespace EvenMoreOverpoweredJourney.SuperAdmin
             _registerAttempts = 0;
             _chatWindowWasOpen = false;
             _lastChatTextWhileOpen = "";
+            _pendingChatSubmit = false;
             TryRegisterDefaultChatCommandOnce();
         }
 
@@ -248,15 +320,27 @@ namespace EvenMoreOverpoweredJourney.SuperAdmin
         /// </summary>
         private void PollChatWindowSubmitFallback()
         {
+            if (FurnitureBlueprintBatchTest.IsRunning)
+                return;
+
             if (Main.drawingPlayerChat)
-                _lastChatTextWhileOpen = Main.chatText ?? "";
-            else if (_chatWindowWasOpen && !Main.drawingPlayerChat)
             {
-                if (!Main.keyState.IsKeyDown(Keys.Escape))
-                    SuperAdminChatHandler.TryHandleLine(_lastChatTextWhileOpen);
+                _chatWindowWasOpen = true;
+                _pendingChatSubmit = true;
+                _lastChatTextWhileOpen = Main.chatText ?? string.Empty;
+                return;
             }
 
-            _chatWindowWasOpen = Main.drawingPlayerChat;
+            if (!_chatWindowWasOpen || !_pendingChatSubmit)
+                return;
+
+            _chatWindowWasOpen = false;
+            _pendingChatSubmit = false;
+
+            if (Main.keyState.IsKeyDown(Keys.Escape))
+                return;
+
+            SuperAdminChatHandler.TryHandleLine(_lastChatTextWhileOpen);
         }
 
         public override void OnWorldUnload()
@@ -264,6 +348,7 @@ namespace EvenMoreOverpoweredJourney.SuperAdmin
             SuperAdminSession.ResetAll();
             _chatWindowWasOpen = false;
             _lastChatTextWhileOpen = "";
+            _pendingChatSubmit = false;
         }
 
         public override void Unload()

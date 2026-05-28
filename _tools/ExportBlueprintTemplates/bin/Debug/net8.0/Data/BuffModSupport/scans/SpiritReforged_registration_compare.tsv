@@ -1,0 +1,26 @@
+﻿﻿Name	HasModBuffClass	HasBuffTypeRef	SuggestedPhase	Confidence	File
+AutoloadedBuff	Y	N	Unknown	Low	SpiritReforged.Common.BuffCommon/AutoloadedBuff.cs
+BottleMountBuff	Y	Y	Unknown	Low	SpiritReforged.Content.Ocean.Items.MessageBottle/BottleMountBuff.cs
+DoubleJumpPotionBuff	Y	Y	Unknown	Low	SpiritReforged.Content.Forest.Cloud.Items/DoubleJumpPotionBuff.cs
+EmpoweredSwim	Y	Y	Unknown	Low	SpiritReforged.Content.Ocean.Items.Reefhunter.Buffs/EmpoweredSwim.cs
+EnlilBuff	Y	Y	Unknown	Low	SpiritReforged.Content.Ziggurat.Tiles/EnlilStatue.cs
+ExplorerMine	Y	Y	Stat	Medium	SpiritReforged.Content.Underground.WayfarerSet/ExplorerMine.cs
+ExplorerPot	Y	Y	Stat	Medium	SpiritReforged.Content.Underground.WayfarerSet/ExplorerPot.cs
+ExplorerSpeed	Y	Y	Stat	Medium	SpiritReforged.Content.Underground.Items.ExplorerTreads/ExplorerSpeed.cs
+FlightPotionBuff	Y	Y	Unknown	Low	SpiritReforged.Content.Forest.Cloud.Items/FlightPotionBuff.cs
+Frozen	Y	Y	CombatVisual	Medium	SpiritReforged.Content.Snow.Frostbite/Frozen.cs
+GildedScarabBuff	Y	Y	Stat	Medium	SpiritReforged.Content.Ziggurat.Scarab/GildedScarabBuff.cs
+Impaled	Y	Y	Mixed	Low	SpiritReforged.Content.Jungle.Bamboo.Buffs/Impaled.cs
+JinxMark	Y	Y	Unknown	Low	SpiritReforged.Content.Forest.JinxBow/JinxMark.cs
+KoiTotemBuff	Y	Y	Unknown	Low	SpiritReforged.Content.Ocean.Items.KoiTotem/KoiTotemBuff.cs
+MantarayBuff	Y	Y	Unknown	Low	SpiritReforged.Content.Ocean.Items.Lifesaver/MantarayBuff.cs
+OpenWounds	Y	Y	Unknown	Low	SpiritReforged.Content.Forest.RoguesCrest/OpenWounds.cs
+PoolNoodleBubbleBuff	Y	Y	Unknown	Low	SpiritReforged.Content.Ocean.Items.PoolNoodle/PoolNoodleBubbleBuff.cs
+RemedyPotionBuff	Y	Y	Unknown	Low	SpiritReforged.Content.Forest.Misc/RemedyPotionBuff.cs
+ScarabLightPetBuff	N	Y			SpiritReforged.Content.Desert.ScarabBoss.Items.ScarabPet/ScarabLightPetItem.cs
+ScarabMountBuff	Y	Y	Unknown	Low	SpiritReforged.Content.Desert.ScarabBoss.Items/ScarabMountItem.cs
+Slowed	Y	Y	Unknown	Low	SpiritReforged.Content.Desert/Slowed.cs
+T	N	Y			SpiritReforged.Common.NPCCommon/NPCHelper.cs
+T1	N	Y			SpiritReforged.Common.NPCCommon/NPCHelper.cs
+T2	N	Y			SpiritReforged.Common.NPCCommon/NPCHelper.cs
+T3	N	Y			SpiritReforged.Common.NPCCommon/NPCHelper.cs

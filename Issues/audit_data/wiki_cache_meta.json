@@ -1,0 +1,65 @@
+{
+  "scrapedAt": "2026-05-27T15:06:33.170Z",
+  "sources": [
+    {
+      "id": "terraria",
+      "mod": "Terraria",
+      "page": "Furniture_sets",
+      "url": "https://terraria.wiki.gg/wiki/Furniture_sets",
+      "title": "Furniture sets",
+      "error": null,
+      "parser": "row_implicit",
+      "setCount": 65
+    },
+    {
+      "id": "calamity",
+      "mod": "CalamityMod",
+      "page": "Furniture_sets",
+      "url": "https://calamitymod.wiki.gg/wiki/Furniture_sets",
+      "title": "Furniture sets",
+      "error": null,
+      "parser": "row_hybrid",
+      "setCount": 22
+    },
+    {
+      "id": "thorium",
+      "mod": "ThoriumMod",
+      "page": "Furniture_sets",
+      "url": "https://thoriummod.wiki.gg/wiki/Furniture_sets",
+      "title": "Furniture sets",
+      "error": null,
+      "parser": "row_implicit",
+      "setCount": 21
+    },
+    {
+      "id": "spirit",
+      "mod": "SpiritMod",
+      "page": "Spirit_Reforged/Furniture_sets",
+      "url": "https://spiritmod.wiki.gg/wiki/Spirit_Reforged/Furniture_sets",
+      "title": "Spirit Reforged/Furniture sets",
+      "error": null,
+      "parser": "row_hybrid",
+      "setCount": 4
+    },
+    {
+      "id": "spooky",
+      "mod": "SpookyMod",
+      "page": "Spooky_Mod/Furniture_sets",
+      "url": "https://terrariamods.wiki.gg/wiki/Spooky_Mod/Furniture_sets",
+      "title": "Spooky Mod/Furniture sets",
+      "error": null,
+      "parser": "spooky_table",
+      "setCount": 10
+    },
+    {
+      "id": "calamity_vanities_detail",
+      "mod": "Calamity's Vanities",
+      "page": "detail_pages",
+      "url": "https://terrariamods.wiki.gg/wiki/Calamity's_Vanities/Furniture",
+      "title": null,
+      "error": null,
+      "parser": "cv_detail",
+      "setCount": 4
+    }
+  ]
+}

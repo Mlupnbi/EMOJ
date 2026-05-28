@@ -24,8 +24,16 @@ namespace EvenMoreOverpoweredJourney.Shell.UI.Components
 
         public EmojItemSlot() { Width.Set(52, 0); Height.Set(52, 0); }
 
+        protected void NotifyItemChanged() => OnItemChanged?.Invoke(item);
+
         public override void LeftMouseDown(UIMouseEvent evt)
         {
+            if (evt.Target != this)
+            {
+                base.LeftMouseDown(evt);
+                return;
+            }
+
             if (Main.mouseItem.type > ItemID.None)
             {
                 Item dragged = Main.mouseItem.Clone();

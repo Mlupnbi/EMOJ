@@ -242,6 +242,7 @@ namespace EvenMoreOverpoweredJourney.Shell.UI.Components
                 1 => EojUiTextures.Shell.TabBuff,
                 2 => EojUiTextures.Shell.TabStorage,
                 3 => EojUiTextures.Shell.TabBestiary,
+                4 => EojUiTextures.Shell.TabBlueprint,
                 _ => null
             };
         }

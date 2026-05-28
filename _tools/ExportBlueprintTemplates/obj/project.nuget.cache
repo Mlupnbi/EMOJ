@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "eHs+gfPtjCc=",
+  "success": true,
+  "projectFilePath": "c:\\Users\\14451\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\EvenMoreOverpoweredJourney\\_tools\\ExportBlueprintTemplates\\ExportBlueprintTemplates.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\14451\\.nuget\\packages\\microsoft.win32.systemevents\\8.0.0\\microsoft.win32.systemevents.8.0.0.nupkg.sha512",
+    "C:\\Users\\14451\\.nuget\\packages\\system.drawing.common\\8.0.11\\system.drawing.common.8.0.11.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -35,12 +35,16 @@ namespace EvenMoreOverpoweredJourney.Research
                 return 0;
 
             int count = _consumersByItemType[itemType]?.Count ?? 0;
-            if (_groupsForItemType != null && itemType < _groupsForItemType.Length)
+            if (_groupsForItemType != null && _recipesByGroupId != null && itemType < _groupsForItemType.Length)
             {
-                foreach (int gid in _groupsForItemType[itemType])
+                List<int> groupIds = _groupsForItemType[itemType];
+                if (groupIds != null)
                 {
-                    if (gid >= 0 && gid < _recipesByGroupId.Length)
-                        count += _recipesByGroupId[gid]?.Count ?? 0;
+                    foreach (int gid in groupIds)
+                    {
+                        if (gid >= 0 && gid < _recipesByGroupId.Length)
+                            count += _recipesByGroupId[gid]?.Count ?? 0;
+                    }
                 }
             }
 
@@ -189,7 +193,7 @@ namespace EvenMoreOverpoweredJourney.Research
 
                 AddConsumer(req.type, recipe, itemCount);
 
-                int gid = slot < recipe.acceptedGroups.Count ? recipe.acceptedGroups[slot] : -1;
+                int gid = GetAcceptedGroupId(recipe, slot);
                 if (gid < 0 || gid >= _recipesByGroupId.Length)
                     continue;
 
@@ -235,10 +239,14 @@ namespace EvenMoreOverpoweredJourney.Research
                 }
             }
 
-            if (_groupsForItemType == null || itemType >= _groupsForItemType.Length)
+            if (_groupsForItemType == null || _recipesByGroupId == null || itemType >= _groupsForItemType.Length)
                 yield break;
 
-            foreach (int gid in _groupsForItemType[itemType])
+            List<int> groupIds = _groupsForItemType[itemType];
+            if (groupIds == null)
+                yield break;
+
+            foreach (int gid in groupIds)
             {
                 if (gid < 0 || gid >= _recipesByGroupId.Length)
                     continue;
@@ -335,6 +343,13 @@ namespace EvenMoreOverpoweredJourney.Research
             return IsFullyResearched(seed.type) ? ResearchFaceMode.Green : ResearchFaceMode.Blue;
         }
 
+        public static int GetAcceptedGroupId(Recipe recipe, int slotIndex)
+        {
+            if (recipe?.acceptedGroups == null || slotIndex < 0 || slotIndex >= recipe.acceptedGroups.Count)
+                return -1;
+            return recipe.acceptedGroups[slotIndex];
+        }
+
         public static bool RecipeUsesIngredient(Recipe recipe, int itemType)
         {
             if (recipe?.requiredItem == null)
@@ -346,7 +361,7 @@ namespace EvenMoreOverpoweredJourney.Research
                 Item req = recipe.requiredItem[i];
                 if (req == null || req.IsAir) continue;
                 if (req.type == itemType) return true;
-                int gid = i < recipe.acceptedGroups.Count ? recipe.acceptedGroups[i] : -1;
+                int gid = GetAcceptedGroupId(recipe, i);
                 if (gid >= 0 && gid < RecipeGroup.recipeGroups.Count)
                 {
                     RecipeGroup group = RecipeGroup.recipeGroups[gid];
@@ -354,6 +369,61 @@ namespace EvenMoreOverpoweredJourney.Research
                 }
             }
             return false;
+        }
+
+        /// <summary>??????????? type ????????????? RecipeGroup ?????????</summary>
+        public static bool RecipeUsesExactIngredient(Recipe recipe, int itemType)
+        {
+            if (recipe?.requiredItem == null || itemType <= ItemID.None)
+                return false;
+
+            int n = recipe.requiredItem.Count;
+            for (int i = 0; i < n; i++)
+            {
+                Item req = recipe.requiredItem[i];
+                if (req != null && !req.IsAir && req.type == itemType)
+                    return true;
+            }
+            return false;
+        }
+
+        /// <summary>消耗该材料（精确配料）的配方产物 type 列表；走索引且带上限，避免盐块等高扇出材料扫全表。</summary>
+        public static List<int> GetProductTypesUsingExactMaterial(int materialType, int maxProducts = 256)
+        {
+            var set = new HashSet<int>();
+            if (materialType <= ItemID.None)
+                return new List<int>();
+
+            foreach (Recipe recipe in GetRecipesConsumingMaterial(materialType))
+            {
+                if (maxProducts > 0 && set.Count >= maxProducts)
+                    break;
+
+                if (recipe?.createItem == null || recipe.createItem.IsAir)
+                    continue;
+                if (!RecipeUsesExactIngredient(recipe, materialType))
+                    continue;
+                set.Add(recipe.createItem.type);
+            }
+
+            return set.OrderBy(t => t).ToList();
+        }
+
+        /// <summary>???????????????????? type??????? ? ?????</summary>
+        public static List<int> GetProductTypesConsumingMaterial(int materialType)
+        {
+            var set = new HashSet<int>();
+            if (materialType <= ItemID.None)
+                return new List<int>();
+
+            foreach (Recipe recipe in GetRecipesConsumingMaterial(materialType))
+            {
+                if (recipe?.createItem == null || recipe.createItem.IsAir)
+                    continue;
+                set.Add(recipe.createItem.type);
+            }
+
+            return set.OrderBy(t => t).ToList();
         }
 
         /// <summary>??????????????????????????????</summary>
@@ -370,7 +440,7 @@ namespace EvenMoreOverpoweredJourney.Research
                 if (!IsFullyResearched(req.type))
                 {
                     bool foundAlternative = false;
-                    int gid = i < recipe.acceptedGroups.Count ? recipe.acceptedGroups[i] : -1;
+                    int gid = GetAcceptedGroupId(recipe, i);
                     if (gid >= 0 && gid < RecipeGroup.recipeGroups.Count)
                     {
                         RecipeGroup group = RecipeGroup.recipeGroups[gid];
@@ -410,7 +480,7 @@ namespace EvenMoreOverpoweredJourney.Research
 
         public static bool PlayerCanCraftRecipe(Recipe recipe, Player player)
         {
-            if (player == null || recipe == null) return false;
+            if (player == null || recipe?.requiredItem == null) return false;
             int n = recipe.requiredItem.Count;
             for (int i = 0; i < n; i++)
             {
@@ -418,7 +488,7 @@ namespace EvenMoreOverpoweredJourney.Research
                 if (req == null || req.IsAir) continue;
                 int need = req.stack;
                 if (need <= 0) continue;
-                int gid = i < recipe.acceptedGroups.Count ? recipe.acceptedGroups[i] : -1;
+                int gid = GetAcceptedGroupId(recipe, i);
                 if (gid >= 0 && gid < RecipeGroup.recipeGroups.Count && RecipeGroup.recipeGroups[gid] != null)
                 {
                     int have = CountGroupInInventory(RecipeGroup.recipeGroups[gid], player);

@@ -32,6 +32,28 @@ namespace EvenMoreOverpoweredJourney.Research.Crafting
             }
         }
 
+        /// <summary>
+        /// 已拥有的合成站能否满足配方要求（仅「高级/复合台 ? 低级台」方向；
+        /// 例如锯木机满足工作台，工作台不能反过来满足锯木机）。
+        /// </summary>
+        public static bool ProvidesStation(int ownedTile, int requiredTile)
+        {
+            if (requiredTile < 0)
+                return true;
+            if (ownedTile < 0)
+                return false;
+            if (ownedTile == requiredTile)
+                return true;
+
+            foreach (int expanded in Expand(ownedTile))
+            {
+                if (expanded == requiredTile)
+                    return true;
+            }
+
+            return false;
+        }
+
         private static IEnumerable<int> ExpandInternal(int tileType, HashSet<int> seen)
         {
             if (!seen.Add(tileType))

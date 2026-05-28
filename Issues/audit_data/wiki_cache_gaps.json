@@ -1,0 +1,46 @@
+{
+  "scrapedAt": "2026-05-27T15:06:33.170Z",
+  "cacheSetCount": 132,
+  "localSetCount": 128,
+  "missingInLocalExpectations": [
+    {
+      "mod": "SpookyMod",
+      "set": "Catacomb",
+      "stylePrefix": "Catacomb",
+      "slotCount": 20,
+      "source": "wiki_scrape",
+      "wiki": "https://terrariamods.wiki.gg/wiki/Spooky_Mod/Furniture_sets",
+      "notes": ""
+    },
+    {
+      "mod": "SpookyMod",
+      "set": "Lower Catacomb",
+      "stylePrefix": "Brown",
+      "slotCount": 19,
+      "source": "wiki_scrape",
+      "wiki": "https://terrariamods.wiki.gg/wiki/Spooky_Mod/Furniture_sets",
+      "notes": ""
+    },
+    {
+      "mod": "SpookyMod",
+      "set": "Old Birch",
+      "stylePrefix": "Old",
+      "slotCount": 20,
+      "source": "wiki_scrape",
+      "wiki": "https://terrariamods.wiki.gg/wiki/Spooky_Mod/Furniture_sets",
+      "notes": ""
+    },
+    {
+      "mod": "SpookyMod",
+      "set": "Tar Cactus",
+      "stylePrefix": "Tar",
+      "slotCount": 20,
+      "source": "wiki_scrape",
+      "wiki": "https://terrariamods.wiki.gg/wiki/Spooky_Mod/Furniture_sets",
+      "notes": ""
+    }
+  ],
+  "missingInWikiCache": [],
+  "quickRegressionMissing": [],
+  "failedSources": []
+}

@@ -64,6 +64,9 @@ namespace EvenMoreOverpoweredJourney.Buffs.Systems.Catalog
             if (BuffCombatSummonClassifier.IsMinionBuff(buffId))
                 return BuffCategories.Minion;
 
+            if (BuffBeneficialDebuffFlagSystem.IsBeneficialDespiteDebuffFlag(buffId))
+                return BuffCategories.Positive;
+
             if (buffId < Main.debuff.Length && Main.debuff[buffId])
                 return BuffCategories.Negative;
 

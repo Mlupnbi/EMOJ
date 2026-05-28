@@ -34,7 +34,7 @@ namespace EvenMoreOverpoweredJourney.Buffs.Players
         public const int ActiveBuffDurationFrames = ActiveBuffDuration;
         private const int MiscEquipSlotCount = 4;
 
-        /// <summary>����ҳ���� Buff �ﵽ����������������/����ȣ�ʱ���� Alpha �ۺ�ͼ�ꡣ</summary>
+        /// <summary>����ҳ���� Buff �ﵽ����������������/����ȣ�ʱ����? Alpha �ۺ�ͼ�ꡣ</summary>
         public const int BarDisplayAggregateThreshold = 20;
 
         public HashSet<int> UnlockedBuffs = new HashSet<int>();
@@ -45,7 +45,7 @@ namespace EvenMoreOverpoweredJourney.Buffs.Players
         public HashSet<int> ActiveBuffs = new HashSet<int>();
         public HashSet<int> DisabledBuffs = new HashSet<int>();
 
-        /// <summary>����м��̶���ǿ�ƹ���ԭ��״̬������������ʩ�ӡ�</summary>
+        /// <summary>����м��̶���ǿ�ƹ���ԭ��״̬������������ʩ�ӡ�?</summary>
         public HashSet<int> PinnedPhysicalBuffs = new HashSet<int>();
 
         /// <summary>������������۵�������������� Buff ������</summary>
@@ -57,7 +57,7 @@ namespace EvenMoreOverpoweredJourney.Buffs.Players
         public Item[] SavedMiscEquips = new Item[MiscEquipSlotCount];
         public bool[] HasSavedMisc = new bool[MiscEquipSlotCount];
 
-        /// <summary>��һ֡��������Ƿ���ڸ� Buff�����ڼ��ԭ���Ҽ�ȡ�� misc �� Buff��</summary>
+        /// <summary>��һ֡��������Ƿ���ڸ� Buff�����ڼ��ԭ���Ҽ�ȡ��? misc �� Buff��</summary>
         public bool[] HadBuffLastFrame;
 
         /// <summary>ȫ������ Buff������ + ��Ч�������ڼ���/����/ͳһģʽ��</summary>
@@ -74,7 +74,7 @@ namespace EvenMoreOverpoweredJourney.Buffs.Players
 
         public bool VirtualQueueDirty = true;
 
-        /// <summary>��������������ڲ� AddBuff/���滻 misc �ۣ���������ʵ����ˡ�</summary>
+        /// <summary>��������������ڲ�? AddBuff/���滻 misc �ۣ���������ʵ����ˡ�?</summary>
         public int WorldTransitionGraceFrames;
 
         private bool _barDisplayDirty = true;
@@ -205,7 +205,7 @@ namespace EvenMoreOverpoweredJourney.Buffs.Players
         public bool HasPermanentUnlock(int buffId) =>
             buffId > 0 && UnlockedBuffs.Contains(buffId);
 
-        /// <summary>�����ʵ���Ƴ� Buff������ԭ <see cref="Main.buffNoTimeDisplay"/>��</summary>
+        /// <summary>�����ʵ���Ƴ�? Buff������ԭ <see cref="Main.buffNoTimeDisplay"/>��</summary>
         public static void ClearManagedBuff(Player player, int buffId)
         {
             if (buffId <= 0)
@@ -265,7 +265,10 @@ namespace EvenMoreOverpoweredJourney.Buffs.Players
             SanitizePersistentSets();
 
             if (!SuperAdminSession.DebugUnlockAllBuffs)
+            {
+                SyncUnlocksFromPlayerBar();
                 EnforcePermanentUnlockConsistency(purgePlayerBar: true);
+            }
             else if (DebugUnlockBaseline == null)
                 CaptureDebugUnlockBaseline();
 
@@ -280,6 +283,7 @@ namespace EvenMoreOverpoweredJourney.Buffs.Players
                 BuffWorldTransitionCleanup.OnPlayerEnterWorld(Player, this);
                 BuffVirtualEffectSummonGuard.Clamp(Player);
                 BuffFedStateCompat.ApplySatietyAfterBuffPipeline(Player, this);
+                BuffEmoteGuardSystem.SuppressPlayerEmotes(Player);
             }
         }
 
@@ -334,13 +338,31 @@ namespace EvenMoreOverpoweredJourney.Buffs.Players
             if (SuperAdminSession.DebugUnlockAllBuffs)
                 return;
 
-            if (!IsValidPersistentBuffId(buffId))
+            if (!IsDiscoverableBuffId(buffId))
                 return;
 
             UnlockedBuffs.Add(buffId);
         }
 
-        /// <summary>���� DEBUG_UNLOCKALLBUFFS��������ʵ�����������й��б���״̬������д����Ҵ浵��</summary>
+        /// <summary>???????????? <see cref="IsValidPersistentBuffId"/> ????</summary>
+        public static bool IsDiscoverableBuffId(int buffId)
+        {
+            if (buffId <= 0 || buffId >= BuffLoader.BuffCount)
+                return false;
+
+            if (IsEmojInternalBuff(buffId))
+                return false;
+
+            if (BuffFedStateCompat.IsHungerDebuff(buffId))
+                return false;
+
+            return BuffPlayerApplicability.IsMeantForPlayer(buffId);
+        }
+
+        private bool IsManagedPlayerBarBuff(int buffId) =>
+            ActiveBuffs.Contains(buffId) || DisabledBuffs.Contains(buffId);
+
+        /// <summary>���� DEBUG_UNLOCKALLBUFFS��������ʵ�����������й��б���״̬������д����Ҵ浵��?</summary>
         public void OnDebugUnlockAllBuffsEnabled()
         {
             if (Player.whoAmI != Main.myPlayer)
@@ -352,7 +374,7 @@ namespace EvenMoreOverpoweredJourney.Buffs.Players
                 $"debug unlock all: baseline saved count={DebugUnlockBaseline?.Count ?? 0}");
         }
 
-        /// <summary>�ر� DEBUG_UNLOCKALLBUFFS���ָ����������Ƴ�δ���ý������й�����״̬�� Buff������ SyncUnlocks �������</summary>
+        /// <summary>�ر� DEBUG_UNLOCKALLBUFFS���ָ����������Ƴ�δ���ý������й�����״̬�� Buff������ SyncUnlocks �������?</summary>
         public void OnDebugUnlockAllBuffsDisabled()
         {
             if (Player.whoAmI != Main.myPlayer)
@@ -387,7 +409,7 @@ namespace EvenMoreOverpoweredJourney.Buffs.Players
             NotifyBuffRuntimeStateChanged();
         }
 
-        /// <summary>���״̬���ϱ�ģ����¼��δ���ý����� Buff������ <see cref="SyncUnlocksFromPlayerBar"/> �������</summary>
+        /// <summary>���״̬���ϱ�ģ����¼��δ���ý�����? Buff������ <see cref="SyncUnlocksFromPlayerBar"/> �������?</summary>
         public void PurgePlayerBarBuffsNotPermanentlyUnlocked()
         {
             int buffSlotCount = Math.Min(Player.MaxBuffs, Math.Min(Player.buffType.Length, Player.buffTime.Length));
@@ -398,6 +420,12 @@ namespace EvenMoreOverpoweredJourney.Buffs.Players
                     continue;
 
                 if (IsEmojInternalBuff(type))
+                    continue;
+
+                if (BuffFedStateCompat.IsHungerDebuff(type))
+                    continue;
+
+                if (!IsManagedPlayerBarBuff(type))
                     continue;
 
                 if (!BuffListCatalog.IsListable(type))
@@ -433,7 +461,7 @@ namespace EvenMoreOverpoweredJourney.Buffs.Players
 
         private void SanitizePersistentSets()
         {
-            UnlockedBuffs.RemoveWhere(id => !IsValidPersistentBuffId(id));
+            UnlockedBuffs.RemoveWhere(id => !IsDiscoverableBuffId(id));
             ActiveBuffs.RemoveWhere(id => !IsValidPersistentBuffId(id) || BuffEntityIndexSystem.RequiresManualEntityManagement(id));
             DisabledBuffs.RemoveWhere(id => !IsValidPersistentBuffId(id));
             PinnedPhysicalBuffs.RemoveWhere(id => !IsValidPersistentBuffId(id));
@@ -470,6 +498,9 @@ namespace EvenMoreOverpoweredJourney.Buffs.Players
                 if (type > 0 && Player.buffTime[i] > 0)
                     TryGrantPermanentUnlock(type);
             }
+
+            foreach (int buffId in ActiveBuffs)
+                TryGrantPermanentUnlock(buffId);
         }
 
         public void EnforceDisabledBuffImmunityBeforeUpdate()
@@ -553,10 +584,14 @@ namespace EvenMoreOverpoweredJourney.Buffs.Players
         {
             EnsureHadBuffFrameBuffer();
 
+            if (!SuperAdminSession.DebugUnlockAllBuffs)
+                SyncUnlocksFromPlayerBar();
+
             var manualClears = new List<int>();
             foreach (int buffId in ActiveBuffs)
             {
-                if (BuffVirtualEffectSystem.UsesVirtualEffect(buffId, this))
+                if (BuffVirtualEffectSystem.UsesVirtualEffect(buffId, this) ||
+                    (OPJourneyConfig.UseVirtualScratchApply() && BuffVirtualEffectSystem.WouldUseVirtualEffect(buffId, this)))
                     continue;
 
                 string category = BuffPage.GetBuffCategory(buffId);
@@ -571,16 +606,17 @@ namespace EvenMoreOverpoweredJourney.Buffs.Players
                     manualClears.Add(buffId);
             }
 
-            foreach (int buffId in manualClears)
+            if (manualClears.Count > 0)
             {
-                ActiveBuffs.Remove(buffId);
+                foreach (int buffId in manualClears)
+                    ActiveBuffs.Remove(buffId);
+
                 NotifyBuffRuntimeStateChanged();
             }
 
             if (!SuperAdminSession.DebugUnlockAllBuffs)
             {
                 PurgePlayerBarBuffsNotPermanentlyUnlocked();
-                SyncUnlocksFromPlayerBar();
                 ActiveBuffs.RemoveWhere(id => !HasPermanentUnlock(id));
                 DisabledBuffs.RemoveWhere(id => !HasPermanentUnlock(id));
                 PinnedPhysicalBuffs.RemoveWhere(id => !HasPermanentUnlock(id));
@@ -804,19 +840,14 @@ namespace EvenMoreOverpoweredJourney.Buffs.Players
                     Main.buffNoTimeDisplay[buffId] = true;
             }
 
-            for (int i = 0; i < Player.buffType.Length; i++)
+            for (int i = Player.buffType.Length - 1; i >= 0; i--)
             {
                 int type = Player.buffType[i];
                 if (type <= 0 || type == alphaId)
                     continue;
 
                 if (ActiveBuffs.Contains(type) && !keepPhysical.Contains(type))
-                {
-                    Player.buffType[i] = 0;
-                    Player.buffTime[i] = 0;
-                    if (type < Main.buffNoTimeDisplay.Length)
-                        Main.buffNoTimeDisplay[type] = false;
-                }
+                    Player.DelBuff(i);
             }
 
             if (aggregate && GetVirtualBarBuffCount() > 0)
@@ -874,7 +905,7 @@ namespace EvenMoreOverpoweredJourney.Buffs.Players
             }
         }
 
-        /// <summary>����/�������misc ��Ʒ���Ѿ�λʱ��ԭ��� Buff������ÿ֡ AddBuff ���� Spooky ���ظ�����ʵ�塣</summary>
+        /// <summary>����/�������misc ��Ʒ���Ѿ�λʱ��ԭ���? Buff������ÿ֡ AddBuff ���� Spooky ���ظ�����ʵ�塣</summary>
         private bool ShouldDeferAddBuffToMiscEquip(int buffId)
         {
             string category = BuffPage.GetBuffCategoryStatic(buffId);

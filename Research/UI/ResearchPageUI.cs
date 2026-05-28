@@ -32,6 +32,7 @@ namespace EvenMoreOverpoweredJourney.Research.UI
         {
             ResearchProductTint.BlueResearched => new Color(50, 140, 220) * 0.65f,
             ResearchProductTint.GreenResearchable => new Color(60, 200, 60) * 0.6f,
+            ResearchProductTint.GreenMultiStep => new Color(210, 190, 50) * 0.62f,
             ResearchProductTint.RedUnresearched => new Color(220, 70, 70) * 0.65f,
             ResearchProductTint.PurpleCraftable => new Color(60, 200, 60) * 0.55f,
             ResearchProductTint.PurpleCannotCraft => new Color(220, 70, 70) * 0.55f,
@@ -93,6 +94,7 @@ namespace EvenMoreOverpoweredJourney.Research.UI
         {
             ResearchProductTint.BlueResearched => new Color(50, 140, 220) * 0.55f,
             ResearchProductTint.GreenResearchable => new Color(60, 200, 60) * 0.5f,
+            ResearchProductTint.GreenMultiStep => new Color(210, 190, 50) * 0.52f,
             ResearchProductTint.RedUnresearched => new Color(220, 70, 70) * 0.55f,
             ResearchProductTint.PurpleCraftable => new Color(60, 200, 60) * 0.48f,
             ResearchProductTint.PurpleCannotCraft => new Color(220, 70, 70) * 0.48f,

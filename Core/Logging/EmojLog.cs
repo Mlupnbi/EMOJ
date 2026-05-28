@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 namespace EvenMoreOverpoweredJourney.Core.Logging
 {
     /// <summary>
-    /// EMOJ ͳһ��־���ر� / �򻯣����ļ��¼������ɳ�פ��/ ��������ͨ�� + �����嵥����
+    /// EMOJ 统一锟斤拷志锟斤拷锟截憋拷 / 锟津化ｏ拷锟斤拷锟侥硷拷锟铰硷拷锟斤拷锟斤拷锟缴筹拷驻锟斤拷/ 锟斤拷锟斤拷锟斤拷锟斤拷通锟斤拷 + 锟斤拷锟斤拷锟藉单锟斤拷锟斤拷
     /// </summary>
     public static class EmojLog
     {
@@ -257,6 +257,7 @@ namespace EvenMoreOverpoweredJourney.Core.Logging
             EmojLogChannel.Ui => "07_ui.log",
             EmojLogChannel.ItemHub => "08_itemhub.log",
             EmojLogChannel.Research => "09_research.log",
+            EmojLogChannel.Blueprint => "10_blueprint.log",
             EmojLogChannel.Error => "99_error.log",
             _ => "00_misc.log"
         };
@@ -296,15 +297,15 @@ namespace EvenMoreOverpoweredJourney.Core.Logging
             {
                 File.WriteAllText(path,
                     """
-                    EMOJ (EvenMoreOverpoweredJourney) ����������־��
+                    EMOJ (EvenMoreOverpoweredJourney) 锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷志锟斤拷
                     =============================================
-                    �뽫�����ļ���ԭ�����������
+                    锟诫将锟斤拷锟斤拷锟侥硷拷锟斤拷原锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟�
 
-                    simple.log         - ���¼������롸�򻯡�ģʽ��ͬ����Ϣ��
-                    01_core.log ��      - ��ͨ����ϸ��־
-                    manifest-full.txt  - ģ���б���������Ϣ���������
+                    simple.log         - 锟斤拷锟铰硷拷锟斤拷锟斤拷锟诫「锟津化★拷模式锟斤拷同锟斤拷锟斤拷息锟斤拷
+                    01_core.log 锟斤拷      - 锟斤拷通锟斤拷锟斤拷细锟斤拷志
+                    manifest-full.txt  - 模锟斤拷锟叫憋拷锟斤拷锟斤拷锟斤拷锟斤拷息锟斤拷锟斤拷锟斤拷锟斤拷锟�
 
-                    ����� tModLoader-Logs/client.log ���� EvenMoreOverpoweredJourney��
+                    锟斤拷锟斤拷锟� tModLoader-Logs/client.log 锟斤拷锟斤拷 EvenMoreOverpoweredJourney锟斤拷
                     """,
                     Encoding.UTF8);
             }
@@ -312,12 +313,12 @@ namespace EvenMoreOverpoweredJourney.Core.Logging
             {
                 File.WriteAllText(path,
                     """
-                    EMOJ ����־���ɳ�פ���Ϳ�����
+                    EMOJ 锟斤拷锟斤拷志锟斤拷锟缴筹拷驻锟斤拷锟酵匡拷锟斤拷锟斤拷
                     ==============================
-                    simple.log - ��/�����硢���� Buff������������UI��������¼�
-                    manifest.txt - �ỰԪ���ݣ���������ģ���б��
+                    simple.log - 锟斤拷/锟斤拷锟斤拷锟界、锟斤拷锟斤拷 Buff锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷UI锟斤拷锟斤拷锟斤拷锟斤拷录锟�
+                    manifest.txt - 锟结话元锟斤拷锟捷ｏ拷锟斤拷锟斤拷锟斤拷锟斤拷模锟斤拷锟叫憋拷锟�
 
-                    ��Ҫ�������/��װ������ϸ��ʱ��������á�������־����
+                    锟斤拷要锟斤拷锟斤拷锟斤拷锟�/锟斤拷装锟斤拷锟斤拷锟斤拷细锟斤拷时锟斤拷锟斤拷锟斤拷锟斤拷谩锟斤拷锟斤拷锟斤拷锟街撅拷锟斤拷锟�
                     """,
                     Encoding.UTF8);
             }

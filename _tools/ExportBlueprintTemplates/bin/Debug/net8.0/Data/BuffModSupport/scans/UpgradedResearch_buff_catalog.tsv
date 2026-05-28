@@ -1,0 +1,7 @@
+﻿﻿# EmojBuffModScanner catalog
+# Mod: UpgradedResearch
+# Scanned: 2026-05-20T08:27:45.4347435Z
+# Source: C:\Users\14451\Documents\My Games\Terraria\tModLoader\ModSources\EvenMoreOverpoweredJourney\Data\BuffModSupport\decompiled_cache\UpgradedResearch\decompiled_cs
+StableKey	ClassName	File	SuggestedPhase	Confidence	StatSignals	VisualSignals	EntitySignals	Note
+UpgradedResearch/AlphaBuff	AlphaBuff	UpgradedResearch.Buffs/AlphaBuff.cs	Unknown	Low				未检测到常见 stat/visual 模式
+UpgradedResearch/OmegaBuff	OmegaBuff	UpgradedResearch.Buffs/OmegaBuff.cs	Unknown	Low				未检测到常见 stat/visual 模式

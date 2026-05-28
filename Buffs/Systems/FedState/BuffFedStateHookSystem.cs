@@ -6,7 +6,7 @@ namespace EvenMoreOverpoweredJourney.Buffs.Systems.FedState
 {
     /// <summary>
     /// ����֮�꣺<see cref="Player.UpdateStarvingState"/> ֻɨ����ʵ Buff ���ϵ� <see cref="BuffID.Sets.IsFedState"/>��
-    /// ���ж�ǰ�Ҵ����ʳ Buff���ж���������� debuff��tML ÿ֡������ buffImmune����
+    /// ���ж�ǰ�Ҵ�����? Buff���ж����������? debuff��tML ÿ֡������ buffImmune����
     /// </summary>
     public sealed class BuffFedStateHookSystem : ModSystem
     {
@@ -29,10 +29,10 @@ namespace EvenMoreOverpoweredJourney.Buffs.Systems.FedState
                 return;
             }
 
-            BuffFedStateCompat.EnsureFedStateVisibleOnBar(player, mp);
-            orig(player, withEmote);
+            BuffFedStateCompat.EnsureWellFedVisibleOnBar(player, mp);
+            orig(player, false);
             BuffFedStateCompat.SuppressHungerDebuffs(player);
-            BuffFedStateCompat.EnsureFedStateVisibleOnBar(player, mp);
+            BuffFedStateCompat.EnsureWellFedVisibleOnBar(player, mp);
         }
     }
 }

@@ -1,10 +1,12 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using EvenMoreOverpoweredJourney.Buffs.Players;
+using EvenMoreOverpoweredJourney.Buffs.Systems.FedState;
 
 namespace EvenMoreOverpoweredJourney.Buffs.Globals
 {
-    /// <summary>ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ Buff Ê±ï¿½ï¿½ï¿½Ã½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ BuffsPlusï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½Ò»ï¿½Â£ï¿½ï¿½ï¿½</summary>
+    /// <summary>Íæ¼Ò»ñµÃ Buff Ê±µÇ¼ÇÓÀ¾Ã½âËø£¨Óë BuffsPlus ·Ö¹ì£¬½öÐ´ UnlockedBuffs£©¡£</summary>
     public sealed class BuffUnlockGlobalBuff : GlobalBuff
     {
         public override void Update(int type, Player player, ref int buffIndex)
@@ -16,6 +18,9 @@ namespace EvenMoreOverpoweredJourney.Buffs.Globals
                 return;
 
             if (player.buffTime[buffIndex] <= 0)
+                return;
+
+            if (BuffFedStateCompat.IsHungerDebuff(type))
                 return;
 
             player.GetModPlayer<BuffResearchPlayer>().TryGrantPermanentUnlock(type);

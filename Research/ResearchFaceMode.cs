@@ -15,6 +15,8 @@ namespace EvenMoreOverpoweredJourney.Research
         None,
         BlueResearched,
         GreenResearchable,
+        /// <summary>绿脸黄格：已入列但缺台子/环境（材料链已研究，不要求背包有料）。</summary>
+        GreenMultiStep,
         RedUnresearched,
         PurpleCraftable,
         PurpleCannotCraft

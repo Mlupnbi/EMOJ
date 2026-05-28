@@ -1,0 +1,82 @@
+﻿{
+  "schemaVersion": 1,
+  "mod": "Fargowiltas",
+  "scannedAtUtc": "2026-05-20T08:27:24.6744696Z",
+  "sourcePath": "C:\\Users\\14451\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\EvenMoreOverpoweredJourney\\Data\\BuffModSupport\\decompiled_cache\\Fargowiltas\\decompiled_cs",
+  "sourceKind": "extracted_source",
+  "buffClassCount": 5,
+  "buffs": [
+    {
+      "mod": "Fargowiltas",
+      "internalName": "BigSuckBuff",
+      "className": "BigSuckBuff",
+      "relativeFile": "Fargowiltas.Content.Buffs/BigSuckBuff.cs",
+      "stableKey": "Fargowiltas/BigSuckBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "Fargowiltas",
+      "internalName": "CoolCrabBuff",
+      "className": "CoolCrabBuff",
+      "relativeFile": "Fargowiltas.Content.Buffs/CoolCrabBuff.cs",
+      "stableKey": "Fargowiltas/CoolCrabBuff",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Projectile\\.NewProjectile",
+        "NewProjectile\\s*\\("
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "Fargowiltas",
+      "internalName": "Omnistation",
+      "className": "Omnistation",
+      "relativeFile": "Fargowiltas.Content.Buffs/Omnistation.cs",
+      "stableKey": "Fargowiltas/Omnistation",
+      "suggestedPhase": "Stat",
+      "confidence": "High",
+      "statSignals": [
+        "player\\.stat\\w\u002B\\s*[\\\u002B\\-\\*\\/]?=",
+        "player\\.moveSpeed\\s*[\\\u002B\\-\\*\\/]?=",
+        "player\\.lifeRegen\\s*[\\\u002B\\-\\*\\/]?="
+      ],
+      "visualSignals": [],
+      "entitySignals": []
+    },
+    {
+      "mod": "Fargowiltas",
+      "internalName": "Semistation",
+      "className": "Semistation",
+      "relativeFile": "Fargowiltas.Content.Buffs/Semistation.cs",
+      "stableKey": "Fargowiltas/Semistation",
+      "suggestedPhase": "Stat",
+      "confidence": "High",
+      "statSignals": [
+        "player\\.moveSpeed\\s*[\\\u002B\\-\\*\\/]?=",
+        "player\\.lifeRegen\\s*[\\\u002B\\-\\*\\/]?="
+      ],
+      "visualSignals": [],
+      "entitySignals": []
+    },
+    {
+      "mod": "Fargowiltas",
+      "internalName": "WoodDrop",
+      "className": "WoodDrop",
+      "relativeFile": "Fargowiltas.Content.Buffs/WoodDrop.cs",
+      "stableKey": "Fargowiltas/WoodDrop",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    }
+  ]
+}

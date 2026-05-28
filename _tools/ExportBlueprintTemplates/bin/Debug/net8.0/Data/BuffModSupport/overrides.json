@@ -1,0 +1,884 @@
+﻿{
+    "schemaVersion":  1,
+    "updatedAtUtc":  "2026-05-20T08:39:40.5226662Z",
+    "entries":  [
+                    {
+                        "key":  "AlchemistNPCLite/GreaterDangersense",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Low",
+                        "note":  "local-decompile:AlchemistNPCLite.Buffs/GreaterDangersense.cs"
+                    },
+                    {
+                        "key":  "AlchemistNPCLite/MageComb",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "High",
+                        "note":  "scanner:AlchemistNPCLite.Buffs/MageComb.cs"
+                    },
+                    {
+                        "key":  "AlchemistNPCLite/NinjaSkill",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "High",
+                        "note":  "scanner:AlchemistNPCLite.Buffs/NinjaSkill.cs"
+                    },
+                    {
+                        "key":  "AlchemistNPCLite/UniversalComb",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "High",
+                        "note":  "scanner:AlchemistNPCLite.Buffs/UniversalComb.cs"
+                    },
+                    {
+                        "key":  "CalamityFables/OpulentInjectionBuff",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "High",
+                        "note":  "scanner:CalamityFables.Content.Items.EarlyGameMisc/OpulentInjectionBuff.cs"
+                    },
+                    {
+                        "key":  "CalamityHunt/Absorption",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Low",
+                        "note":  "local-decompile:CalamityHunt.Content.Buffs/Absorption.cs"
+                    },
+                    {
+                        "key":  "CalamityHunt/Gobbed",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Low",
+                        "note":  "local-decompile:CalamityHunt.Content.Buffs/Gobbed.cs"
+                    },
+                    {
+                        "key":  "CalamityHunt/PaladinPalanquinBuff",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Low",
+                        "note":  "local-decompile:CalamityHunt.Content.Buffs/PaladinPalanquinBuff.cs"
+                    },
+                    {
+                        "key":  "CalamityHunt/SlimeCaneBuff",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Low",
+                        "note":  "local-decompile:CalamityHunt.Content.Buffs/SlimeCaneBuff.cs"
+                    },
+                    {
+                        "key":  "CalamityHunt/SplendorJamBuff",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "High",
+                        "note":  "scanner:CalamityHunt.Content.Buffs/SplendorJamBuff.cs"
+                    },
+                    {
+                        "key":  "CalamityMod/AbsorberRegen",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Medium",
+                        "note":  "local-decompile:CalamityMod.Buffs.StatBuffs/AbsorberRegen.cs"
+                    },
+                    {
+                        "key":  "CalamityMod/AbyssalDivingSuitPlates",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Medium",
+                        "note":  "local-decompile:CalamityMod.Buffs.StatBuffs/AbyssalDivingSuitPlates.cs"
+                    },
+                    {
+                        "key":  "CalamityMod/Afflicted",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Medium",
+                        "note":  "local-decompile:CalamityMod.Buffs.StatBuffs/Afflicted.cs"
+                    },
+                    {
+                        "key":  "CalamityMod/AmidiasBlessing",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Medium",
+                        "note":  "local-decompile:CalamityMod.Buffs.StatBuffs/AmidiasBlessing.cs"
+                    },
+                    {
+                        "key":  "CalamityMod/AnechoicCoatingBuff",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Medium",
+                        "note":  "local-decompile:CalamityMod.Buffs.Potions/AnechoicCoatingBuff.cs"
+                    },
+                    {
+                        "key":  "CalamityMod/AquaticHeartWaterSpeed",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Medium",
+                        "note":  "local-decompile:CalamityMod.Buffs.StatBuffs/AquaticHeartWaterSpeed.cs"
+                    },
+                    {
+                        "key":  "CalamityMod/AstralInjectionBuff",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Medium",
+                        "note":  "local-decompile:CalamityMod.Buffs.Potions/AstralInjectionBuff.cs"
+                    },
+                    {
+                        "key":  "CalamityMod/AvertorBonus",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Medium",
+                        "note":  "local-decompile:CalamityMod.Buffs.StatBuffs/AvertorBonus.cs"
+                    },
+                    {
+                        "key":  "CalamityMod/BaguetteBuff",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Medium",
+                        "note":  "local-decompile:CalamityMod.Buffs.Potions/BaguetteBuff.cs"
+                    },
+                    {
+                        "key":  "CalamityMod/BloodfinBoost",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Medium",
+                        "note":  "local-decompile:CalamityMod.Buffs.Potions/BloodfinBoost.cs"
+                    },
+                    {
+                        "key":  "CalamityMod/BlueCandleBuff",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Medium",
+                        "note":  "local-decompile:CalamityMod.Buffs.Placeables/BlueCandleBuff.cs"
+                    },
+                    {
+                        "key":  "CalamityMod/BoundingBuff",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Medium",
+                        "note":  "local-decompile:CalamityMod.Buffs.Potions/BoundingBuff.cs"
+                    },
+                    {
+                        "key":  "CalamityMod/BrimflameFrenzyBuff",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Medium",
+                        "note":  "local-decompile:CalamityMod.Buffs.StatBuffs/BrimflameFrenzyBuff.cs"
+                    },
+                    {
+                        "key":  "CalamityMod/BrutalCarnage",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Medium",
+                        "note":  "local-decompile:CalamityMod.Buffs.StatBuffs/BrutalCarnage.cs"
+                    },
+                    {
+                        "key":  "CalamityMod/CalciumBuff",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Medium",
+                        "note":  "local-decompile:CalamityMod.Buffs.Potions/CalciumBuff.cs"
+                    },
+                    {
+                        "key":  "CalamityMod/CeaselessHunger",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Medium",
+                        "note":  "local-decompile:CalamityMod.Buffs.Potions/CeaselessHunger.cs"
+                    },
+                    {
+                        "key":  "CalamityMod/ChiBuff",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Medium",
+                        "note":  "local-decompile:CalamityMod.Buffs.StatBuffs/ChiBuff.cs"
+                    },
+                    {
+                        "key":  "CalamityMod/ChiRegenBuff",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Medium",
+                        "note":  "local-decompile:CalamityMod.Buffs.StatBuffs/ChiRegenBuff.cs"
+                    },
+                    {
+                        "key":  "CalamityMod/CoralSymbiosis",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Medium",
+                        "note":  "local-decompile:CalamityMod.Buffs.StatBuffs/CoralSymbiosis.cs"
+                    },
+                    {
+                        "key":  "CalamityMod/CorruptionEffigyBuff",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Medium",
+                        "note":  "local-decompile:CalamityMod.Buffs.Placeables/CorruptionEffigyBuff.cs"
+                    },
+                    {
+                        "key":  "CalamityMod/CosmicFreeze",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Medium",
+                        "note":  "local-decompile:CalamityMod.Buffs.StatBuffs/CosmicFreeze.cs"
+                    },
+                    {
+                        "key":  "CalamityMod/CrimsonEffigyBuff",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Medium",
+                        "note":  "local-decompile:CalamityMod.Buffs.Placeables/CrimsonEffigyBuff.cs"
+                    },
+                    {
+                        "key":  "CalamityMod/EffigyOfDecayBuff",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Medium",
+                        "note":  "local-decompile:CalamityMod.Buffs.Placeables/EffigyOfDecayBuff.cs"
+                    },
+                    {
+                        "key":  "CalamityMod/EmpyreanRage",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Medium",
+                        "note":  "local-decompile:CalamityMod.Buffs.StatBuffs/EmpyreanRage.cs"
+                    },
+                    {
+                        "key":  "CalamityMod/EmpyreanWrath",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Medium",
+                        "note":  "local-decompile:CalamityMod.Buffs.StatBuffs/EmpyreanWrath.cs"
+                    },
+                    {
+                        "key":  "CalamityMod/GravityNormalizerBuff",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Medium",
+                        "note":  "local-decompile:CalamityMod.Buffs.Potions/GravityNormalizerBuff.cs"
+                    },
+                    {
+                        "key":  "CalamityMod/GraxBoost",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Medium",
+                        "note":  "local-decompile:CalamityMod.Buffs.StatBuffs/GraxBoost.cs"
+                    },
+                    {
+                        "key":  "CalamityMod/GreenJellyRegen",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Medium",
+                        "note":  "local-decompile:CalamityMod.Buffs.StatBuffs/GreenJellyRegen.cs"
+                    },
+                    {
+                        "key":  "CalamityMod/HallowedRuneDefense",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Medium",
+                        "note":  "local-decompile:CalamityMod.Buffs.StatBuffs/HallowedRuneDefense.cs"
+                    },
+                    {
+                        "key":  "CalamityMod/HallowedRunePower",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Medium",
+                        "note":  "local-decompile:CalamityMod.Buffs.StatBuffs/HallowedRunePower.cs"
+                    },
+                    {
+                        "key":  "CalamityMod/HallowedRuneRegeneration",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Medium",
+                        "note":  "local-decompile:CalamityMod.Buffs.StatBuffs/HallowedRuneRegeneration.cs"
+                    },
+                    {
+                        "key":  "CalamityMod/Haste",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Medium",
+                        "note":  "local-decompile:CalamityMod.Buffs.StatBuffs/Haste.cs"
+                    },
+                    {
+                        "key":  "CalamityMod/IceShieldBuff",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Medium",
+                        "note":  "local-decompile:CalamityMod.Buffs.StatBuffs/IceShieldBuff.cs"
+                    },
+                    {
+                        "key":  "CalamityMod/Omniscience",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Medium",
+                        "note":  "local-decompile:CalamityMod.Buffs.Potions/Omniscience.cs"
+                    },
+                    {
+                        "key":  "CalamityMod/PhantomicEmpowerment",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Medium",
+                        "note":  "local-decompile:CalamityMod.Buffs.StatBuffs/PhantomicEmpowerment.cs"
+                    },
+                    {
+                        "key":  "CalamityMod/PhantomicRegen",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Medium",
+                        "note":  "local-decompile:CalamityMod.Buffs.StatBuffs/PhantomicRegen.cs"
+                    },
+                    {
+                        "key":  "CalamityMod/PhantomicShield",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Medium",
+                        "note":  "local-decompile:CalamityMod.Buffs.StatBuffs/PhantomicShield.cs"
+                    },
+                    {
+                        "key":  "CalamityMod/PhotosynthesisBuff",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Medium",
+                        "note":  "local-decompile:CalamityMod.Buffs.Potions/PhotosynthesisBuff.cs"
+                    },
+                    {
+                        "key":  "CalamityMod/PinkCandleBuff",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Medium",
+                        "note":  "local-decompile:CalamityMod.Buffs.Placeables/PinkCandleBuff.cs"
+                    },
+                    {
+                        "key":  "CalamityMod/PinkJellyRegen",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Medium",
+                        "note":  "local-decompile:CalamityMod.Buffs.StatBuffs/PinkJellyRegen.cs"
+                    },
+                    {
+                        "key":  "CalamityMod/PurpleCandleBuff",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Medium",
+                        "note":  "local-decompile:CalamityMod.Buffs.Placeables/PurpleCandleBuff.cs"
+                    },
+                    {
+                        "key":  "CalamityMod/ReaverRage",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Medium",
+                        "note":  "local-decompile:CalamityMod.Buffs.StatBuffs/ReaverRage.cs"
+                    },
+                    {
+                        "key":  "CalamityMod/ScrewdriverBuff",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "High",
+                        "note":  "scanner:Buffs/Alcohol/ScrewdriverBuff.cs"
+                    },
+                    {
+                        "key":  "CalamityMod/ShadowBuff",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Medium",
+                        "note":  "local-decompile:CalamityMod.Buffs.Potions/ShadowBuff.cs"
+                    },
+                    {
+                        "key":  "CalamityMod/SilvaRevival",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Medium",
+                        "note":  "local-decompile:CalamityMod.Buffs.StatBuffs/SilvaRevival.cs"
+                    },
+                    {
+                        "key":  "CalamityMod/Soaring",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Medium",
+                        "note":  "local-decompile:CalamityMod.Buffs.Potions/Soaring.cs"
+                    },
+                    {
+                        "key":  "CalamityMod/SpiritDefense",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Medium",
+                        "note":  "local-decompile:CalamityMod.Buffs.StatBuffs/SpiritDefense.cs"
+                    },
+                    {
+                        "key":  "CalamityMod/SpiritPower",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Medium",
+                        "note":  "local-decompile:CalamityMod.Buffs.StatBuffs/SpiritPower.cs"
+                    },
+                    {
+                        "key":  "CalamityMod/SpiritRegen",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Medium",
+                        "note":  "local-decompile:CalamityMod.Buffs.StatBuffs/SpiritRegen.cs"
+                    },
+                    {
+                        "key":  "CalamityMod/SulphurskinBuff",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Medium",
+                        "note":  "local-decompile:CalamityMod.Buffs.Potions/SulphurskinBuff.cs"
+                    },
+                    {
+                        "key":  "CalamityMod/TeslaBuff",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Medium",
+                        "note":  "local-decompile:CalamityMod.Buffs.Potions/TeslaBuff.cs"
+                    },
+                    {
+                        "key":  "CalamityMod/WeaponImbueBrimstone",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Medium",
+                        "note":  "local-decompile:CalamityMod.Buffs.Potions/WeaponImbueBrimstone.cs"
+                    },
+                    {
+                        "key":  "CalamityMod/WeaponImbueCrumbling",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Medium",
+                        "note":  "local-decompile:CalamityMod.Buffs.Potions/WeaponImbueCrumbling.cs"
+                    },
+                    {
+                        "key":  "CalamityMod/WeaponImbueHolyFlames",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Medium",
+                        "note":  "local-decompile:CalamityMod.Buffs.Potions/WeaponImbueHolyFlames.cs"
+                    },
+                    {
+                        "key":  "CalamityMod/YellowCandleBuff",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Medium",
+                        "note":  "local-decompile:CalamityMod.Buffs.Placeables/YellowCandleBuff.cs"
+                    },
+                    {
+                        "key":  "CalamityMod/Zen",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Medium",
+                        "note":  "local-decompile:CalamityMod.Buffs.Potions/Zen.cs"
+                    },
+                    {
+                        "key":  "CalamityMod/Zerg",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Medium",
+                        "note":  "local-decompile:CalamityMod.Buffs.Potions/Zerg.cs"
+                    },
+                    {
+                        "key":  "CatalystMod/AstrageldonRocksSetbonus",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Low",
+                        "note":  "local-decompile:CatalystMod.Buffs/AstrageldonRocksSetbonus.cs"
+                    },
+                    {
+                        "key":  "CatalystMod/AstralJellyBuff",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Low",
+                        "note":  "local-decompile:CatalystMod.Buffs.StatBuffs/AstralJellyBuff.cs"
+                    },
+                    {
+                        "key":  "CatalystMod/BlessedBlossoms",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Medium",
+                        "note":  "local-decompile:CatalystMod.Buffs.StatBuffs/BlessedBlossoms.cs"
+                    },
+                    {
+                        "key":  "Fargowiltas/Omnistation",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "High",
+                        "note":  "scanner:Fargowiltas.Content.Buffs/Omnistation.cs"
+                    },
+                    {
+                        "key":  "Fargowiltas/Semistation",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "High",
+                        "note":  "scanner:Fargowiltas.Content.Buffs/Semistation.cs"
+                    },
+                    {
+                        "key":  "FargowiltasSouls/AmbrosiaBuff",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "High",
+                        "note":  "scanner:FargowiltasSouls.Content.Buffs.Souls/AmbrosiaBuff.cs"
+                    },
+                    {
+                        "key":  "FargowiltasSouls/BerserkerInstallBuff",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "High",
+                        "note":  "scanner:FargowiltasSouls.Content.Buffs/BerserkerInstallBuff.cs"
+                    },
+                    {
+                        "key":  "FargowiltasSouls/BetsyDashBuff",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Low",
+                        "note":  "local-decompile:FargowiltasSouls.Content.Buffs/BetsyDashBuff.cs"
+                    },
+                    {
+                        "key":  "FargowiltasSouls/BloodDrinkerBuff",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "High",
+                        "note":  "local-decompile:FargowiltasSouls.Content.Buffs.Masomode/BloodDrinkerBuff.cs"
+                    },
+                    {
+                        "key":  "FargowiltasSouls/FirstStrikeBuff",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Low",
+                        "note":  "local-decompile:FargowiltasSouls.Content.Buffs.Souls/FirstStrikeBuff.cs"
+                    },
+                    {
+                        "key":  "FargowiltasSouls/GladiatorBuff",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Low",
+                        "note":  "local-decompile:FargowiltasSouls.Content.Buffs/GladiatorBuff.cs"
+                    },
+                    {
+                        "key":  "FargowiltasSouls/GladiatorSpiritBuff",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "High",
+                        "note":  "scanner:FargowiltasSouls.Content.Buffs/GladiatorSpiritBuff.cs"
+                    },
+                    {
+                        "key":  "FargowiltasSouls/GoldenStasisBuff",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Low",
+                        "note":  "local-decompile:FargowiltasSouls.Content.Buffs.Souls/GoldenStasisBuff.cs"
+                    },
+                    {
+                        "key":  "FargowiltasSouls/MonkBuff",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Low",
+                        "note":  "local-decompile:FargowiltasSouls.Content.Buffs.Souls/MonkBuff.cs"
+                    },
+                    {
+                        "key":  "FargowiltasSouls/MoonBowBuff",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Low",
+                        "note":  "local-decompile:FargowiltasSouls.Content.Buffs/MoonBowBuff.cs"
+                    },
+                    {
+                        "key":  "FargowiltasSouls/MushroomPowerBuff",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "High",
+                        "note":  "scanner:FargowiltasSouls.Content.Buffs.Souls/MushroomPowerBuff.cs"
+                    },
+                    {
+                        "key":  "FargowiltasSouls/NebulaBuff",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Low",
+                        "note":  "local-decompile:FargowiltasSouls.Content.Buffs.Souls/NebulaBuff.cs"
+                    },
+                    {
+                        "key":  "FargowiltasSouls/ObsidianLavaWetBuff",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Low",
+                        "note":  "local-decompile:FargowiltasSouls.Content.Buffs.Souls/ObsidianLavaWetBuff.cs"
+                    },
+                    {
+                        "key":  "FargowiltasSouls/SolarBuff",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Low",
+                        "note":  "local-decompile:FargowiltasSouls.Content.Buffs.Souls/SolarBuff.cs"
+                    },
+                    {
+                        "key":  "FargowiltasSouls/StardustBuff",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Low",
+                        "note":  "local-decompile:FargowiltasSouls.Content.Buffs.Souls/StardustBuff.cs"
+                    },
+                    {
+                        "key":  "FargowiltasSouls/SuperBleedBuff",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Low",
+                        "note":  "local-decompile:FargowiltasSouls.Content.Buffs.Souls/SuperBleedBuff.cs"
+                    },
+                    {
+                        "key":  "FargowiltasSouls/TimberBleedBuff",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Low",
+                        "note":  "local-decompile:FargowiltasSouls.Content.Buffs.Souls/TimberBleedBuff.cs"
+                    },
+                    {
+                        "key":  "FargowiltasSouls/TitaniumDRBuff",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Low",
+                        "note":  "local-decompile:FargowiltasSouls.Content.Buffs.Souls/TitaniumDRBuff.cs"
+                    },
+                    {
+                        "key":  "FargowiltasSouls/TribalCharmClickBuff",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Low",
+                        "note":  "local-decompile:FargowiltasSouls.Content.Buffs/TribalCharmClickBuff.cs"
+                    },
+                    {
+                        "key":  "FargowiltasSouls/VortexBuff",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Low",
+                        "note":  "local-decompile:FargowiltasSouls.Content.Buffs.Souls/VortexBuff.cs"
+                    },
+                    {
+                        "key":  "FargowiltasSouls/WitheredBuff",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Low",
+                        "note":  "local-decompile:FargowiltasSouls.Content.Buffs.Souls/WitheredBuff.cs"
+                    },
+                    {
+                        "key":  "NoxusBoss/StarstrikinglySatiated",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "High",
+                        "note":  "scanner:NoxusBoss.Content.Buffs/StarstrikinglySatiated.cs"
+                    },
+                    {
+                        "key":  "SpiritReforged/EmpoweredSwim",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Low",
+                        "note":  "local-decompile:SpiritReforged.Content.Ocean.Items.Reefhunter.Buffs/EmpoweredSwim.cs"
+                    },
+                    {
+                        "key":  "Spooky/CemeteryLilyBuff",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "High",
+                        "note":  "scanner:Buffs/CemeteryLilyBuff.cs"
+                    },
+                    {
+                        "key":  "Spooky/EmbryoRevival",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "High",
+                        "note":  "scanner:Buffs/EmbryoRevival.cs"
+                    },
+                    {
+                        "key":  "Spooky/FlyBuff",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Low",
+                        "note":  "local-decompile:Spooky.Content.Buffs/FlyBuff.cs"
+                    },
+                    {
+                        "key":  "Spooky/GhostBanditDefense",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Medium",
+                        "note":  "local-decompile:Spooky.Content.Buffs/GhostBanditDefense.cs"
+                    },
+                    {
+                        "key":  "Spooky/GooseberryBoostBuff",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Medium",
+                        "note":  "local-decompile:Spooky.Content.Buffs/GooseberryBoostBuff.cs"
+                    },
+                    {
+                        "key":  "Spooky/KrampusShapeBuff",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "High",
+                        "note":  "scanner:Buffs/KrampusShapeBuff.cs"
+                    },
+                    {
+                        "key":  "Spooky/NoseBlessingBuff",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Low",
+                        "note":  "local-decompile:Spooky.Content.Buffs/NoseBlessingBuff.cs"
+                    },
+                    {
+                        "key":  "Spooky/SeaSpongeBuff",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Low",
+                        "note":  "local-decompile:Spooky.Content.Buffs/SeaSpongeBuff.cs"
+                    },
+                    {
+                        "key":  "Spooky/SkullFrenzyBuff",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "High",
+                        "note":  "scanner:Buffs/SkullFrenzyBuff.cs"
+                    },
+                    {
+                        "key":  "Spooky/SkullTotemBuff",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "High",
+                        "note":  "local-decompile:Spooky.Content.Buffs.Minion/SkullTotemBuff.cs"
+                    },
+                    {
+                        "key":  "Spooky/SlendermanPageBuff",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Low",
+                        "note":  "local-decompile:Spooky.Content.Buffs/SlendermanPageBuff.cs"
+                    },
+                    {
+                        "key":  "Spooky/SpiderArmorStealth",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Medium",
+                        "note":  "local-decompile:Spooky.Content.Buffs/SpiderArmorStealth.cs"
+                    },
+                    {
+                        "key":  "Spooky/SteroidBuff",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "Low",
+                        "note":  "local-decompile:Spooky.Content.Buffs/SteroidBuff.cs"
+                    },
+                    {
+                        "key":  "Spooky/StrawberryBoostBuff",
+                        "phase":  "Stat",
+                        "source":  "scanner",
+                        "confidence":  "High",
+                        "note":  "scanner:Buffs/StrawberryBoostBuff.cs"
+                    },
+                    {
+                        "key":  "Terraria/Archery",
+                        "phase":  "Stat",
+                        "source":  "vanilla_builtin",
+                        "confidence":  "High"
+                    },
+                    {
+                        "key":  "Terraria/Builder",
+                        "phase":  "Stat",
+                        "source":  "vanilla_builtin",
+                        "confidence":  "High"
+                    },
+                    {
+                        "key":  "Terraria/Endurance",
+                        "phase":  "Stat",
+                        "source":  "vanilla_builtin",
+                        "confidence":  "High"
+                    },
+                    {
+                        "key":  "Terraria/Ironskin",
+                        "phase":  "Stat",
+                        "source":  "vanilla_builtin",
+                        "confidence":  "High",
+                        "note":  "VanillaBuffStatRegistry"
+                    },
+                    {
+                        "key":  "Terraria/Lifeforce",
+                        "phase":  "Stat",
+                        "source":  "vanilla_builtin",
+                        "confidence":  "High"
+                    },
+                    {
+                        "key":  "Terraria/Lucky",
+                        "phase":  "Stat",
+                        "source":  "vanilla_builtin",
+                        "confidence":  "High"
+                    },
+                    {
+                        "key":  "Terraria/MagicPower",
+                        "phase":  "Stat",
+                        "source":  "vanilla_builtin",
+                        "confidence":  "High"
+                    },
+                    {
+                        "key":  "Terraria/ManaRegeneration",
+                        "phase":  "Stat",
+                        "source":  "vanilla_builtin",
+                        "confidence":  "High"
+                    },
+                    {
+                        "key":  "Terraria/Mining",
+                        "phase":  "Stat",
+                        "source":  "vanilla_builtin",
+                        "confidence":  "High"
+                    },
+                    {
+                        "key":  "Terraria/ObsidianSkin",
+                        "phase":  "Stat",
+                        "source":  "vanilla_builtin",
+                        "confidence":  "High"
+                    },
+                    {
+                        "key":  "Terraria/Rage",
+                        "phase":  "Stat",
+                        "source":  "vanilla_builtin",
+                        "confidence":  "High"
+                    },
+                    {
+                        "key":  "Terraria/Regeneration",
+                        "phase":  "Stat",
+                        "source":  "vanilla_builtin",
+                        "confidence":  "High"
+                    },
+                    {
+                        "key":  "Terraria/Summoning",
+                        "phase":  "Stat",
+                        "source":  "vanilla_builtin",
+                        "confidence":  "High"
+                    },
+                    {
+                        "key":  "Terraria/Swiftness",
+                        "phase":  "Stat",
+                        "source":  "vanilla_builtin",
+                        "confidence":  "High"
+                    },
+                    {
+                        "key":  "Terraria/Thorns",
+                        "phase":  "Stat",
+                        "source":  "vanilla_builtin",
+                        "confidence":  "High"
+                    },
+                    {
+                        "key":  "Terraria/WellFed",
+                        "phase":  "Stat",
+                        "source":  "vanilla_builtin",
+                        "confidence":  "High"
+                    },
+                    {
+                        "key":  "Terraria/WellFed2",
+                        "phase":  "Stat",
+                        "source":  "vanilla_builtin",
+                        "confidence":  "High"
+                    },
+                    {
+                        "key":  "Terraria/WellFed3",
+                        "phase":  "Stat",
+                        "source":  "vanilla_builtin",
+                        "confidence":  "High"
+                    },
+                    {
+                        "key":  "Terraria/Wrath",
+                        "phase":  "Stat",
+                        "source":  "vanilla_builtin",
+                        "confidence":  "High"
+                    }
+                ]
+}

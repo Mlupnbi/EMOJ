@@ -6,8 +6,8 @@ using Terraria.ID;
 namespace EvenMoreOverpoweredJourney.Bestiary.Catalog
 {
     /// <summary>
-    /// 角标序号（BestiaryDisplayIndex）与列表排序键（BestiarySortingId）分开解析。
-    /// 排序必须用 NpcBestiarySortingId / ByBestiarySortingId，不能只用角标数字。
+    /// 角标序号（BestiaryDisplayIndex）与内部排序 id（BestiarySortIndex）分开解析。
+    /// 超级图鉴网格列表按角标序号升序；<see cref="BestiaryVanillaEntrySort"/> 供需要原版排序 id 的场景。
     /// </summary>
     internal static class BestiaryDisplayIndexResolver
     {
@@ -36,16 +36,13 @@ namespace EvenMoreOverpoweredJourney.Bestiary.Catalog
             if (TryResolveDisplayLabel(entry, netId, out int label))
                 return new Result(sortIndex, label, true);
 
-            if (catalogIndex >= 0)
-            {
-                int fallbackLabel = catalogIndex + 1;
-                if (sortIndex == int.MaxValue)
-                    sortIndex = fallbackLabel;
-                return new Result(sortIndex, fallbackLabel, true);
-            }
-
+            // 勿用 catalogIndex+1 作角标：与 UIBestiaryEntryButton 左上角序号不一致，会导致列表看似未按序号排。
             return new Result(sortIndex, 0, false);
         }
+
+        /// <summary>列表排序用：与卡片左上角角标同源。</summary>
+        public static bool TryGetLabelSortKey(BestiaryEntry entry, int netId, out int label) =>
+            TryResolveDisplayLabel(entry, netId, out label);
 
         private static int ResolveSortingId(int netId, BestiaryEntry entry, int catalogIndex)
         {
@@ -61,32 +58,48 @@ namespace EvenMoreOverpoweredJourney.Bestiary.Catalog
         private static bool TryResolveDisplayLabel(BestiaryEntry entry, int netId, out int index)
         {
             index = 0;
-            if (netId > 0 && TryLookupDisplayIndex(netId, out index))
-                return index >= 0;
 
-            if (entry?.Info == null)
-                return false;
-
-            for (int i = 0; i < entry.Info.Count; i++)
+            if (entry?.Info != null)
             {
-                if (entry.Info[i] is NPCNetIdBestiaryInfoElement)
-                    continue;
-
-                if (entry.Info[i] is not IBestiaryEntryDisplayIndex displayIndex)
-                    continue;
-
-                try
+                for (int i = 0; i < entry.Info.Count; i++)
                 {
-                    index = displayIndex.BestiaryDisplayIndex;
-                    return index >= 0;
+                    if (entry.Info[i] is not NPCNetIdBestiaryInfoElement npcElement)
+                        continue;
+
+                    try
+                    {
+                        index = npcElement.BestiaryDisplayIndex;
+                        if (index >= 0)
+                            return true;
+                    }
+                    catch
+                    {
+                        // 未注册 netId
+                    }
                 }
-                catch
+
+                for (int i = 0; i < entry.Info.Count; i++)
                 {
-                    // 未注册 netId
+                    if (entry.Info[i] is NPCNetIdBestiaryInfoElement)
+                        continue;
+
+                    if (entry.Info[i] is not IBestiaryEntryDisplayIndex displayIndex)
+                        continue;
+
+                    try
+                    {
+                        index = displayIndex.BestiaryDisplayIndex;
+                        if (index >= 0)
+                            return true;
+                    }
+                    catch
+                    {
+                        // 模组自定义 display 元素
+                    }
                 }
             }
 
-            return false;
+            return netId > 0 && TryLookupDisplayIndex(netId, out index) && index >= 0;
         }
 
         private static bool TryLookupDisplayIndex(int netId, out int index)

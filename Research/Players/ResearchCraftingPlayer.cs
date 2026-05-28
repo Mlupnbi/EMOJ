@@ -139,9 +139,12 @@ namespace EvenMoreOverpoweredJourney.Research.Players
                 for (int i = 0; i < _seenTiles.Length; i++)
                 {
                     if (_seenTiles[i])
-                        flags |= ResearchCraftEnvironment.FlagsFromTile(i);
+                        flags |= ResearchCraftEnvironment.FlagsFromFluidTile(i);
                 }
             }
+
+            if (Player.active)
+                flags |= ResearchCraftEnvironment.CaptureSeenFromPlayer(Player);
 
             _seenEnvironment = flags;
         }
@@ -151,12 +154,33 @@ namespace EvenMoreOverpoweredJourney.Research.Players
             if (flag == CraftEnvironmentFlags.None)
                 return true;
 
-            CraftEnvironmentFlags merged = SeenEnvironment | ResearchedEnvironment;
+            if ((ResearchedEnvironment & flag) == flag)
+                return true;
+
             Player player = Main.LocalPlayer;
             if (player != null && player.active)
-                merged |= ResearchCraftEnvironment.CollectInventoryEnvironmentFlags(player);
+            {
+                CraftEnvironmentFlags live = ResearchCraftEnvironment.CaptureSeenFromPlayer(player);
+                if ((live & flag) == flag)
+                    return true;
+            }
 
-            return (merged & flag) == flag;
+            switch (flag)
+            {
+                case CraftEnvironmentFlags.Water:
+                case CraftEnvironmentFlags.Lava:
+                case CraftEnvironmentFlags.Honey:
+                {
+                    CraftEnvironmentFlags fluids = SeenEnvironment & (CraftEnvironmentFlags.Water | CraftEnvironmentFlags.Lava | CraftEnvironmentFlags.Honey);
+                    if (player != null && player.active)
+                        fluids |= ResearchCraftEnvironment.CollectInventoryEnvironmentFlags(player);
+                    return (fluids & flag) == flag;
+                }
+                case CraftEnvironmentFlags.AlchemyTable:
+                    return false;
+                default:
+                    return false;
+            }
         }
 
         public static bool IsCraftingEnvironmentUnlocked(int tileType)
@@ -164,36 +188,72 @@ namespace EvenMoreOverpoweredJourney.Research.Players
             if (tileType <= 0)
                 return true;
 
-            foreach (int expanded in CraftingStationAdjacency.Expand(tileType))
+            Player player = Main.LocalPlayer;
+            if (player != null && player.active && player.adjTile != null)
             {
-                if (IsCraftingStationSeen(expanded))
-                    return true;
-                if (ResearchedTiles != null
-                    && expanded >= 0
-                    && expanded < ResearchedTiles.Length
-                    && ResearchedTiles[expanded])
+                for (int i = 0; i < player.adjTile.Length; i++)
                 {
-                    return true;
+                    if (!player.adjTile[i])
+                        continue;
+                    if (CraftingStationAdjacency.ProvidesStation(i, tileType))
+                        return true;
                 }
             }
 
-            Player player = Main.LocalPlayer;
+            if (IsCraftingStationUnlockedFromPersistence(tileType))
+                return true;
+
             if (player == null || !player.active)
                 return false;
 
-            foreach (int expanded in CraftingStationAdjacency.Expand(tileType))
-            {
-                if (player.adjTile != null
-                    && expanded >= 0
-                    && expanded < player.adjTile.Length
-                    && player.adjTile[expanded])
-                {
-                    return true;
-                }
-            }
-
             if (PlayerCarriesCraftingTile(player, tileType))
                 return true;
+
+            return false;
+        }
+
+        /// <summary>
+        /// 旅途绿格台子：仅当献祭目录中、能代表该 tile 的物品已旅途研究满（见 <see cref="JourneyStationSacrifice"/>）。
+        /// </summary>
+        public static bool IsCraftingStationUnlockedForJourneyGreen(int tileType) =>
+            JourneyStationSacrifice.IsTileUnlockedBySacrifice(tileType);
+
+        private static bool IsCraftingStationUnlockedFromPersistence(int tileType)
+        {
+            if (tileType <= 0)
+                return true;
+
+            if (IsResearchedTile(tileType))
+                return true;
+
+            if (IsCraftingStationSeen(tileType))
+                return true;
+
+            return AnyUnlockedTileSatisfiesStation(tileType, IsResearchedTile);
+        }
+
+        private static bool IsResearchedTile(int tileType) =>
+            ResearchedTiles != null
+            && tileType >= 0
+            && tileType < ResearchedTiles.Length
+            && ResearchedTiles[tileType];
+
+        private static bool AnyUnlockedTileSatisfiesStation(int requiredTile, System.Func<int, bool> isTileUnlocked)
+        {
+            if (requiredTile <= 0)
+                return true;
+
+            if (SeenTiles == null && ResearchedTiles == null)
+                return false;
+
+            int length = System.Math.Max(SeenTiles?.Length ?? 0, ResearchedTiles?.Length ?? 0);
+            for (int owned = 0; owned < length; owned++)
+            {
+                if (!isTileUnlocked(owned))
+                    continue;
+                if (CraftingStationAdjacency.ProvidesStation(owned, requiredTile))
+                    return true;
+            }
 
             return false;
         }
@@ -203,7 +263,11 @@ namespace EvenMoreOverpoweredJourney.Research.Players
             for (int i = 0; i < player.inventory.Length; i++)
             {
                 Item it = player.inventory[i];
-                if (!it.IsAir && ResearchCraftEnvironment.ItemProvidesCraftingTile(it.type, tileType))
+                if (it.IsAir)
+                    continue;
+                if (it.createTile > 0 && CraftingStationAdjacency.ProvidesStation(it.createTile, tileType))
+                    return true;
+                if (ResearchCraftEnvironment.ItemProvidesCraftingTile(it.type, tileType))
                     return true;
             }
 
@@ -238,10 +302,19 @@ namespace EvenMoreOverpoweredJourney.Research.Players
             if (Player.whoAmI != Main.myPlayer)
                 return;
 
+            // 原版 adjTile 仅在背包/合成 UI 打开时每帧更新；EMOJ 研究页是 Mod UI，必须手动刷新。
+            if (Player.active && !Player.dead)
+                Player.AdjTiles();
+
             RebuildResearchedCraftEnvironment();
+
+            // 群系环境以玩家当前状态为准，避免旧 Graveyard 标记残留
+            _seenEnvironment = Player.active
+                ? ResearchCraftEnvironment.CaptureSeenFromPlayer(Player)
+                : CraftEnvironmentFlags.None;
+
             ScanWorldCraftingTilesNearPlayer(100);
             ScanAdjacentCraftingTiles();
-            ScanSeenEnvironmentFromPlayer();
             PublishStaticState();
         }
 
@@ -255,6 +328,11 @@ namespace EvenMoreOverpoweredJourney.Research.Players
         public static int CountSeenTiles() => CountTrue(SeenTiles);
 
         public static int CountResearchedTiles() => CountTrue(ResearchedTiles);
+
+        internal static bool IsResearchedTilePublic(int tileType) => IsResearchedTile(tileType);
+
+        internal static bool DebugCarriesTile(Player player, int tileType) =>
+            player != null && PlayerCarriesCraftingTile(player, tileType);
 
         private bool ApplyResearchedItem(int itemType)
         {
@@ -276,8 +354,12 @@ namespace EvenMoreOverpoweredJourney.Research.Players
 
         private void ScanSeenEnvironmentFromPlayer()
         {
-            CraftEnvironmentFlags captured = ResearchCraftEnvironment.CaptureSeenFromPlayer(Player);
-            CraftEnvironmentFlags next = _seenEnvironment | captured;
+            if (!Player.active)
+                return;
+
+            CraftEnvironmentFlags fluids = _seenEnvironment
+                & (CraftEnvironmentFlags.Water | CraftEnvironmentFlags.Lava | CraftEnvironmentFlags.Honey);
+            CraftEnvironmentFlags next = fluids | ResearchCraftEnvironment.CaptureSeenFromPlayer(Player);
             if (next == _seenEnvironment)
                 return;
 
@@ -314,7 +396,7 @@ namespace EvenMoreOverpoweredJourney.Research.Players
                 return;
 
             CraftingStationAdjacency.MarkExpanded(_seenTiles, tileType);
-            _seenEnvironment |= ResearchCraftEnvironment.FlagsFromTile(tileType);
+            _seenEnvironment |= ResearchCraftEnvironment.FlagsFromFluidTile(tileType);
         }
 
         private void ScanAdjacentCraftingTiles()
@@ -328,7 +410,7 @@ namespace EvenMoreOverpoweredJourney.Research.Players
                     continue;
 
                 CraftingStationAdjacency.MarkExpanded(_seenTiles, i);
-                _seenEnvironment |= ResearchCraftEnvironment.FlagsFromTile(i);
+                _seenEnvironment |= ResearchCraftEnvironment.FlagsFromFluidTile(i);
             }
         }
 
@@ -361,21 +443,9 @@ namespace EvenMoreOverpoweredJourney.Research.Players
             RecipeBrowserNestedCraft.InvalidateCaches();
         }
 
-        public static bool IsCraftingStationSeen(int tileType)
-        {
-            if (tileType <= 0)
-                return true;
-            if (SeenTiles == null)
-                return false;
-
-            foreach (int expanded in CraftingStationAdjacency.Expand(tileType))
-            {
-                if (expanded >= 0 && expanded < SeenTiles.Length && SeenTiles[expanded])
-                    return true;
-            }
-
-            return false;
-        }
+        public static bool IsCraftingStationSeen(int tileType) =>
+            AnyUnlockedTileSatisfiesStation(tileType, t =>
+                SeenTiles != null && t >= 0 && t < SeenTiles.Length && SeenTiles[t]);
 
         private static List<int> PackTileList(bool[] tiles)
         {

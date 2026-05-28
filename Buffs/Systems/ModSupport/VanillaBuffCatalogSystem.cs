@@ -6,11 +6,12 @@ using System.Text.Json;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using EvenMoreOverpoweredJourney.Buffs.Systems.Catalog;
 using EvenMoreOverpoweredJourney.Core.Logging;
 
 namespace EvenMoreOverpoweredJourney.Buffs.Systems.ModSupport
 {
-    /// <summary>ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø¡ï¿½È«ï¿½ï¿½Ô­ï¿½ï¿½ Buffï¿½ï¿½Ö§ï¿½ï¿½Ä¿Â¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½æ£©ï¿½ï¿½</summary>
+    /// <summary>????????????????? Buff??????????????—¥??</summary>
     public sealed class VanillaBuffCatalogSystem : ModSystem
     {
         private static readonly Dictionary<int, VanillaBuffSupportMode> ModeById = new();
@@ -55,6 +56,9 @@ namespace EvenMoreOverpoweredJourney.Buffs.Systems.ModSupport
 
         private static VanillaBuffSupportMode Classify(int buffId, string name)
         {
+            if (BuffBeneficialDebuffFlagSystem.IsBeneficialDespiteDebuffFlag(buffId))
+                return VanillaBuffSupportMode.StandardPhysical;
+
             if (buffId > 0 && buffId < Main.debuff.Length && Main.debuff[buffId])
                 return VanillaBuffSupportMode.DebuffPhysical;
 
@@ -67,7 +71,7 @@ namespace EvenMoreOverpoweredJourney.Buffs.Systems.ModSupport
             return VanillaBuffSupportMode.StandardPhysical;
         }
 
-        /// <summary>ï¿½ï¿½Ä¿Â¼Ð´ï¿½ï¿½ Data/BuffModSupport/vanilla_catalog.jsonï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½æ±¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</summary>
+        /// <summary>????§Õ?? Data/BuffModSupport/vanilla_catalog.json??????????·Ú???????</summary>
         public static void ExportCatalogToDisk(Mod mod)
         {
             string? root = Path.GetDirectoryName(typeof(EvenMoreOverpoweredJourney).Assembly.Location);

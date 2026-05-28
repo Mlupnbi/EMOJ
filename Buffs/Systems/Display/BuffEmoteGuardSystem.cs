@@ -1,24 +1,54 @@
 using System.Reflection;
 using Terraria;
+using EvenMoreOverpoweredJourney.Core.Logging;
 
 namespace EvenMoreOverpoweredJourney.Buffs.Systems.Display
 {
-    /// <summary>ï¿½ï¿½ï¿½ï¿½ Buff ï¿½ï¿½ï¿½ï¿½ Update ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò±ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ±ï¿½ï¿½ï¿½/Ë¢ï¿½ï¿½ï¿½ï¿½</summary>
+    /// <summary>ÒÖÖÆÐéÄâ Buff Update ´¥·¢µÄÍæ¼Ò±íÇéÆøÅÝ£¨º¬¿Õ±íÇé/¼¢¶ö±íÇéË¢ÆÁ£©¡£</summary>
     public static class BuffEmoteGuardSystem
     {
+        private const int EmoteSuppressDelayFrames = 360;
+
         private static FieldInfo _emoteTimeField;
         private static FieldInfo _emoteDelayField;
+        private static FieldInfo _emoteBubbleField;
 
-        public static void ResetPlayerEmoteTimers(Player player)
+        public static void SuppressPlayerEmotes(Player player)
         {
             if (player == null)
                 return;
 
-            _emoteTimeField ??= typeof(Player).GetField("emoteTime", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
-            _emoteDelayField ??= typeof(Player).GetField("emoteDelay", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+            ResolveEmoteFields();
 
-            _emoteTimeField?.SetValue(player, 0);
-            _emoteDelayField?.SetValue(player, 0);
+            if (_emoteTimeField == null || _emoteDelayField == null)
+            {
+                EmojLog.Warn(EmojLogChannel.Buff,
+                    $"SuppressPlayerEmotes: emote fields found? time={_emoteTimeField != null}, delay={_emoteDelayField != null}");
+                return;
+            }
+
+            int emoteTime = (int)(_emoteTimeField.GetValue(player) ?? 0);
+            if (emoteTime > 0)
+                _emoteTimeField.SetValue(player, 0);
+
+            int emoteDelay = (int)(_emoteDelayField.GetValue(player) ?? 0);
+            if (emoteDelay < EmoteSuppressDelayFrames)
+                _emoteDelayField.SetValue(player, EmoteSuppressDelayFrames);
+
+            if (_emoteBubbleField != null)
+                _emoteBubbleField.SetValue(player, -1);
+        }
+
+        public static void ResetPlayerEmoteTimers(Player player) => SuppressPlayerEmotes(player);
+
+        private static void ResolveEmoteFields()
+        {
+            const BindingFlags flags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
+
+            _emoteTimeField ??= typeof(Player).GetField("emoteTime", flags);
+            _emoteDelayField ??= typeof(Player).GetField("emoteDelay", flags);
+            _emoteBubbleField ??= typeof(Player).GetField("emoteBubble", flags)
+                ?? typeof(Player).GetField("_emoteBubble", flags);
         }
     }
 }

@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.GameContent.UI.Elements;
+using Terraria.ID;
 using Terraria.UI;
 using EvenMoreOverpoweredJourney.Bestiary;
 using EvenMoreOverpoweredJourney.Bestiary.Catalog;
@@ -46,7 +48,9 @@ namespace EvenMoreOverpoweredJourney.Bestiary.UI
         private readonly List<UIBestiaryNpcCard> _cardPool = new List<UIBestiaryNpcCard>();
         private readonly List<UIElement> _rowPool = new List<UIElement>();
 
-        private int _columns = 5;
+        private const int MinGridColumns = 5;
+
+        private int _columns = MinGridColumns;
         private float _rowH;
         private float _gridOffsetX;
         private UIPanel _gridBackdrop;
@@ -397,7 +401,6 @@ namespace EvenMoreOverpoweredJourney.Bestiary.UI
 
             ComputeCellMetrics(innerWidth);
             float cellW = innerWidth / _columns;
-            float cardSize = UIBestiaryNpcCard.VanillaSlotPx;
 
             for (int i = 0; i < _displayed.Count; i++)
             {
@@ -418,8 +421,9 @@ namespace EvenMoreOverpoweredJourney.Bestiary.UI
 
                 UIBestiaryNpcCard card = GetCard(i);
                 card.SetContext(meta, _shell.BestiaryFaceMode);
+                card.SetDisplaySize(cellW);
                 card.OnOpenDetail = () => OpenDetail(meta);
-                card.Left.Set(col * cellW + (cellW - cardSize) * 0.5f, 0);
+                card.Left.Set(col * cellW, 0);
                 row.Append(card);
             }
         }
@@ -427,7 +431,8 @@ namespace EvenMoreOverpoweredJourney.Bestiary.UI
         private void ComputeCellMetrics(float innerWidth)
         {
             float slotPx = UIBestiaryNpcCard.VanillaSlotPx;
-            _columns = Math.Max(1, (int)(innerWidth / slotPx));
+            int fitColumns = Math.Max(1, (int)(innerWidth / slotPx));
+            _columns = Math.Max(MinGridColumns, fitColumns);
             float cellW = innerWidth / _columns;
             float gridWidth = _columns * cellW;
             _gridOffsetX = Math.Max(0f, (innerWidth - gridWidth) * 0.5f);
@@ -446,7 +451,7 @@ namespace EvenMoreOverpoweredJourney.Bestiary.UI
             while (_cardPool.Count <= index)
             {
                 var card = new UIBestiaryNpcCard();
-                card.OnLeftClick += (_, el) => OpenDetail(((UIBestiaryNpcCard)el).Meta);
+                card.OnLeftClick += OnGridCardLeftClick;
                 _cardPool.Add(card);
             }
 
@@ -477,17 +482,19 @@ namespace EvenMoreOverpoweredJourney.Bestiary.UI
             _displayed.Sort(CompareDisplayedMeta);
         }
 
-        private static int CompareDisplayedMeta(BestiaryNpcMeta a, BestiaryNpcMeta b)
+        private static int CompareDisplayedMeta(BestiaryNpcMeta a, BestiaryNpcMeta b) =>
+            BestiaryNpcMetaSort.Compare(a, b);
+
+        private void OnGridCardLeftClick(UIMouseEvent evt, UIElement listeningElement)
         {
-            int bySort = BestiaryNpcMetaSort.Compare(a, b);
-            if (bySort != 0)
-                return bySort;
+            if (listeningElement is not UIBestiaryNpcCard card || card.Meta == null)
+                return;
 
-            int byCatalog = a.CatalogIndex.CompareTo(b.CatalogIndex);
-            if (byCatalog != 0)
-                return byCatalog;
+            if (evt.Target is UIBestiaryEntryButton)
+                return;
 
-            return a.NetId.CompareTo(b.NetId);
+            SoundEngine.PlaySound(SoundID.MenuTick);
+            OpenDetail(card.Meta);
         }
 
         private void RefreshLocalizedChrome()

@@ -1,0 +1,7 @@
+﻿﻿# EmojBuffModScanner catalog
+# Mod: EvenMoreOverpoweredJourney
+# Scanned: 2026-05-20T05:46:51.6909955Z
+# Source: c:\Users\14451\Documents\My Games\Terraria\tModLoader\ModSources\EvenMoreOverpoweredJourney
+StableKey	ClassName	File	SuggestedPhase	Confidence	StatSignals	VisualSignals	EntitySignals	Note
+EvenMoreOverpoweredJourney/EMOJAlphaBuff	EMOJAlphaBuff	Buffs/EMOJAlphaBuff.cs	Unknown	Low				未检测到常见 stat/visual 模式
+EvenMoreOverpoweredJourney/EMOJOmegaBuff	EMOJOmegaBuff	Buffs/EMOJOmegaBuff.cs	Unknown	Low				未检测到常见 stat/visual 模式

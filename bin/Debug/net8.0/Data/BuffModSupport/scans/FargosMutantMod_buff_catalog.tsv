@@ -1,0 +1,10 @@
+﻿﻿# EmojBuffModScanner catalog
+# Mod: FargosMutantMod
+# Scanned: 2026-05-20T07:19:05.6353261Z
+# Source: C:\Users\14451\AppData\Local\Temp\EmojBuffGit_bfa1160436314552b30fc6d5955b9506\extracted\FargosMutantMod-master\Content
+StableKey	ClassName	File	SuggestedPhase	Confidence	StatSignals	VisualSignals	EntitySignals	Note
+FargosMutantMod/BigSuckBuff	BigSuckBuff	Buffs/BigSuckBuff.cs	Unknown	Low				未检测到常见 stat/visual 模式
+FargosMutantMod/CoolCrabBuff	CoolCrabBuff	Buffs/CoolCrabBuff.cs	CombatVisual	Medium		Projectile\.NewProjectile|NewProjectile\s*\(		DisplayName: Roomba
+FargosMutantMod/Omnistation	Omnistation	Buffs/Omnistation.cs	Stat	High	player\.stat\w+\s*[\+\-\*\/]?=|player\.moveSpeed\s*[\+\-\*\/]?=|player\.lifeRegen\s*[\+\-\*\/]?=			
+FargosMutantMod/Semistation	Semistation	Buffs/Semistation.cs	Stat	High	player\.moveSpeed\s*[\+\-\*\/]?=|player\.lifeRegen\s*[\+\-\*\/]?=			
+FargosMutantMod/WoodDrop	WoodDrop	Buffs/WoodDrop.cs	Unknown	Low				未检测到常见 stat/visual 模式

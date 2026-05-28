@@ -48,8 +48,11 @@ namespace EvenMoreOverpoweredJourney.Research.UI
         private int _lastEnvironmentSignature = int.MinValue;
         private bool _lastShimmerEncountered;
         private int _craftingRefreshCooldown;
+        private int _greenTintUiRefreshCooldown;
+        private bool _pendingCraftingRefresh;
         private RecipeBrowserNestedCraft.GreenFaceQuerySession _greenQuerySession;
         private List<int> currentProducts = new List<int>();
+        private HashSet<int> _greenFaceImmediateProducts = new HashSet<int>();
         private Dictionary<int, bool> _purpleCanCraft;
 
         public ResearchPage()
@@ -59,14 +62,16 @@ namespace EvenMoreOverpoweredJourney.Research.UI
 
             const float slotSize = 52f;
             const float faceHeight = 22f;
+            const float faceMarginRight = 4f;
             const float hintFrameOverlap = 4f;
             const float hintExtraOffsetPx = 15f;
             const float hintTextScale = 1.4f;
+            float queryRowWidthMargin = -(OPJourneyShellMetrics.ContentInsetLeft + OPJourneyShellMetrics.ScrollSafeMarginRight);
 
             UIElement queryRow = new UIElement();
             queryRow.Left.Set(OPJourneyShellMetrics.ContentInsetLeft, 0);
             queryRow.Top.Set(0, 0);
-            queryRow.Width.Set(OPJourneyShellMetrics.ChromeWidth, 0);
+            queryRow.Width.Set(queryRowWidthMargin, 1f);
             queryRow.Height.Set(slotSize, 0);
 
             inputSlot = new EmojItemSlot();
@@ -88,7 +93,8 @@ namespace EvenMoreOverpoweredJourney.Research.UI
 
             faceSelector = new UIFaceModeSelector(faceHeight);
             faceSelector.Top.Set((slotSize - faceHeight) * 0.5f, 0);
-            faceSelector.Left.Set(-(faceHeight * 4f + 6f), 1f);
+            faceSelector.HAlign = 1f;
+            faceSelector.Left.Set(-faceMarginRight, 0f);
             faceSelector.ActiveFace = _activeFace;
             faceSelector.CanInteract = CanSelectFace;
             faceSelector.OnFaceSelected = OnFaceSelected;
@@ -285,12 +291,19 @@ namespace EvenMoreOverpoweredJourney.Research.UI
             _lastShimmerEncountered = ResearchCraftingPlayer.HasEncounteredShimmer;
         }
 
-        private void CancelGreenQuery() => _greenQuerySession = null;
+        private void CancelGreenQuery()
+        {
+            _greenQuerySession = null;
+            _pendingCraftingRefresh = false;
+            _greenFaceImmediateProducts.Clear();
+        }
+
 
         private void StartGreenQuery(int seedType)
         {
             Main.LocalPlayer?.GetModPlayer<ResearchCraftingPlayer>()?.RefreshEnvironmentForResearchQuery();
             _greenQuerySession = RecipeBrowserNestedCraft.BeginGreenFaceQuery(seedType);
+            _greenFaceImmediateProducts.Clear();
             currentProducts.Clear();
             emptyHintText?.SetText(EOPJText.UI("GreenFaceQuerying"));
             UpdateProductList();
@@ -304,18 +317,86 @@ namespace EvenMoreOverpoweredJourney.Research.UI
             if (!_greenQuerySession.Complete)
             {
                 RecipeBrowserNestedCraft.StepGreenFaceQuery(_greenQuerySession);
+                if (_greenQuerySession.ListReady)
+                    SyncGreenFaceListFromSession(force: true);
                 if (!_greenQuerySession.Complete)
+                {
+                    SyncGreenFaceTintsFromSession();
+                    return;
+                }
+            }
+
+            if (_greenQuerySession.ListReady)
+                SyncGreenFaceListFromSession(force: true);
+            SyncGreenFaceTintsFromSession(force: true);
+            _greenQuerySession = null;
+            emptyHintText?.SetText(string.Empty);
+            UpdateProductList();
+
+            if (_pendingCraftingRefresh && inputSlot.item != null && !inputSlot.item.IsAir
+                && _activeFace == ResearchFaceMode.Green)
+            {
+                _pendingCraftingRefresh = false;
+                RefreshGreenFaceJourneyTints();
+            }
+        }
+
+        private void SyncGreenFaceListFromSession(bool force = false)
+        {
+            if (_greenQuerySession == null || !_greenQuerySession.ListReady || _greenQuerySession.Results == null)
+                return;
+
+            if (!force && currentProducts.Count == _greenQuerySession.Results.Count)
+            {
+                bool same = true;
+                for (int i = 0; i < currentProducts.Count; i++)
+                {
+                    if (currentProducts[i] != _greenQuerySession.Results[i])
+                    {
+                        same = false;
+                        break;
+                    }
+                }
+
+                if (same)
                     return;
             }
 
-            currentProducts = _greenQuerySession.Results;
-            _greenQuerySession = null;
+            currentProducts.Clear();
+            currentProducts.AddRange(_greenQuerySession.Results);
+            emptyHintText?.SetText(string.Empty);
+            UpdateProductList();
+        }
+
+        private void SyncGreenFaceTintsFromSession(bool force = false)
+        {
+            if (_greenQuerySession?.ImmediateCraftProducts == null)
+                return;
+
+            if (!force && _greenFaceImmediateProducts.SetEquals(_greenQuerySession.ImmediateCraftProducts))
+                return;
+
+            if (!force)
+            {
+                if (_greenTintUiRefreshCooldown > 0)
+                {
+                    _greenTintUiRefreshCooldown--;
+                    return;
+                }
+
+                _greenTintUiRefreshCooldown = 8;
+            }
+
+            _greenFaceImmediateProducts.Clear();
+            foreach (int type in _greenQuerySession.ImmediateCraftProducts)
+                _greenFaceImmediateProducts.Add(type);
             UpdateProductList();
         }
 
         private void RebuildProducts(Item item)
         {
             _purpleCanCraft = null;
+            _greenFaceImmediateProducts.Clear();
             currentProducts.Clear();
             if (item == null || item.IsAir)
                 return;
@@ -360,8 +441,32 @@ namespace EvenMoreOverpoweredJourney.Research.UI
             }
             catch (System.Exception ex)
             {
-                EmojLog.Warn(EmojLogChannel.Research, $"RebuildProducts failed seed={seedType} face={_activeFace}: {ex.Message}");
+                CancelGreenQuery();
+                LogRebuildProductsFailure(ex, item, seedType);
             }
+        }
+
+        private void LogRebuildProductsFailure(Exception ex, Item item, int seedType)
+        {
+            string itemName = item != null && !item.IsAir ? item.Name : "?";
+            string context =
+                $"RebuildProducts failed face={_activeFace} item={itemName}(id={seedType}) " +
+                $"journey={RecipeAnalyzer.IsJourneyWorld} researched={RecipeAnalyzer.IsFullyResearched(seedType)} " +
+                $"greenQueryActive={_greenQuerySession != null}";
+
+            EmojLog.Warn(EmojLogChannel.Research, context);
+            EmojLog.Error(EmojLogChannel.Research, context, ex);
+            EmojLog.WarnFull(EmojLogChannel.Research, context);
+            if (ex != null)
+            {
+                EmojLog.WarnFull(EmojLogChannel.Research, ex.ToString());
+                if (ex.InnerException != null)
+                    EmojLog.WarnFull(EmojLogChannel.Research, "InnerException: " + ex.InnerException);
+            }
+
+            ModContent.GetInstance<EvenMoreOverpoweredJourney>().Logger.Warn(context);
+            if (ex != null)
+                ModContent.GetInstance<EvenMoreOverpoweredJourney>().Logger.Warn(ex.ToString());
         }
 
         private void MaybeRefreshForCraftingDiscovery()
@@ -382,8 +487,39 @@ namespace EvenMoreOverpoweredJourney.Research.UI
 
             _lastEnvironmentSignature = signature;
             _lastShimmerEncountered = shimmer;
-            _craftingRefreshCooldown = 60;
-            StartGreenQuery(inputSlot.item.type);
+            _craftingRefreshCooldown = 120;
+
+            if (_greenQuerySession != null && !_greenQuerySession.Complete)
+            {
+                _pendingCraftingRefresh = true;
+                return;
+            }
+
+            RefreshGreenFaceJourneyTints();
+        }
+
+        /// <summary>环境/台子变化时只刷新绿黄着色，不重跑列表（列表入列规则与背包无关）。</summary>
+        private void RefreshGreenFaceJourneyTints()
+        {
+            if (inputSlot.item.IsAir || _activeFace != ResearchFaceMode.Green || currentProducts.Count == 0)
+                return;
+
+            int seedType = inputSlot.item.type;
+            if (!RecipeAnalyzer.IsFullyResearched(seedType))
+                return;
+
+            Main.LocalPlayer?.GetModPlayer<ResearchCraftingPlayer>()?.RefreshEnvironmentForResearchQuery();
+
+            var nextGreen = new HashSet<int>();
+            RecipeBrowserNestedCraft.RefreshJourneyReadyTints(currentProducts, seedType, nextGreen);
+
+            if (nextGreen.SetEquals(_greenFaceImmediateProducts))
+                return;
+
+            _greenFaceImmediateProducts.Clear();
+            foreach (int type in nextGreen)
+                _greenFaceImmediateProducts.Add(type);
+            UpdateProductList();
         }
 
         private ResearchProductTint GetProductTint(int type)
@@ -393,7 +529,9 @@ namespace EvenMoreOverpoweredJourney.Research.UI
                 case ResearchFaceMode.Yellow:
                     return ResearchProductTint.BlueResearched;
                 case ResearchFaceMode.Green:
-                    return ResearchProductTint.GreenResearchable;
+                    return _greenFaceImmediateProducts.Contains(type)
+                        ? ResearchProductTint.GreenResearchable
+                        : ResearchProductTint.GreenMultiStep;
                 case ResearchFaceMode.Blue:
                     return ResearchProductTint.RedUnresearched;
                 case ResearchFaceMode.Purple:
@@ -410,16 +548,35 @@ namespace EvenMoreOverpoweredJourney.Research.UI
             }
         }
 
+        private bool IsGreenFaceImmediateForBulkAction(int productType, int seedType)
+        {
+            if (_activeFace != ResearchFaceMode.Green || seedType <= ItemID.None)
+                return true;
+
+            return RecipeBrowserNestedCraft.IsProductImmediatelyCraftable(productType, seedType);
+        }
+
         private void ResearchAllVisible()
         {
             EmojLog.Info(EmojLogChannel.Research, $"ResearchAllVisible count={currentProducts.Count}");
             if (currentProducts.Count == 0)
                 return;
 
+            int seedType = inputSlot.item.IsAir ? ItemID.None : inputSlot.item.type;
+            if (_activeFace == ResearchFaceMode.Green && seedType > ItemID.None)
+                Main.LocalPlayer?.GetModPlayer<ResearchCraftingPlayer>()?.RefreshEnvironmentForResearchQuery();
+
             List<string> researchedTags = new List<string>();
             bool anyResearched = false;
+            int skippedYellow = 0;
             foreach (int type in currentProducts)
             {
+                if (!IsGreenFaceImmediateForBulkAction(type, seedType))
+                {
+                    skippedYellow++;
+                    continue;
+                }
+
                 if (!RecipeAnalyzer.IsResearched(type))
                 {
                     CreativeUI.ResearchItem(type);
@@ -428,8 +585,12 @@ namespace EvenMoreOverpoweredJourney.Research.UI
                 }
             }
 
+            if (skippedYellow > 0)
+                EmojLog.Info(EmojLogChannel.Research, $"ResearchAllVisible skipped journeyYellow={skippedYellow}");
+
             if (anyResearched)
             {
+                RecipeBrowserNestedCraft.InvalidateGreenFaceResultCache();
                 SoundEngine.PlaySound(SoundID.ResearchComplete);
                 Main.NewText(EOPJText.UIFormat("ResearchDoneLine", string.Join(" ", researchedTags)), Color.LightGreen);
             }
@@ -446,8 +607,15 @@ namespace EvenMoreOverpoweredJourney.Research.UI
             if (player == null || !player.active)
                 return;
 
+            int seedType = inputSlot.item.IsAir ? ItemID.None : inputSlot.item.type;
+            if (_activeFace == ResearchFaceMode.Green && seedType > ItemID.None)
+                player.GetModPlayer<ResearchCraftingPlayer>()?.RefreshEnvironmentForResearchQuery();
+
             foreach (int type in currentProducts)
             {
+                if (!IsGreenFaceImmediateForBulkAction(type, seedType))
+                    continue;
+
                 int maxStack = new Item(type).maxStack;
                 player.QuickSpawnItem(player.GetSource_GiftOrReward(), type, maxStack);
             }
@@ -469,7 +637,7 @@ namespace EvenMoreOverpoweredJourney.Research.UI
                 && !greenNeedsResearchedSeed
                 && currentProducts.Count == 0;
             emptyHintText?.SetText(
-                _greenQuerySession != null ? EOPJText.UI("GreenFaceQuerying")
+                _greenQuerySession != null && currentProducts.Count == 0 ? EOPJText.UI("GreenFaceQuerying")
                 : greenNeedsResearchedSeed ? EOPJText.UI("GreenFaceNeedResearchedSeed")
                 : showGreenEmptyHint ? EOPJText.UI("GreenFaceNoProducts")
                 : string.Empty);

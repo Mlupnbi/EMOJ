@@ -1,0 +1,376 @@
+﻿{
+  "schemaVersion": 1,
+  "mod": "AlchemistNPCLite",
+  "scannedAtUtc": "2026-05-20T08:26:57.6734727Z",
+  "sourcePath": "C:\\Users\\14451\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\EvenMoreOverpoweredJourney\\Data\\BuffModSupport\\decompiled_cache\\AlchemistNPCLite\\decompiled_cs",
+  "sourceKind": "extracted_source",
+  "buffClassCount": 27,
+  "buffs": [
+    {
+      "mod": "AlchemistNPCLite",
+      "internalName": "BattleComb",
+      "className": "BattleComb",
+      "relativeFile": "AlchemistNPCLite.Buffs/BattleComb.cs",
+      "stableKey": "AlchemistNPCLite/BattleComb",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "AlchemistNPCLite",
+      "internalName": "Blurring",
+      "className": "Blurring",
+      "relativeFile": "AlchemistNPCLite.Buffs/Blurring.cs",
+      "stableKey": "AlchemistNPCLite/Blurring",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "AlchemistNPCLite",
+      "internalName": "BuilderComb",
+      "className": "BuilderComb",
+      "relativeFile": "AlchemistNPCLite.Buffs/BuilderComb.cs",
+      "stableKey": "AlchemistNPCLite/BuilderComb",
+      "suggestedPhase": "Stat",
+      "confidence": "Medium",
+      "statSignals": [
+        "player\\.pickSpeed\\s*[\\\u002B\\-\\*\\/]?="
+      ],
+      "visualSignals": [],
+      "entitySignals": []
+    },
+    {
+      "mod": "AlchemistNPCLite",
+      "internalName": "CalamityComb",
+      "className": "CalamityComb",
+      "relativeFile": "AlchemistNPCLite.Buffs/CalamityComb.cs",
+      "stableKey": "AlchemistNPCLite/CalamityComb",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "AlchemistNPCLite",
+      "internalName": "Corrosion",
+      "className": "Corrosion",
+      "relativeFile": "AlchemistNPCLite.Buffs/Corrosion.cs",
+      "stableKey": "AlchemistNPCLite/Corrosion",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "AlchemistNPCLite",
+      "internalName": "DiscordBuff",
+      "className": "DiscordBuff",
+      "relativeFile": "AlchemistNPCLite.Buffs/DiscordBuff.cs",
+      "stableKey": "AlchemistNPCLite/DiscordBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "AlchemistNPCLite",
+      "internalName": "Excavation",
+      "className": "Excavation",
+      "relativeFile": "AlchemistNPCLite.Buffs/Excavation.cs",
+      "stableKey": "AlchemistNPCLite/Excavation",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "AlchemistNPCLite",
+      "internalName": "ExplorerComb",
+      "className": "ExplorerComb",
+      "relativeFile": "AlchemistNPCLite.Buffs/ExplorerComb.cs",
+      "stableKey": "AlchemistNPCLite/ExplorerComb",
+      "suggestedPhase": "Mixed",
+      "confidence": "Low",
+      "statSignals": [
+        "player\\.pickSpeed\\s*[\\\u002B\\-\\*\\/]?="
+      ],
+      "visualSignals": [
+        "Lighting\\.AddLight"
+      ],
+      "entitySignals": [],
+      "note": "\u540C\u65F6\u542B\u5C5E\u6027\u4E0E\u7279\u6548/\u5B9E\u4F53\u4FE1\u53F7\uFF0C\u9700\u4EBA\u5DE5\u786E\u8BA4"
+    },
+    {
+      "mod": "AlchemistNPCLite",
+      "internalName": "FishingComb",
+      "className": "FishingComb",
+      "relativeFile": "AlchemistNPCLite.Buffs/FishingComb.cs",
+      "stableKey": "AlchemistNPCLite/FishingComb",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Lighting\\.AddLight"
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "AlchemistNPCLite",
+      "internalName": "Fortitude",
+      "className": "Fortitude",
+      "relativeFile": "AlchemistNPCLite.Buffs/Fortitude.cs",
+      "stableKey": "AlchemistNPCLite/Fortitude",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "AlchemistNPCLite",
+      "internalName": "GreaterDangersense",
+      "className": "GreaterDangersense",
+      "relativeFile": "AlchemistNPCLite.Buffs/GreaterDangersense.cs",
+      "stableKey": "AlchemistNPCLite/GreaterDangersense",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "AlchemistNPCLite",
+      "internalName": "LongInvincible",
+      "className": "LongInvincible",
+      "relativeFile": "AlchemistNPCLite.Buffs/LongInvincible.cs",
+      "stableKey": "AlchemistNPCLite/LongInvincible",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "AlchemistNPCLite",
+      "internalName": "MageComb",
+      "className": "MageComb",
+      "relativeFile": "AlchemistNPCLite.Buffs/MageComb.cs",
+      "stableKey": "AlchemistNPCLite/MageComb",
+      "suggestedPhase": "Stat",
+      "confidence": "High",
+      "statSignals": [
+        "player\\.GetDamage\\s*\\(",
+        "DamageClass\\."
+      ],
+      "visualSignals": [],
+      "entitySignals": []
+    },
+    {
+      "mod": "AlchemistNPCLite",
+      "internalName": "MorePotionsComb",
+      "className": "MorePotionsComb",
+      "relativeFile": "AlchemistNPCLite.Buffs/MorePotionsComb.cs",
+      "stableKey": "AlchemistNPCLite/MorePotionsComb",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "AlchemistNPCLite",
+      "internalName": "NinjaSkill",
+      "className": "NinjaSkill",
+      "relativeFile": "AlchemistNPCLite.Buffs/NinjaSkill.cs",
+      "stableKey": "AlchemistNPCLite/NinjaSkill",
+      "suggestedPhase": "Stat",
+      "confidence": "High",
+      "statSignals": [
+        "player\\.GetDamage\\s*\\(",
+        "player\\.GetCritChance\\s*\\(",
+        "DamageClass\\."
+      ],
+      "visualSignals": [],
+      "entitySignals": []
+    },
+    {
+      "mod": "AlchemistNPCLite",
+      "internalName": "RangerComb",
+      "className": "RangerComb",
+      "relativeFile": "AlchemistNPCLite.Buffs/RangerComb.cs",
+      "stableKey": "AlchemistNPCLite/RangerComb",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "AlchemistNPCLite",
+      "internalName": "SpiritComb",
+      "className": "SpiritComb",
+      "relativeFile": "AlchemistNPCLite.Buffs/SpiritComb.cs",
+      "stableKey": "AlchemistNPCLite/SpiritComb",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "AlchemistNPCLite",
+      "internalName": "StationUltimaBuff",
+      "className": "StationUltimaBuff",
+      "relativeFile": "AlchemistNPCLite.Buffs/StationUltimaBuff.cs",
+      "stableKey": "AlchemistNPCLite/StationUltimaBuff",
+      "suggestedPhase": "Stat",
+      "confidence": "Medium",
+      "statSignals": [
+        "player\\.stat\\w\u002B\\s*[\\\u002B\\-\\*\\/]?="
+      ],
+      "visualSignals": [],
+      "entitySignals": []
+    },
+    {
+      "mod": "AlchemistNPCLite",
+      "internalName": "SummonerComb",
+      "className": "SummonerComb",
+      "relativeFile": "AlchemistNPCLite.Buffs/SummonerComb.cs",
+      "stableKey": "AlchemistNPCLite/SummonerComb",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "AlchemistNPCLite",
+      "internalName": "Sunshine",
+      "className": "Sunshine",
+      "relativeFile": "AlchemistNPCLite.Buffs/Sunshine.cs",
+      "stableKey": "AlchemistNPCLite/Sunshine",
+      "suggestedPhase": "CombatVisual",
+      "confidence": "Medium",
+      "statSignals": [],
+      "visualSignals": [
+        "Lighting\\.AddLight"
+      ],
+      "entitySignals": []
+    },
+    {
+      "mod": "AlchemistNPCLite",
+      "internalName": "TankComb",
+      "className": "TankComb",
+      "relativeFile": "AlchemistNPCLite.Buffs/TankComb.cs",
+      "stableKey": "AlchemistNPCLite/TankComb",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "AlchemistNPCLite",
+      "internalName": "ThoriumComb",
+      "className": "ThoriumComb",
+      "relativeFile": "AlchemistNPCLite.Buffs/ThoriumComb.cs",
+      "stableKey": "AlchemistNPCLite/ThoriumComb",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "AlchemistNPCLite",
+      "internalName": "TitanSkin",
+      "className": "TitanSkin",
+      "relativeFile": "AlchemistNPCLite.Buffs/TitanSkin.cs",
+      "stableKey": "AlchemistNPCLite/TitanSkin",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "AlchemistNPCLite",
+      "internalName": "TrapsBuff",
+      "className": "TrapsBuff",
+      "relativeFile": "AlchemistNPCLite.Buffs/TrapsBuff.cs",
+      "stableKey": "AlchemistNPCLite/TrapsBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "AlchemistNPCLite",
+      "internalName": "TrueDiscordBuff",
+      "className": "TrueDiscordBuff",
+      "relativeFile": "AlchemistNPCLite.Buffs/TrueDiscordBuff.cs",
+      "stableKey": "AlchemistNPCLite/TrueDiscordBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "AlchemistNPCLite",
+      "internalName": "UniversalComb",
+      "className": "UniversalComb",
+      "relativeFile": "AlchemistNPCLite.Buffs/UniversalComb.cs",
+      "stableKey": "AlchemistNPCLite/UniversalComb",
+      "suggestedPhase": "Stat",
+      "confidence": "High",
+      "statSignals": [
+        "player\\.GetDamage\\s*\\(",
+        "DamageClass\\."
+      ],
+      "visualSignals": [],
+      "entitySignals": []
+    },
+    {
+      "mod": "AlchemistNPCLite",
+      "internalName": "VanTankComb",
+      "className": "VanTankComb",
+      "relativeFile": "AlchemistNPCLite.Buffs/VanTankComb.cs",
+      "stableKey": "AlchemistNPCLite/VanTankComb",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    }
+  ]
+}

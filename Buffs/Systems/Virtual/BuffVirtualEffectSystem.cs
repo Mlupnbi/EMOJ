@@ -13,7 +13,7 @@ using EvenMoreOverpoweredJourney.Shell.UI;
 namespace EvenMoreOverpoweredJourney.Buffs.Systems.Virtual
 {
     /// <summary>
-    /// ���� Buff��ƽ��ģʽ�����Զӣ�ÿ֡������Ч�ӣ���Ƶ����ͳһģʽÿ֡ȫ�б��
+    /// ���� Buff��ƽ��ģʽ�����Զӣ�ÿ֡������Ч�ӣ���Ƶ����ͳһģʽÿ֡ȫ�б��?
     /// ʩ��ʹ�� <see cref="ModBuff.Update"/>������ <see cref="Player.UpdateBuffs"/>��
     /// </summary>
     public static class BuffVirtualEffectSystem
@@ -104,7 +104,7 @@ namespace EvenMoreOverpoweredJourney.Buffs.Systems.Virtual
 
         public static bool UsesVirtualEffect(int buffId) => UsesVirtualEffect(buffId, null);
 
-        /// <summary>���������� scratch���� Buff �Ƿ���� scratch������ �� ͼ������ȣ���</summary>
+        /// <summary>���������� scratch���� Buff �Ƿ����? scratch������ �� ͼ������ȣ���?</summary>
         public static bool WouldUseVirtualEffect(int buffId, BuffResearchPlayer modPlayer) =>
             QualifiesForVirtualEffect(buffId, modPlayer);
 
@@ -214,7 +214,7 @@ namespace EvenMoreOverpoweredJourney.Buffs.Systems.Virtual
             }
         }
 
-        /// <summary>ÿ֡���ִ��һ�Σ��� <see cref="BuffResearchPlayer.PreUpdateBuffs"/> ���á�</summary>
+        /// <summary>ÿ֡���ִ��һ�Σ���? <see cref="BuffResearchPlayer.PreUpdateBuffs"/> ���á�</summary>
         public static void ApplyAllVirtualEffects(Player player, BuffResearchPlayer mp)
         {
             if (player == null || mp == null)
@@ -319,7 +319,7 @@ namespace EvenMoreOverpoweredJourney.Buffs.Systems.Virtual
                 System.Array.Copy(savedTime, player.buffTime, slotCount);
                 summonGuard.Restore(player);
                 BuffVirtualEffectSummonGuard.Clamp(player);
-                BuffEmoteGuardSystem.ResetPlayerEmoteTimers(player);
+                BuffEmoteGuardSystem.SuppressPlayerEmotes(player);
 
                 if (needsQueueRebuild)
                     RebuildVirtualQueue(mp, force: true);

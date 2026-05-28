@@ -1,0 +1,36 @@
+﻿{
+  "schemaVersion": 1,
+  "mod": "UpgradedResearch",
+  "scannedAtUtc": "2026-05-20T08:27:45.4347435Z",
+  "sourcePath": "C:\\Users\\14451\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\EvenMoreOverpoweredJourney\\Data\\BuffModSupport\\decompiled_cache\\UpgradedResearch\\decompiled_cs",
+  "sourceKind": "extracted_source",
+  "buffClassCount": 2,
+  "buffs": [
+    {
+      "mod": "UpgradedResearch",
+      "internalName": "AlphaBuff",
+      "className": "AlphaBuff",
+      "relativeFile": "UpgradedResearch.Buffs/AlphaBuff.cs",
+      "stableKey": "UpgradedResearch/AlphaBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    },
+    {
+      "mod": "UpgradedResearch",
+      "internalName": "OmegaBuff",
+      "className": "OmegaBuff",
+      "relativeFile": "UpgradedResearch.Buffs/OmegaBuff.cs",
+      "stableKey": "UpgradedResearch/OmegaBuff",
+      "suggestedPhase": "Unknown",
+      "confidence": "Low",
+      "statSignals": [],
+      "visualSignals": [],
+      "entitySignals": [],
+      "note": "\u672A\u68C0\u6D4B\u5230\u5E38\u89C1 stat/visual \u6A21\u5F0F"
+    }
+  ]
+}

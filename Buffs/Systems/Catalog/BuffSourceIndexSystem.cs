@@ -9,7 +9,7 @@ using EvenMoreOverpoweredJourney.Shell.UI;
 
 namespace EvenMoreOverpoweredJourney.Buffs.Systems.Catalog
 {
-    /// <summary>�����������ࣺҩˮ/ʳ�װ��/��װ��������</summary>
+    /// <summary>??????????????/??????/???????????</summary>
     public sealed class BuffSourceIndexSystem : ModSystem
     {
         private static readonly HashSet<int> PotionFoodBuffIds = new HashSet<int>();
@@ -168,8 +168,13 @@ namespace EvenMoreOverpoweredJourney.Buffs.Systems.Catalog
                 case BuffID.ShadowCandle:
                 case BuffID.WaterCandle:
                 case BuffID.Honey:
+                case BuffID.MonsterBanner:
+                case BuffID.DryadsWard:
                     return true;
             }
+
+            if (BuffBeneficialDebuffFlagSystem.MatchesKnownBeneficial(buffId))
+                return true;
 
             return false;
         }

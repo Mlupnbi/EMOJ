@@ -1,0 +1,25 @@
+﻿=== EMOJ Buff 扫描支持报告 ===
+模组: FargosSoulsMod
+扫描时间(UTC): 2026-05-20T07:13:42.9088832Z
+源码路径: C:\Users\14451\AppData\Local\Temp\EmojBuffGit_d0712dc2096a4c21950f6db952bf6432\extracted\FargosSoulsMod-master\Content
+来源类型: github_source
+build.txt 版本: (无)
+csproj 版本: (无)
+建议登记版本: (未知)
+
+ModBuff 类数量: 157
+  Stat 建议: 21
+  CombatVisual 建议: 21
+  Mixed: 2
+  Unknown: 113
+  High 置信 Stat: 15
+
+ModContent.BuffType 注册名对照:
+  类与注册同名: 132
+  仅有 ModBuff 类: 25
+  仅有 BuffType 引用: 25
+
+下一步:
+1. 查看 registration_compare.tsv
+2. 将 acceptedVersions 写入 Data/BuffModSupport/mod_profiles.json
+3. 审阅后合并 overrides.json（或 --merge-high-stat）

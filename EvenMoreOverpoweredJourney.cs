@@ -30,6 +30,7 @@ namespace EvenMoreOverpoweredJourney
         public const string TabIconBuff = "Assets/UI/TabBuff";
         public const string TabIconStorage = "Assets/UI/TabStorage";
         public const string TabIconBestiary = "Assets/UI/TabBestiary";
+        public const string TabIconBlueprint = "Assets/UI/TabBlueprint";
 
         /// <summary>物品中枢「筛选」按钮图标（30×30 PNG，放�? Assets/UI/ItemHubFilterButton.png）�?</summary>
         public const string ItemHubFilterButton = "Assets/UI/ItemHubFilterButton";
@@ -60,6 +61,7 @@ namespace EvenMoreOverpoweredJourney
         public static ModKeybind OpenItemHubPanelKey { get; private set; }
         public static ModKeybind QuickItemQueryKey { get; private set; }
         public static ModKeybind OpenBestiaryPanelKey { get; private set; }
+        public static ModKeybind OpenBlueprintPanelKey { get; private set; }
 
         public override void Load()
         {
@@ -67,6 +69,7 @@ namespace EvenMoreOverpoweredJourney
             OpenBuffPanelKey = KeybindLoader.RegisterKeybind(this, "OpenBuffPanel", "T");
             OpenItemHubPanelKey = KeybindLoader.RegisterKeybind(this, "OpenItemHubPanel", "Y");
             OpenBestiaryPanelKey = KeybindLoader.RegisterKeybind(this, "OpenBestiaryPanel", "U");
+            OpenBlueprintPanelKey = KeybindLoader.RegisterKeybind(this, "OpenBlueprintPanel", "I");
             QuickItemQueryKey = KeybindLoader.RegisterKeybind(this, "QuickItemQuery", "Mouse5");
         }
 
@@ -76,6 +79,7 @@ namespace EvenMoreOverpoweredJourney
             OpenBuffPanelKey = null;
             OpenItemHubPanelKey = null;
             OpenBestiaryPanelKey = null;
+            OpenBlueprintPanelKey = null;
             QuickItemQueryKey = null;
         }
     }
