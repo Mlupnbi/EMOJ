@@ -466,8 +466,12 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
             try
             {
                 int wiki = CountWikiFilled(scheme);
+                FurnitureBlueprintCrashDiagnostics.BeginSeed(seedType);
+                FurnitureBlueprintCrashDiagnostics.Phase("batch-complete", "before-accuracy");
                 FurnitureSchemeAccuracy.Report accuracy =
                     FurnitureSchemeAccuracy.Evaluate(seedType, material, scheme);
+                FurnitureBlueprintCrashDiagnostics.Phase("batch-complete", "after-accuracy");
+                FurnitureBlueprintCrashDiagnostics.EndSeed();
                 _wikiSum += wiki;
                 _accuracySum += accuracy.Accurate;
                 _accuracyFilled += accuracy.Filled;

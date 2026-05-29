@@ -30,8 +30,8 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
 
         public override void PostSetupContent()
         {
-            FurnitureTileSlotRegistry.Build(force: true);
             FurnitureTileItemRegistry.Build();
+            FurnitureTileSlotRegistry.Build(force: true);
             FurnitureSetMaterialCheckers.Build();
             FurnitureSetCatalog.Build();
             FurnitureWikiExpectations.Reload(Mod);
@@ -43,9 +43,9 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
             FurnitureStyleClusterCatalog.ClearCache();
             FurnitureSetCacheSystem.InvalidateAll();
             FurnitureReverseSeedProbeCache.Clear();
+            FurnitureTileItemRegistry.Build();
             if (!FurnitureTileSlotRegistry.IsBuilt)
                 FurnitureTileSlotRegistry.Build(force: true);
-            FurnitureTileItemRegistry.Build();
             FurnitureSetMaterialCheckers.Build();
             FurnitureSetCatalog.Build();
 

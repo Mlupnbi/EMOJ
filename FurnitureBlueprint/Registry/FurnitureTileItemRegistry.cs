@@ -13,13 +13,38 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint.Registry
     {
         private static readonly Dictionary<int, int> TileDefaultItem = new();
         private static readonly Dictionary<long, int> TileStyleItem = new();
+        private static readonly Dictionary<int, HashSet<int>> KnownStylesByTile = new();
         private static readonly Dictionary<int, int> WallDefaultItem = new();
         private static bool _built;
+
+        public static bool IsBuilt => _built;
+
+        /// <summary>至少有一个物品使用该 (tile, placeStyle) 放置时才允许 GetTileData（避免 native 闪退）。</summary>
+        public static bool IsKnownPlacementStyle(int tile, int style)
+        {
+            EnsureBuilt();
+            return KnownStylesByTile.TryGetValue(tile, out HashSet<int> styles) && styles.Contains(style);
+        }
+
+        public static bool TryGetKnownStyles(int tile, out int[] styles)
+        {
+            EnsureBuilt();
+            if (!KnownStylesByTile.TryGetValue(tile, out HashSet<int> set) || set.Count == 0)
+            {
+                styles = null;
+                return false;
+            }
+
+            styles = new int[set.Count];
+            set.CopyTo(styles);
+            return true;
+        }
 
         public static void Build()
         {
             TileDefaultItem.Clear();
             TileStyleItem.Clear();
+            KnownStylesByTile.Clear();
             WallDefaultItem.Clear();
             _built = true;
 
@@ -79,6 +104,14 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint.Registry
 
             if (!TileDefaultItem.ContainsKey(tile))
                 TileDefaultItem[tile] = itemType;
+
+            if (!KnownStylesByTile.TryGetValue(tile, out HashSet<int> styles))
+            {
+                styles = new HashSet<int>();
+                KnownStylesByTile[tile] = styles;
+            }
+
+            styles.Add(style);
         }
 
         private static void RegisterWallItem(int wall, int itemType)

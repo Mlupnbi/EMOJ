@@ -324,9 +324,7 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
                 return true;
             if (item.type < ItemID.Sets.IsAMaterial.Length && ItemID.Sets.IsAMaterial[item.type])
                 return true;
-            return item.createTile >= TileID.Dirt
-                && Main.tileSolid[item.createTile]
-                && !Main.tileSolidTop[item.createTile];
+            return FurnitureTileSafety.IsPhysicallySolidTile(item.createTile);
         }
 
         private static bool IsCraftMaterial(Item item)
@@ -335,9 +333,7 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
                 return false;
             if (item.type < ItemID.Sets.IsAMaterial.Length && ItemID.Sets.IsAMaterial[item.type])
                 return true;
-            return item.createTile >= TileID.Dirt
-                && Main.tileSolid[item.createTile]
-                && !Main.tileSolidTop[item.createTile];
+            return FurnitureTileSafety.IsPhysicallySolidTile(item.createTile);
         }
 
         private static IEnumerable<int> ExpandGroupItems(IEnumerable<int> validItems, string targetStyle, int max)

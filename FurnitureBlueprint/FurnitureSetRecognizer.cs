@@ -466,6 +466,13 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
                 return;
             }
 
+            if (probe.createWall <= WallID.None
+                && !FurnitureTileSafety.HasPlaceableTile(probe))
+            {
+                job.RejectedPlaceable++;
+                return;
+            }
+
             if (!FurnitureRecognitionCaches.IsPlaceableFurniture(type))
             {
                 job.RejectedPlaceable++;
@@ -547,7 +554,11 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
                     return false;
 
                 case 3:
+                    FurnitureBlueprintCrashDiagnostics.BeginSeed(job.SeedType);
+                    FurnitureBlueprintCrashDiagnostics.Phase("finalize-step3", "begin");
                     CompleteFinalizeScheme(job);
+                    FurnitureBlueprintCrashDiagnostics.Phase("finalize-step3", "end");
+                    FurnitureBlueprintCrashDiagnostics.EndSeed();
                     job.FinalizeStep = 4;
                     return true;
 
@@ -678,26 +689,36 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
                 if (!job.Ctx.TryBeginPlaceholderAttempt(slot))
                     continue;
 
+                FurnitureBlueprintCrashDiagnostics.BeginSeed(job.SeedType);
+                FurnitureBlueprintCrashDiagnostics.SlotStep(slot, "placeholder-begin");
+
                 RefreshPlaceholderCommonWords(job);
 
                 if (!job.FinalizeExpandedBuilt)
                 {
+                    FurnitureBlueprintCrashDiagnostics.Phase("placeholder", "expand-candidates");
                     job.FinalizeExpanded = BuildFinalizeExpandedCandidates(job);
                     job.FinalizeExpandedBuilt = true;
                 }
 
                 var occupied = FurnitureSchemeOccupancy.CollectOccupied(job.Scheme, materialBlock, job.SeedType);
+                FurnitureBlueprintCrashDiagnostics.Phase("placeholder", $"build-pool slot={slot}");
                 List<int> pool = FurniturePlaceholderPool.Build(
                     slot, job.PerSlot, job.FinalizeExpanded, occupied,
                     job.SeedType, materialBlock, job.Ctx);
+                FurnitureBlueprintCrashDiagnostics.Phase("placeholder", $"pick slot={slot} pool={pool.Count}");
                 int pick = FurnitureSlotPicker.PickForSlot(
                     pool, slot, job.SeedType, materialBlock, job.BlockSig, job.Stations,
                     FurnitureSlotScoring.GetMinPlaceholderScore(slot, job.SeedType, materialBlock), occupied, job.Ctx);
 
                 EmojLogDiagnostics.LogSlotResolved(job.SeedType, slot, pick, pool.Count, "placeholder-once");
+                FurnitureBlueprintCrashDiagnostics.Item(slot, pick, "placeholder-pick");
 
                 if (pick <= ItemID.None)
+                {
+                    FurnitureBlueprintCrashDiagnostics.EndSeed();
                     continue;
+                }
 
                 job.Scheme.SetSlot(slot, pick);
                 if (!job.PerSlot.TryGetValue(slot, out List<int> list))
@@ -709,6 +730,8 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
                 if (!list.Contains(pick))
                     list.Add(pick);
 
+                FurnitureBlueprintCrashDiagnostics.Phase("placeholder", $"done slot={slot}");
+                FurnitureBlueprintCrashDiagnostics.EndSeed();
                 return false;
             }
 
@@ -765,6 +788,7 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
 
         private static void CompleteFinalizeScheme(FurnitureRecognitionJob job)
         {
+            FurnitureBlueprintCrashDiagnostics.Phase("finalize", "empty-wiki-slots");
             LogEmptyWikiSlots(job.Scheme, job.PerSlot, job.SeedType);
 
             int finalWiki = CountWikiFilled(job.Scheme);
@@ -774,10 +798,13 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
                     $"recognize incomplete seed={job.SeedType} material={job.MaterialBlock} wiki={finalWiki}/{FurnitureWikiSlots.TotalCount} candidates={job.FinalizeCandidates?.Count ?? job.CandidateList.Count}");
             }
 
+            FurnitureBlueprintCrashDiagnostics.Phase("finalize", "backfill-bathtub");
             TryBackfillBathtubFromCandidates(
                 job.Scheme, job, job.SeedType, job.MaterialBlock, job.BlockSig, job.Stations, job.Ctx);
+            FurnitureBlueprintCrashDiagnostics.Phase("finalize", "bed-bath-backfill");
             FurnitureBedBathtubBackfill.TryFillEmptySlots(
                 job.Scheme, job, job.SeedType, job.MaterialBlock, job.BlockSig, job.Stations, job.Ctx);
+            FurnitureBlueprintCrashDiagnostics.Phase("finalize", "complete");
         }
 
         private static void TryBackfillBathtubFromCandidates(
@@ -1354,9 +1381,11 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
             int miss = 0;
             foreach (int type in candidates)
             {
-                Item probe = new Item();
-                probe.SetDefaults(type);
+                if (!FurnitureRecognitionCaches.TryGetProbe(type, out Item probe))
+                    continue;
                 if (!FurnitureCandidateFilter.IsPlaceableFurnitureItem(probe))
+                    continue;
+                if (probe.createWall <= WallID.None && !FurnitureTileSafety.HasPlaceableTile(probe))
                     continue;
                 if (probe.createWall > WallID.None && probe.createTile < TileID.Dirt)
                     continue;

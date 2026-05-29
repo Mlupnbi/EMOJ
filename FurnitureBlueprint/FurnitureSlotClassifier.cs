@@ -4,6 +4,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 using EvenMoreOverpoweredJourney.Core.Logging;
+using EvenMoreOverpoweredJourney.FurnitureBlueprint.Registry;
 
 namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
 {
@@ -92,6 +93,9 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
                 return false;
             }
 
+            if (!FurnitureTileSafety.IsValidTileId(tile))
+                return false;
+
             if (FurnitureTileSafety.IsPlatformTile(tile))
             {
                 kind = FurnitureSlotKind.Platform;
@@ -170,7 +174,7 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
             return false;
         }
 
-        /// <summary>供全量识别日志：粗/深分档与最终槽位。</summary>
+        /// <summary>供全量识别日志：�?/深分档与最终槽位�?</summary>
         public static string FormatClassificationTier(in ClassificationTrace trace, FurnitureSlotKind kind)
         {
             if (kind == FurnitureSlotKind.Wall)
@@ -207,10 +211,14 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
             if (FurnitureBlueprintRecursionGuard.IsDepthExceeded)
                 return false;
 
+            if (!FurnitureTileItemRegistry.TryGetKnownStyles(tile, out int[] styles) || styles.Length == 0)
+                return false;
+
             const int maxStyleProbes = 8;
             int probed = 0;
-            for (int s = 0; s < 256 && probed < maxStyleProbes; s++)
+            for (int i = 0; i < styles.Length && probed < maxStyleProbes; i++)
             {
+                int s = styles[i];
                 if (s == style)
                     continue;
                 if (FurnitureTileSafety.TryGetTileData(tile, s) == null)
@@ -271,7 +279,7 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
                 string name = (item.Name ?? "").ToLowerInvariant();
                 if (name.Contains("火盆") || name.Contains("火坛") || name.Contains("brazier") || name.Contains("bowl"))
                     return false;
-                return name.Contains("箱") || name.Contains("chest") || name.Contains("宝箱");
+                return name.Contains("�?") || name.Contains("chest") || name.Contains("宝箱");
             }
 
             if (kind == FurnitureSlotKind.Candelabra && FurnitureSlotNameRules.PreferLampOverCandelabra(item.type))
@@ -336,7 +344,7 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
                     return true;
                 }
 
-                if (name.Contains("箱") || name.Contains("chest") || name.Contains("宝箱"))
+                if (name.Contains("�?") || name.Contains("chest") || name.Contains("宝箱"))
                 {
                     kind = FurnitureSlotKind.Chest;
                     return true;
@@ -449,12 +457,12 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
             if (FurnitureNameSignals.IsDecorativeMark(name))
                 return false;
 
-            if (name.Contains("睡眠舱") || name.Contains("睡舱") || name.Contains("sleep pod") || name.Contains("sleeppod"))
+            if (name.Contains("睡眠�?") || name.Contains("睡舱") || name.Contains("sleep pod") || name.Contains("sleeppod"))
             {
                 kind = FurnitureSlotKind.Bed;
                 return true;
             }
-            if (name.Contains("台灯") || name.Contains("落地灯") || name.Contains("desk lamp") || name.Contains("table lamp"))
+            if (name.Contains("台灯") || name.Contains("落地�?") || name.Contains("desk lamp") || name.Contains("table lamp"))
             {
                 kind = FurnitureSlotKind.Lamp;
                 return true;
@@ -494,12 +502,12 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
                 kind = FurnitureSlotKind.Lantern;
                 return true;
             }
-            if (name.Contains("杯") || name.Contains("酒杯") || name.Contains("马克杯"))
+            if (name.Contains("�?") || name.Contains("酒杯") || name.Contains("马克�?"))
             {
                 kind = FurnitureSlotKind.Candle;
                 return true;
             }
-            if (name.Contains("烛") || name.Contains("火把"))
+            if (name.Contains("�?") || name.Contains("火把"))
             {
                 kind = FurnitureSlotKind.Candle;
                 return true;
@@ -509,12 +517,12 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
                 kind = FurnitureSlotKind.Chandelier;
                 return true;
             }
-            if (name.Contains("浴缸") || (name.Contains("浴") && !name.Contains("书")))
+            if (name.Contains("浴缸") || (name.Contains("�?") && !name.Contains("�?")))
             {
                 kind = FurnitureSlotKind.Bathtub;
                 return true;
             }
-            if (name.Contains("床") && !name.Contains("床头柜"))
+            if (name.Contains("�?") && !name.Contains("床头�?"))
             {
                 kind = FurnitureSlotKind.Bed;
                 return true;
@@ -524,18 +532,18 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
                 kind = FurnitureSlotKind.Dresser;
                 return true;
             }
-            if (name.Contains("钢琴") || name.Contains("七弦琴")
-                || (name.Contains("琴") && !name.Contains("书架")))
+            if (name.Contains("钢琴") || name.Contains("七弦�?")
+                || (name.Contains("�?") && !name.Contains("书架")))
             {
                 kind = FurnitureSlotKind.Piano;
                 return true;
             }
-            if (name.Contains("水槽") || name.Contains("洗手池") || name.Contains("水池"))
+            if (name.Contains("水槽") || name.Contains("洗手�?") || name.Contains("水池"))
             {
                 kind = FurnitureSlotKind.Sink;
                 return true;
             }
-            if (name.Contains("工作台") || name.Contains("制作站"))
+            if (name.Contains("工作�?") || name.Contains("制作�?"))
             {
                 kind = FurnitureSlotKind.Workbench;
                 return true;
@@ -545,27 +553,27 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
                 kind = FurnitureSlotKind.Sofa;
                 return true;
             }
-            if (name.Contains("灯") && !name.Contains("烛") && !name.Contains("吊灯") && !name.Contains("灯笼") && !name.Contains("台"))
+            if (name.Contains("�?") && !name.Contains("�?") && !name.Contains("吊灯") && !name.Contains("灯笼") && !name.Contains("�?"))
             {
                 kind = FurnitureSlotKind.Lamp;
                 return true;
             }
-            if (name.EndsWith("椅") && !name.Contains("轮椅"))
+            if (name.EndsWith("�?") && !name.Contains("轮椅"))
             {
                 kind = style is 1 or 20 ? FurnitureSlotKind.Toilet : FurnitureSlotKind.Chair;
                 return true;
             }
-            if (name.EndsWith("桌") || name.Contains("桌子"))
+            if (name.EndsWith("�?") || name.Contains("桌子"))
             {
                 kind = FurnitureSlotKind.Table;
                 return true;
             }
-            if (name.Contains("门") && !name.Contains("开门"))
+            if (name.Contains("�?") && !name.Contains("开�?"))
             {
                 kind = FurnitureSlotKind.Door;
                 return true;
             }
-            if (name.Contains("箱") && !name.Contains("信箱"))
+            if (name.Contains("�?") && !name.Contains("信箱"))
             {
                 kind = FurnitureSlotKind.Chest;
                 return true;
@@ -644,7 +652,7 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
                 return true;
             }
             if (name.Contains("cabinet") || name.Contains("wardrobe") || name.Contains("closet") || name.Contains("dresser")
-                || name.Contains("柜") || name.Contains("衣柜") || name.Contains("橱"))
+                || name.Contains("�?") || name.Contains("衣柜") || name.Contains("�?"))
             {
                 kind = FurnitureSlotKind.Dresser;
                 return true;
@@ -659,7 +667,7 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
                 kind = FurnitureSlotKind.Sofa;
                 return true;
             }
-            if (name.Contains("stool") || name.Contains("凳"))
+            if (name.Contains("stool") || name.Contains("�?"))
             {
                 kind = FurnitureSlotKind.Chair;
                 return true;

@@ -114,10 +114,7 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
         }
 
         private static bool IsMaterialBlock(Item item) =>
-            item != null && !item.IsAir
-            && item.createTile >= TileID.Dirt
-            && Main.tileSolid[item.createTile]
-            && !Main.tileSolidTop[item.createTile];
+            item != null && !item.IsAir && FurnitureTileSafety.IsPhysicallySolidTile(item.createTile);
 
         public bool MatchesItem(int itemType)
         {
@@ -253,10 +250,7 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
         }
 
         private static bool IsPlainSolidBlock(int tileType) =>
-            tileType >= TileID.Dirt
-            && Terraria.ObjectData.TileObjectData.GetTileData(tileType, 0) == null
-            && Main.tileSolid[tileType]
-            && !Main.tileSolidTop[tileType];
+            FurnitureTileSafety.IsPlainSolidBlock(tileType);
 
         private static bool SharesPlacementStyle(int tileA, int styleA, int tileB, int styleB)
         {
@@ -279,6 +273,6 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
             || tileType == TileID.Containers2
             || tileType == TileID.Dressers
             || tileType >= TileID.Count
-            || TileID.Sets.Platforms[tileType];
+            || FurnitureTileSafety.IsPlatformTile(tileType);
     }
 }

@@ -57,12 +57,7 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
             {
                 if (FurnitureTileSafety.IsPlatformTile(item.createTile))
                     return false;
-                int tile = item.createTile;
-                if (!FurnitureTileSafety.IsValidTileId(tile)
-                    || tile >= Main.tileSolid.Length
-                    || tile >= Main.tileSolidTop.Length
-                    || !Main.tileSolid[tile]
-                    || Main.tileSolidTop[tile])
+                if (!FurnitureTileSafety.IsPhysicallySolidTile(item.createTile))
                     return false;
             }
 
@@ -99,16 +94,16 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
                 return false;
 
             int tile = item.createTile;
-            if (tile < TileID.Dirt)
+            if (!FurnitureTileSafety.IsValidTileId(tile) || tile < TileID.Dirt)
                 return false;
 
             if (FurnitureTileSafety.InBoolSet(TileID.Sets.Torch, tile))
                 return true;
 
-            if (tile < TileID.Sets.RoomNeeds.CountsAsTorch.Length && TileID.Sets.RoomNeeds.CountsAsTorch[tile] != 0)
+            if (FurnitureTileSafety.RoomNeedsCountsAsTorch(tile))
                 return true;
 
-            if (Main.tileLighted != null && tile < Main.tileLighted.Length && Main.tileLighted[tile])
+            if (FurnitureTileSafety.IsTileLighted(tile))
                 return true;
 
             return tile is TileID.Candles or TileID.Lamps or TileID.Chandeliers or TileID.Candelabras
@@ -126,7 +121,7 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
             Item item = new Item();
             if (!FurnitureItemDefaults.TrySetDefaults(item, itemType))
                 return false;
-            if (item.createTile < TileID.Dirt)
+            if (!FurnitureTileSafety.HasPlaceableTile(item))
                 return false;
 
             TileObjectData data = FurnitureTileSafety.TryGetTileData(item.createTile, item.placeStyle);

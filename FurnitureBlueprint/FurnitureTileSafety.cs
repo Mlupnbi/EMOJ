@@ -3,6 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
+using EvenMoreOverpoweredJourney.FurnitureBlueprint.Registry;
 
 namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
 {
@@ -39,6 +40,10 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
             if (!IsValidTileId(tile) || style < 0 || style > byte.MaxValue)
                 return null;
 
+            // 仅查询有物品实际使用的 placeStyle，避免对无效 style 触发 native 闪退。
+            if (!FurnitureTileItemRegistry.IsKnownPlacementStyle(tile, style))
+                return null;
+
             try
             {
                 return TileObjectData.GetTileData(tile, style);
@@ -65,5 +70,18 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
 
             return Main.tileSolid[tile] && !Main.tileSolidTop[tile];
         }
+
+        public static bool IsTileSolidTop(int tile) =>
+            IsValidTileId(tile) && tile < Main.tileSolidTop.Length && Main.tileSolidTop[tile];
+
+        public static bool IsTileLighted(int tile) =>
+            IsValidTileId(tile) && Main.tileLighted != null && tile < Main.tileLighted.Length && Main.tileLighted[tile];
+
+        /// <summary>无 TileObjectData 的实心块（墙/不可放置物 createTile=-1 已在入口拦截）。</summary>
+        public static bool IsPlainSolidBlock(int tile) =>
+            IsPhysicallySolidTile(tile) && TryGetTileData(tile, 0) == null;
+
+        public static bool HasPlaceableTile(Item item) =>
+            item != null && !item.IsAir && IsValidTileId(item.createTile) && item.createTile >= TileID.Dirt;
     }
 }

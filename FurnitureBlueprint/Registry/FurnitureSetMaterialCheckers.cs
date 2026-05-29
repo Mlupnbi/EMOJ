@@ -155,16 +155,10 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint.Registry
         }
 
         private static bool IsTilePlatform(int tileType) =>
-            tileType >= TileID.Dirt && TileID.Sets.Platforms[tileType];
+            FurnitureTileSafety.IsPlatformTile(tileType);
 
         private static bool IsTileBlock(int tileType) =>
-            tileType >= TileID.Dirt
-            && TileObjectData.GetTileData(tileType, 0) == null
-            && tileType < Main.tileSolid.Length
-            && tileType < Main.tileSolidTop.Length
-            && Main.tileSolid[tileType]
-            && !Main.tileSolidTop[tileType]
-            && !IsTilePlatform(tileType);
+            FurnitureTileSafety.IsPlainSolidBlock(tileType);
 
         private static bool IsTileChair(int tileType, int placeStyle) =>
             tileType == TileID.Chairs && placeStyle is not 1 and not 20;

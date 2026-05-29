@@ -58,10 +58,13 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
 
         private static bool ShouldPlaceAsObject(Item item)
         {
-            if (TileID.Sets.BasicDresser[item.createTile])
+            if (!FurnitureTileSafety.IsValidTileId(item.createTile))
+                return false;
+
+            if (FurnitureTileSafety.InBoolSet(TileID.Sets.BasicDresser, item.createTile))
                 return true;
 
-            TileObjectData data = TileObjectData.GetTileData(item.createTile, item.placeStyle);
+            TileObjectData data = FurnitureTileSafety.TryGetTileData(item.createTile, item.placeStyle);
             if (data == null)
                 return false;
 

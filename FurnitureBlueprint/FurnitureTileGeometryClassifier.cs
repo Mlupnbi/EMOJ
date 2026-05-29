@@ -29,10 +29,8 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
 
             bool anchorBottom = HasBottomAnchor(data);
             bool anchorTop = HasTopAnchor(data);
-            bool topSolid = FurnitureTileSafety.IsValidTileId(tile)
-                && tile < Main.tileSolidTop.Length
-                && Main.tileSolidTop[tile];
-            bool lighted = Main.tileLighted != null && tile < Main.tileLighted.Length && Main.tileLighted[tile];
+            bool topSolid = FurnitureTileSafety.IsTileSolidTop(tile);
+            bool lighted = FurnitureTileSafety.IsTileLighted(tile);
 
             if (w == 1 && h == 1 && (lighted || name.Contains("cup") || name.Contains("杯")
                 || name.Contains("candle") || name.Contains("torch") || name.Contains("lantern")))
@@ -147,7 +145,7 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
                     kind = FurnitureSlotKind.Sofa;
                 else if (tile == TileID.Sinks)
                     kind = FurnitureSlotKind.Sink;
-                else if (TileID.Sets.BasicDresser[tile] || name.Contains("dresser") || name.Contains("梳妆"))
+                else if (FurnitureTileSafety.InBoolSet(TileID.Sets.BasicDresser, tile) || name.Contains("dresser") || name.Contains("梳妆"))
                     kind = FurnitureSlotKind.Dresser;
                 else if (name.Contains("piano") || name.Contains("钢琴"))
                     kind = FurnitureSlotKind.Piano;
@@ -162,7 +160,7 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
 
             if (w == 2 && h == 2 && anchorBottom)
             {
-                if (TileID.Sets.BasicChest[tile] || name.Contains("chest"))
+                if (FurnitureTileSafety.InBoolSet(TileID.Sets.BasicChest, tile) || name.Contains("chest"))
                 {
                     kind = FurnitureSlotKind.Chest;
                     return true;

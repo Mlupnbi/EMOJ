@@ -4,6 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
+using EvenMoreOverpoweredJourney.FurnitureBlueprint.Registry;
 
 namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
 {
@@ -36,12 +37,19 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
             ByTileStyle.Clear();
             ItemsByPlacementLine.Clear();
 
+            if (!FurnitureTileItemRegistry.IsBuilt)
+                FurnitureTileItemRegistry.Build();
+
             int maxTile = TileLoader.TileCount;
             for (int tile = TileID.Dirt; tile < maxTile; tile++)
             {
+                if (!FurnitureTileItemRegistry.TryGetKnownStyles(tile, out int[] styles) || styles.Length == 0)
+                    continue;
+
                 string hint = FurnitureTileGeometryClassifier.GetTileNameHint(tile);
-                for (int style = 0; style < 256; style++)
+                for (int i = 0; i < styles.Length; i++)
                 {
+                    int style = styles[i];
                     if (FurnitureTileSafety.TryGetTileData(tile, style) == null)
                         continue;
 
@@ -172,7 +180,7 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
             }
         }
 
-        /// <summary>仅 (tile, placeStyle) 精确命中，不用图格默认槽。</summary>
+        /// <summary>�? (tile, placeStyle) 精确命中，不用图格默认槽�?</summary>
         public static bool TryGetSlotExact(int tile, int style, out FurnitureSlotKind kind)
         {
             if (!_built)
@@ -186,7 +194,7 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
             if (TryGetSlotExact(tile, style, out kind))
                 return true;
 
-            // 禁止 placeStyle≠0 时回退 DefaultByTile（否则同 ModTile 全套会被误判为同一槽，日志里 Sink:21 即此 bug）
+            // 禁止 placeStyle�?0 时回退 DefaultByTile（否则同 ModTile 全套会被误判为同一槽，日志�? Sink:21 即此 bug�?
             if (style == 0 && DefaultByTile.TryGetValue(tile, out kind))
                 return true;
 

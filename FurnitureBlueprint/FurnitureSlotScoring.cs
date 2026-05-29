@@ -426,16 +426,16 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
 
             int tile = item.createTile;
             int style = item.placeStyle;
-            if (tile >= TileID.Dirt)
-            {
-                if (FurnitureTileSlotRegistry.TryGetSlotExact(tile, style, out FurnitureSlotKind reg)
-                    && FurnitureWikiSlots.NormalizeClassified(reg) == slot)
-                    score += RegistryExact;
+            if (!FurnitureTileSafety.IsValidTileId(tile) || tile < TileID.Dirt)
+                return score;
 
-                if (FurnitureSlotClassifier.TryClassifyByRoomNeedsPublic(tile, style, out FurnitureSlotKind rn)
-                    && FurnitureWikiSlots.NormalizeClassified(rn) == slot)
-                    score += RoomNeedsAlign / 2;
-            }
+            if (FurnitureTileSlotRegistry.TryGetSlotExact(tile, style, out FurnitureSlotKind reg)
+                && FurnitureWikiSlots.NormalizeClassified(reg) == slot)
+                score += RegistryExact;
+
+            if (FurnitureSlotClassifier.TryClassifyByRoomNeedsPublic(tile, style, out FurnitureSlotKind rn)
+                && FurnitureWikiSlots.NormalizeClassified(rn) == slot)
+                score += RoomNeedsAlign / 2;
 
             return score;
         }
@@ -451,7 +451,7 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
             Item item = new Item();
             if (!FurnitureItemDefaults.TrySetDefaults(item, type))
                 return 0;
-            if (item.createTile < TileID.Dirt)
+            if (!FurnitureTileSafety.IsValidTileId(item.createTile) || item.createTile < TileID.Dirt)
                 return 0;
 
             if (FurnitureSlotClassifier.TryClassifyByRoomNeedsPublic(item.createTile, item.placeStyle, out FurnitureSlotKind rn)

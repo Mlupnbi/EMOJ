@@ -134,16 +134,13 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
         }
 
         public static bool IsTilePlatform(int tileType) =>
-            tileType >= TileID.Dirt && TileID.Sets.Platforms[tileType];
+            FurnitureTileSafety.IsPlatformTile(tileType);
 
         public static bool IsTileBlock(int tileType) =>
-            tileType >= TileID.Dirt
-            && TileObjectData.GetTileData(tileType, 0) == null
-            && Main.tileSolid[tileType]
-            && !Main.tileSolidTop[tileType];
+            FurnitureTileSafety.IsPlainSolidBlock(tileType);
 
         public static bool IsTileTorch(int tileType) =>
-            tileType >= TileID.Dirt && TileID.Sets.Torch[tileType];
+            FurnitureTileSafety.InBoolSet(TileID.Sets.Torch, tileType);
 
         public static bool IsTileWorkbench(int tileType) => tileType == TileID.WorkBenches;
 

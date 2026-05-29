@@ -53,6 +53,9 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
             if (scheme == null)
                 return default;
 
+            FurnitureBlueprintCrashDiagnostics.BeginSeed(seedType);
+            FurnitureBlueprintCrashDiagnostics.Phase("accuracy", "begin");
+
             bool modSeed = IsModSeed(seedType);
             string seedStyle = FurnitureSetRecognizer.ExtractStyleKeyPublic(seedType);
             if (string.IsNullOrWhiteSpace(seedStyle))
@@ -76,10 +79,18 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
                 if (pick <= ItemID.None)
                     continue;
 
+                FurnitureBlueprintCrashDiagnostics.Item(slot, pick, "accuracy-slot");
+
                 filled++;
 
+                FurnitureBlueprintCrashDiagnostics.Check(slot, pick, "slot-mismatch");
                 bool mismatch = IsSlotMismatch(pick, slot);
+                FurnitureBlueprintCrashDiagnostics.Check(slot, pick, $"slot-mismatch-result={mismatch}");
+
+                FurnitureBlueprintCrashDiagnostics.Check(slot, pick, "lineage");
                 bool lineage = modSeed && IsLineageMiss(seedType, seedStyle, materialBlock, pick);
+                FurnitureBlueprintCrashDiagnostics.Check(slot, pick, $"lineage-result={lineage}");
+
                 bool vanilla = modSeed && IsVanillaLeak(pick);
 
                 if (mismatch)
@@ -95,12 +106,16 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
                 if (CountsTowardStyleSlotMatch(slot, pick))
                 {
                     styleSlotFilled++;
+                    FurnitureBlueprintCrashDiagnostics.Check(slot, pick, "style-slot-match");
                     if (PassesStyleSlotMatch(pick, slot, seedType))
                         styleSlotMatch++;
                 }
             }
 
+            FurnitureBlueprintCrashDiagnostics.Phase("accuracy", "wiki-match");
             var wikiReport = EvaluateWikiMatch(seedType, scheme);
+            FurnitureBlueprintCrashDiagnostics.Phase("accuracy", "end");
+            FurnitureBlueprintCrashDiagnostics.EndSeed();
 
             return new Report(
                 filled,
@@ -181,6 +196,7 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
 
         private static bool IsSlotMismatch(int pick, FurnitureSlotKind expected)
         {
+            FurnitureBlueprintCrashDiagnostics.Check(expected, pick, "try-get-slot");
             if (FurnitureSlotClassifier.TryGetSlotFromType(pick, out FurnitureSlotKind classified))
             {
                 classified = FurnitureWikiSlots.NormalizeClassified(classified);
@@ -188,10 +204,12 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
                     return false;
             }
 
+            FurnitureBlueprintCrashDiagnostics.Check(expected, pick, "infer-classify");
             if (FurnitureSlotScoring.TryInferClassifySlot(pick, out FurnitureSlotKind inferred, out _)
                 && FurnitureWikiSlots.NormalizeClassified(inferred) == expected)
                 return false;
 
+            FurnitureBlueprintCrashDiagnostics.Check(expected, pick, "slot-evidence");
             return !PassesSlotEvidence(pick, expected);
         }
 

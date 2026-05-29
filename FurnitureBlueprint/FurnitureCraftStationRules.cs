@@ -26,7 +26,7 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
             if (probe.createWall > WallID.None && probe.createTile < TileID.Dirt)
                 return true;
 
-            if (probe.createTile >= TileID.Dirt && TileID.Sets.Platforms[probe.createTile])
+            if (FurnitureTileSafety.IsPlatformTile(probe.createTile))
                 return true;
 
             if (FurnitureMaterialAnchor.IsValidAnchorBlock(probe))

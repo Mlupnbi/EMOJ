@@ -39,13 +39,21 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
             if (scheme.GetSlot(slot) > ItemID.None)
                 return;
 
+            FurnitureBlueprintCrashDiagnostics.SlotStep(slot, "bed-bath-begin");
             int pick = PickFromLineagePool(job, slot, seedType, materialBlock, blockSig, stations, ctx);
             if (pick <= ItemID.None)
+            {
+                FurnitureBlueprintCrashDiagnostics.SlotStep(slot, "bed-bath-placement-line");
                 pick = PickFromPlacementLine(seedType, materialBlock, blockSig, slot);
+            }
 
             if (pick <= ItemID.None)
+            {
+                FurnitureBlueprintCrashDiagnostics.SlotStep(slot, "bed-bath-none");
                 return;
+            }
 
+            FurnitureBlueprintCrashDiagnostics.Item(slot, pick, "bed-bath-pick");
             scheme.SetSlot(slot, pick);
             FurnitureBlueprintLog.InfoFull(
                 $"bed-bath backfill seed={seedType} slot={slot} pick={pick} material={materialBlock}");

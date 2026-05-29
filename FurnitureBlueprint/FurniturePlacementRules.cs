@@ -10,12 +10,10 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
     public static class FurniturePlacementRules
     {
         public static bool IsPlatform(Item item) =>
-            item != null && !item.IsAir && item.createTile >= TileID.Dirt && TileID.Sets.Platforms[item.createTile];
+            item != null && !item.IsAir && FurnitureTileSafety.IsPlatformTile(item.createTile);
 
         public static bool IsSolidBlockTile(Item item) =>
-            item != null && !item.IsAir && item.createTile >= TileID.Dirt
-            && Main.tileSolid[item.createTile] && !Main.tileSolidTop[item.createTile]
-            && !TileID.Sets.Platforms[item.createTile];
+            item != null && !item.IsAir && FurnitureTileSafety.IsPhysicallySolidTile(item.createTile);
 
         public static bool CanPlaceKind(Item item, FurnitureSlotKind kind)
         {
@@ -58,7 +56,7 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
                 return;
             }
 
-            TileObjectData data = TileObjectData.GetTileData(item.createTile, item.placeStyle);
+            TileObjectData data = FurnitureTileSafety.TryGetTileData(item.createTile, item.placeStyle);
             if (data == null)
             {
                 PrepareCell(anchorX, anchorY);
@@ -90,7 +88,7 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
                 return;
             }
 
-            TileObjectData data = TileObjectData.GetTileData(item.createTile, item.placeStyle);
+            TileObjectData data = FurnitureTileSafety.TryGetTileData(item.createTile, item.placeStyle);
             if (data == null)
             {
                 dest.Add(new Point(anchorX, anchorY));

@@ -10,7 +10,7 @@ using EvenMoreOverpoweredJourney.FurnitureBlueprint.Templates;
 
 namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
 {
-    /// <summary>用原版图格贴图 + IG framing 绘制预览（写入 RenderTarget 或调试）。</summary>
+    /// <summary>用原版图格贴�? + IG framing 绘制预览（写�? RenderTarget 或调试）�?</summary>
     public static class FurnitureBlueprintTilePreviewDraw
     {
         private const int WallSpriteSize = 32;
@@ -283,7 +283,7 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
 
             int frameX = item.placeStyle * 18;
             int frameY = 0;
-            TileObjectData data = TileObjectData.GetTileData(tileType, item.placeStyle);
+            TileObjectData data = FurnitureTileSafety.TryGetTileData(tileType, item.placeStyle);
             if (data != null)
             {
                 if (data.Style > 0)
