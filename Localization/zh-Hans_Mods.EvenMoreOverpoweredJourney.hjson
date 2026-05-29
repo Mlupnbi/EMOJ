@@ -312,6 +312,7 @@ UI: {
 		PlaceBusy: 上一处建筑仍在放置中
 		PlaceStarted: 大型建筑分帧放置中…
 		PlaceBlockedOverlap: 目标区域已有过多方块，请先清理再放置
+		PlaceFailedFramework: 框架（墙/方块/平台）未全部放置成功
 		CustomSchemeName: 自定义家具方案
 
 		Template: {

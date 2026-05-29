@@ -8,14 +8,14 @@ using Terraria.ModLoader;
 
 namespace EvenMoreOverpoweredJourney.Integration.Session
 {
-    /// <summary>ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½ DEBUG_COMPAREDRAGONLENSï¿½ï¿½ï¿½Ô±ï¿½ DragonLens ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½×¢ï¿½ï¿½ï¿½ï¿½</summary>
+    /// <summary>³¬¼¶Ö¸Áî DEBUG_COMPAREDRAGONLENS£º¶Ô±È DragonLens ÎïÆ·ä¯ÀÀÆ÷ÓëÎïÆ·ÖÐÐÄ×¢²á±í¡£</summary>
     internal static class SessionBrowserCatalogCompare
     {
         public static bool TryCompareToClipboard()
         {
             if (Main.dedServ)
             {
-                Main.NewText("ï¿½Ô±È½ï¿½ï¿½Ú¿Í»ï¿½ï¿½Ë¿ï¿½ï¿½Ã¡ï¿½", Microsoft.Xna.Framework.Color.OrangeRed);
+                Main.NewText("\u5bf9\u6bd4\u4ec5\u5728\u5ba2\u6237\u7aef\u53ef\u7528\u3002", Microsoft.Xna.Framework.Color.OrangeRed);
                 return false;
             }
 
@@ -23,7 +23,7 @@ namespace EvenMoreOverpoweredJourney.Integration.Session
             HubClassificationIndex.EnsureBuilt();
             if (!HubCatalog.Ready)
             {
-                Main.NewText("ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½Ä¿Â¼ï¿½ï¿½Î´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", Microsoft.Xna.Framework.Color.OrangeRed);
+                Main.NewText("\u7269\u54c1\u4e2d\u5fc3\u76ee\u5f55\u5c1a\u672a\u5c31\u7eea\u3002", Microsoft.Xna.Framework.Color.OrangeRed);
                 return false;
             }
 
@@ -36,7 +36,7 @@ namespace EvenMoreOverpoweredJourney.Integration.Session
             string text = BuildReport(hub, dlFull, hasVisible ? dlVisible : null, visibleNote);
             if (!GameClipboard.TrySetText(text))
             {
-                Main.NewText("ï¿½Þ·ï¿½Ð´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½å¡£", Microsoft.Xna.Framework.Color.OrangeRed);
+                Main.NewText("\u65e0\u6cd5\u5199\u5165\u526a\u8d34\u677f\u3002", Microsoft.Xna.Framework.Color.OrangeRed);
                 return false;
             }
 
@@ -46,11 +46,11 @@ namespace EvenMoreOverpoweredJourney.Integration.Session
             Main.NewText(
                 regAligned
                     ? (hasVisible && visMissing == 0
-                        ? "ï¿½Ç¼ï¿½ï¿½ï¿½ DL È«ï¿½ï¿½Ò»ï¿½Â£ï¿½ï¿½ï¿½Ç°ï¿½É¼ï¿½ï¿½ï¿½ï¿½ï¿½Ò²Ò»ï¿½Â¡ï¿½ï¿½ï¿½ UI ï¿½ï¿½È±ï¿½î£¬ï¿½ï¿½É¸Ñ¡/ï¿½ï¿½Ç©ï¿½ï¿½"
-                        : $"ï¿½Ç¼ï¿½ï¿½ï¿½ DL È«ï¿½ï¿½Ò»ï¿½Â£ï¿½{hub.Count} ï¿½î£©ï¿½ï¿½ï¿½É¼ï¿½ UI ï¿½ï¿½ï¿½ï¿½È±ï¿½î£¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½å£©ï¿½ï¿½{visibleNote}")
+                        ? "\u767b\u8bb0\u8868\u4e0e DL \u5168\u91cf\u4e00\u81f4\uff1b\u5f53\u524d\u53ef\u89c1\u96c6\u4e5f\u4e00\u81f4\u3002\u82e5 UI \u4ecd\u7f3a\u9879\uff0c\u67e5\u7b5b\u9009/\u6807\u7b7e\u3002"
+                        : $"\u767b\u8bb0\u8868\u4e0e DL \u5168\u91cf\u4e00\u81f4\uff08{hub.Count} \u9879\uff09\uff1b\u53ef\u89c1 UI \u4ecd\u6709\u7f3a\u9879\uff08\u89c1\u526a\u8d34\u677f\uff09\uff1a{visibleNote}")
                     : (hasVisible
-                        ? $"ï¿½Ñ¸ï¿½ï¿½Æ£ï¿½È«ï¿½ï¿½È± {fullMissing}ï¿½ï¿½ï¿½É¼ï¿½È± {visMissing}"
-                        : $"ï¿½Ñ¸ï¿½ï¿½Æ£ï¿½È«ï¿½ï¿½È± {fullMissing}ï¿½ï¿½{visibleNote}"),
+                        ? $"\u5df2\u590d\u5236\uff1a\u5168\u91cf\u7f3a {fullMissing}\uff0c\u53ef\u89c1\u7f3a {visMissing}"
+                        : $"\u5df2\u590d\u5236\uff1a\u5168\u91cf\u7f3a {fullMissing}\uff0c{visibleNote}"),
                 regAligned && visMissing == 0
                     ? Microsoft.Xna.Framework.Color.LightGreen
                     : Microsoft.Xna.Framework.Color.Orange);
@@ -97,7 +97,7 @@ namespace EvenMoreOverpoweredJourney.Integration.Session
 
             if (dlVisible != null)
             {
-                sb.AppendLine("# === DL_VISIBLE__HUB_MISSING (DragonLens ï¿½ï¿½Ç°ï¿½É¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î´ï¿½Ç¼ï¿½) ===");
+                sb.AppendLine("# === DL_VISIBLE__HUB_MISSING (DragonLens visible but not registered in Hub) ===");
                 sb.AppendLine($"# {visibleNote}");
                 AppendDiffSection(sb, dlVisible, hub, "DL_VISIBLE__HUB_MISSING");
                 sb.AppendLine();
@@ -112,7 +112,7 @@ namespace EvenMoreOverpoweredJourney.Integration.Session
                         missingInHub++;
                 }
 
-                sb.AppendLine($"# Visible summary: DL={dlVisible.Count} Hubï¿½ï¿½DL={extraInHub} missing_in_hub={missingInHub}");
+                sb.AppendLine($"# Visible summary: DL={dlVisible.Count} HubInDL={extraInHub} missing_in_hub={missingInHub}");
                 sb.AppendLine();
             }
             else
@@ -121,11 +121,11 @@ namespace EvenMoreOverpoweredJourney.Integration.Session
                 sb.AppendLine();
             }
 
-            sb.AppendLine("# === DL_FULL__HUB_MISSING (DL È«ï¿½ï¿½ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½Î´ï¿½Ç¼ï¿½) ===");
+            sb.AppendLine("# === DL_FULL__HUB_MISSING (DL full grid but not registered in Hub) ===");
             AppendDiffSection(sb, dlFull, hub, "DL_FULL__HUB_MISSING");
             sb.AppendLine();
 
-            sb.AppendLine("# === HUB_ONLY (ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½ DL È«ï¿½ï¿½ 1..ItemCount-1 ï¿½Þ£ï¿½Í¨ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½) ===");
+            sb.AppendLine("# === HUB_ONLY (Hub has type not in DL full 1..ItemCount-1; usually should not happen) ===");
             AppendHubOnlySection(sb, hub, dlFull);
             sb.AppendLine();
 
@@ -139,10 +139,10 @@ namespace EvenMoreOverpoweredJourney.Integration.Session
             return sb.ToString();
         }
 
-        /// <summary>ï¿½Ç¼ï¿½ï¿½ï¿½ DL Ò»ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½Ê¾Ó¦ï¿½ï¿½ï¿½Ç©/É¸Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½×¢ï¿½ï¿½ï¿½ï¿½</summary>
+        /// <summary>µÇ¼Ç±íÓë DL Ò»ÖÂÊ±£¬ÌáÊ¾Ó¦²éÉ¸Ñ¡/·ÖÀà¶ø·Ç×¢²á²ã¡£</summary>
         private static void AppendFilterLayerDiagnosis(StringBuilder sb, HashSet<int> hub)
         {
-            sb.AppendLine("# === REGISTRATION_ALIGNED ï¿½ï¿½ check filter/classification if UI still differs ===");
+            sb.AppendLine("# === REGISTRATION_ALIGNED ¡ª check filter/classification if UI still differs ===");
             sb.AppendLine("# DragonLens: grid = all types; visibility = search + FilterPanel (OR per category).");
             sb.AppendLine("# ItemHub: list = AllTypes minus DebugItem (unless misc.debug), minus ActiveTags AND-groups, rare slider, chain.");
             sb.AppendLine("# Compare: https://github.com/ScalarVector1/DragonLens/blob/master/Content/Tools/Spawners/ItemSpawner.cs");

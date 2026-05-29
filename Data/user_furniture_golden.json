@@ -3,7 +3,7 @@
   "source": "user_saved_seeds",
   "sets": [
     {
-      "label": "HJ-ÎŞÏµÁĞ",
+      "label": "HJ-æ— ç³»åˆ—",
       "seed": 13905,
       "material": 9,
       "stylePrefix": "ItemNothingness",
@@ -14,43 +14,43 @@
       }
     },
     {
-      "label": "HJ-ÎïÖÊ",
+      "label": "HJ-ç‰©è´¨",
       "seed": 13875,
       "material": 13985,
       "stylePrefix": "ItemMatter"
     },
     {
-      "label": "HJ-ËÀ",
+      "label": "HJ-æ­»",
       "seed": 13851,
       "material": 13661,
       "stylePrefix": "ItemDeath"
     },
     {
-      "label": "HJ-ÉúÃü",
+      "label": "HJ-ç”Ÿå‘½",
       "seed": 13870,
       "material": 13980,
       "stylePrefix": "ItemLife"
     },
     {
-      "label": "HJ-ÉîÔ¨",
+      "label": "HJ-æ·±æ¸Š",
       "seed": 13833,
       "material": 13762,
       "stylePrefix": "ItemAbyss"
     },
     {
-      "label": "HJ-Ê±¹â",
+      "label": "HJ-æ—¶å…‰",
       "seed": 13926,
       "material": 14027,
       "stylePrefix": "ItemTime"
     },
     {
-      "label": "CF-ÎÙ¸Ö",
+      "label": "CF-é’¨é’¢",
       "seed": 12131,
       "material": 12106,
       "stylePrefix": "Wulfrum"
     },
     {
-      "label": "SPOOKY-¹ÅÀÏÄ¾",
+      "label": "SPOOKY-å¤è€æœ¨",
       "seed": 16372,
       "material": 16434,
       "stylePrefix": "OldWood"

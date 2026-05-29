@@ -23,7 +23,7 @@ namespace EvenMoreOverpoweredJourney.Integration.Session
         {
             if (Main.dedServ)
             {
-                Main.NewText("���ͻ��˿��á�", Color.OrangeRed);
+                Main.NewText("\u4ec5\u5ba2\u6237\u7aef\u53ef\u7528\u3002", Color.OrangeRed);
                 return false;
             }
 
@@ -53,11 +53,11 @@ namespace EvenMoreOverpoweredJourney.Integration.Session
 
             if (!GameClipboard.TrySetText(sb.ToString()))
             {
-                Main.NewText("�޷�д�������?", Color.OrangeRed);
+                Main.NewText("\u65e0\u6cd5\u5199\u5165\u526a\u8d34\u677f\u3002", Color.OrangeRed);
                 return false;
             }
 
-            Main.NewText($"�Ѹ��� {VanillaBuffCatalogSystem.CatalogCount} ��ԭ�� Buff Ŀ¼�������塣", Color.LightGreen);
+            Main.NewText($"\u5df2\u590d\u5236 {VanillaBuffCatalogSystem.CatalogCount} \u6761\u539f\u7248 Buff \u76ee\u5f55\u5230\u526a\u8d34\u677f\u3002", Color.LightGreen);
             return true;
         }
     }

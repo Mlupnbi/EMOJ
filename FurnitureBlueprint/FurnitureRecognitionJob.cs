@@ -100,7 +100,9 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
 
         internal bool PrepareLoggedBegin { get; set; }
 
+        internal int PrepareCollectPhase { get; set; }
 
+        internal FurnitureSetConfidenceReport PrepareConfidence { get; set; }
 
         internal FurnitureRecognitionJob(
 
@@ -229,12 +231,20 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
                             $"recognize prepare begin seed={job.SeedType} block={job.AnchorBlock}");
                     }
 
-                    if (FurnitureSetRecognizer.TickPrepareRecognitionJob(job, out FurnitureRecognitionJob prepared))
+                    while (sw.ElapsedMilliseconds < budgetMs)
                     {
-                        if (prepared != null)
-                            job.ImportPrepared(prepared);
-                        else
-                            job.CurrentPhase = FurnitureRecognitionJob.Phase.Done;
+                        int remainingMs = budgetMs - (int)sw.ElapsedMilliseconds;
+                        if (remainingMs < 1)
+                            break;
+
+                        if (FurnitureSetRecognizer.TickPrepareRecognitionJob(job, remainingMs, out FurnitureRecognitionJob prepared))
+                        {
+                            if (prepared != null)
+                                job.ImportPrepared(prepared);
+                            else
+                                job.CurrentPhase = FurnitureRecognitionJob.Phase.Done;
+                            break;
+                        }
                     }
                 }
                 catch (System.Exception ex)

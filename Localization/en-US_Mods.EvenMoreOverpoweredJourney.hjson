@@ -322,6 +322,7 @@ UI: {
 		PlaceBusy: A blueprint placement is still in progress
 		PlaceStarted: Large blueprint placing over multiple frames…
 		PlaceBlockedOverlap: Too many existing tiles in the target area; clear space first
+		PlaceFailedFramework: Framework (walls/blocks/platforms) was not fully placed
 		CustomSchemeName: Custom furniture scheme
 
 		Template: {

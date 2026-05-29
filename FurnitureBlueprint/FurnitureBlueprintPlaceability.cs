@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
+using Terraria.ObjectData;
 
 namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
 {
@@ -9,7 +11,7 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
         public static bool CanUseForBlueprint(Item item, FurnitureSlotKind slotKind) =>
             ImproveGameMaterialCheckers.ItemMatchesSlot(item, slotKind);
 
-        /// <summary>参考 IG BongBongPlace：先清格再 PlaceTile/PlaceObject（带 player.whoAmI）。</summary>
+        /// <summary>参考 IG BongBongPlace：多格优先 PlaceObject，单格 PlaceTile，失败再 fallback。</summary>
         public static bool TryBongBongPlace(int x, int y, Item item, Player player)
         {
             if (item == null || item.IsAir || item.createTile < TileID.Dirt || player == null)
@@ -32,7 +34,7 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
                 success = WorldGen.PlaceChest(
                     x, y, (ushort)item.createTile, notNearOtherChests: false, style: item.placeStyle) >= 0;
             }
-            else if (TileID.Sets.BasicDresser[item.createTile])
+            else if (ShouldPlaceAsObject(item))
             {
                 success = WorldGen.PlaceObject(x, y, item.createTile, style: item.placeStyle);
             }
@@ -45,7 +47,25 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
             if (!success)
                 success = WorldGen.PlaceObject(x, y, item.createTile, style: item.placeStyle);
 
+            if (!success && !ShouldPlaceAsObject(item))
+            {
+                success = WorldGen.PlaceTile(
+                    x, y, item.createTile, mute: true, forced: true, player.whoAmI, item.placeStyle);
+            }
+
             return success && Main.tile[x, y].HasTile;
+        }
+
+        private static bool ShouldPlaceAsObject(Item item)
+        {
+            if (TileID.Sets.BasicDresser[item.createTile])
+                return true;
+
+            TileObjectData data = TileObjectData.GetTileData(item.createTile, item.placeStyle);
+            if (data == null)
+                return false;
+
+            return data.Width > 1 || data.Height > 1;
         }
     }
 }

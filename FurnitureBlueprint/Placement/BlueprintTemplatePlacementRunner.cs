@@ -8,11 +8,18 @@ using Terraria.ModLoader;
 
 namespace EvenMoreOverpoweredJourney.FurnitureBlueprint.Placement
 {
-    /// <summary>大图模板分帧放置，避免单帧大量 KillTile / SendTileSquare 导致卡死闪退。</summary>
+    /// <summary>大图模板分帧放置：清空 → 框架 → 校验 → 家具。</summary>
     public sealed class BlueprintTemplatePlacementRunner : ModSystem
     {
         public const int AsyncCellThreshold = 180;
         public const int MaxOpsPerTick = 48;
+
+        private enum SessionPhase : byte
+        {
+            Clear = 0,
+            Framework = 1,
+            Furniture = 2
+        }
 
         private static BlueprintTemplatePlacementRunner _instance;
         private PlacementSession _session;
@@ -32,41 +39,76 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint.Placement
                 return;
             }
 
-            if (!_session.AreaCleared)
+            switch (_session.Phase)
             {
-                BlueprintTemplatePlacer.ClearPlacementArea(
-                    _session.Template,
-                    _session.Scheme,
-                    _session.Origin);
-                _session.AreaCleared = true;
-            }
-
-            int budget = MaxOpsPerTick;
-            while (budget > 0 && _session.HasMore)
-            {
-                if (!BlueprintTemplatePlacer.ExecuteOp(
-                        player,
+                case SessionPhase.Clear:
+                    BlueprintTemplatePlacer.ClearPlacementArea(
                         _session.Template,
                         _session.Scheme,
-                        _session.Origin,
-                        _session.Ops[_session.Index],
-                        _session.Consume))
-                {
-                    // 单格失败不中止整次放置（与同步路径一致）
-                }
+                        _session.Origin);
+                    _session.Phase = SessionPhase.Framework;
+                    _session.Index = 0;
+                    return;
 
+                case SessionPhase.Framework:
+                    if (!AdvanceOps(player, _session.FrameworkOps))
+                        return;
+
+                    if (!BlueprintTemplatePlacer.VerifyFramework(
+                            _session.Template,
+                            _session.Scheme,
+                            _session.Origin,
+                            _session.FrameworkOps,
+                            _session.Mode))
+                    {
+                        if (_session.Mode == BlueprintPlacementMode.Strict)
+                        {
+                            BlueprintTemplatePlacer.AbortWithReason(BlueprintTemplatePlacer.PlaceRejectReason.Framework);
+                            _session = null;
+                            return;
+                        }
+                    }
+
+                    _session.Phase = SessionPhase.Furniture;
+                    _session.Index = 0;
+                    return;
+
+                case SessionPhase.Furniture:
+                    if (!AdvanceOps(player, _session.FurnitureOps))
+                        return;
+
+                    BlueprintTemplatePlacer.SyncTileSquares(
+                        _session.Origin,
+                        _session.Template.Width,
+                        _session.Template.Height);
+                    SoundEngine.PlaySound(SoundID.Item14, player.Center);
+                    FurnitureBlueprintLog.Info(
+                        $"template async place ok at {_session.Origin.X},{_session.Origin.Y} framework={_session.FrameworkOps.Count} furniture={_session.FurnitureOps.Count}");
+                    _session = null;
+                    return;
+            }
+        }
+
+        private bool AdvanceOps(Player player, List<BlueprintTemplatePlacer.PlacementOp> ops)
+        {
+            if (ops == null || ops.Count == 0)
+                return true;
+
+            int budget = MaxOpsPerTick;
+            while (budget > 0 && _session.Index < ops.Count)
+            {
+                BlueprintTemplatePlacer.ExecuteOp(
+                    player,
+                    _session.Template,
+                    _session.Scheme,
+                    _session.Origin,
+                    ops[_session.Index],
+                    _session.Consume);
                 _session.Index++;
                 budget--;
             }
 
-            if (_session.HasMore)
-                return;
-
-            BlueprintTemplatePlacer.SyncTileSquares(_session.Origin, _session.Template.Width, _session.Template.Height);
-            SoundEngine.PlaySound(SoundID.Item14, player.Center);
-            FurnitureBlueprintLog.Info(
-                $"template async place ok at {_session.Origin.X},{_session.Origin.Y} ops={_session.Ops.Count}");
-            _session = null;
+            return _session.Index >= ops.Count;
         }
 
         internal static bool TryEnqueue(
@@ -76,9 +118,9 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint.Placement
             Point origin,
             bool consumeMaterials,
             BlueprintPlacementMode mode,
-            List<BlueprintTemplatePlacer.PlacementOp> ops)
+            BlueprintTemplatePlacer.PlacementPlan plan)
         {
-            if (_instance == null || _instance._session != null || ops == null || ops.Count == 0)
+            if (_instance == null || _instance._session != null || plan.TotalOps == 0)
                 return false;
 
             if (player.TryGetModPlayer(out FurnitureBlueprintPlayer fb) && fb.RecognitionBusy)
@@ -91,7 +133,7 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint.Placement
                 origin,
                 consumeMaterials,
                 mode,
-                ops);
+                plan);
             return true;
         }
 
@@ -119,9 +161,10 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint.Placement
             public readonly Point Origin;
             public readonly bool Consume;
             public readonly BlueprintPlacementMode Mode;
-            public readonly List<BlueprintTemplatePlacer.PlacementOp> Ops;
+            public readonly List<BlueprintTemplatePlacer.PlacementOp> FrameworkOps;
+            public readonly List<BlueprintTemplatePlacer.PlacementOp> FurnitureOps;
+            public SessionPhase Phase;
             public int Index;
-            public bool AreaCleared;
 
             public PlacementSession(
                 int playerIndex,
@@ -130,7 +173,7 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint.Placement
                 Point origin,
                 bool consume,
                 BlueprintPlacementMode mode,
-                List<BlueprintTemplatePlacer.PlacementOp> ops)
+                BlueprintTemplatePlacer.PlacementPlan plan)
             {
                 PlayerIndex = playerIndex;
                 Template = template;
@@ -138,10 +181,10 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint.Placement
                 Origin = origin;
                 Consume = consume;
                 Mode = mode;
-                Ops = ops;
+                FrameworkOps = plan.FrameworkOps;
+                FurnitureOps = plan.FurnitureOps;
+                Phase = SessionPhase.Clear;
             }
-
-            public bool HasMore => Index < Ops.Count;
         }
     }
 }

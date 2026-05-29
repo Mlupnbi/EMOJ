@@ -6,16 +6,13 @@ using Terraria.ModLoader;
 
 namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
 {
-    /// <summary>同 mod 内按 internal 名/styleKey 前缀扫描产物，补全配方链未覆盖的套组件。</summary>
+    /// <summary>
+    /// 仅从种子/材料物品名解析 style 前缀，供血统判定与打分门控使用。
+    /// 不向候选池做 mod 全物品扫描——套组成员必须经配方/材料块管道进入候选集。
+    /// </summary>
     internal static class FurnitureStylePrefixCatalog
     {
-        public const int MaxProductsPerPrefix = 128;
         private const int MinPrefixLength = 4;
-        private const int MaxScanItems = 14_000;
-        private const int BatchMaxScanItems = 2_500;
-
-        private static int EffectiveMaxScanItems =>
-            FurnitureBlueprintBatchTest.IsRunning ? BatchMaxScanItems : MaxScanItems;
 
         public static string ResolveStylePrefix(int seedType)
         {
@@ -38,73 +35,7 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
             return string.Empty;
         }
 
-        public static void AddStylePrefixProducts(
-            int seedType,
-            string modKey,
-            string stylePrefix,
-            HashSet<int> dest,
-            int maxAdd = MaxProductsPerPrefix)
-        {
-            if (dest == null || seedType <= ItemID.None || string.IsNullOrWhiteSpace(stylePrefix))
-                return;
-
-            modKey ??= GetModKey(seedType);
-            if (string.IsNullOrWhiteSpace(modKey) || modKey == "Terraria")
-                return;
-
-            int added = 0;
-            int scanned = 0;
-            for (int type = ItemID.None + 1; type < ItemLoader.ItemCount && added < maxAdd && scanned < EffectiveMaxScanItems; type++)
-            {
-                scanned++;
-                ModItem mi = ItemLoader.GetItem(type);
-                if (mi == null || !string.Equals(mi.Mod.Name, modKey, StringComparison.OrdinalIgnoreCase))
-                    continue;
-
-                if (!InternalMatchesPrefix(mi.Name, stylePrefix))
-                    continue;
-
-                if (!FurnitureRecognitionCaches.IsPlaceableFurniture(type))
-                    continue;
-
-                if (FurnitureNameSignals.IsDecorativeMark(type))
-                    continue;
-
-                if (dest.Add(type))
-                    added++;
-            }
-
-            if (added > 0)
-            {
-                FurnitureBlueprintLog.InfoFull(
-                    $"style-prefix expand seed={seedType} prefix={stylePrefix} added={added} total={dest.Count}");
-            }
-        }
-
-        public static void ExpandForSeed(int seedType, int materialBlock, FurnitureStyleSignature blockSig, HashSet<int> dest)
-        {
-            if (dest == null || seedType <= ItemID.None)
-                return;
-
-            string modKey = blockSig.ModKey ?? GetModKey(seedType);
-            string prefix = ResolveStylePrefix(seedType);
-            if (string.IsNullOrWhiteSpace(prefix))
-                prefix = blockSig.StyleKey?.Trim() ?? string.Empty;
-
-            if (!string.IsNullOrWhiteSpace(prefix))
-                AddStylePrefixProducts(seedType, modKey, prefix, dest);
-
-            if (materialBlock > ItemID.None && materialBlock != seedType)
-            {
-                string matPrefix = ResolveStylePrefix(materialBlock);
-                if (!string.IsNullOrWhiteSpace(matPrefix)
-                    && !string.Equals(matPrefix, prefix, StringComparison.OrdinalIgnoreCase))
-                {
-                    AddStylePrefixProducts(seedType, modKey, matPrefix, dest, maxAdd: MaxProductsPerPrefix / 2);
-                }
-            }
-        }
-
+        /// <summary>对已在候选池内的产物做风格血缘判定（不扩大候选池）。</summary>
         public static bool ProductMatchesSeedStyle(int productType, int seedType, int materialBlock)
         {
             if (productType <= ItemID.None || seedType <= ItemID.None)
@@ -214,12 +145,6 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
             }
 
             return false;
-        }
-
-        private static string GetModKey(int itemType)
-        {
-            ModItem mi = ItemLoader.GetItem(itemType);
-            return mi == null ? "Terraria" : mi.Mod.Name;
         }
     }
 

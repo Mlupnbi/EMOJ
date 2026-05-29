@@ -1,6 +1,8 @@
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ObjectData;
 
 namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
 {
@@ -27,6 +29,28 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
 
         public static bool RoomNeedsCountsAsTorch(int tile) =>
             InIntSet(TileID.Sets.RoomNeeds.CountsAsTorch, tile);
+
+        public static bool IsPlatformTile(int tile) =>
+            InBoolSet(TileID.Sets.Platforms, tile);
+
+        /// <summary>mod 图格 style 异常时 GetTileData 可能 native 闪退，统一经此入口。</summary>
+        public static TileObjectData TryGetTileData(int tile, int style)
+        {
+            if (!IsValidTileId(tile) || style < 0 || style > byte.MaxValue)
+                return null;
+
+            try
+            {
+                return TileObjectData.GetTileData(tile, style);
+            }
+            catch (Exception ex)
+            {
+                FurnitureBlueprintLog.Warn($"GetTileData failed tile={tile} style={style}: {ex.Message}");
+                return null;
+            }
+        }
+
+        public static bool HasTileData(int tile, int style) => TryGetTileData(tile, style) != null;
 
         public static bool IsPhysicallySolidTile(int tile)
         {

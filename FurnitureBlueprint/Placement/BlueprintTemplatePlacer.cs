@@ -6,14 +6,12 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.ObjectData;
 
 namespace EvenMoreOverpoweredJourney.FurnitureBlueprint.Placement
 {
     /// <summary>
-    /// 基于 <see cref="BlueprintTemplate"/> structure + replace 的放置器。
-    /// 顺序：墙 → 块/平台 → 多格家具 → 单格家具。
+    /// 放置流程：① 整区清空 → ② 框架（墙 → 实心块/平台）并校验 → ③ 家具。
     /// </summary>
     public static class BlueprintTemplatePlacer
     {
@@ -23,7 +21,7 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint.Placement
             Busy = 1,
             Strict = 2,
             Nothing = 3,
-            HeavyOverlap = 4
+            Framework = 4
         }
 
         public static PlaceRejectReason LastRejectReason { get; private set; }
@@ -48,6 +46,14 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint.Placement
             public readonly FurniturePhase FurniturePhase = furniturePhase;
         }
 
+        internal readonly struct PlacementPlan(List<PlacementOp> frameworkOps, List<PlacementOp> furnitureOps)
+        {
+            public readonly List<PlacementOp> FrameworkOps = frameworkOps;
+            public readonly List<PlacementOp> FurnitureOps = furnitureOps;
+
+            public int TotalOps => (FrameworkOps?.Count ?? 0) + (FurnitureOps?.Count ?? 0);
+        }
+
         private readonly struct FurnitureWork(int cellIndex, FurniturePhase phase)
         {
             public readonly int CellIndex = cellIndex;
@@ -55,6 +61,8 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint.Placement
         }
 
         private const int SyncTileChunk = 16;
+        private static readonly List<Point> FootprintScratch = new();
+        private static readonly HashSet<Point> FootprintDedupe = new();
 
         public static bool TryPlace(
             Player player,
@@ -83,22 +91,29 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint.Placement
             Point origin = Main.MouseWorld.ToTileCoordinates() - new Point(template.Width / 2, template.Height / 2);
             bool consume = consumeMaterials && !SuperAdminSession.DebugFillTheBlueprint;
 
-            if (!TryValidateBeforePlace(player, template, scheme, origin, consume, mode, out List<PlacementOp> ops))
+            if (!TryValidateBeforePlace(player, template, scheme, consume, mode, out PlacementPlan plan))
                 return false;
 
             if (template.Width * template.Height >= BlueprintTemplatePlacementRunner.AsyncCellThreshold)
-                return BlueprintTemplatePlacementRunner.TryEnqueue(player, template, scheme, origin, consume, mode, ops);
+                return BlueprintTemplatePlacementRunner.TryEnqueue(player, template, scheme, origin, consume, mode, plan);
 
             ClearPlacementArea(template, scheme, origin);
 
-            bool anyPlaced = false;
-            foreach (PlacementOp op in ops)
-                anyPlaced |= ExecuteOp(player, template, scheme, origin, op, consume);
+            foreach (PlacementOp op in plan.FrameworkOps)
+                ExecuteOp(player, template, scheme, origin, op, consume);
 
-            if (!anyPlaced)
+            if (!VerifyFramework(template, scheme, origin, plan.FrameworkOps, mode))
+            {
+                LastRejectReason = PlaceRejectReason.Framework;
+                FurnitureBlueprintLog.Warn($"template framework verify failed mode={mode}");
+                return mode != BlueprintPlacementMode.Strict;
+            }
+
+            bool anyFurniture = ExecuteFurniturePhase(player, template, scheme, origin, plan.FurnitureOps, consume);
+            if (!anyFurniture && plan.FurnitureOps.Count > 0 && mode == BlueprintPlacementMode.Strict)
             {
                 LastRejectReason = PlaceRejectReason.Nothing;
-                FurnitureBlueprintLog.Warn($"template place nothing mode={mode}");
+                FurnitureBlueprintLog.Warn("template place furniture phase nothing strict");
                 return false;
             }
 
@@ -128,7 +143,7 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint.Placement
             {
                 PlacementOpKind.Wall => TryPlaceWall(player, scheme, rule, wx, wy, consume),
                 PlacementOpKind.Tile => TryPlaceTile(player, scheme, rule, structure.Kind, wx, wy, consume),
-                PlacementOpKind.Furniture => TryPlaceFurniture(player, scheme, rule, structure, wx, wy, consume),
+                PlacementOpKind.Furniture => TryPlaceFurniture(player, template, scheme, origin, rule, structure, wx, wy, consume),
                 _ => false
             };
         }
@@ -149,16 +164,162 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint.Placement
             }
         }
 
-        private static bool TryValidateBeforePlace(
+        /// <summary>模板矩形内全部 KillTile + KillWall，并清理多格家具 footprint 外扩格。</summary>
+        internal static void ClearPlacementArea(BlueprintTemplate template, FurnitureScheme scheme, Point origin)
+        {
+            for (int y = 0; y < template.Height; y++)
+            {
+                for (int x = 0; x < template.Width; x++)
+                {
+                    ClearWorldCell(origin.X + x, origin.Y + y);
+                }
+            }
+
+            FootprintDedupe.Clear();
+            for (int y = 0; y < template.Height; y++)
+            {
+                for (int x = 0; x < template.Width; x++)
+                {
+                    int idx = x + y * template.Width;
+                    StructureCell structure = template.Structure[idx];
+                    if (structure.Content != StructureCellContent.FurnitureAnchor || !IsSlotGroupLeader(template, idx))
+                        continue;
+
+                    ReplaceRule rule = template.ReplaceRules[idx];
+                    if (!TryResolveItemType(rule, scheme, out int itemType))
+                        continue;
+
+                    Item item = new Item();
+                    item.SetDefaults(itemType);
+                    FurniturePlacementRules.CollectFootprintWorldTiles(item, origin.X + x, origin.Y + y, FootprintScratch);
+                    foreach (Point wp in FootprintScratch)
+                    {
+                        if (!FootprintDedupe.Add(wp))
+                            continue;
+                        ClearWorldCell(wp.X, wp.Y);
+                    }
+                }
+            }
+        }
+
+        private static void ClearWorldCell(int wx, int wy)
+        {
+            if (!WorldGen.InWorld(wx, wy, 1))
+                return;
+
+            WorldGen.KillTile(wx, wy, fail: false, effectOnly: false, noItem: true);
+            WorldGen.KillWall(wx, wy, false);
+        }
+
+        internal static bool ExecuteFurniturePhase(
             Player player,
             BlueprintTemplate template,
             FurnitureScheme scheme,
             Point origin,
+            List<PlacementOp> furnitureOps,
+            bool consume)
+        {
+            if (furnitureOps == null || furnitureOps.Count == 0)
+                return false;
+
+            bool any = false;
+            foreach (PlacementOp op in furnitureOps)
+                any |= ExecuteOp(player, template, scheme, origin, op, consume);
+            return any;
+        }
+
+        /// <summary>框架阶段结束后检查：严格模式要求计划内的墙/块/平台全部到位。</summary>
+        internal static bool VerifyFramework(
+            BlueprintTemplate template,
+            FurnitureScheme scheme,
+            Point origin,
+            List<PlacementOp> frameworkOps,
+            BlueprintPlacementMode mode)
+        {
+            if (frameworkOps == null || frameworkOps.Count == 0)
+                return true;
+
+            int failures = 0;
+            foreach (PlacementOp op in frameworkOps)
+            {
+                if (!IsFrameworkOpSatisfied(template, scheme, origin, op))
+                    failures++;
+            }
+
+            if (mode == BlueprintPlacementMode.Strict)
+                return failures == 0;
+
+            return failures < frameworkOps.Count;
+        }
+
+        internal static void AbortWithReason(PlaceRejectReason reason) => LastRejectReason = reason;
+
+        private static bool IsFrameworkOpSatisfied(
+            BlueprintTemplate template,
+            FurnitureScheme scheme,
+            Point origin,
+            PlacementOp op)
+        {
+            int idx = op.CellIndex;
+            int lx = idx % template.Width;
+            int ly = idx / template.Width;
+            int wx = origin.X + lx;
+            int wy = origin.Y + ly;
+            if (!WorldGen.InWorld(wx, wy, 1))
+                return false;
+
+            StructureCell structure = template.Structure[idx];
+            ReplaceRule rule = template.ReplaceRules[idx];
+
+            if (op.Kind == PlacementOpKind.Wall)
+            {
+                if (!structure.HasWall)
+                    return true;
+
+                if (!TryResolveWallItemType(rule, scheme, out int wallItemType))
+                    return false;
+
+                Item item = new Item();
+                item.SetDefaults(wallItemType);
+                if (item.createWall <= WallID.None)
+                    return false;
+
+                return Main.tile[wx, wy].WallType == item.createWall;
+            }
+
+            if (op.Kind == PlacementOpKind.Tile)
+            {
+                if (structure.Content != StructureCellContent.Tile)
+                    return true;
+
+                FurnitureSlotKind kind = ResolveMaterialKind(rule, structure);
+                if (kind is not (FurnitureSlotKind.Block or FurnitureSlotKind.Platform))
+                    return false;
+
+                if (!TryResolveItemType(rule, scheme, out int tileItemType))
+                    return false;
+
+                Item item = new Item();
+                item.SetDefaults(tileItemType);
+                if (item.createTile < TileID.Dirt)
+                    return false;
+
+                Tile tile = Main.tile[wx, wy];
+                return tile.HasTile && tile.TileType == item.createTile;
+            }
+
+            return true;
+        }
+
+        private static bool TryValidateBeforePlace(
+            Player player,
+            BlueprintTemplate template,
+            FurnitureScheme scheme,
             bool consume,
             BlueprintPlacementMode mode,
-            out List<PlacementOp> ops)
+            out PlacementPlan plan)
         {
-            ops = null;
+            plan = default;
             LastRejectReason = PlaceRejectReason.None;
 
             if (mode == BlueprintPlacementMode.Strict)
@@ -178,74 +339,25 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint.Placement
                 }
             }
 
-            if (!TryBuildPlacementPlan(template, scheme, origin, out ops) || ops.Count == 0)
+            if (!TryBuildPlacementPlan(template, scheme, out List<PlacementOp> frameworkOps, out List<PlacementOp> furnitureOps)
+                || frameworkOps.Count + furnitureOps.Count == 0)
             {
                 LastRejectReason = PlaceRejectReason.Nothing;
                 return false;
             }
 
+            plan = new PlacementPlan(frameworkOps, furnitureOps);
             return true;
-        }
-
-        /// <summary>放置前清理模板占用区域，避免旧家具/方块残留。</summary>
-        internal static void ClearPlacementArea(BlueprintTemplate template, FurnitureScheme scheme, Point origin)
-        {
-            for (int y = 0; y < template.Height; y++)
-            {
-                for (int x = 0; x < template.Width; x++)
-                {
-                    int idx = x + y * template.Width;
-                    StructureCell structure = template.Structure[idx];
-                    ReplaceRule rule = template.ReplaceRules[idx];
-                    int wx = origin.X + x;
-                    int wy = origin.Y + y;
-                    if (!WorldGen.InWorld(wx, wy, 1))
-                        continue;
-
-                    bool clear =
-                        structure.HasWall
-                        || structure.Content == StructureCellContent.Tile
-                        || (structure.Content == StructureCellContent.FurnitureAnchor
-                            && IsSlotGroupLeader(template, idx));
-
-                    if (!clear)
-                        continue;
-
-                    WorldGen.KillTile(wx, wy, fail: false, effectOnly: false, noItem: true);
-                    WorldGen.KillWall(wx, wy, false);
-                }
-            }
-
-            for (int y = 0; y < template.Height; y++)
-            {
-                for (int x = 0; x < template.Width; x++)
-                {
-                    int idx = x + y * template.Width;
-                    if (template.Structure[idx].Content != StructureCellContent.FurnitureAnchor
-                        || !IsSlotGroupLeader(template, idx))
-                        continue;
-
-                    ReplaceRule rule = template.ReplaceRules[idx];
-                    if (!TryResolveItemType(rule, scheme, out int itemType))
-                        continue;
-
-                    Item item = new Item();
-                    item.SetDefaults(itemType);
-                    FurniturePlacementRules.PrepareFootprint(
-                        item,
-                        origin.X + x,
-                        origin.Y + y);
-                }
-            }
         }
 
         private static bool TryBuildPlacementPlan(
             BlueprintTemplate template,
             FurnitureScheme scheme,
-            Point origin,
-            out List<PlacementOp> ops)
+            out List<PlacementOp> frameworkOps,
+            out List<PlacementOp> furnitureOps)
         {
-            ops = new List<PlacementOp>();
+            frameworkOps = new List<PlacementOp>();
+            furnitureOps = new List<PlacementOp>();
             var furnitureWork = new List<FurnitureWork>();
 
             for (int y = 0; y < template.Height; y++)
@@ -253,19 +365,29 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint.Placement
                 for (int x = 0; x < template.Width; x++)
                 {
                     int idx = x + y * template.Width;
+                    if (template.Structure[idx].HasWall)
+                        frameworkOps.Add(new PlacementOp(PlacementOpKind.Wall, idx));
+                }
+            }
+
+            for (int y = 0; y < template.Height; y++)
+            {
+                for (int x = 0; x < template.Width; x++)
+                {
+                    int idx = x + y * template.Width;
+                    StructureCell structure = template.Structure[idx];
+                    if (structure.Content == StructureCellContent.Tile)
+                        frameworkOps.Add(new PlacementOp(PlacementOpKind.Tile, idx));
+                }
+            }
+
+            for (int y = 0; y < template.Height; y++)
+            {
+                for (int x = 0; x < template.Width; x++)
+                {
+                    int idx = x + y * template.Width;
                     StructureCell structure = template.Structure[idx];
                     ReplaceRule rule = template.ReplaceRules[idx];
-                    int wx = origin.X + x;
-                    int wy = origin.Y + y;
-
-                    if (structure.HasWall)
-                        ops.Add(new PlacementOp(PlacementOpKind.Wall, idx));
-
-                    if (structure.Content == StructureCellContent.Tile)
-                    {
-                        ops.Add(new PlacementOp(PlacementOpKind.Tile, idx));
-                        continue;
-                    }
 
                     if (structure.Content != StructureCellContent.FurnitureAnchor)
                         continue;
@@ -289,11 +411,10 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint.Placement
             }
 
             furnitureWork.Sort(static (a, b) => a.Phase.CompareTo(b.Phase));
-
             foreach (FurnitureWork work in furnitureWork)
-                ops.Add(new PlacementOp(PlacementOpKind.Furniture, work.CellIndex, work.Phase));
+                furnitureOps.Add(new PlacementOp(PlacementOpKind.Furniture, work.CellIndex, work.Phase));
 
-            return ops.Count > 0;
+            return frameworkOps.Count + furnitureOps.Count > 0;
         }
 
         private static bool HasSchemeCoverage(BlueprintTemplate template, FurnitureScheme scheme)
@@ -361,6 +482,18 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint.Placement
             return itemType > ItemID.None;
         }
 
+        private static bool TryResolveWallItemType(ReplaceRule rule, FurnitureScheme scheme, out int itemType)
+        {
+            if (rule.Mode == ReplaceMode.Fixed && rule.FixedItemType > ItemID.None)
+            {
+                itemType = rule.FixedItemType;
+                return true;
+            }
+
+            itemType = scheme.GetSlot(FurnitureSlotKind.Wall);
+            return itemType > ItemID.None;
+        }
+
         private static FurnitureSlotKind ResolveMaterialKind(ReplaceRule rule, StructureCell structure)
         {
             if (rule.RequiresSchemeMaterial)
@@ -412,15 +545,8 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint.Placement
             int y,
             bool consume)
         {
-            int type;
-            if (rule.Mode == ReplaceMode.Fixed && rule.FixedItemType > ItemID.None)
-                type = rule.FixedItemType;
-            else
-            {
-                type = scheme.GetSlot(FurnitureSlotKind.Wall);
-                if (type <= ItemID.None)
-                    return false;
-            }
+            if (!TryResolveWallItemType(rule, scheme, out int type))
+                return false;
 
             if (!CanAfford(player, type, 1, consume))
                 return false;
@@ -468,7 +594,9 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint.Placement
             if (!ImproveGameMaterialCheckers.ItemMatchesSlot(item, kind))
                 return false;
 
-            FurniturePlacementRules.PrepareCell(x, y);
+            if (Main.tile[x, y].HasTile)
+                FurniturePlacementRules.PrepareCell(x, y);
+
             if (!FurnitureBlueprintPlaceability.TryBongBongPlace(x, y, item, player))
                 return false;
             if (consume)
@@ -478,7 +606,9 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint.Placement
 
         private static bool TryPlaceFurniture(
             Player player,
+            BlueprintTemplate template,
             FurnitureScheme scheme,
+            Point origin,
             ReplaceRule rule,
             StructureCell structure,
             int x,
@@ -503,13 +633,42 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint.Placement
             FurniturePlacementRules.PrepareFootprint(item, x, y);
 
             if (!FurnitureBlueprintPlaceability.TryBongBongPlace(x, y, item, player))
+            {
+                RestoreTemplateWallsAfterFurnitureFailure(player, template, scheme, origin, x, y, item);
+                FurnitureBlueprintLog.Warn($"template furniture failed kind={kind} type={type} at {x},{y}");
                 return false;
+            }
 
             ApplyFlip(kind, x, y, structure.Flip);
 
             if (consume)
                 Consume(player, type, 1);
             return true;
+        }
+
+        private static void RestoreTemplateWallsAfterFurnitureFailure(
+            Player player,
+            BlueprintTemplate template,
+            FurnitureScheme scheme,
+            Point origin,
+            int anchorWorldX,
+            int anchorWorldY,
+            Item item)
+        {
+            FurniturePlacementRules.CollectFootprintWorldTiles(item, anchorWorldX, anchorWorldY, FootprintScratch);
+            foreach (Point wp in FootprintScratch)
+            {
+                int lx = wp.X - origin.X;
+                int ly = wp.Y - origin.Y;
+                if (lx < 0 || ly < 0 || lx >= template.Width || ly >= template.Height)
+                    continue;
+
+                int idx = lx + ly * template.Width;
+                if (!template.Structure[idx].HasWall)
+                    continue;
+
+                TryPlaceWall(player, scheme, template.ReplaceRules[idx], wp.X, wp.Y, consume: false);
+            }
         }
 
         private static bool IsMultiTilePlacement(Item item)

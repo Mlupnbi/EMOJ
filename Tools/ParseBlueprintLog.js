@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-/** @deprecated Prefer Tools/AnalyzeBlueprintLog.js ¡ª kept for compatibility. */
+/** @deprecated Prefer Tools/AnalyzeBlueprintLog.js Â¡Âª kept for compatibility. */
 const path = require('path');
 const { AUDIT_DIR, auditLogIndex, buildAuditSummary, findLatestSimpleLog } = require('./lib/wikiAudit');
 const { parseBlueprintLog } = require('./lib/parseBlueprintLog');

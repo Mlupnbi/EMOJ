@@ -7,7 +7,7 @@ using Terraria.ObjectData;
 namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
 {
     /// <summary>
-    /// °´ TileObjectData ¿í¸ß¡¢Ãªµã¡¢Í¼¸ñÊôĞÔ·ÖÀà£¨Gemini Î¬¶ÈÒ»/¶ş£©£¬ÓÅÏÈÓÚÄ£×éÓ¢ÎÄÃû¡£
+    /// æŒ‰ TileObjectData å®½é«˜ã€é”šç‚¹ã€å›¾æ ¼å±æ€§åˆ†ç±»ï¼ˆGemini ç»´åº¦ä¸€/äºŒï¼‰ï¼Œä¼˜å…ˆäºæ¨¡ç»„è‹±æ–‡åã€‚
     /// </summary>
     public static class FurnitureTileGeometryClassifier
     {
@@ -17,7 +17,7 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
             if (tile < TileID.Dirt)
                 return false;
 
-            TileObjectData data = TileObjectData.GetTileData(tile, style);
+            TileObjectData data = FurnitureTileSafety.TryGetTileData(tile, style);
             if (data == null)
                 return false;
 
@@ -29,10 +29,12 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
 
             bool anchorBottom = HasBottomAnchor(data);
             bool anchorTop = HasTopAnchor(data);
-            bool topSolid = Main.tileSolidTop[tile];
+            bool topSolid = FurnitureTileSafety.IsValidTileId(tile)
+                && tile < Main.tileSolidTop.Length
+                && Main.tileSolidTop[tile];
             bool lighted = Main.tileLighted != null && tile < Main.tileLighted.Length && Main.tileLighted[tile];
 
-            if (w == 1 && h == 1 && (lighted || name.Contains("cup") || name.Contains("±­")
+            if (w == 1 && h == 1 && (lighted || name.Contains("cup") || name.Contains("æ¯")
                 || name.Contains("candle") || name.Contains("torch") || name.Contains("lantern")))
             {
                 kind = FurnitureSlotKind.Candle;
@@ -116,7 +118,7 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
                     kind = FurnitureSlotKind.Bathtub;
                 else if (tile == TileID.Beds)
                     kind = FurnitureSlotKind.Bed;
-                else if (name.Contains("bath") || name.Contains("Ô¡"))
+                else if (name.Contains("bath") || name.Contains("æµ´"))
                     kind = FurnitureSlotKind.Bathtub;
                 else
                     kind = FurnitureSlotKind.Bed;
@@ -131,7 +133,7 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
             }
 
             if (anchorBottom && w >= 2 && h >= 2
-                && (name.Contains("toilet") || name.Contains("ÂíÍ°")))
+                && (name.Contains("toilet") || name.Contains("é©¬æ¡¶")))
             {
                 kind = FurnitureSlotKind.Toilet;
                 return true;
@@ -145,13 +147,13 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
                     kind = FurnitureSlotKind.Sofa;
                 else if (tile == TileID.Sinks)
                     kind = FurnitureSlotKind.Sink;
-                else if (TileID.Sets.BasicDresser[tile] || name.Contains("dresser") || name.Contains("Êá×±"))
+                else if (TileID.Sets.BasicDresser[tile] || name.Contains("dresser") || name.Contains("æ¢³å¦†"))
                     kind = FurnitureSlotKind.Dresser;
-                else if (name.Contains("piano") || name.Contains("¸ÖÇÙ"))
+                else if (name.Contains("piano") || name.Contains("é’¢ç´"))
                     kind = FurnitureSlotKind.Piano;
-                else if (name.Contains("sofa") || name.Contains("couch") || name.Contains("É³·¢"))
+                else if (name.Contains("sofa") || name.Contains("couch") || name.Contains("æ²™å‘"))
                     kind = FurnitureSlotKind.Sofa;
-                else if (name.Contains("sink") || name.Contains("Ë®²Û") || name.Contains("Ï´ÊÖ"))
+                else if (name.Contains("sink") || name.Contains("æ°´æ§½") || name.Contains("æ´—æ‰‹"))
                     kind = FurnitureSlotKind.Sink;
                 else
                     kind = FurnitureSlotKind.Table;
@@ -169,7 +171,7 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
 
             if (w == 2 && h == 1 && anchorBottom)
             {
-                if (tile == TileID.Bathtubs || name.Contains("bathtub") || name.Contains("bath") || name.Contains("Ô¡"))
+                if (tile == TileID.Bathtubs || name.Contains("bathtub") || name.Contains("bath") || name.Contains("æµ´"))
                 {
                     kind = FurnitureSlotKind.Bathtub;
                     return true;

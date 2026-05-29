@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
 {
-    /// <summary>��/ԡ�׳�ȱ�ۣ�ͼ�����ֵ� + Ѫͳ��ѡ���ż����</summary>
+    /// <summary>´²/Ô¡¸×³£È±²Û£ºÍ¼¸ñÏßÐÖµÜ + ÑªÍ³ºòÑ¡µÍÃÅ¼÷»ØÌî¡£</summary>
     internal static class FurnitureBedBathtubBackfill
     {
         public static void TryFillEmptySlots(

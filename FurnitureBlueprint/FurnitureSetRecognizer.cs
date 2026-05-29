@@ -14,7 +14,7 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
 {
     /// <summary>
     /// ���ƣ��ϳ����ӵ��䷽ԭ�� �� ���������������ê����ϡ�
-    /// ���ƣ�����ê����䷽���� �� 22 �۷�����ѡ�š�
+    /// ���ƣ�����ê����䷽����? �� 22 �۷�����ѡ�š�
     /// </summary>
     public static class FurnitureSetRecognizer
     {
@@ -24,8 +24,8 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
             "Bed", "Bookcase", "Bathtub", "Candelabra", "Candle", "Chandelier", "Clock", "Dresser",
             "Lamp", "Lantern", "Piano", "Sink", "Sofa", "Bench", "Toilet",
             "Wall", "Block", "Brick", "Bricks", "Plank", "Planks", "Slab", "Slabs", "Bar", "Bars",
-            "平台", "工作台", "桌子", "椅", "门", "箱", "床", "书架", "浴缸", "烛台", "蜡烛", "吊灯",
-            "钟", "梳妆台", "灯", "钢琴", "水槽", "沙发", "马桶", "墙", "块", "砖", "板", "梁"
+            "平台", "工作�?", "桌子", "�?", "�?", "�?", "�?", "书架", "浴缸", "烛台", "蜡烛", "吊灯",
+            "�?", "梳妆�?", "�?", "钢琴", "水槽", "沙发", "马桶", "�?", "�?", "�?", "�?", "�?"
         };
 
         public static FurnitureScheme Recognize(int seedType, bool forceRefresh = false, int anchorBlockOverride = ItemID.None)
@@ -67,7 +67,7 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
             return scheme.Clone();
         }
 
-        /// <summary>分帧识别入口；缓存命中时立即返回已完成 Job。</summary>
+        /// <summary>分帧识别入口；缓存命中时立即返回已完�? Job�?</summary>
         public static FurnitureRecognitionJob BeginRecognition(
             int seedType,
             int anchorBlockOverride = ItemID.None,
@@ -206,12 +206,17 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
                 seedType, anchorBlockOverride, scheme, candidateList, materialBlock, blockSig, stations);
         }
 
-        /// <summary>分帧 prepare：每帧推进一步，避免单帧 CollectCandidates + probe 卡死。</summary>
-        internal static bool TickPrepareRecognitionJob(FurnitureRecognitionJob job, out FurnitureRecognitionJob prepared)
+        /// <summary>分帧 prepare：每帧推进一步，避免单帧 CollectCandidates + probe 卡死�?</summary>
+        internal static bool TickPrepareRecognitionJob(
+            FurnitureRecognitionJob job,
+            int budgetMs,
+            out FurnitureRecognitionJob prepared)
         {
             prepared = null;
             if (job == null)
                 return true;
+
+            _ = budgetMs;
 
             int seedType = job.SeedType;
             int anchorBlockOverride = job.AnchorBlock;
@@ -309,18 +314,25 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
                     return false;
                 }
 
-                default:
+                case 3:
+                    job.PrepareConfidence = FurnitureSetConfidence.EvaluatePreview(
+                        seedType, job.PrepareSignature, job.PrepareMaterialBlock, job.PrepareBlockSig);
+                    job.PrepareCandidates = new HashSet<int>();
+                    job.PrepareCollectPhase = 0;
+                    job.PrepareStep = 4;
+                    return false;
+
+                case 4:
+                    if (!TickPrepareCollectOnce(job))
+                        return false;
+                    job.PrepareStep = 5;
+                    return false;
+
+                case 5:
                 {
                     int materialBlock = job.PrepareMaterialBlock;
-                    FurnitureStyleSignature signature = job.PrepareSignature;
                     FurnitureStyleSignature blockSig = job.PrepareBlockSig;
 
-                    job.PrepareCandidates = CollectCandidates(
-                        seedType,
-                        signature,
-                        materialBlock,
-                        blockSig,
-                        FurnitureSetConfidence.EvaluatePreview(seedType, signature, materialBlock, blockSig));
                     FurnitureBlueprintLog.Info(
                         $"recognize begin seed={seedType} name={FurnitureItemDefaults.SafeItemName(seedType)} material={materialBlock} matName={(materialBlock > ItemID.None ? FurnitureItemDefaults.SafeItemName(materialBlock) : "-")} candidates={job.PrepareCandidates.Count}");
 
@@ -334,8 +346,97 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
                     job.PrepareStep = 0;
                     job.PrepareScheme = null;
                     job.PrepareCandidates = null;
+                    job.PrepareCollectPhase = 0;
                     return true;
                 }
+
+                default:
+                    job.PrepareStep = 0;
+                    return false;
+            }
+        }
+
+        private const int PrepareCollectPhaseDone = 4;
+
+        /// <summary>分帧收集候选；返回 true 表示候选集已就绪�?</summary>
+        private static bool TickPrepareCollectOnce(FurnitureRecognitionJob job)
+        {
+            int seedType = job.SeedType;
+            int materialBlock = job.PrepareMaterialBlock;
+            FurnitureStyleSignature signature = job.PrepareSignature;
+            FurnitureStyleSignature blockSig = job.PrepareBlockSig;
+            FurnitureSetConfidenceReport preview = job.PrepareConfidence;
+            HashSet<int> raw = job.PrepareCandidates;
+
+            switch (job.PrepareCollectPhase)
+            {
+                case 0:
+                    if (preview.PreferSeedCluster || preview.Tier == FurnitureSetConfidenceTier.Low)
+                    {
+                        FurnitureStyleClusterCatalog.ExpandFromSeed(seedType, signature, raw, materialBlock);
+                        if (materialBlock > ItemID.None && raw.Count < FurnitureSetConfidence.LowMaterialCandidateCap)
+                        {
+                            foreach (int type in FurnitureRecognitionCaches.GetOrCollectMaterialProducts(
+                                         seedType, materialBlock, blockSig))
+                            {
+                                if (raw.Count >= FurnitureSetConfidence.LowMaterialCandidateCap)
+                                    break;
+                                raw.Add(type);
+                            }
+                        }
+
+                        FurnitureBlueprintLog.InfoFull(
+                            $"candidates seed-cluster seed={seedType} tier={preview.Tier} style={blockSig.StyleKey} count={raw.Count}");
+                    }
+                    else if (materialBlock > ItemID.None)
+                    {
+                        foreach (int type in FurnitureRecognitionCaches.GetOrCollectMaterialProducts(
+                                     seedType, materialBlock, blockSig))
+                            raw.Add(type);
+                    }
+                    else
+                    {
+                        FurnitureStyleClusterCatalog.ExpandFromSeed(seedType, signature, raw, ItemID.None);
+                        FurnitureBlueprintLog.InfoFull(
+                            $"candidates seed-only seed={seedType} style={blockSig.StyleKey} count={raw.Count}");
+                        job.PrepareCandidates = FurnitureRecognizeCandidateCap.TrimIfNeeded(raw, seedType, materialBlock, blockSig);
+                        job.PrepareCollectPhase = PrepareCollectPhaseDone;
+                        return true;
+                    }
+
+                    job.PrepareCollectPhase = 1;
+                    return false;
+
+                case 1:
+                    if (materialBlock > ItemID.None
+                        && !(preview.PreferSeedCluster || preview.Tier == FurnitureSetConfidenceTier.Low)
+                        && (FurnitureSetMaterialRules.UsesModLineageAnchor(seedType)
+                            || FurnitureSetMaterialRules.UsesModSpecificMaterialBlock(seedType)
+                            || raw.Count < FurnitureSetConfidence.LowMaterialCandidateCap))
+                    {
+                        FurnitureStyleClusterCatalog.ExpandFromSeed(seedType, signature, raw, materialBlock);
+                        FurnitureCandidateExpander.Expand(seedType, blockSig, materialBlock, raw);
+                        FurnitureMaterialPlacementExpander.ExpandFromMaterialAndSeed(raw, seedType, materialBlock, blockSig);
+                        FurnitureBlueprintLog.InfoFull(
+                            $"candidates mod-expand seed={seedType} style={blockSig.StyleKey} count={raw.Count}");
+                    }
+
+                    job.PrepareCollectPhase = 2;
+                    return false;
+
+                case 2:
+                    job.PrepareCandidates = FurnitureRecognizeCandidateCap.TrimIfNeeded(raw, seedType, materialBlock, blockSig);
+                    if (materialBlock > ItemID.None)
+                    {
+                        FurnitureBlueprintLog.InfoFull(
+                            $"candidates material-first seed={seedType} style={blockSig.StyleKey} count={job.PrepareCandidates.Count}");
+                    }
+
+                    job.PrepareCollectPhase = PrepareCollectPhaseDone;
+                    return true;
+
+                default:
+                    return true;
             }
         }
 
@@ -416,7 +517,7 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
             }
         }
 
-        /// <summary>分帧填槽；每帧最多推进一步，返回 true 表示 finalize 完成。</summary>
+        /// <summary>???????????????? true ?? finalize ???</summary>
         internal static bool TickFinalizeScheme(FurnitureRecognitionJob job, int budgetMs)
         {
             if (job == null)
@@ -458,7 +559,6 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
         private static void BeginFinalizeScheme(FurnitureRecognitionJob job)
         {
             int seedType = job.SeedType;
-            int anchor = job.AnchorBlock;
             int materialBlock = job.MaterialBlock;
             FurnitureScheme scheme = job.Scheme;
             FurnitureStyleSignature blockSig = job.BlockSig;
@@ -730,7 +830,7 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
             return anchor > ItemID.None ? anchor : ItemID.None;
         }
 
-        /// <summary>Ͱ�� 1 ��ֱ�Ӳ��ã�������ս�������/����̨/�䷽����</summary>
+        /// <summary>Ͱ�� 1 ��ֱ�Ӳ��ã�������ս�������?/����̨/�䷽����</summary>
         private static int ResolveSlotFromBucket(
             List<int> candidates,
             FurnitureSlotKind slot,
@@ -984,7 +1084,6 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
                     FurnitureStyleClusterCatalog.ExpandFromSeed(seedType, signature, raw, materialBlock);
                     FurnitureCandidateExpander.Expand(seedType, blockSig, materialBlock, raw);
                     FurnitureMaterialPlacementExpander.ExpandFromMaterialAndSeed(raw, seedType, materialBlock, blockSig);
-                    FurnitureStylePrefixCatalog.ExpandForSeed(seedType, materialBlock, blockSig, raw);
                     FurnitureBlueprintLog.InfoFull(
                         $"candidates mod-expand seed={seedType} style={blockSig.StyleKey} count={raw.Count}");
                 }
@@ -1099,7 +1198,7 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
             bool styleFuzzy = !styleExact
                 && FurnitureStyleSignature.StyleKeyFuzzyMatch(signature.StyleKey, key);
 
-            // Gemini ��һ�㣺placeStyle ������ڶ��� StyleKey ͬʱ��������������ľ�ι��� style=5��
+            // Gemini ��һ�㣺placeStyle ������ڶ���? StyleKey ͬʱ��������������ľ�ι��� style=5��
             if (signature.UsesPlacementStyleLine && signature.PlacementTile >= TileID.Dirt
                 && other.PlacementTile == signature.PlacementTile && other.PlacementStyle == signature.PlacementStyle
                 && (styleExact || styleFuzzy))
@@ -1120,7 +1219,7 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
             if (type == anchorType)
                 score += 300;
 
-            // Gemini �����㣺ê����ϣ���ȷ�����������䷽�飩
+            // Gemini �����㣺ê����ϣ���ȷ�����������䷽��?
             if (anchorType > ItemID.None)
             {
                 FurnitureCraftStationProfile stations = FurnitureCraftStationProfile.FromSeed(seedType);
@@ -1159,7 +1258,7 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
             return score;
         }
 
-        /// <summary>从显示名去掉槽位后缀，得到套组血统词（如「生命红木」「干木」）。</summary>
+        /// <summary>从显示名去掉槽位后缀，得到套组血统词（如「生命红木」「干木」）�?</summary>
         public static string ExtractDisplayLineageMoniker(int itemType)
         {
             if (itemType <= ItemID.None)

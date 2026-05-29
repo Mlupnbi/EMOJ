@@ -32,8 +32,6 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
             if (dest.Count < FurnitureWikiSlots.TotalCount)
                 AddRelaxedRecipeProducts(seedType, filterSig, anchorMaterial, dest);
 
-            FurnitureStylePrefixCatalog.ExpandForSeed(seedType, anchorMaterial, filterSig, dest);
-
             if (anchorMaterial > ItemID.None)
                 EnsureMaterialRoleProducts(anchorMaterial, filterSig, dest);
 

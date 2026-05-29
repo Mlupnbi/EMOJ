@@ -19,14 +19,14 @@ using EvenMoreOverpoweredJourney.Buffs.Systems.Display;
 
 namespace EvenMoreOverpoweredJourney.Integration.Session
 {
-    /// <summary>����ָ�� DEBUG_OUTPUTBUFFS��������ǰ��Ч Buff �������塣</summary>
+    /// <summary>超级指令 DEBUG_OUTPUTBUFFS：导出当前生效 Buff 到剪贴板。</summary>
     internal static class SessionActiveBuffExporter
     {
         public static bool TryExportToClipboard()
         {
             if (Main.dedServ)
             {
-                Main.NewText("Buff �������ڿͻ��˿��á�", Color.OrangeRed);
+                Main.NewText("Buff \u5bfc\u51fa\u4ec5\u5728\u5ba2\u6237\u7aef\u53ef\u7528\u3002", Color.OrangeRed);
                 return false;
             }
 
@@ -37,12 +37,12 @@ namespace EvenMoreOverpoweredJourney.Integration.Session
             string text = BuildExportText(plr);
             if (!GameClipboard.TrySetText(text))
             {
-                Main.NewText("�޷�д�������?", Color.OrangeRed);
+                Main.NewText("\u65e0\u6cd5\u5199\u5165\u526a\u8d34\u677f\u3002", Color.OrangeRed);
                 return false;
             }
 
             int count = CountRows(text);
-            Main.NewText($"�Ѹ��� {count} ����Ч Buff �������壨TSV����", Color.LightGreen);
+            Main.NewText($"\u5df2\u590d\u5236 {count} \u6761\u751f\u6548 Buff \u5230\u526a\u8d34\u677f\uff08TSV\uff09", Color.LightGreen);
             return true;
         }
 

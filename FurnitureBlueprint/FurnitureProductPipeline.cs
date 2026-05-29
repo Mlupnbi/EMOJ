@@ -90,7 +90,6 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
 
             FurnitureCandidateExpander.Expand(seedType, productSig, materialBlock, products);
             FurnitureMaterialPlacementExpander.ExpandFromMaterialAndSeed(products, seedType, materialBlock, productSig);
-            FurnitureStylePrefixCatalog.ExpandForSeed(seedType, materialBlock, productSig, products);
 
             FurnitureBlueprintLog.InfoFull(
 

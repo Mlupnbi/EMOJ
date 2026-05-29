@@ -97,6 +97,8 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
         private static List<int> _queueBuilder;
         private static int _queueBuildCursor;
         private static long _lastChatProgressMs;
+        private static int _bootstrapSeed = ItemID.None;
+        private static bool _pendingBeginRecognition;
 
         public static bool TryStart(RunMode mode)
         {
@@ -119,11 +121,14 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
             if (IsRunning)
                 return false;
 
-            FurnitureTileSlotRegistry.Build();
+            bool singleSeedDiag = fixedQueue != null;
 
             FurnitureSetCacheSystem.ClearSchemesOnly();
-            FurnitureRecognitionCaches.Clear();
-            FurnitureReverseSeedProbeCache.Clear();
+            if (!singleSeedDiag)
+            {
+                FurnitureRecognitionCaches.Clear();
+                FurnitureReverseSeedProbeCache.Clear();
+            }
 
             _index = 0;
             _full22 = _ge20 = _lt12 = _bedBathPairMiss = _skippedNoMaterial = _failed = _scoredCount = 0;
@@ -138,6 +143,8 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
             _accSumHigh = _accSumMedium = _accSumLow = 0;
             _accFilledHigh = _accFilledMedium = _accFilledLow = 0;
             _worst = new List<string>(12);
+            _bootstrapSeed = ItemID.None;
+            _pendingBeginRecognition = false;
             _activeJob = null;
             _activeSeed = ItemID.None;
             _activeMaterial = ItemID.None;
@@ -172,11 +179,11 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
 
         private static void LogBatchStart(RunMode mode, int count, bool singleSeed = false)
         {
-            string label = singleSeed ? "单种子诊断" : ModeLabel(mode);
+            string label = singleSeed ? "\u5355\u79cd\u5b50\u8bca\u65ad" : ModeLabel(mode);
             FurnitureBlueprintLog.Info(
                 $"batch-test start mode={mode} seeds={count} wiki_cache_sets={FurnitureWikiExpectations.LoadedSetCount} golden_sets={FurnitureGoldenExpectations.LoadedSetCount}");
             Main.NewText(
-                $"蓝图批量测试已开始（{label}，共 {count} 项）。CANCEL_TEST_BLUEPRINT 可中止。",
+                $"\u84dd\u56fe\u6279\u91cf\u6d4b\u8bd5\u5df2\u5f00\u59cb\uff08{label}\uff0c\u5171 {count} \u9879\uff09\u3002CANCEL_TEST_BLUEPRINT \u53ef\u4e2d\u6b62\u3002",
                 Microsoft.Xna.Framework.Color.LightGreen);
         }
 
@@ -188,9 +195,11 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
             IsRunning = false;
             _queue = null;
             _queueBuilder = null;
+            _bootstrapSeed = ItemID.None;
+            _pendingBeginRecognition = false;
             _activeJob = null;
             FurnitureBlueprintLog.Warn($"batch-test cancelled at {_index}/{_queue?.Count ?? 0}");
-            Main.NewText("蓝图批量测试已中止。", Microsoft.Xna.Framework.Color.Orange);
+            Main.NewText("\u84dd\u56fe\u6279\u91cf\u6d4b\u8bd5\u5df2\u4e2d\u6b62\u3002", Microsoft.Xna.Framework.Color.Orange);
         }
 
         /// <summary>每帧推进当前种子识别（分帧，避免单帧卡死）。</summary>
@@ -219,6 +228,18 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
 
             if (_queue == null)
                 return;
+
+            if (_pendingBeginRecognition)
+            {
+                AdvancePendingRecognition();
+                return;
+            }
+
+            if (_bootstrapSeed > ItemID.None)
+            {
+                AdvanceSeedBootstrap();
+                return;
+            }
 
             if (_activeJob != null)
             {
@@ -309,7 +330,7 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
             if (_queue.Count == 0)
             {
                 IsRunning = false;
-                Main.NewText("批量测试：未找到可识别家具种子。", Microsoft.Xna.Framework.Color.Orange);
+                Main.NewText("\u6279\u91cf\u6d4b\u8bd5\uff1a\u672a\u627e\u5230\u53ef\u8bc6\u522b\u5bb6\u5177\u79cd\u5b50\u3002", Microsoft.Xna.Framework.Color.Orange);
                 return;
             }
 
@@ -331,28 +352,59 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
 
         private static bool TryBeginSeed(int seedType)
         {
-            int material = FurnitureSeedWorkspaceResolver.Resolve(seedType).MaterialBlock;
-            if (material <= ItemID.None)
-            {
-                _skippedNoMaterial++;
-                FurnitureBlueprintLog.InfoFull(
-                    $"batch-test skip seed={seedType} name={SafeName(seedType)} reason=no-material");
+            if (seedType <= ItemID.None)
                 return false;
-            }
 
-            material = FurnitureVanillaLivingWoodBridge.RedirectReverseAnchor(seedType, material);
-            material = FurnitureSetMaterialRules.ResolveModMaterialBlock(seedType, material);
-            FurnitureSetMaterialRules.ApplyLivingWoodRecipeMaterial(seedType, ref material);
+            _bootstrapSeed = seedType;
+            _activeSeed = seedType;
+            FurnitureBlueprintLog.Info($"batch-test queued seed={seedType}");
+            return true;
+        }
+
+        /// <summary>解析材料块；识别 Job 在下一帧通过 BeginRecognition 分帧创建（与 UI Tab4 相同）。</summary>
+        private static void AdvanceSeedBootstrap()
+        {
+            int seedType = _bootstrapSeed;
+            _bootstrapSeed = ItemID.None;
+
+            FurnitureBlueprintLog.InfoFull(
+                $"batch-test begin-seed seed={seedType} name={SafeName(seedType)}");
 
             try
             {
-                _activeSeed = seedType;
-                _activeMaterial = material;
-                _activeRecognizeTicks = 0;
-                _activeJob = FurnitureSetRecognizer.BeginRecognition(
-                    seedType, material, forceRefresh: true);
+                int material = ResolveAutoMaterialBlock(seedType);
+                if (material <= ItemID.None)
+                {
+                    _skippedNoMaterial++;
+                    FurnitureBlueprintLog.InfoFull(
+                        $"batch-test skip seed={seedType} name={SafeName(seedType)} reason=no-material");
+                    return;
+                }
 
-                return true;
+                _activeMaterial = material;
+                _pendingBeginRecognition = true;
+            }
+            catch (Exception ex)
+            {
+                _failed++;
+                FurnitureBlueprintLog.Warn(
+                    $"batch-test fail seed={seedType} name={SafeName(seedType)}: {ex.Message}");
+            }
+        }
+
+        /// <summary>创建 Preparing 阶段 Job；候选收集与分类在后续帧由 RecognitionRunner 推进。</summary>
+        private static void AdvancePendingRecognition()
+        {
+            _pendingBeginRecognition = false;
+            int seedType = _activeSeed;
+            int material = _activeMaterial;
+
+            try
+            {
+                _activeRecognizeTicks = 0;
+                _activeJob = FurnitureSetRecognizer.BeginRecognition(seedType, material, forceRefresh: false);
+                if (_activeJob.IsComplete)
+                    CompleteActiveSeed();
             }
             catch (Exception ex)
             {
@@ -360,7 +412,6 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
                 _activeJob = null;
                 FurnitureBlueprintLog.Warn(
                     $"batch-test fail seed={seedType} name={SafeName(seedType)}: {ex.Message}");
-                return true;
             }
         }
 
@@ -382,11 +433,19 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
 
             try
             {
-                FurnitureRecognitionRunner.Tick(_activeJob, BatchFrameBudgetMs);
-                if (_activeJob.IsComplete)
+                var sw = Stopwatch.StartNew();
+                while (_activeJob != null && sw.ElapsedMilliseconds < BatchFrameBudgetMs)
                 {
-                    CompleteActiveSeed();
-                    _activeJob = null;
+                    int remaining = BatchFrameBudgetMs - (int)sw.ElapsedMilliseconds;
+                    if (remaining < 1)
+                        break;
+
+                    if (FurnitureRecognitionRunner.Tick(_activeJob, remaining))
+                    {
+                        CompleteActiveSeed();
+                        _activeJob = null;
+                        break;
+                    }
                 }
             }
             catch (Exception ex)
@@ -483,6 +542,8 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
         {
             IsRunning = false;
             _runClock.Stop();
+            _bootstrapSeed = ItemID.None;
+            _pendingBeginRecognition = false;
             _activeJob = null;
             int done = _index;
             double avgScored = _scoredCount > 0 ? (double)_wikiSum / _scoredCount : 0;
@@ -510,7 +571,7 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
             EmojLog.Info(EmojLogChannel.Blueprint, summary);
 
             Main.NewText(
-                $"批量测试完成：识别 {_scoredCount} 项，均分 {avgScored:F1}/22，code准确度 {avgAccuracy:P0}，金标准 {avgGoldenMatch:P0}（{_goldenAuditedSeeds} 项），满格 {_full22}，耗时 {_runClock.Elapsed.TotalSeconds:F0}s",
+                $"\u6279\u91cf\u6d4b\u8bd5\u5b8c\u6210\uff1a\u8bc6\u522b {_scoredCount} \u9879\uff0c\u5747\u5206 {avgScored:F1}/22\uff0ccode\u51c6\u786e\u5ea6 {avgAccuracy:P0}\uff0c\u91d1\u6807\u51c6 {avgGoldenMatch:P0}\uff08{_goldenAuditedSeeds} \u9879\uff09\uff0c\u6ee1\u683c {_full22}\uff0c\u8017\u65f6 {_runClock.Elapsed.TotalSeconds:F0}s",
                 Microsoft.Xna.Framework.Color.LightGreen);
 
             if (_worst.Count > 0)
@@ -696,9 +757,9 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
 
         private static string ModeLabel(RunMode mode) => mode switch
         {
-            RunMode.Quick => "快速回归",
-            RunMode.Full => "全量家具",
-            _ => "按套组代表"
+            RunMode.Quick => "\u5feb\u901f\u56de\u5f52",
+            RunMode.Full => "\u5168\u91cf\u5bb6\u5177",
+            _ => "\u6309\u5957\u7ec4\u4ee3\u8868"
         };
     }
 }

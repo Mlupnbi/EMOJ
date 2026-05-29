@@ -92,13 +92,14 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
                 return false;
             }
 
-            if (TileID.Sets.Platforms[tile])
+            if (FurnitureTileSafety.IsPlatformTile(tile))
             {
                 kind = FurnitureSlotKind.Platform;
                 return true;
             }
 
-            trace.TileDataPresent = TileObjectData.GetTileData(tile, style) != null || (style != 0 && TileObjectData.GetTileData(tile, 0) != null);
+            trace.TileDataPresent = FurnitureTileSafety.HasTileData(tile, style)
+                || (style != 0 && FurnitureTileSafety.HasTileData(tile, 0));
 
             // ԭ��ͼ�� ID �����ڼ��Σ�����Ĭ�� 3��2��Table��4��2��Bed������������ bath/piano ʱ������
             trace.NameMatched = TryClassifyByItemName(item, out kind);
@@ -212,7 +213,7 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
             {
                 if (s == style)
                     continue;
-                if (TileObjectData.GetTileData(tile, s) == null)
+                if (FurnitureTileSafety.TryGetTileData(tile, s) == null)
                     continue;
                 probed++;
                 if (TryClassifyByGeminiGeometry(tile, s, hint, out kind))
@@ -708,10 +709,10 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
             if (tileType < TileID.Dirt)
                 return false;
 
-            if (TileObjectData.GetTileData(tileType, style) != null)
+            if (FurnitureTileSafety.HasTileData(tileType, style))
                 return false;
 
-            if (style != 0 && TileObjectData.GetTileData(tileType, 0) != null)
+            if (style != 0 && FurnitureTileSafety.HasTileData(tileType, 0))
                 return false;
 
             return FurnitureTileSafety.IsPhysicallySolidTile(tileType);

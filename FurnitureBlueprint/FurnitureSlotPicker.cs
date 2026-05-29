@@ -62,6 +62,21 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
             if (candidates == null || candidates.Count == 0)
                 return ItemID.None;
 
+            if (seedType > ItemID.None
+                && FurnitureSlotScoring.IsSeedHomeSlot(seedType, slot, seedType))
+            {
+                foreach (int home in candidates)
+                {
+                    if (home != seedType)
+                        continue;
+                    if (occupied != null && occupied.Contains(home))
+                        break;
+                    EmojLogDiagnostics.LogSlotPickScores(seedType, slot, materialBlock, home,
+                        new[] { (home, FurnitureSlotScoring.SeedExactBonus) });
+                    return home;
+                }
+            }
+
             bool logScores = EmojLog.IsFullMode;
             List<(int type, int score)> scoreRows = logScores ? new List<(int type, int score)>() : null;
             int best = ItemID.None;

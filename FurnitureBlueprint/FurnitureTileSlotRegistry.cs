@@ -15,14 +15,26 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
         private static readonly Dictionary<long, List<int>> ItemsByPlacementLine = new();
         private static bool _built;
 
+        public static bool IsBuilt => _built;
+
         private const int MaxItemsPerPlacementLine = 256;
 
-        public static void Build()
+        public static void Invalidate()
         {
             DefaultByTile.Clear();
             ByTileStyle.Clear();
             ItemsByPlacementLine.Clear();
-            _built = true;
+            _built = false;
+        }
+
+        public static void Build(bool force = false)
+        {
+            if (_built && !force)
+                return;
+
+            DefaultByTile.Clear();
+            ByTileStyle.Clear();
+            ItemsByPlacementLine.Clear();
 
             int maxTile = TileLoader.TileCount;
             for (int tile = TileID.Dirt; tile < maxTile; tile++)
@@ -30,7 +42,7 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
                 string hint = FurnitureTileGeometryClassifier.GetTileNameHint(tile);
                 for (int style = 0; style < 256; style++)
                 {
-                    if (TileObjectData.GetTileData(tile, style) == null)
+                    if (FurnitureTileSafety.TryGetTileData(tile, style) == null)
                         continue;
 
                     if (FurnitureSlotClassifier.TryClassifyByRoomNeedsPublic(tile, style, out FurnitureSlotKind vanillaKind))
@@ -44,14 +56,8 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
             for (int type = ItemID.None + 1; type < maxItem; type++)
             {
                 Item item = new Item();
-                try
-                {
-                    item.SetDefaults(type);
-                }
-                catch
-                {
+                if (!FurnitureItemDefaults.TrySetDefaults(item, type))
                     continue;
-                }
 
                 int tile = item.createTile;
                 if (tile < TileID.Dirt)
@@ -65,6 +71,8 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
 
                 RegisterItemPlacement(type, tile, item.placeStyle);
             }
+
+            _built = true;
         }
 
         public static void AddPlacementLineSiblings(

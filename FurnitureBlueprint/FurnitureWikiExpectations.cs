@@ -9,7 +9,7 @@ using EvenMoreOverpoweredJourney.Core.Logging;
 namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
 {
     /// <summary>
-    /// ¼ÓÔØ Data/wiki_furniture_cache.json£¨ÓÉ Tools/ScrapeWikiFurnitureSets.js Éú³É£©£¬¹© batch ´ò wiki_match¡£
+    /// åŠ è½½ Data/wiki_furniture_cache.jsonï¼ˆç”± Tools/ScrapeWikiFurnitureSets.js ç”Ÿæˆï¼‰ï¼Œä¾› batch æ‰“ wiki_matchã€‚
     /// </summary>
     internal static class FurnitureWikiExpectations
     {
