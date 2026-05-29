@@ -53,7 +53,6 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
             if (scheme == null)
                 return default;
 
-            FurnitureBlueprintCrashDiagnostics.BeginSeed(seedType);
             FurnitureBlueprintCrashDiagnostics.Phase("accuracy", "begin");
 
             bool modSeed = IsModSeed(seedType);
@@ -115,7 +114,6 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
             FurnitureBlueprintCrashDiagnostics.Phase("accuracy", "wiki-match");
             var wikiReport = EvaluateWikiMatch(seedType, scheme);
             FurnitureBlueprintCrashDiagnostics.Phase("accuracy", "end");
-            FurnitureBlueprintCrashDiagnostics.EndSeed();
 
             return new Report(
                 filled,

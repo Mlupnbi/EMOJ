@@ -9,6 +9,9 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
     {
         private static int _seed = ItemID.None;
 
+        /// <summary>多种子 batch 时关闭逐槽明细，只保留 phase / material 关键行。</summary>
+        public static bool Verbose { get; set; } = true;
+
         public static void BeginSeed(int seed) => _seed = seed;
 
         public static void EndSeed() => _seed = ItemID.None;
@@ -24,7 +27,7 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
 
         public static void SlotStep(FurnitureSlotKind slot, string step, int itemType = ItemID.None)
         {
-            if (_seed <= ItemID.None)
+            if (!Verbose || _seed <= ItemID.None)
                 return;
 
             if (itemType <= ItemID.None)
@@ -36,11 +39,17 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
             LogItem(slot, step, itemType);
         }
 
-        public static void Item(FurnitureSlotKind slot, int itemType, string step) => LogItem(slot, step, itemType);
+        public static void Item(FurnitureSlotKind slot, int itemType, string step)
+        {
+            if (!Verbose)
+                return;
+
+            LogItem(slot, step, itemType);
+        }
 
         public static void Check(FurnitureSlotKind slot, int itemType, string check)
         {
-            if (_seed <= ItemID.None || itemType <= ItemID.None)
+            if (!Verbose || _seed <= ItemID.None || itemType <= ItemID.None)
                 return;
 
             LogItem(slot, $"check={check}", itemType);

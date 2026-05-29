@@ -122,13 +122,10 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
                 return false;
 
             bool singleSeedDiag = fixedQueue != null;
+            FurnitureBlueprintCrashDiagnostics.Verbose = singleSeedDiag;
+            FurnitureBlueprintScope.StrictMaterialOnly = true;
 
             FurnitureSetCacheSystem.ClearSchemesOnly();
-            if (!singleSeedDiag)
-            {
-                FurnitureRecognitionCaches.Clear();
-                FurnitureReverseSeedProbeCache.Clear();
-            }
 
             _index = 0;
             _full22 = _ge20 = _lt12 = _bedBathPairMiss = _skippedNoMaterial = _failed = _scoredCount = 0;
@@ -168,6 +165,21 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
 
                 _phase = BatchPhase.Running;
                 LogBatchStart(mode, _queue.Count, fixedQueue != null);
+                return true;
+            }
+
+            if (mode == RunMode.Sets && FurnitureSetCatalog.IsBuilt)
+            {
+                _queue = BuildQueue(mode);
+                if (_queue.Count == 0)
+                {
+                    IsRunning = false;
+                    FurnitureBlueprintLog.Warn("batch-test abort: empty queue (catalog already built)");
+                    return false;
+                }
+
+                _phase = BatchPhase.Running;
+                LogBatchStart(mode, _queue.Count);
                 return true;
             }
 
@@ -372,7 +384,11 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
 
             try
             {
+                FurnitureBlueprintCrashDiagnostics.BeginSeed(seedType);
+                FurnitureBlueprintCrashDiagnostics.Phase("material", "resolve-begin");
                 int material = ResolveAutoMaterialBlock(seedType);
+                FurnitureBlueprintCrashDiagnostics.Phase("material", $"resolve-done block={material}");
+                FurnitureBlueprintCrashDiagnostics.EndSeed();
                 if (material <= ItemID.None)
                 {
                     _skippedNoMaterial++;
@@ -386,6 +402,7 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
             }
             catch (Exception ex)
             {
+                FurnitureBlueprintCrashDiagnostics.EndSeed();
                 _failed++;
                 FurnitureBlueprintLog.Warn(
                     $"batch-test fail seed={seedType} name={SafeName(seedType)}: {ex.Message}");
@@ -467,11 +484,34 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
             {
                 int wiki = CountWikiFilled(scheme);
                 FurnitureBlueprintCrashDiagnostics.BeginSeed(seedType);
-                FurnitureBlueprintCrashDiagnostics.Phase("batch-complete", "before-accuracy");
-                FurnitureSchemeAccuracy.Report accuracy =
-                    FurnitureSchemeAccuracy.Evaluate(seedType, material, scheme);
-                FurnitureBlueprintCrashDiagnostics.Phase("batch-complete", "after-accuracy");
-                FurnitureBlueprintCrashDiagnostics.EndSeed();
+                try
+                {
+                    FurnitureBlueprintCrashDiagnostics.Phase("batch-complete", "before-accuracy");
+                    FurnitureSchemeAccuracy.Report accuracy =
+                        FurnitureSchemeAccuracy.Evaluate(seedType, material, scheme);
+                    FurnitureBlueprintCrashDiagnostics.Phase("batch-complete", "after-accuracy");
+                    ScoreActiveSeed(seedType, material, scheme, wiki, accuracy);
+                }
+                finally
+                {
+                    FurnitureBlueprintCrashDiagnostics.EndSeed();
+                }
+            }
+            catch (Exception ex)
+            {
+                _failed++;
+                FurnitureBlueprintLog.Warn(
+                    $"batch-test score fail seed={seedType} name={SafeName(seedType)}: {ex.Message}");
+            }
+        }
+
+        private static void ScoreActiveSeed(
+            int seedType,
+            int material,
+            FurnitureScheme scheme,
+            int wiki,
+            FurnitureSchemeAccuracy.Report accuracy)
+        {
                 _wikiSum += wiki;
                 _accuracySum += accuracy.Accurate;
                 _accuracyFilled += accuracy.Filled;
@@ -533,18 +573,12 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
 
                 TrackWorst(seedType, wiki, accuracy, material, candidates);
                 MaybeTrimRecognitionCaches();
-            }
-            catch (Exception ex)
-            {
-                _failed++;
-                FurnitureBlueprintLog.Warn(
-                    $"batch-test score fail seed={seedType} name={SafeName(seedType)}: {ex.Message}");
-            }
         }
 
         private static void Finish()
         {
             IsRunning = false;
+            FurnitureBlueprintScope.StrictMaterialOnly = false;
             _runClock.Stop();
             _bootstrapSeed = ItemID.None;
             _pendingBeginRecognition = false;
@@ -716,7 +750,8 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
                 return seedType;
 
             FurnitureReverseSeedProbe probe = FurnitureReverseSeedProbeCache.Ensure(seedType);
-            int block = FurnitureReverseRecipeIngredients.PickDefaultPlaceableBlock(seedType, probe.PickerCandidates);
+            int block = FurnitureReverseRecipeIngredients.PickDefaultPlaceableBlock(
+                seedType, probe.PickerCandidates, probe.BestAnchorIngredient);
             if (block <= ItemID.None)
             {
                 block = FurnitureMaterialBlockResolver.ResolvePlaceableBlockFromProbe(

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 using Terraria;
@@ -29,38 +30,32 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
 
 
         public static int TryResolveBlockFromFurnitureSeed(int seedType)
-
         {
-
             if (seedType <= ItemID.None)
-
                 return ItemID.None;
 
+            try
+            {
+                var scoreboard = new List<(int type, int score)>();
+                FurnitureStyleSignature sig = FurnitureStyleSignature.FromItemType(seedType);
+                CollectBlockCandidatesFromPlacementLine(seedType, sig, scoreboard);
+                if (scoreboard.Count == 0)
+                    return ItemID.None;
 
+                scoreboard.Sort((a, b) => FurnitureReverseAnchorResolver.CombineMaterialRankScore(seedType, b.type)
+                    .CompareTo(FurnitureReverseAnchorResolver.CombineMaterialRankScore(seedType, a.type)));
 
-            var scoreboard = new List<(int type, int score)>();
+                int best = scoreboard[0].type;
 
-            FurnitureStyleSignature sig = FurnitureStyleSignature.FromItemType(seedType);
-
-            CollectBlockCandidatesFromPlacementLine(seedType, sig, scoreboard);
-
-            if (scoreboard.Count == 0)
-
+                FurnitureBlueprintLog.InfoFull(
+                    $"placement line block seed={seedType} block={best} score={scoreboard[0].score} candidates={scoreboard.Count}");
+                return best;
+            }
+            catch (Exception ex)
+            {
+                FurnitureBlueprintLog.Warn($"placement line block failed seed={seedType}: {ex.Message}");
                 return ItemID.None;
-
-
-
-            scoreboard.Sort((a, b) => FurnitureReverseAnchorResolver.CombineMaterialRankScore(seedType, b.type)
-                .CompareTo(FurnitureReverseAnchorResolver.CombineMaterialRankScore(seedType, a.type)));
-
-            int best = scoreboard[0].type;
-
-            FurnitureBlueprintLog.InfoFull(
-
-                $"placement line block seed={seedType} block={best} score={scoreboard[0].score} candidates={scoreboard.Count}");
-
-            return best;
-
+            }
         }
 
 
@@ -82,11 +77,10 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
 
 
             Item seed = new Item();
+            if (!FurnitureItemDefaults.TrySetDefaults(seed, seedType) || seed.createTile < TileID.Dirt)
+                return;
 
-            seed.SetDefaults(seedType);
-
-            if (seed.createTile < TileID.Dirt)
-
+            if (!FurnitureTileSafety.IsValidTileId(seed.createTile))
                 return;
 
 
@@ -98,13 +92,17 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
                 seed.createTile, seed.placeStyle, sig.ModKey, sig.StyleKey, siblings, MaxSiblings);
 
             if (seed.createTile >= TileID.Count)
-
             {
-
-                FurnitureTileSlotRegistry.AddAllItemsOnModTile(
-
-                    seed.createTile, sig.ModKey, sig.StyleKey, siblings, MaxSiblings);
-
+                try
+                {
+                    FurnitureTileSlotRegistry.AddAllItemsOnModTile(
+                        seed.createTile, sig.ModKey, sig.StyleKey, siblings, MaxSiblings);
+                }
+                catch (Exception ex)
+                {
+                    FurnitureBlueprintLog.Warn(
+                        $"placement line mod-tile siblings seed={seedType} tile={seed.createTile}: {ex.Message}");
+                }
             }
 
 
@@ -194,8 +192,8 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
 
 
             Item probe = new Item();
-
-            probe.SetDefaults(ingredientType);
+            if (!FurnitureItemDefaults.TrySetDefaults(probe, ingredientType))
+                return;
 
             if (!FurnitureMaterialAnchor.IsValidAnchorBlock(probe))
 

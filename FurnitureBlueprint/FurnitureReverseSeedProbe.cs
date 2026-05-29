@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -21,6 +22,7 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
     public static class FurnitureReverseSeedProbeCache
     {
         private static readonly Dictionary<int, FurnitureReverseSeedProbe> Cache = new Dictionary<int, FurnitureReverseSeedProbe>();
+        private static readonly HashSet<int> Building = new HashSet<int>();
 
         public static FurnitureReverseSeedProbe Ensure(int seedType)
         {
@@ -30,7 +32,28 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
             if (Cache.TryGetValue(seedType, out FurnitureReverseSeedProbe cached))
                 return cached;
 
-            FurnitureReverseSeedProbe probe = Build(seedType);
+            if (Building.Contains(seedType))
+            {
+                FurnitureBlueprintLog.Warn($"reverse probe reentrant seed={seedType}");
+                return Empty(seedType);
+            }
+
+            Building.Add(seedType);
+            FurnitureReverseSeedProbe probe;
+            try
+            {
+                probe = Build(seedType);
+            }
+            catch (Exception ex)
+            {
+                FurnitureBlueprintLog.Warn($"reverse probe build failed seed={seedType}: {ex.Message}");
+                probe = Empty(seedType);
+            }
+            finally
+            {
+                Building.Remove(seedType);
+            }
+
             Cache[seedType] = probe;
             return probe;
         }
@@ -67,29 +90,17 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
             int bestScore = int.MinValue;
             var scoreboard = new List<(int type, int score)>();
 
-            if (FurnitureSetMaterialRules.UsesModLineageAnchor(seedType) && seedItem.createTile >= TileID.Dirt)
-            {
-                int lineFirst = FurniturePlacementLineMaterialResolver.TryResolveBlockFromFurnitureSeed(seedType);
-                if (lineFirst > ItemID.None
-                    && !FurnitureSetMaterialRules.IsForbiddenGenericMaterial(lineFirst, seedType))
-                {
-                    best = lineFirst;
-                    bestScore = 12_000;
-                    scoreboard.Add((lineFirst, bestScore));
-                }
-            }
-
             FurnitureReverseRecipeIngredients.CollectForSeed(seedType, sig, scoreboard, ref best, ref bestScore);
 
-            if (FurnitureSetMaterialRules.UsesModLineageAnchor(seedType))
+            if (FurnitureSetMaterialRules.UsesModLineageAnchorFromAnchor(seedType, best))
             {
                 for (int i = scoreboard.Count - 1; i >= 0; i--)
                 {
-                    if (FurnitureSetMaterialRules.IsForbiddenGenericMaterial(scoreboard[i].type, seedType))
+                    if (FurnitureSetMaterialRules.IsForbiddenGenericMaterial(scoreboard[i].type, seedType, best))
                         scoreboard.RemoveAt(i);
                 }
 
-                if (FurnitureSetMaterialRules.IsForbiddenGenericMaterial(best, seedType))
+                if (FurnitureSetMaterialRules.IsForbiddenGenericMaterial(best, seedType, best))
                     best = ItemID.None;
             }
 
@@ -104,22 +115,6 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
                     int rank = FurnitureReverseAnchorResolver.CombineMaterialRankScore(seedType, entry.type);
                     FurnitureBlueprintLog.InfoFull(
                         $"reverse recipe-ingredient seed={seedType} #{i + 1} type={entry.type} score={entry.score} station={station} rank={rank}");
-                }
-            }
-
-            if (best <= ItemID.None && seedItem.createTile >= TileID.Dirt)
-            {
-                int lineBlock = FurniturePlacementLineMaterialResolver.TryResolveBlockFromFurnitureSeed(seedType);
-                if (lineBlock > ItemID.None)
-                {
-                    Item lineProbe = new Item();
-                    lineProbe.SetDefaults(lineBlock);
-                    if (FurnitureMaterialAnchor.IsValidAnchorBlock(lineProbe))
-                    {
-                        best = lineBlock;
-                        bestScore = 3_000;
-                        scoreboard.Add((lineBlock, bestScore));
-                    }
                 }
             }
 
@@ -139,7 +134,7 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
             if (picker.Count > 0)
             {
                 FurnitureBlueprintLog.InfoFull(
-                    $"material picker seed={seedType} count={picker.Count} default_block={FurnitureReverseRecipeIngredients.PickDefaultPlaceableBlock(seedType, picker)}");
+                    $"material picker seed={seedType} count={picker.Count} default_block={FurnitureReverseRecipeIngredients.PickDefaultPlaceableBlock(seedType, picker, anchorIngredient)}");
             }
 
             return new FurnitureReverseSeedProbe
@@ -155,3 +150,4 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
 
     }
 }
+

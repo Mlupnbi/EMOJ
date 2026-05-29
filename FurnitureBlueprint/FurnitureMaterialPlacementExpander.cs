@@ -34,8 +34,8 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
             if (!useLine || lineTile < TileID.Dirt)
             {
                 Item blockItem = new Item();
-                blockItem.SetDefaults(materialBlock);
-                if (blockItem.createTile >= TileID.Dirt)
+                if (FurnitureItemDefaults.TrySetDefaults(blockItem, materialBlock)
+                    && blockItem.createTile >= TileID.Dirt)
                 {
                     lineTile = blockItem.createTile;
                     lineStyle = blockItem.placeStyle;

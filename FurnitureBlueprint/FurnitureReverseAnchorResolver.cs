@@ -69,7 +69,8 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
 
             FurnitureStyleSignature sig = FurnitureStyleSignature.FromItemType(seedType);
             Item probe = new Item();
-            probe.SetDefaults(materialType);
+            if (!FurnitureItemDefaults.TrySetDefaults(probe, materialType))
+                return int.MinValue / 4;
             int style = ScoreIngredientNameFit(materialType, sig.StyleKey?.Trim() ?? "", sig, probe);
             if (style <= int.MinValue / 8)
                 style = 0;

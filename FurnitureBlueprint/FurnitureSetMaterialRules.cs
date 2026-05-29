@@ -14,21 +14,32 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
     {
         public static bool UsesModLineageAnchor(int seedType)
         {
-            if (seedType <= ItemID.None || UsesModSpecificMaterialBlock(seedType))
+            return UsesModLineageAnchorFromAnchor(
+                seedType, FurnitureReverseSeedProbeCache.Ensure(seedType).BestAnchorIngredient);
+        }
+
+        /// <summary>结构条件：mod 种子 + style 前缀（不查 placement line / probe，避免 Build 递归与 native 闪退）。</summary>
+        internal static bool HasModLineageAnchorSeedProfile(int seedType)
+        {
+            if (seedType <= ItemID.None)
                 return false;
 
             ModItem mi = ItemLoader.GetItem(seedType);
             if (mi == null || mi.Mod.Name == "Terraria")
                 return false;
 
-            if (string.IsNullOrWhiteSpace(FurnitureStylePrefixCatalog.ResolveStylePrefix(seedType)))
+            return !string.IsNullOrWhiteSpace(FurnitureStylePrefixCatalog.ResolveStylePrefix(seedType));
+        }
+
+        internal static bool UsesModLineageAnchorFromAnchor(int seedType, int anchorIngredient)
+        {
+            if (!HasModLineageAnchorSeedProfile(seedType))
                 return false;
 
-            int anchor = FurnitureReverseSeedProbeCache.Ensure(seedType).BestAnchorIngredient;
-            if (anchor <= ItemID.None || !IsGenericCraftMaterial(anchor))
+            if (anchorIngredient <= ItemID.None || !IsGenericCraftMaterial(anchorIngredient))
                 return false;
 
-            return !MaterialAlignsWithSeedStyle(seedType, anchor);
+            return !MaterialAlignsWithSeedStyle(seedType, anchorIngredient);
         }
 
         /// <summary>种子图格线/配方可解析出与 style 对齐的 mod 专用材料块（非泛用木/高扇出）。</summary>
@@ -88,12 +99,16 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
             return !string.IsNullOrWhiteSpace(styleKey);
         }
 
-        public static bool IsForbiddenGenericMaterial(int materialType, int seedType)
+        public static bool IsForbiddenGenericMaterial(int materialType, int seedType, int seedAnchor = ItemID.None)
         {
             if (materialType <= ItemID.None)
                 return true;
 
-            if (!UsesModLineageAnchor(seedType))
+            bool lineage = seedAnchor > ItemID.None
+                ? UsesModLineageAnchorFromAnchor(seedType, seedAnchor)
+                : UsesModLineageAnchor(seedType);
+
+            if (!lineage)
                 return IsMisalignedGenericMaterialForModSeed(seedType, materialType);
 
             if (IsAllowedModLineageWood(materialType, seedType))

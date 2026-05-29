@@ -409,6 +409,7 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
 
                 case 1:
                     if (materialBlock > ItemID.None
+                        && !FurnitureBlueprintScope.StrictMaterialOnly
                         && !(preview.PreferSeedCluster || preview.Tier == FurnitureSetConfidenceTier.Low)
                         && (FurnitureSetMaterialRules.UsesModLineageAnchor(seedType)
                             || FurnitureSetMaterialRules.UsesModSpecificMaterialBlock(seedType)
@@ -1104,9 +1105,10 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
             else if (materialBlock > ItemID.None)
             {
                 raw = FurnitureRecognitionCaches.GetOrCollectMaterialProducts(seedType, materialBlock, blockSig);
-                if (FurnitureSetMaterialRules.UsesModLineageAnchor(seedType)
-                    || FurnitureSetMaterialRules.UsesModSpecificMaterialBlock(seedType)
-                    || raw.Count < FurnitureSetConfidence.LowMaterialCandidateCap)
+                if (!FurnitureBlueprintScope.StrictMaterialOnly
+                    && (FurnitureSetMaterialRules.UsesModLineageAnchor(seedType)
+                        || FurnitureSetMaterialRules.UsesModSpecificMaterialBlock(seedType)
+                        || raw.Count < FurnitureSetConfidence.LowMaterialCandidateCap))
                 {
                     FurnitureStyleClusterCatalog.ExpandFromSeed(seedType, signature, raw, materialBlock);
                     FurnitureCandidateExpander.Expand(seedType, blockSig, materialBlock, raw);

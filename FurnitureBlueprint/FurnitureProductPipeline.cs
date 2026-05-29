@@ -45,55 +45,54 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
             HashSet<int> products = FurnitureMaterialProductCollector.CollectFromMaterialBlock(
                 materialBlock, productSig, stationProfile, seedType);
 
-            int afterCollect = products.Count;
+            if (seedType > ItemID.None && seedType != materialBlock)
+                products.Add(seedType);
 
-
-
-            Item blockItem = new Item();
-            if (!FurnitureItemDefaults.TrySetDefaults(blockItem, materialBlock))
-                return products;
-            if (!RecipeAnalyzer.IsHighFanoutMaterial(materialBlock)
-                && FurnitureMaterialAnchor.IsValidAnchorBlock(blockItem)
-                && blockItem.createTile >= TileID.Dirt)
+            if (!FurnitureBlueprintScope.StrictMaterialOnly)
             {
-                FurnitureTileSlotRegistry.AddPlacementLineSiblings(
-                    blockItem.createTile,
-                    blockItem.placeStyle,
-                    productSig.ModKey,
-                    productSig.StyleKey,
-                    products,
-                    maxItems: 64);
-            }
+                int afterCollect = products.Count;
 
-            if (seedType > ItemID.None && FurnitureSetMaterialRules.UsesModLineageAnchor(seedType))
-            {
-                FurnitureStyleSignature seedSig = FurnitureStyleSignature.FromItemType(seedType);
-                if (seedSig.UsesPlacementStyleLine && seedSig.PlacementTile >= TileID.Dirt)
+                Item blockItem = new Item();
+                if (FurnitureItemDefaults.TrySetDefaults(blockItem, materialBlock)
+                    && !RecipeAnalyzer.IsHighFanoutMaterial(materialBlock)
+                    && FurnitureMaterialAnchor.IsValidAnchorBlock(blockItem)
+                    && blockItem.createTile >= TileID.Dirt)
                 {
                     FurnitureTileSlotRegistry.AddPlacementLineSiblings(
-                        seedSig.PlacementTile,
-                        seedSig.PlacementStyle,
+                        blockItem.createTile,
+                        blockItem.placeStyle,
                         productSig.ModKey,
                         productSig.StyleKey,
                         products,
                         maxItems: 64);
                 }
+
+                if (seedType > ItemID.None && FurnitureSetMaterialRules.UsesModLineageAnchor(seedType))
+                {
+                    FurnitureStyleSignature seedSig = FurnitureStyleSignature.FromItemType(seedType);
+                    if (seedSig.UsesPlacementStyleLine && seedSig.PlacementTile >= TileID.Dirt)
+                    {
+                        FurnitureTileSlotRegistry.AddPlacementLineSiblings(
+                            seedSig.PlacementTile,
+                            seedSig.PlacementStyle,
+                            productSig.ModKey,
+                            productSig.StyleKey,
+                            products,
+                            maxItems: 64);
+                    }
+                }
+
+                FurnitureCandidateExpander.Expand(seedType, productSig, materialBlock, products);
+                FurnitureMaterialPlacementExpander.ExpandFromMaterialAndSeed(products, seedType, materialBlock, productSig);
+
+                FurnitureBlueprintLog.InfoFull(
+                    $"products strict seed={seedType} block={materialBlock} material_style={productSig.StyleKey} count={products.Count} recipe_only={afterCollect}");
             }
-
-
-
-            if (seedType > ItemID.None && seedType != materialBlock)
-
-                products.Add(seedType);
-
-
-
-            FurnitureCandidateExpander.Expand(seedType, productSig, materialBlock, products);
-            FurnitureMaterialPlacementExpander.ExpandFromMaterialAndSeed(products, seedType, materialBlock, productSig);
-
-            FurnitureBlueprintLog.InfoFull(
-
-                $"products strict seed={seedType} block={materialBlock} material_style={productSig.StyleKey} count={products.Count} recipe_only={afterCollect}");
+            else
+            {
+                FurnitureBlueprintLog.InfoFull(
+                    $"products recipe-only seed={seedType} block={materialBlock} material_style={productSig.StyleKey} count={products.Count}");
+            }
 
             return products;
 

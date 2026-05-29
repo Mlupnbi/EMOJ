@@ -78,7 +78,8 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
                     continue;
 
                 Item probe = new Item();
-                probe.SetDefaults(entry.type);
+                if (!FurnitureItemDefaults.TrySetDefaults(probe, entry.type))
+                    continue;
                 bool block = FurnitureMaterialAnchor.IsValidAnchorBlock(probe);
                 int station = FurnitureReverseAnchorResolver.ScoreStationMaterialLink(seedType, entry.type);
                 bool craftMat = entry.type < ItemID.Sets.IsAMaterial.Length && ItemID.Sets.IsAMaterial[entry.type];
@@ -94,7 +95,7 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
             return ordered;
         }
 
-        public static int PickDefaultPlaceableBlock(int seedType, IReadOnlyList<int> pickerItems)
+        public static int PickDefaultPlaceableBlock(int seedType, IReadOnlyList<int> pickerItems, int knownAnchor = ItemID.None)
         {
             if (pickerItems == null || pickerItems.Count == 0)
                 return ItemID.None;
@@ -105,7 +106,9 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
             Item seedProbe = new Item();
             FurnitureItemDefaults.TrySetDefaults(seedProbe, seedType);
             string seedDisplay = (seedProbe.Name ?? "").ToLowerInvariant();
-            bool modLineageSet = FurnitureSetMaterialRules.UsesModLineageAnchor(seedType);
+            bool modLineageSet = knownAnchor > ItemID.None
+                ? FurnitureSetMaterialRules.UsesModLineageAnchorFromAnchor(seedType, knownAnchor)
+                : FurnitureSetMaterialRules.UsesModLineageAnchor(seedType);
             bool nothingnessSet = modLineageSet && seedDisplay.Contains("нч");
 
             int best = ItemID.None;
@@ -134,7 +137,7 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
 
                 if (modLineageSet)
                 {
-                    if (FurnitureSetMaterialRules.IsForbiddenGenericMaterial(type, seedType))
+                    if (FurnitureSetMaterialRules.IsForbiddenGenericMaterial(type, seedType, knownAnchor))
                         continue;
 
                     string blockDisplay = (probe.Name ?? "").ToLowerInvariant();
@@ -172,7 +175,8 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
                 return;
 
             Item probe = new Item();
-            probe.SetDefaults(ingredientType);
+            if (!FurnitureItemDefaults.TrySetDefaults(probe, ingredientType))
+                return;
             int score = FurnitureReverseAnchorResolver.ScoreIngredientNameFit(ingredientType, targetStyle, seedSig, probe);
             score += FurnitureReverseAnchorResolver.ScoreStationMaterialLink(seedType, ingredientType) * 2;
 
@@ -213,7 +217,8 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
             foreach ((int type, int score) entry in scoreboard)
             {
                 Item probe = new Item();
-                probe.SetDefaults(entry.type);
+                if (!FurnitureItemDefaults.TrySetDefaults(probe, entry.type))
+                    continue;
                 if (!FurnitureMaterialAnchor.IsValidAnchorBlock(probe))
                     continue;
 

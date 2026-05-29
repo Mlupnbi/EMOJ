@@ -20,7 +20,8 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
 
             int materialBlock;
             Item seed = new Item();
-            seed.SetDefaults(seedType);
+            if (!FurnitureItemDefaults.TrySetDefaults(seed, seedType))
+                return;
 
             if (materialBlockOverride > ItemID.None)
             {
@@ -40,8 +41,8 @@ namespace EvenMoreOverpoweredJourney.FurnitureBlueprint
 
                 materialBlock = anchor;
                 Item anchorItem = new Item();
-                anchorItem.SetDefaults(anchor);
-                if (!FurnitureMaterialAnchor.IsValidAnchorBlock(anchorItem))
+                if (!FurnitureItemDefaults.TrySetDefaults(anchorItem, anchor)
+                    || !FurnitureMaterialAnchor.IsValidAnchorBlock(anchorItem))
                 {
                     int resolved = FurnitureMaterialAnchor.ResolvePlaceableBlock(anchor, signature);
                     if (resolved > ItemID.None)
